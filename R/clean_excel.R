@@ -39,13 +39,13 @@ DelmaFiltered<- combined_raw %>%
 
 #we'll need to make a single date/time object variable
 
-#there's some missing dates and times (impute by year average?)
+#there's some missing dates and times (impute by year average?), also a few am/pm confusions, but fixable - assume <6 is actually pm.
 DelmaFiltered[which(is.na(DelmaFiltered$Time)|is.na(DelmaFiltered$Date)),]
 
 hist(hour(DelmaFiltered$Time))
 hist(minute(DelmaFiltered$Time))
 table(year(DelmaFiltered$Date))
-table(month(DelmaFiltered$Date)) #a few am/pm confusions, but fixable - assume <6 is actually pm.
+table(month(DelmaFiltered$Date)) 
 table(day(DelmaFiltered$Date))
 
 X<-ymd_h(paste(
@@ -54,19 +54,5 @@ X<-ymd_h(paste(
 	day(DelmaFiltered$Date),
 	hour(DelmaFiltered$Time)))
 	
-))
-
-#ghcma 123
-#ccma 94
-#wcma 78
-
-78+94+123
-
-#seem to be dropping sites for some reason....
-length(unique(DelmaFiltered$Grid))
-			 length(unique(wcma$`Grid No`))+
-			 length(unique(ccma$`Grid No`))+
-			 length(unique(ghcma$`Grid No`))
-save.image
 
 
