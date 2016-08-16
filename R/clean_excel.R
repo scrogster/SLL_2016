@@ -1,6 +1,7 @@
 require(readxl)
 require(dplyr)
 require(tidyr)
+require(lubridate)
 
 wcma<-read_excel("DataFromGarry/SLL monitoring database formatted 13May13.xls", 1)
 ccma<-read_excel("DataFromGarry/SLL monitoring database formatted 13May13.xls", 2)
@@ -16,8 +17,7 @@ combined_raw<-rbind(wcma, ccma, ghcma)
 
 #first cut of a filtering pipe for the data.
 
-#counting of Delma adults and skins not quite right yet (2nd last line)
-
+#The following code summarises each survey's results - survey level vars, and detections of various spp.
 DelmaFiltered<- combined_raw %>%
 	select(Grid=`Grid No`, Cluster, CMA, Date, Season=`Field Season`,
 				 T1=`Time Start (EST)`,
@@ -39,7 +39,7 @@ DelmaFiltered<- combined_raw %>%
 						BassDup = sum(Number[grep("duperreyi", Species)], na.rm=TRUE),
 						PseudPag = sum(Number[grep("pagenstech", Species)], na.rm=TRUE),
 						Sminthopsis = sum(Number[grep("Sminth", Species)], na.rm=TRUE)
-						)%>%
+						)%>% 
 	arrange(GridCMA, CMA, Cluster, Grid, Date)
 
 save.image("prepped_data.Rdata")
@@ -49,19 +49,23 @@ save.image("prepped_data.Rdata")
 #there's some missing dates and times (impute by year average?), also a few am/pm confusions, but fixable - assume <6 is actually pm.
 # DelmaFiltered[which(is.na(DelmaFiltered$Time)|is.na(DelmaFiltered$Date)),]
 # 
-# hist(hour(DelmaFiltered$Time))
-# hist(minute(DelmaFiltered$Time))
-# table(year(DelmaFiltered$Date))
-# table(month(DelmaFiltered$Date)) 
-# table(day(DelmaFiltered$Date))
-# 
-# X<-ymd_h(paste(
-# 	year(DelmaFiltered$Date),
-# 	month(DelmaFiltered$Date),
-# 	day(DelmaFiltered$Date),
-# 	hour(DelmaFiltered$Time)))
+ X<-ymd_h(paste(
+ 	year(DelmaFiltered$Date),
+  month(DelmaFiltered$Date),
+ 	day(DelmaFiltered$Date),
+  #hack to fix silly early mornings, which are am/pm mixups.
+ 	ifelse(hour(DelmaFiltered$Time)<7, hour(DelmaFiltered$Time)+12, hour(DelmaFiltered$Time))))
 
+#so there are three that won't parse 
+ DelmaFiltered[which(is.na(X)),1:10]
+ 
+#These are the details of the ones that won't parse - fix in original excel and push to github...
+#     CMA     GridCMA       Date                Time   Grid  Cluster  Season AirTemp SoilTemp HumidA
+# 1  ccma   1.2.1ccma       <NA> 1899-12-30 09:55:00  1.2.1  Lismore 2009/10    17.6     19.2   49.0
+# 2 ghcma 16.2.3ghcma       <NA>                <NA> 16.2.3     skip 2004/05      NA       NA     NA
+# 3  ccma   4.3.2ccma 2008-10-27                <NA>  4.3.2 Rokewood 2008/09    18.5     20.1   57.9
 
-	
-
-
+#    HumidS   Sun Cloud DelmaLizards DelmaOther SutaFlag BassDup PseudPag Sminthopsis
+# 1   80.0   5.0     4            0          0        0       0        0           0
+# 2     NA    NA    NA            0          0        0       0        0           0
+# 3   69.9   2.5     4            0          0        9       0        0           0
