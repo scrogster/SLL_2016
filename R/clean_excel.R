@@ -7,9 +7,9 @@ ccma<-read_excel("DataFromGarry/SLL monitoring database formatted 13May13.xls", 
 ghcma<-read_excel("DataFromGarry/SLL monitoring database formatted 13May13.xls", 3)
 
 #filter out blank lines
-wcma <- wcma %>% filter(!is.na(`Grid No`)) %>% select (-`Time End (EST)`) %>% mutate(CMA="wcma")
-ccma <- ccma %>% filter(!is.na(`Grid No`)) %>% select (-`Time End (EST)`) %>% mutate(CMA="ccma")
-ghcma <- ghcma %>% filter(!is.na(`Grid No`)) %>% select (-`Time End (EST)`) %>% mutate(CMA = "ghcma")
+wcma <- wcma %>% filter(!is.na(`Grid No`)) %>% select (-`Time End (EST)`) %>% mutate(CMA="wcma", Species=trimws(Species))
+ccma <- ccma %>% filter(!is.na(`Grid No`)) %>% select (-`Time End (EST)`) %>% mutate(CMA="ccma", Species=trimws(Species))
+ghcma <- ghcma %>% filter(!is.na(`Grid No`)) %>% select (-`Time End (EST)`) %>% mutate(CMA = "ghcma", Species=trimws(Species))
 
 combined_raw<-rbind(wcma, ccma, ghcma)
 
@@ -34,25 +34,34 @@ DelmaFiltered<- combined_raw %>%
 						AirTemp=first(AirTemp), SoilTemp=first(SoilTemp), HumidA=first(HumidA), HumidS=first(HumidS), 
 						Sun=first(Sun), Cloud=first(Cloud), 
 						DelmaLizards = sum(Number[Species=="Delma impar" & is.na(Evidence)], na.rm=TRUE),
-						DelmaOther = sum(Number[Species=="Delma impar" & !is.na(Evidence)] , na.rm=TRUE))%>%
+						DelmaOther = sum(Number[Species=="Delma impar" & !is.na(Evidence)] , na.rm=TRUE),
+						SutaFlag = sum(Number[Species=="Suta flagellum"], na.rm=TRUE),
+						BassDup = sum(Number[grep("duperreyi", Species)], na.rm=TRUE),
+						PseudPag = sum(Number[grep("pagenstech", Species)], na.rm=TRUE),
+						Sminthopsis = sum(Number[grep("Sminth", Species)], na.rm=TRUE)
+						)%>%
 	arrange(GridCMA, CMA, Cluster, Grid, Date)
+
+save.image("prepped_data.Rdata")
 
 #we'll need to make a single date/time object variable
 
 #there's some missing dates and times (impute by year average?), also a few am/pm confusions, but fixable - assume <6 is actually pm.
-DelmaFiltered[which(is.na(DelmaFiltered$Time)|is.na(DelmaFiltered$Date)),]
+# DelmaFiltered[which(is.na(DelmaFiltered$Time)|is.na(DelmaFiltered$Date)),]
+# 
+# hist(hour(DelmaFiltered$Time))
+# hist(minute(DelmaFiltered$Time))
+# table(year(DelmaFiltered$Date))
+# table(month(DelmaFiltered$Date)) 
+# table(day(DelmaFiltered$Date))
+# 
+# X<-ymd_h(paste(
+# 	year(DelmaFiltered$Date),
+# 	month(DelmaFiltered$Date),
+# 	day(DelmaFiltered$Date),
+# 	hour(DelmaFiltered$Time)))
 
-hist(hour(DelmaFiltered$Time))
-hist(minute(DelmaFiltered$Time))
-table(year(DelmaFiltered$Date))
-table(month(DelmaFiltered$Date)) 
-table(day(DelmaFiltered$Date))
 
-X<-ymd_h(paste(
-	year(DelmaFiltered$Date),
-	month(DelmaFiltered$Date),
-	day(DelmaFiltered$Date),
-	hour(DelmaFiltered$Time)))
 	
 
 
