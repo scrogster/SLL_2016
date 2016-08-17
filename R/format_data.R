@@ -69,6 +69,8 @@ aa<-BETA[1]+BETA[2]*(cos(2*pi*x))+BETA[3]*(sin(2*pi*x)) +
 bb<-BETA[9]+BETA[10]*(cos(2*pi*x))+BETA[11]*(sin(2*pi*x))+ 
 	BETA[12]*(cos(4*pi*x))+BETA[13]*(sin(4*pi*x))
 
-plot(plogis(aa)~x, col="red", type="l", ylim=c(0, 1))
-lines(y=plogis(bb), x=x, col="blue")
-title(main=c("Red = lizards, Blue = sloughs"))
+plot(plogis(aa)~x, col="red", type="l", ylim=c(0, 1), lwd=2, ylab="Pr(detect)")
+lines(y=plogis(bb), x=x, col="blue", lwd=2)
+lines(y = 1- (1-plogis(aa))*(1-plogis(bb)), x=x, col="green", lwd=2)
+title(main=c("Red=lizards, Blue=sloughs, Green=combined"))
+
