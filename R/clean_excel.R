@@ -40,24 +40,28 @@ DelmaFiltered<- combined_raw %>%
 						PseudPag = sum(Number[grep("pagenstech", Species)], na.rm=TRUE),
 						Sminthopsis = sum(Number[grep("Sminth", Species)], na.rm=TRUE)
 						)%>% 
+	  mutate(yearnum = year(Date)-2003, 
+	  			 sitenum=as.numeric(factor(GridCMA)),
+	  			 yeardayfrac=yday(Date)/365 )%>%   #fraction of the calendar year
 	arrange(GridCMA, CMA, Cluster, Grid, Date)
 
 save.image("prepped_data.Rdata")
 
-#we'll need to make a single date/time object variable
+#might need to make a single date/time object variable
 
 #there's some missing dates and times (impute by year average?), also a few am/pm confusions, but fixable - assume <6 is actually pm.
 # DelmaFiltered[which(is.na(DelmaFiltered$Time)|is.na(DelmaFiltered$Date)),]
 # 
- X<-ymd_h(paste(
- 	year(DelmaFiltered$Date),
-  month(DelmaFiltered$Date),
- 	day(DelmaFiltered$Date),
+# X<-ymd_h(paste(
+# 	year(DelmaFiltered$Date),
+#  month(DelmaFiltered$Date),
+# 	day(DelmaFiltered$Date),
+#  hour(DelmaFiltered$Time),
   #hack to fix silly early mornings, which are am/pm mixups.
- 	ifelse(hour(DelmaFiltered$Time)<7, hour(DelmaFiltered$Time)+12, hour(DelmaFiltered$Time))))
+# 	ifelse(hour(DelmaFiltered$Time)<7, hour(DelmaFiltered$Time)+12, hour(DelmaFiltered$Time)), sep="-"))
 
 #so there are three that won't parse 
- DelmaFiltered[which(is.na(X)),1:10]
+# DelmaFiltered[which(is.na(X)),1:10]
  
 #These are the details of the ones that won't parse - fix in original excel and push to github...
 #     CMA     GridCMA       Date                Time   Grid  Cluster  Season AirTemp SoilTemp HumidA

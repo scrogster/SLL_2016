@@ -5,4 +5,4 @@
 .Rproj
 Admin/*
 OldStuff/*
-
+*.Rdata
