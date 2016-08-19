@@ -1,12 +1,16 @@
 
 require(jagsUI)
+require(lubridate)
 load("prepped_data.Rdata")
 
 #variables to get for model
 
+tapply(DelmaFiltered$AirTemp, month(DelmaFiltered$Date), "mean")
+
 #rough imputation of missing temps
 TempS = DelmaFiltered$SoilTemp
 TempS[is.na(TempS)]<-mean(TempS, na.rm=TRUE)
+TempS[TempS>60]<-mean(TempS, na.rm=TRUE)
 
 SurvHour = ifelse(hour(DelmaFiltered$Time)<7, hour(DelmaFiltered$Time)+12, hour(DelmaFiltered$Time))
 SurvMinute = minute(DelmaFiltered$Time)
@@ -52,8 +56,8 @@ out <- jags(data = jags_dat,
 						parallel=FALSE, 
 						n.chains = 3,
 						n.adapt = 100,
-						n.iter = 2000,
-						n.burnin = 1000,
+						n.iter = 1500,
+						n.burnin = 500,
 						n.thin = 2)
 
 out
@@ -61,15 +65,18 @@ out
 plot(out)
 
 #trial plotting of seasonal response curves 
-BETA<-colMeans(out$sims.list$BETA)[]
-x<-seq(0, 1, by=0.02)
+BETA<-colMeans(out$sims.list$BETA)
+
+x<-seq(0, 1, by=0.01)
 aa<-BETA[1]+BETA[2]*(cos(2*pi*x))+BETA[3]*(sin(2*pi*x)) + 
 	BETA[4]*(cos(4*pi*x))+BETA[5]*(sin(4*pi*x))
 
 bb<-BETA[9]+BETA[10]*(cos(2*pi*x))+BETA[11]*(sin(2*pi*x))+ 
 	BETA[12]*(cos(4*pi*x))+BETA[13]*(sin(4*pi*x))
 
-plot(plogis(aa)~x, col="red", type="l", ylim=c(0, 1), lwd=2, ylab="Pr(detect)")
+
+plot(plogis(aa)~x, col="red", type="l", ylim=c(0, 1), lwd=2, ylab="Pr(detect)",
+		 xlab="Fraction of Calendar Year", las=1)
 lines(y=plogis(bb), x=x, col="blue", lwd=2)
 lines(y = 1- (1-plogis(aa))*(1-plogis(bb)), x=x, col="green", lwd=2)
 title(main=c("Red=lizards, Blue=sloughs, Green=combined"))
