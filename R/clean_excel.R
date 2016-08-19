@@ -47,29 +47,3 @@ DelmaFiltered<- combined_raw %>%
 
 save.image("prepped_data.Rdata")
 
-#might need to make a single date/time object variable
-
-#there's some missing dates and times (impute by year average?), also a few am/pm confusions, but fixable - assume <6 is actually pm.
-# DelmaFiltered[which(is.na(DelmaFiltered$Time)|is.na(DelmaFiltered$Date)),]
-# 
-# X<-ymd_h(paste(
-# 	year(DelmaFiltered$Date),
-#  month(DelmaFiltered$Date),
-# 	day(DelmaFiltered$Date),
-#  hour(DelmaFiltered$Time),
-  #hack to fix silly early mornings, which are am/pm mixups.
-# 	ifelse(hour(DelmaFiltered$Time)<7, hour(DelmaFiltered$Time)+12, hour(DelmaFiltered$Time)), sep="-"))
-
-#so there are three that won't parse 
-# DelmaFiltered[which(is.na(X)),1:10]
- 
-#These are the details of the ones that won't parse - fix in original excel and push to github...
-#     CMA     GridCMA       Date                Time   Grid  Cluster  Season AirTemp SoilTemp HumidA
-# 1  ccma   1.2.1ccma       <NA> 1899-12-30 09:55:00  1.2.1  Lismore 2009/10    17.6     19.2   49.0
-# 2 ghcma 16.2.3ghcma       <NA>                <NA> 16.2.3     skip 2004/05      NA       NA     NA
-# 3  ccma   4.3.2ccma 2008-10-27                <NA>  4.3.2 Rokewood 2008/09    18.5     20.1   57.9
-
-#    HumidS   Sun Cloud DelmaLizards DelmaOther SutaFlag BassDup PseudPag Sminthopsis
-# 1   80.0   5.0     4            0          0        0       0        0           0
-# 2     NA    NA    NA            0          0        0       0        0           0
-# 3   69.9   2.5     4            0          0        9       0        0           0
