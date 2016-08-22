@@ -7,10 +7,22 @@ wcma<-read_excel("DataFromGarry/SLL monitoring database formatted 13May13.xls", 
 ccma<-read_excel("DataFromGarry/SLL monitoring database formatted 13May13.xls", 2)
 ghcma<-read_excel("DataFromGarry/SLL monitoring database formatted 13May13.xls", 3)
 
+#own trimws, so don't need newer R/dplyr
+trim_ws<-function (x, which = c("both", "left", "right")) 
+{
+	which <- match.arg(which)
+	mysub <- function(re, x) sub(re, "", x, perl = TRUE)
+	if (which == "left") 
+		return(mysub("^[ \t\r\n]+", x))
+	if (which == "right") 
+		return(mysub("[ \t\r\n]+$", x))
+	mysub("[ \t\r\n]+$", mysub("^[ \t\r\n]+", x))
+}
+
 #filter out blank lines
-wcma <- wcma %>% filter(!is.na(`Grid No`)) %>% select (-`Time End (EST)`) %>% mutate(CMA="wcma", Species=trimws(Species))
-ccma <- ccma %>% filter(!is.na(`Grid No`)) %>% select (-`Time End (EST)`) %>% mutate(CMA="ccma", Species=trimws(Species))
-ghcma <- ghcma %>% filter(!is.na(`Grid No`)) %>% select (-`Time End (EST)`) %>% mutate(CMA = "ghcma", Species=trimws(Species))
+wcma <- wcma %>% filter(!is.na(`Grid No`)) %>% select (-`Time End (EST)`) %>% mutate(CMA="wcma", Species=trim_ws(Species))
+ccma <- ccma %>% filter(!is.na(`Grid No`)) %>% select (-`Time End (EST)`) %>% mutate(CMA="ccma", Species=trim_ws(Species))
+ghcma <- ghcma %>% filter(!is.na(`Grid No`)) %>% select (-`Time End (EST)`) %>% mutate(CMA = "ghcma", Species=trim_ws(Species))
 
 combined_raw<-rbind(wcma, ccma, ghcma)
 
