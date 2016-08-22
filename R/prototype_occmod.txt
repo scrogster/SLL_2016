@@ -29,10 +29,10 @@ model{
 		fourier.liz[a]<- BETA[2]*(cos(2*pi*year.frac[a]))+BETA[3]*(sin(2*pi*year.frac[a])) + 
 			               BETA[4]*(cos(4*pi*year.frac[a]))+BETA[5]*(sin(4*pi*year.frac[a]))
 		logit(p.liz.cond[a])<-BETA[1] +fourier.liz[a]  + 
-			BETA[5]*time.of.day[a]+
-			BETA[6]*pow(time.of.day[a], 2)+  
-			BETA[7]*((TempS[a]-22)/5) +
-			BETA[8]*pow((TempS[a]-22)/5, 2)
+			BETA[6]*time.of.day[a]+
+			BETA[7]*pow(time.of.day[a], 2)+  
+			BETA[8]*((TempS[a]-22)/5) +
+			BETA[9]*pow((TempS[a]-22)/5, 2)
 		p.liz[a]<-p.liz.cond[a]* Z[site[a], t[a]] 
 		detect.liz[a]~dbern(p.liz[a])	
 	#--------obs model for skin------------################	
