@@ -2,20 +2,20 @@ model{
 	#process.model (matrix form)#################################################
 	for(i in 1:tot.sites){
 	#------initial occupancy model---------##########
-		logit(psi[i])<- B[1] #+
-		                #B[2]*log(patch.area[i]) +
+		logit(psi[i])<- B[1]+
+		                B[2]*(grassland[i]) +
 		                #B[3]*fire.hist[i] +
-		                #B[4]*graze[i]
+		                B[4]*grazing[i]
 		Z[i, 1]~dbern(psi[i])
 	for(t in 2:max.time){
   #------persistence model---------------##########
-		logit(PHI[i,t])<- C[1] #+ 
-			              #C[2]*log(patch.area[i]) +
+		logit(PHI[i,t])<- C[1]+ 
+			              C[2]*(grassland[i]) +
 			              #C[3]*fire.hist[i] +
-			              #C[4]*graze[i]
+			              C[4]*grazing[i]
 	#------colonisation model--------------##########
-		logit(GAMMA[i,t])<-D[1] #+
-		                #D[2]*log(patch.area[i]) +
+		logit(GAMMA[i,t])<-D[1] +
+		                D[2]*(grassland[i])# +
 		                #D[3]*fire.hist[i] +
 			              #D[4]*graze[i]
 			muZ[i, t]<- Z[i, t-1]*PHI[i, t]   + (1-Z[i, t-1])*GAMMA[i, t]
@@ -29,10 +29,10 @@ model{
 		fourier.liz[a]<- BETA[2]*(cos(2*pi*year.frac[a]))+BETA[3]*(sin(2*pi*year.frac[a])) + 
 			               BETA[4]*(cos(4*pi*year.frac[a]))+BETA[5]*(sin(4*pi*year.frac[a]))
 		logit(p.liz.cond[a])<-BETA[1] +fourier.liz[a]  + 
-			BETA[5]*time.of.day[a]+
-			BETA[6]*pow(time.of.day[a], 2)+  
-			BETA[7]*((TempS[a]-22)/5) +
-			BETA[8]*pow((TempS[a]-22)/5, 2)
+			BETA[6]*time.of.day[a]+
+			BETA[7]*pow(time.of.day[a], 2)+  
+			BETA[8]*((TempS[a]-22)/5) +
+			BETA[9]*pow((TempS[a]-22)/5, 2)
 		p.liz[a]<-p.liz.cond[a]* Z[site[a], t[a]] 
 		detect.liz[a]~dbern(p.liz[a])	
 	#--------obs model for skin------------################	
