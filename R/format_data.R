@@ -81,7 +81,7 @@ out <- jags(data = jags_dat,
 						parallel=FALSE, 
 						n.chains = 3,
 						n.adapt = 100,
-						n.iter = 1500,
+						n.iter = 1000,
 						n.burnin = 500,
 						n.thin = 2)
 
