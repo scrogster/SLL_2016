@@ -1,7 +1,7 @@
 
 require(jagsUI)
 require(lubridate)
-load("prepped_data.Rdata")
+load("prepped_data_plusGIS.Rdata")
 
 #variables to get for model
 
