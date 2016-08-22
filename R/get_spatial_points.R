@@ -9,7 +9,7 @@ library(tidyr)
 
 #read in Garry's point data from excel
 #contrary to what the spreadsheets say, all data is in the first (GHCMA) leaf.
-site_points<-read_excel("SpatialData/Non_GIS Delma grid variables30JUNE2009forMS.xls",1)
+site_points<-read_excel("SpatialData/DelmaGridVariables_22Aug2016.xls",1)
 
 
 site_points<-site_points %>%
