@@ -24,9 +24,9 @@ site_points<-site_points %>%
 s55<-site_points$utmzone==55 & !is.na(site_points$Easting) #logical flag for nonNA, zone 55 sites
 s54<-site_points$utmzone==54 & !is.na(site_points$Easting) #logical flag for nonNA, zone 54 sites.
   #make sps
-sites_points_55<-SpatialPoints(coords=site_points[s55,c("Easting", "Northing")], 
+sites_points_55<-SpatialPoints(coords=data.frame(site_points[s55,c("Easting", "Northing")]), 
 							proj4string = CRS("+init=epsg:28355")) #28355
-sites_points_54<-SpatialPoints(coords=site_points[s54,c("Easting", "Northing")], 
+sites_points_54<-SpatialPoints(coords=data.frame(site_points[s54,c("Easting", "Northing")]), 
 							proj4string = CRS("+init=epsg:28354")) #28354
 
 #Convert to vicgrid. Because of the split, these will be out of order. Fix once we've got what we need.
@@ -72,8 +72,8 @@ library(raster)
 grassland<-raster("Rasters/NatGrassland_clip.tif")
 
 #in the raster 2 =very likely grassland, 1=likely grassland
-grass1<-extract(grassland, vicgrid_spdf, buffer=500, fun=function(x,...){sum(x==1)/length(x)}, na.rm=TRUE)
-grass2<-extract(grassland, vicgrid_spdf, buffer=500, fun=function(x,...){sum(x==2)/length(x)}, na.rm=TRUE)
+grass1<-extract(grassland, vicgrid_spdf, buffer=1000, fun=function(x,...){sum(x==1)/length(x)}, na.rm=TRUE)
+grass2<-extract(grassland, vicgrid_spdf, buffer=1000, fun=function(x,...){sum(x==2)/length(x)}, na.rm=TRUE)
 
 vicgrid_spdf$grass1<-grass1
 vicgrid_spdf$grass2<-grass2
