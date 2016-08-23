@@ -36,9 +36,9 @@ model{
 		p.liz[a]<-p.liz.cond[a]* Z[site[a], t[a]] 
 		detect.liz[a]~dbern(p.liz[a])	
 	#--------obs model for skin------------################	
-		fourier.skin[a]<- BETA[10]*(cos(2*pi*year.frac[a]))+BETA[11]*(sin(2*pi*year.frac[a])) + 
-			                BETA[12]*(cos(4*pi*year.frac[a]))+BETA[13]*(sin(4*pi*year.frac[a]))
-		logit(p.skin.cond[a])<-BETA[9]  +fourier.skin[a]  
+		fourier.skin[a]<- BETA[11]*(cos(2*pi*year.frac[a]))+BETA[12]*(sin(2*pi*year.frac[a])) + 
+			                BETA[13]*(cos(4*pi*year.frac[a]))+BETA[14]*(sin(4*pi*year.frac[a]))
+		logit(p.skin.cond[a])<-BETA[10]  +fourier.skin[a]  
 		p.skin[a]<-p.skin.cond[a]* Z[site[a], t[a]] 
 		detect.skin[a]~dbern(p.skin[a])	
 	}
@@ -48,7 +48,7 @@ model{
   for(c in 1:4) { C[c]~dnorm(0, 0.01) }
   for(d in 1:4) { D[d]~dnorm(0, 0.01) }
 
-  for(e in 1:13) {BETA[e]~dnorm(0, 0.01)}
+  for(e in 1:14) {BETA[e]~dnorm(0, 0.01)}
 	
 	########constant; (pi)#######################################################
 	pi<-3.141592654
