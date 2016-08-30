@@ -3,21 +3,20 @@ model{
 	for(i in 1:tot.sites){
 	#------initial occupancy model---------##########
 		logit(psi[i])<- B[1]+
-		                B[2]*(grassland[i]) +
-		                #B[3]*fire.hist[i] +
+		                B[2]*grassland[i] +
+		                B[3]*conservation[i] +
 		                B[4]*grazing[i]
 		Z[i, 1]~dbern(psi[i])
 	for(t in 2:max.time){
   #------persistence model---------------##########
 		logit(PHI[i,t])<- C[1]+ 
-			              C[2]*(grassland[i]) +
-			              #C[3]*fire.hist[i] +
-			              C[4]*grazing[i]
+			              C[2]*grassland[i] +
+			              C[3]*firegt1[i] +
+			              C[4]*grazing[i] +
+			              C[5]*conservation[i]
 	#------colonisation model--------------##########
 		logit(GAMMA[i,t])<-D[1] +
-		                D[2]*(grassland[i])# +
-		                #D[3]*fire.hist[i] +
-			              #D[4]*graze[i]
+		                D[2]*(grassland[i])
 			muZ[i, t]<- Z[i, t-1]*PHI[i, t]   + (1-Z[i, t-1])*GAMMA[i, t]
 			Z[i, t]~dbern(muZ[i, t])
 		}
@@ -45,8 +44,8 @@ model{
 	
 	#priors on model parameters #################################################
   for(b in 1:4) { B[b]~dnorm(0, 0.01) }
-  for(c in 1:4) { C[c]~dnorm(0, 0.01) }
-  for(d in 1:4) { D[d]~dnorm(0, 0.01) }
+  for(c in 1:5) { C[c]~dnorm(0, 0.01) }
+  for(d in 1:2) { D[d]~dnorm(0, 0.01) }
 
   for(e in 1:14) {BETA[e]~dnorm(0, 0.01)}
 	
