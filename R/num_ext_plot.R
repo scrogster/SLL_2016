@@ -25,10 +25,10 @@ df_col<-data.frame(out$sims.list$Col_t) %>%
 df_col$year.num<-as.numeric(gsub("[A-Z]","",df_col$key))+2005
 
 ggplot(df_ext, aes(x=year.num, y=post.mean)) +
-	geom_ribbon(aes(x=year.num, ymin=post.lwr, ymax=post.upp), col="red", fill="red", alpha=0.2)+
+	geom_ribbon(aes(x=year.num, ymin=post.lwr, ymax=post.upp), col=NA, fill="red", alpha=0.2)+
 	geom_line(col="red")+
 	geom_point(col="red")+
-	geom_ribbon(data=df_col, aes( x=year.num, ymin=post.lwr, ymax=post.upp), col="green", fill="green", alpha=0.2)+
+	geom_ribbon(data=df_col, aes( x=year.num, ymin=post.lwr, ymax=post.upp), col=NA, fill="green", alpha=0.2)+
 	geom_line(data=df_col, aes(x=year.num, y=post.mean), col="green")+
 	geom_point(data=df_col, aes(x=year.num, y=post.mean), col="green")+
 	ylab("Number of extinctions/colonisations")+

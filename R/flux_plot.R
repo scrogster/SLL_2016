@@ -18,8 +18,8 @@ df$year.num<-as.numeric(gsub("[A-Z]","",df$key))+2005
 
 ggplot(df, aes(x=year.num, y=post.mean)) +
 	geom_ribbon(aes(x=year.num, ymin=post.lwr, ymax=post.upp), col=NA, fill="blue", alpha=0.3)+
-	geom_line()+
-	geom_point()+
+	geom_line(col="blue")+
+	geom_point(col="blue")+
 	ylab("Net change in occupancy")+
 	xlab("Year")+
 	geom_hline(yintercept = 0)+

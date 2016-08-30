@@ -17,9 +17,9 @@ df<-data.frame(out$sims.list$Numocc) %>%
 df$year.num<-as.numeric(gsub("[A-Z]","",df$key))+2004
 
 ggplot(df, aes(x=year.num, y=post.mean)) +
-	geom_ribbon(aes(x=year.num, ymin=post.lwr, ymax=post.upp), col="green", fill="green", alpha=0.7)+
-	geom_line()+
-	geom_point()+
+	geom_ribbon(aes(x=year.num, ymin=post.lwr, ymax=post.upp), col=NA, fill="green", alpha=0.3)+
+	geom_line(col="green")+
+	geom_point(col="green")+
 	ylab("Number of occupied sites")+
 	xlab("Year")+
 	ylim(0, 75)+

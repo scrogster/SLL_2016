@@ -5,7 +5,8 @@ require(dplyr)
 load("formatted_for_JAGS.Rdata")
 
 modfile <- 'R/prototype_occmod.txt'
-params <- c('B', 'C', 'D', 'BETA')
+params <- c('B', 'C', 'D', 'BETA', 
+						   'Numocc', 'Ext_t', 'Col_t', 'Deficit')
 
 z.init<-
 	tapply(DelmaFiltered$DelmaLizards+DelmaFiltered$DelmaOther, 
@@ -28,8 +29,8 @@ out <- jags(data = jags_dat,
 						parallel=TRUE, 
 						n.chains = 3,
 						n.adapt = 200,
-						n.iter = 2000,
-						n.burnin = 500,
+						n.iter = 100,
+						n.burnin = 10,
 						n.thin = 1)
 
 save.image("fitted_model.Rdata")
