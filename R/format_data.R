@@ -28,7 +28,8 @@ grassjoin<-DelmaFiltered %>%
 	group_by(GridCMA) %>%
 	summarise(grass1=first(grass1), grass2=first(grass2), grasstot=first(grasstot), 
 						LandUse=first(LandUse), FireHistory=first(FireHistory)) %>%
-	mutate(Conservation=grepl("Conservation", LandUse), Grazing=grepl("Grazing", LandUse))
+	mutate(Conservation=grepl("Conservation", LandUse), Grazing=grepl("Grazing", LandUse),
+				 Roadside=grepl("Road", LandUse))
 #check that sites are in same order as sites in detection data:
 all.equal(levels(factor(DelmaFiltered$GridCMA)) , grassjoin$GridCMA)
 
@@ -37,6 +38,9 @@ grassland<-grassjoin$grasstot
 grassland[which(is.na(grassland))]<-mean(grassland, na.rm=TRUE)
 grazing<-grassjoin$Grazing
 conservation<-grassjoin$Conservation
+roadside<-grassjoin$Roadside
+firecode<-grassjoin$FireHistory
+firecode[is.na(firecode)]<-0  #impute zeros for unknown fire histories.
 
 jags_dat<-list(
 	tot.sites= max(as.numeric(factor(DelmaFiltered$GridCMA))),
@@ -51,7 +55,11 @@ jags_dat<-list(
 	time.of.day=timeofday,
 	grassland=grassland,
 	grazing=grazing*1.0, #convert Boolean to numeric
-	conservation=conservation*1.1 #convert Boolean to numeric
+	conservation=conservation*1.0, #convert Boolean to numeric
+	roadside=roadside*1.0, #convert Boolean to numeric
+	firecode=firecode,
+	firegt1=(firecode>1)*1.0,
+	firegt2=(firecode>2)*1.0
 )
 
 save.image("formatted_for_JAGS.Rdata")
