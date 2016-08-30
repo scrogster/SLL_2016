@@ -1,35 +1,24 @@
 
-DATAXL = 'DataFromGarry/SLL monitoring database formatted 13May13.xls'
+all: prepped_data.Rdata prepped_data_plusGIS.Rdata formatted_for_JAGS.Rdata fitted_model.Rdata figs
 
-#all: file.md file.pdf file.docx
- 
-#file.md: file.Rmd
-#	Rscript -e "library(knitr); knit('file.Rmd')"
- 
-#file.pdf: file.md
-#	pandoc -H format.sty -V fontsize=12pt file.md -o file.pdf
- 
-#file.docx: file.md
-#	pandoc -s -S --reference-docx=format.docx file.md -o file.docx
+figs: Figures/detection_plot.pdf
 
 #extracting the survey data from the spreadsheets
-prepped_data.Rdata:  R/clean_excel.R $DATAXL 
-	Rscript $^  $@
+prepped_data.Rdata:  R/clean_excel.R
+	Rscript $^
 
 #formatting GIS and other site related variables, and making spatial data sets
 #will need code here to compile the fire histories...
-gis_prep.Rdata:   R/extract_gis.R  prepped_data.Rdata
-	Rscript $^ $@
+prepped_data_plusGIS.Rdata:   R/get_spatial_points.R  prepped_data.Rdata
+	Rscript $^ 
 
 #format the data for JAGS and tidy up workspace
-formatted_for_JAGS.Rdata: R/format_data.R gis_prep.Rdata
-	Rscript $^ $@
+formatted_for_JAGS.Rdata: R/format_data.R prepped_data_plusGIS.Rdata
+	Rscript $^
 
-#fit model with JAGS
-fitted_models.Rdata: R/fit_model.R formatted_for_JAGS.Rdata
-	Rscript $^ $@
+#fit a dynamic occupancy model to the data
+fitted_model.Rdata: R/fit_occ_model.R formatted_for_JAGS.Rdata R/prototype_occmod.txt
+	Rscript $^
 
-#make figures from raw data and inferences. One R script for each figure.
-Figures/%.pdf: R/%.R
-    cd $(<D);Rscript $(<F)
-
+Figures/%.pdf: R/%.R fitted_model.Rdata
+	Rscript $^
