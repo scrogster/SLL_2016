@@ -1,8 +1,8 @@
 ---
 title: Using occupancy data to diagnose causes of decline for a cryptic reptile in
   a fragmented landscape
-author: "Michael P. Scroggie, Garry N. L. Peterson, Detlef Rohr and Geoffery W. Heard"
-date: "17 March 2016"
+author: "Michael P. Scroggie, Garry N. L. Peterson, Detlef H. Rohr and Geoffery W. Heard"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
 output:
   word_document:
       reference_docx: Template.docx
@@ -129,7 +129,7 @@ Some detections were in the form of observations of sloughed skins underneath ro
 
 ### Fitting the model
 
-The full, integrated model including both the ecological processes (occupancy, colonisation and extinction) and observation (detectability) components was estimated from the data using Bayesian Markov Chain Monte Carlo (MCMC) methods. Fitting of the model was carried out using Just Another Gibbs Sampler [@plummer2003jags]. Convergence of the MCMC algorithm was assessed using the Brooks-Gelman-Rubin statistic [@BGR], and by visual inspection of the chain-histories of selected parameters. Empirically, it was found that an initial “burn-in” period of approximately 500 iterations of the MCMC algorithm was required to ensure convergence. An additional 2,000 iterations after the “burn-in” were retained for inferences regarding the joint posterior distribution of the parameters, and related derived quantities such as the equilibrium probabilities of occupancy, and the expected numbers of occupied sites, number of colonisations and number of extinctions at each time-step. Vague (uninformative) priors were specified for the parameters of the model. Priors were also specified for missing values in the data, which mainly occurred when the times of surveys were not recorded during site visits, or where ambient and soil (under-tile) temperatures were not measured. Priors for these missing covariate values were mildly informative, being based on the observed distribution of values for the covariates at the sites where they were observed, and understanding of the plausibility of various values for these quantities (See JAGS code in appendix for details).
+The full, integrated model including both the ecological processes (occupancy, colonisation and extinction) and observation (detectability) components was estimated from the data using Bayesian Markov Chain Monte Carlo (MCMC) methods. Fitting of the model was carried out using Just Another Gibbs Sampler [@plummer2003jags]. Convergence of the MCMC algorithm was assessed using the Brooks-Gelman-Rubin statistic [@BGR], and by visual inspection of the chain-histories of selected parameters. Empirically, it was found that an initial "burn-in" period of approximately 500 iterations of the MCMC algorithm was required to ensure convergence. An additional 2,000 iterations after the "burn-in" were retained for inferences regarding the joint posterior distribution of the parameters, and related derived quantities such as the equilibrium probabilities of occupancy, and the expected numbers of occupied sites, number of colonisations and number of extinctions at each time-step. Vague (uninformative) priors were specified for the parameters of the model. Priors were also specified for missing values in the data, which mainly occurred when the times of surveys were not recorded during site visits, or where ambient and soil (under-tile) temperatures were not measured. Priors for these missing covariate values were mildly informative, being based on the observed distribution of values for the covariates at the sites where they were observed, and understanding of the plausibility of various values for these quantities (See JAGS code in appendix for details).
 
 Posterior districtutions for the derived parameter $\psi^\star$ for each site were calculated as part of the model-fitting process - the MCMC algorithm ensured that uncertainty in the estimates of the parameters from which these quantities are calculated was correctly propagated into the statistical estimates of these derived parameters.
 
@@ -143,13 +143,13 @@ Map of study sites.
 Support for alternative models - favoured model structure for
 extinction, colonisation and occupancy- see Table. 
 
-Initial occupancy depends on XXX.
+Figure- Initial occupancy depends on XXX.
 
-Colonisation rate depends on XXX. 
+Figure- Persistence rate depends on XXX.
 
-Extinction rate depends on XXX.
+Figure- Colonisation rate depends on XXX. 
 
-Trends in occupancy, colonisation and extinction over time.
+Figures- Trends in occupancy, colonisation and extinction over time.
 
 Map of likely extinctions (grassland raster underlaid?)
 Map of likely colonisations (grassland raster underlaid?)
@@ -158,7 +158,7 @@ What ecological processes are supported by the evidence?
 
 Inferred effects of management actions - what would happen if optimal fire and grazing regimes were applied everywhere? Predictions of future occupancy under current, best and worst management.
 
-We could simulate reintro into fragments of different sizes, and see how management effects outcomes. Maybe reserve for a follow up paper.
+We could simulate reintro into fragments of different sizes, and see how management effects outcomes. Maybe reserve this for a follow up paper.
 
 Detectability results-influences on detectability, estimates under
 various conditions. Optimal times and conditions for surveys. How much
@@ -206,7 +206,7 @@ during winter, well over 20 surveys would be predicted to be necessary to obtain
 
 ![Figure 6. Posterior distributions of the number of occupied sites over time.](Figures/num_occ_plot.png)
 
-![Figure 7. Inferred numbers of extinction and colonisation events per year.](Figures/num_ext_plot.png)
+![Figure 7. Inferred numbers of extinction (red) and colonisation (green) events per year.](Figures/num_ext_plot.png)
 
 ![Figure 8. Inferred net annual change in numbers of occupied sites.](Figures/flux_plot.png)
 
