@@ -11,7 +11,7 @@ z.init<-
 	tapply(DelmaFiltered$DelmaLizards+DelmaFiltered$DelmaOther, 
 				 list(DelmaFiltered$GridCMA, DelmaFiltered$yearnum), 
 				 function(x){min(sum(x), 1)  }  ) 
-z.init[z.init==0]<-NA #just assign one to years with known occurences. otherwise NA for init.
+z.init[z.init==0]<-NA #just assign one to years with known occurences. otherwise NA for init of Z.
 
 inits <- function(){  
 	list(B=rnorm(4,0,1),
@@ -21,15 +21,14 @@ inits <- function(){
 			 Z=z.init)
 }
 
-
 out <- jags(data = jags_dat,
 						parameters.to.save = params,
 						inits=inits,
 						model.file = modfile,
-						parallel=FALSE, 
+						parallel=TRUE, 
 						n.chains = 3,
 						n.adapt = 200,
-						n.iter = 2500,
+						n.iter = 2000,
 						n.burnin = 500,
 						n.thin = 1)
 
