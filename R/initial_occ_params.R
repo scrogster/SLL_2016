@@ -1,8 +1,7 @@
-
-
 require(jagsUI)
 require(ggplot2)
-require(ggmcmc)
+require(dplyr)
+require(tidyr)
 
 load("fitted_model.Rdata")
 
@@ -11,7 +10,7 @@ df<-data.frame(out$sims.list$B) %>%
 	 rename(Intercept=X1, Grassland=X2, Fire=X3, Grazing=X4) %>%
 	gather() %>%
 	mutate(key=factor(key, levels=c("Intercept", "Grassland", "Fire", "Grazing"))) %>%
-	filter(key != "Fire")
+	filter(key != "Fire") #we haven't put fire in the model yet, so don't estimate.
 
 histocol="green"
 
@@ -21,6 +20,8 @@ ggplot(df, aes(x=value)) +
 	facet_grid(key~., scales="fixed") +
 	ggtitle("Initial occupancy") +
 	theme_bw()
+
+ggsave("Figures/initial_occ_params.pdf", width=5, height=7)
 
 
 
