@@ -39,21 +39,18 @@ Both theoretical [@tilman1994habitat; @hanski2002extinction; @kuussaari2009extin
 
 By tracking patterns of extinction and colonisation amongst habitat fragments varying in size, quality and connectivity, insight into the processes leading to extinction and colonisation over time can be derived from successive sets of occupancy data. In particular, correlative approaches can be used to determine how initial occupancy states, colonisation and extinction processes are driven by habitat extent, quality and connectivity.
 
-Here, we present an analysis of a large (300+ sites, 10 years) occupancy data set for an endangered Australian reptile, the Striped Legless Lizard, *Delma impar*. By relating the incidence of extinction and colonisation events at the monitoring sites to  habitat, landscape and management variables, we sought to explore some hypothesised causative factors driving the species current distribution and occupancy dynamics, and assess the likely impact of management practices on occupancy.
-
 The Striped Legless Lizard occurs primarily within areas of native grasslands on the south eastern Australian mainland, although occurences have been recorded in other vegetation types, including degraded
 grasslands, grassy woodlands and modified native pastures [@dorrough1999; @gemmathesis]. Native grassland was widespread in southeastern Australia at the time of European settlement (c. 180 yr BP), but has been systematically destroyed and degraded through livestock grazing, cultivation, introduction of exotic plant species and urban development. Only a small fraction of the original extent remains, chiefly in the form of small, isolated remnants, most of which are not located in formal conservation reserves, or otherwise intentionally managed for conservation. Remnant native grassland continues to be degraded through weed invasion and inappropriate fire, grazing and cultivation regimes. Legal and illegal destruction of remnant grassland also continues, in spite of widespread recognition of the poor conservation status of this vegetation type and it's distinctive biota, and well-established legislative and regulatory frameworks for  protection of remnants [@williams2005fil; @williams2005pta;  @williams2007ela].
 
 The extent of historic destruction and degradation of what was once an essentially a vast contiguous tract of habitat extending across a large portion of southeastern Australia has lead *D. impar* and other grassland-specialist flora and fauna to undergo profound reductions in extent of occurrence [@maldonado2012human]. While it is well established that populations of *D. impar* remain within fragments of remnant habitat across its current historic range, it is not known with certainty whether the species is continuing to decline through ongoing localised extinction of isolated, remnant populations. Furthermore, although it has been hypothesised that inappropriate management and degradation of habitat may adversely effect populations of *D. impar*, formal, quantitative assessment of the habitat and management requirements for ensuring population persistence have not been conducted.
 
-We collected occupancy data from fragments of likely habitat for *D. impar* across south-western Victoria and the south-east of South Australia, over the course of 10 years. Artificial cover objects were used to detect the presence of *D. impar* at the sites, and over time, extinction and colonisation events were inferred from the data using dynamic occupancy models [@mackenzie2003; @royle2007bss]. Availability of a variety of management and habitat variables for the sites allowed us to  to test a range of hypotheses concerning the influence of landscape and habitat fragment attributes, and management practices on probabilities of local extinction and colonisation within the study area. 
+We collected occupancy data from a large number of fragments (~300) of likely habitat for *D. impar* across south-western Victoria over the course of 10 years. Artificial cover objects were used to detect the presence of *D. impar* at the sites, and over time, extinction and colonisation events were inferred from the data using dynamic occupancy models [@mackenzie2003; @royle2007bss]. Availability of a variety of management and habitat variables for the sites allowed us to  to test a range of hypotheses concerning the influence of landscape and habitat fragment attributes, and management practices on probabilities of local extinction and colonisation within the study area. 
 
 # Methods
 
 ## Field data collection
 
-A total of 311 sites were selected from the available range of native grassland habitat available across each of three catchment management authority (CMA) areas located in western and central Victoria, Australia, along with 20 sites from the southeast of South Australia. Sites included both publicly and privately owned land, and were subject
-to a range of land management practices. At each site 50 artificial cover objects (ceramic roofing tiles) were deployed in a grid pattern (5 tiles by 10 tiles) spaced at 5 meter intervals. A single site was established in 2003, with monitoring of most of the remaining sites being established during 2004. A few additional sites were added to the study in each subsequent year between 2003 and 2008 as time and logistic requirements allowed. The majority of sites were surveyed at least once in every year, with the majority of sites were surveyed multiple times each year. Surveys involved visiting the sites, and lifting each of the 50 tiles in turn. All vertebrate species (mainly reptiles and frogs, but also occasional small mammals such as Dunnarts (*Smithopsis* spp.), were captured, identified and immediately released. Occasionally, evidence for the presence of reptiles was obtained from observations of sloughed skins underneath the tiles- where these skins could be identified with certainty they were treated as positive evidence of species presence. At the times of most surveys, measurements were made of the following variables: Julian date, air temperature, under-tile soil temperature and time of day. It was considered likely that these variables could influence the probability of detecting *Delma impar* during surveys at site where the species was present. This hypothesis was explored as part of the statistical analysis of the survey data.
+A total of X sites were selected from the available range of native grassland habitat available across each of three catchment management authority (CMA) areas located in western and central Victoria, Australia. Sites included both publicly and privately owned land, and were subject to a range of land management practices. At each site 50 artificial cover objects (ceramic roofing tiles) were deployed in a grid pattern (5 tiles by 10 tiles) spaced at 5 meter intervals. A single site was established in 2003, with monitoring of most of the remaining sites being established during 2004. A few additional sites were added to the study in each subsequent year between 2003 and 2008 as time and resources allowed. Most sites were surveyed at least once in every year, while many sites were surveyed multiple times each year. Surveys involved visiting the sites, and lifting each of the 50 tiles in turn. All vertebrate species (mainly reptiles and frogs, but also small mammals such as Dunnarts (*Smithopsis* spp.), were captured, identified and immediately released. Occasionally, evidence for the presence of reptiles was obtained from observations of sloughed skins underneath the tiles- where these skins could be identified with certainty they were treated as positive evidence of species presence. At the times of most surveys, measurements were made of the following variables: Julian date, air temperature, under-tile soil temperature and time of day. It was considered likely that these variables could influence the probability of detecting *Delma impar* during surveys at site where the species was present. This hypothesis was explored as part of the statistical analysis of the survey data.
 
 Estimating grazing intensity
 
@@ -61,24 +58,26 @@ Estimating fire regimes
 
 Estimating land use
 
-Estimating extent of native grassland
+GIS layers of predicted extent of native grassland in Victoria, derived from floristic databases, expert knowledge, and statistical modelling of bioclimatic and remote-sensed variables (ref to DELWP model) was used to estimate the extent of native grassland within various radii of each sampling location.
 
 ## Ecological Hypotheses
 
 Current occupancy is driven by:
-extent of habitat in landscape (effect of past fragmentation)
-rainfall gradient or other climatic gradient
-adjacent landuse/roading
+Extent of native grassland habitat within a radius of the survey site (effect of past fragmentation)
+Known grazing land use.
+Site known to be managed for conservation purposes (formal conservation reserve, or private land managed for conservation)
 
-Extinction driven by
+
+Extinction driven by:
 extent of habitat in landscape (rescue effect, demographic stochasticity)
-grazing and fire (management impact)
+Known grazing land use.
+Site known to be managed for conservation purposes (formal conservation reserve, or private land managed for conservation)
+Fire frequency during the study period.
 
 
 Colonisation driven by
-extent of habitat in landscape (connectivity)
-roads (barrier effects)
-adjacent landuse/roading (connectivity)
+extent of native grassland habitat in landscape (connectivity)
+
 
 ## Statistical Model
 
@@ -86,11 +85,10 @@ adjacent landuse/roading (connectivity)
 
 A Bayesian state-space formulation [@royle2007bss; @roylebook] of the dynamic occupancy model with imperfect detectability [@mackenzie2002; @mackenzie2003] was used to model the ongoing processes of extinction and
 colonisation that lead to the observed pattern of occupancy amongst the study sites over the course of the the period of observation. The model treats the occupancy states of the sites during each year (denoted
-**Z**) as a partially-observed latent variable, and infers the values of the unknown elements of the occupancy matrix based on the detection histories, and the extinction and colonisation parameters. The Bayesian
-state-space formulation was chosen for two reasons. Firstly, a Bayesian formulation of the model provides a straightforward, consistent means of dealing with missing covariate values, which are simply treated
-as additional parameters to be estimated from the data, and can be given prior distributions based on expert opinion or other sources of information regarding their likely values. Secondly, the Bayesian state-space model explicitly infers the probabilities of occupancy of each site at each times step, conditional upon the observed data, the
-model and the priors. Thus it is possible to make explicit probability statements about the occupancy states of either individual sites, or aggregated inferences about the occupancy of arbitrary groups of sites
-at any given time [@royle2007bss; @roylebook]. This last feature of the model was of particular utility for inferring the trend in the number of occupied sites, numbers of extinctions and numbers of colonisations from the data, whilst correctly propagating all modelled sources of uncertainty into the inferences.
+**Z**) as a partially-observed latent variable, and infers the values of the unknown elements of the time/occupancy matrix based on the detection histories, and the extinction and colonisation parameters. The Bayesian
+state-space formulation was chosen as the Bayesian state-space model explicitly infers the probabilities of occupancy of each site at each times step, conditional upon the observed data, the
+model and the priors. Thus it is possible to make explicit probability statements about the occupancy states of either individual sites, or aggregated inferences about the occupancy of groups of sites
+at any given time [@royle2007bss; @roylebook]. This last feature of the model was of particular utility for inferring the trend in the number of occupied sites, numbers of extinction and colonisation events in each year, whilst correctly propagating all modelled sources of uncertainty into the inferences.
 
 The process model for temporal changes in the occupancy status of the sites can be described by the equation [@martin2009pap]:
 
@@ -103,7 +101,7 @@ $$\log \dfrac{\gamma_{i,t}}{1-\gamma_{i,t}}=\alpha + \sum_{k=1}^{k=n}{\beta_{k} 
                       
 $$\log \dfrac{\phi_{i,t}}{1-\phi_{i,t}}=\alpha + \sum_{k=1}^{k=n}{\beta_{k} x_{i,t}} $$
 
-We hypothesised that instances of local extinction at any of our study sites would occur either as a consequence of stochastic demographic processes (as expected in small, isolated populations [@hanski1994pmm]), or as a consequence of disturbance, habitat degradation or inappropriate management, to which most sites (irrespective of size) are subject to a varying degree. Population sizes (absolute abundance) for the *Delma impar* populations we studied are unknown, so we used an estimate of the area of suitable habitat (native grassland) available within the vicinity of each site as a surrogate for the likely maximum population size, and hence a predictor of rates of stochastic extinction [@hanski1994pmm]. Additional landscape, habitat and management variables were also considered as probable influences on the local extinction probabilities. These habitat/management variables were: percent agricultural land, fire frequency and grazing regime.
+We hypothesised that instances of local extinction at any of our study sites would occur either as a consequence of stochastic demographic processes (as expected in small, isolated populations [@hanski1994pmm]), or as a consequence of disturbance, habitat degradation or inappropriate management, to which most sites (irrespective of size) are subject to a varying degree. Population sizes (absolute abundance) for the *Delma impar* populations we studied are unknown, so we used an estimate of the area of suitable habitat (native grassland) available within the vicinity of each site as a surrogate for the likely maximum population size, and hence a predictor of rates of stochastic extinction [@hanski1994pmm]. Additional landscape, habitat and management variables were also considered as probable influences on the local extinction probabilities. These habitat/management variables were:  fire frequency, grazing regime and management for conservation.
 
 Most of the sites known to be occupied by *Delma impar* are essentially isolated from potential sources of immigration by large areas of unsuitable, modified habitats such as cultivated and grazed farmland and assumed barriers such as roads. Hence, recolonisation of sites which undergo local extinction is considered unlikely in most cases. We had minimal knowledge regarding the occurence of *D. impar* in areas close to each of the study sites,
 so the potential for recolonisation from neighbouring habitat patches was essentially unknown. The predicted extent of native grassland habitat (insert citation to Matt’s model) within a 10 ha circle surrounding each monitoring plot was included in the model as a measure of the extent of neighbouring habitat. It was hypothesised that the occurence of large areas of suitable habitat in the vicinity of each monitoring site would increase the probability of recolonisation in the event of local extinction, due to the potential for recolonisation from adjacent areas of occupied habitat. This effect was modelled by relating the probability of recolonisation, $\gamma$ to the area of nearby native grassland habitat using a linear equation and logit link.
@@ -131,7 +129,7 @@ Some detections were in the form of observations of sloughed skins underneath ro
 
 ### Fitting the model
 
-The full, integrated model including both the ecological processes (occupancy, colonisation and extinction) and observation (detectability) components was estimated from the data using Bayesian Markov Chain Monte Carlo (MCMC) methods. Fitting of the model was carried out using Just Another Gibbs Sampler [@plummer2003jags]. Convergence of the MCMC algorithm was assessed using the Brooks-Gelman-Rubin statistic [@BGR], and by visual inspection of the chain-histories of selected parameters. Empirically, it was found that an initial “burn-in” period of approximately 10,000 iterations of the MCMC algorithm was required to ensure convergence. An additional 20,000 iterations after the “burn-in” were retained for inferences regarding the joint posterior distribution of the parameters, and related derived quantities such as the equilibrium probabilities of occupancy, and the expected numbers of occupied sites, number of colonisations and number of extinctions at each time-step. Vague (uninformative) priors were specified for the parameters of the model. Priors were also specified for missing values in the data, which mainly occurred when the times of surveys were not recorded during site visits, or where ambient and soil (under-tile) temperatures were not measured. Priors for these missing covariate values were mildly informative, being based on the observed distribution of values for the covariates at the sites where they were observed, and understanding of the plausibility of various values for these quantities (See JAGS code in appendix for details).
+The full, integrated model including both the ecological processes (occupancy, colonisation and extinction) and observation (detectability) components was estimated from the data using Bayesian Markov Chain Monte Carlo (MCMC) methods. Fitting of the model was carried out using Just Another Gibbs Sampler [@plummer2003jags]. Convergence of the MCMC algorithm was assessed using the Brooks-Gelman-Rubin statistic [@BGR], and by visual inspection of the chain-histories of selected parameters. Empirically, it was found that an initial “burn-in” period of approximately 500 iterations of the MCMC algorithm was required to ensure convergence. An additional 2,000 iterations after the “burn-in” were retained for inferences regarding the joint posterior distribution of the parameters, and related derived quantities such as the equilibrium probabilities of occupancy, and the expected numbers of occupied sites, number of colonisations and number of extinctions at each time-step. Vague (uninformative) priors were specified for the parameters of the model. Priors were also specified for missing values in the data, which mainly occurred when the times of surveys were not recorded during site visits, or where ambient and soil (under-tile) temperatures were not measured. Priors for these missing covariate values were mildly informative, being based on the observed distribution of values for the covariates at the sites where they were observed, and understanding of the plausibility of various values for these quantities (See JAGS code in appendix for details).
 
 Posterior districtutions for the derived parameter $\psi^\star$ for each site were calculated as part of the model-fitting process - the MCMC algorithm ensured that uncertainty in the estimates of the parameters from which these quantities are calculated was correctly propagated into the statistical estimates of these derived parameters.
 
@@ -171,7 +169,7 @@ estimate.
 
 Over the course of our study, the proportion of our study sites occupied by *D. impar* has undergone a slow, but steady decline due to local extinctions outstripping colonisations by approximately two to one (posterior mean and CI). If the observed rates of decline at the study sites are consistent with broader trends in occupancy of remnant habitat across the species’ range, then continuing decline of the species is to be expected, and the species’ conservation status is likely to deteriorate substantially over coming decades.
 
-Although rates of occupancy were observed to decline aoverall, inferred probabilities of colonisation and extinction were not homogenous among sites, and were strongly associated with habitat and management features at the site-level. Across the study area, rates of extinction were found to be substantially lower at sites that were subjected to episodic burning and grazing by domestic livestock (mainly sheep). The reason for these observed associations between grazing, fire and persistence of *D. impar* populations is not known with certainty, however it seems likely that appropriate grazing and fire regimes are associated with reduced levels of dominance by invasive plants, and reduced pasture biomass in native grassland habitats. Excessive pasture biomass may be detrimental to *D. impar* due to shading effects on thermoregulatory behaviour, or because thick accumulations of plant biomass limit access to preferred microhabitat such as soil cracks [@howland2014eaten].
+Although rates of occupancy were observed to decline overall, inferred probabilities of colonisation and extinction were not homogenous among sites, and were strongly associated with habitat and management features at the site-level. Across the study area, rates of extinction were found to be substantially lower at sites that were subjected to episodic burning and grazing by domestic livestock (mainly sheep). The reason for these observed associations between grazing, fire and persistence of *D. impar* populations is not known with certainty, however it seems likely that appropriate grazing and fire regimes are associated with reduced levels of dominance by invasive plants, and reduced pasture biomass in native grassland habitats. Excessive pasture biomass may be detrimental to *D. impar* due to shading effects on thermoregulatory behaviour, or because thick accumulations of plant biomass limit access to preferred microhabitat such as soil cracks [@howland2014eaten].
 
 Our ability to more precisely determine the relationships between grazing and burning regimes, and probabilities of extinction was hampered by an absence of detailed, specific data on the grazing and burning regimes (frequency, intensity and seasonal timing) for most of the sites. The possibility of inferring burning histories from remote-sensed data could be explored, in order to reconstruct fire histories, so as to refine our understanding of preferred burning regimes.
 
@@ -196,18 +194,21 @@ during winter, well over 20 surveys would be predicted to be necessary to obtain
 
 # Figures
 
-![Graphical representation of surveys conducted at 311 sites 2003-2009 within three Victorian CMAs, and a small area of the south-east of South Australia.](Figures/surveyimage.png)
+![Figure 1. Map of the study area showing locations of the study sites.](Figures/map_figure.png)
 
-Need a figure showing relationships between habitat/landscape variables and probabilities of occupancy, colonisation and extinction.
+![Figure 2. Inferred seasonal trends in probability of detection for lizards, sloughs and other indirect signs of presence, and combined, overall probabilities of detection.](Figures/detection_plot.png)
 
-![Inferred numbers of occupied sites among the 311 sites at each time-step.](Figures/numoccplot.png)
+![Figure 3. Posterior distributions of parameters predicting initial occupancy at the sites.](Figures/initial_occ_params.png)
 
-![Inferred numbers of extinction events among the 311 sites  at each time-step.](Figures/extinctionplot.png)
+![Figure 4. Posterior distributions of parameters predicting annual probability of persistence at the sites. ](Figures/extinction_params.png)
 
-![Inferred numbers of colonisation events among the 311 sites at each time-step.](Figures/colonisationplot.png)
+![Figure 5. Posterior distributions of parameters predicting annual probability of colonisation at the sites. ](Figures/colonisation_params.png)
 
-![Effects of survey date, time, soil and air temperatures on the probability of detecting *Delma impar* during a roof-tile survey.](Figures/detectionplot.png)
+![Figure 6. Posterior distributiosn of the number of occupied sites over time.](Figures/num_occ_plot.ong)
 
+![Figure 7. Inferred numbers of extinction and colonisation events per year.](Figures/num_ext_plot_plot.png)
+
+![Figure 8. Inferred net annual change in numbers of occupied sites.](Figures/flux_plot.png)
 Literature Cited
 ================
 
