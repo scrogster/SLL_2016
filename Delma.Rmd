@@ -6,7 +6,7 @@ date: "17 March 2016"
 output:
   word_document:
       reference_docx: Template.docx
-  pdf_document: null
+  pdf_document: default
   fig_caption: yes
 fontsize: 12pt
 geometry: margin=1.5in
@@ -204,11 +204,12 @@ during winter, well over 20 surveys would be predicted to be necessary to obtain
 
 ![Figure 5. Posterior distributions of parameters predicting annual probability of colonisation at the sites. ](Figures/colonisation_params.png)
 
-![Figure 6. Posterior distributiosn of the number of occupied sites over time.](Figures/num_occ_plot.ong)
+![Figure 6. Posterior distributiosn of the number of occupied sites over time.](Figures/num_occ_plot.png)
 
-![Figure 7. Inferred numbers of extinction and colonisation events per year.](Figures/num_ext_plot_plot.png)
+![Figure 7. Inferred numbers of extinction and colonisation events per year.](Figures/num_ext_plot.png)
 
 ![Figure 8. Inferred net annual change in numbers of occupied sites.](Figures/flux_plot.png)
-Literature Cited
-================
+
+# References
+
 
