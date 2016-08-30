@@ -19,6 +19,8 @@ model{
 		                D[2]*(grassland[i])
 			muZ[i, t]<- Z[i, t-1]*PHI[i, t]   + (1-Z[i, t-1])*GAMMA[i, t]
 			Z[i, t]~dbern(muZ[i, t])
+			ext[i, t]<-equals(Z[i,t]-Z[i,t-1], -1)  #extinction event indicator
+      col[i, t]<-equals(Z[i,t-1]-Z[i,t], -1) #colonisation event indicator
 		}
 	}
 	
@@ -53,4 +55,10 @@ model{
 	pi<-3.141592654
 	#priors on missing values  ##################################################
   #TBI
+  Numocc[1]<-sum(Z[,1])
+    for(TT in 2:max.time) {Numocc[TT]<-sum(Z[,TT]) 
+                              Ext_t[TT-1]<-sum(ext[,TT])             
+                             Col_t[TT-1]<-sum(col[,TT])
+                          Deficit[TT-1]<-Col_t[TT-1]-Ext_t[TT-1] }
+  
 }
