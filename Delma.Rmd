@@ -194,7 +194,7 @@ during winter, well over 20 surveys would be predicted to be necessary to obtain
 
 # Figures
 
-![Figure 1. Map of the study area showing locations of the study sites.](Figures/map_figure.png)
+![Figure 1. Map of the study area showing locations of the study sites (Note this is just a placeholder, will make a nicer figure).](Figures/map_figure.png)
 
 ![Figure 2. Inferred seasonal trends in probability of detection for lizards, sloughs and other indirect signs of presence, and combined, overall probabilities of detection.](Figures/detection_plot.png)
 
@@ -204,7 +204,7 @@ during winter, well over 20 surveys would be predicted to be necessary to obtain
 
 ![Figure 5. Posterior distributions of parameters predicting annual probability of colonisation at the sites. ](Figures/colonisation_params.png)
 
-![Figure 6. Posterior distributiosn of the number of occupied sites over time.](Figures/num_occ_plot.png)
+![Figure 6. Posterior distributions of the number of occupied sites over time.](Figures/num_occ_plot.png)
 
 ![Figure 7. Inferred numbers of extinction and colonisation events per year.](Figures/num_ext_plot.png)
 
