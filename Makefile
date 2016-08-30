@@ -1,7 +1,7 @@
 
 all: prepped_data.Rdata prepped_data_plusGIS.Rdata formatted_for_JAGS.Rdata fitted_model.Rdata figs
 
-figs: Figures/detection_plot.pdf
+figs: Figures/detection_plot.pdf Figures/initial_occ_params.pdf
 
 #extracting the survey data from the spreadsheets
 prepped_data.Rdata:  R/clean_excel.R
