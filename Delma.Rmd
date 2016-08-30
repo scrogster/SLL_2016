@@ -1,6 +1,5 @@
 ---
-title: Using occupancy data to diagnose causes of decline for a cryptic reptile in
-  a fragmented landscape
+title: Fragmentation and land management drive historic and current changes in occupancy of a cryptic grassland reptile- evidence from a long-term, spatially extensive monitoring study
 author: "Michael P. Scroggie, Garry N. L. Peterson, Detlef H. Rohr and Geoffery W. Heard"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 output:
