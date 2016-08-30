@@ -5,10 +5,14 @@ all: prepped_data.Rdata \
      fitted_model.Rdata \
      figs
 
-figs: Figures/detection_plot.pdf \
-      Figures/initial_occ_params.pdf \
-      Figures/extinction_params.pdf \
-      Figures/colonisation_params.pdf
+figs: Figures/detection_plot.pdf Figures/detection_plot.png \
+      Figures/initial_occ_params.pdf Figures/initial_occ_params.png \
+      Figures/extinction_params.pdf Figures/extinction_params.png \
+      Figures/colonisation_params.pdf Figures/colonisation_params.png \
+      Figures/map_figure.pdf Figures/map_figure.png \
+      Figures/num_occ_plot.pdf Figures/num_occ_plot.png \
+      Figures/num_ext_plot.pdf Figures/num_ext_plot_plot.png \
+      Figures/flux_plot.pdf Figures/flux_plot.png
 
 #extracting the survey data from the spreadsheets
 prepped_data.Rdata:  R/clean_excel.R
@@ -32,4 +36,7 @@ fitted_model.Rdata: R/fit_occ_model.R formatted_for_JAGS.Rdata R/prototype_occmo
 ###################################################
 Figures/%.pdf: R/%.R fitted_model.Rdata
 	Rscript $^
+	
+Figures/%.png : Figures/%.pdf
+	convert $< $@
 
