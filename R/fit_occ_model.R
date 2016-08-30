@@ -15,8 +15,8 @@ z.init[z.init==0]<-NA #just assign one to years with known occurences. otherwise
 
 inits <- function(){  
 	list(B=rnorm(4,0,1),
-			 C=rnorm(4,0,1),
-			 D=rnorm(4,0,1), 
+			 C=rnorm(5,0,1),
+			 D=rnorm(2,0,1), 
 			 BETA=rnorm(14,0,0.2),
 			 Z=z.init)
 }
@@ -31,7 +31,7 @@ out <- jags(data = jags_dat,
 						n.adapt = 200,
 						n.iter = 2500,
 						n.burnin = 500,
-						n.thin = 3)
+						n.thin = 1)
 
 save.image("fitted_model.Rdata")
 
