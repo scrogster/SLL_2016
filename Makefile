@@ -27,7 +27,9 @@ formatted_for_JAGS.Rdata: R/format_data.R prepped_data_plusGIS.Rdata
 fitted_model.Rdata: R/fit_occ_model.R formatted_for_JAGS.Rdata R/prototype_occmod.txt
 	Rscript $^
 
+###################################################
 #pattern rule to make pdf figure from Rscript
+###################################################
 Figures/%.pdf: R/%.R fitted_model.Rdata
 	Rscript $^
 
