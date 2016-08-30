@@ -3,7 +3,8 @@ all: prepped_data.Rdata \
      prepped_data_plusGIS.Rdata \
      formatted_for_JAGS.Rdata \
      fitted_model.Rdata \
-     figs
+     figs \
+     Delma.docx
 
 figs: Figures/detection_plot.pdf Figures/detection_plot.png \
       Figures/initial_occ_params.pdf Figures/initial_occ_params.png \
@@ -39,4 +40,12 @@ Figures/%.pdf: R/%.R fitted_model.Rdata
 	
 Figures/%.png : Figures/%.pdf
 	convert $< $@
+	
+##################################################
+#Rule to render the paper
+##################################################
+
+Delma.docx:  R/render.R Delma.Rmd
+	Rscript $^
+	
 
