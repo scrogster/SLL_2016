@@ -20,14 +20,18 @@ trim_ws<-function (x, which = c("both", "left", "right"))
 }
 
 #filter out blank lines
-wcma <- wcma %>% filter(!is.na(`Grid No`)) %>% select (-`Time End (EST)`) %>% mutate(CMA="wcma", Species=trim_ws(Species))
-ccma <- ccma %>% filter(!is.na(`Grid No`)) %>% select (-`Time End (EST)`) %>% mutate(CMA="ccma", Species=trim_ws(Species))
-ghcma <- ghcma %>% filter(!is.na(`Grid No`)) %>% select (-`Time End (EST)`) %>% mutate(CMA = "ghcma", Species=trim_ws(Species))
+wcma <- wcma %>% filter(!is.na(`Grid No`)) %>% 
+	select (-`Time End (EST)`) %>% 
+	mutate(CMA="wcma", Species=trim_ws(Species))
+ccma <- ccma %>% filter(!is.na(`Grid No`)) %>% 
+	select (-`Time End (EST)`) %>% 
+	mutate(CMA="ccma", Species=trim_ws(Species))
+ghcma <- ghcma %>% filter(!is.na(`Grid No`)) %>% 
+	select (-`Time End (EST)`) %>% 
+	mutate(CMA = "ghcma", Species=trim_ws(Species))
 
+#merge the three data files together
 combined_raw<-rbind(wcma, ccma, ghcma)
-
-
-#first cut of a filtering pipe for the data.
 
 #The following code summarises each survey's results - survey level vars, and detections of various spp.
 DelmaFiltered<- combined_raw %>%
