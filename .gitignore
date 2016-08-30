@@ -8,3 +8,5 @@ OldStuff/*
 *.Rdata
 Rasters
 Rplots.pdf
+*.Rmd
+*.docx
