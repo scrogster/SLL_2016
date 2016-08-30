@@ -1,5 +1,9 @@
 
-all: prepped_data.Rdata prepped_data_plusGIS.Rdata formatted_for_JAGS.Rdata fitted_model.Rdata figs
+all: prepped_data.Rdata \
+     prepped_data_plusGIS.Rdata \
+     formatted_for_JAGS.Rdata \
+     fitted_model.Rdata \
+     figs
 
 figs: Figures/detection_plot.pdf \
       Figures/initial_occ_params.pdf \
@@ -26,3 +30,4 @@ fitted_model.Rdata: R/fit_occ_model.R formatted_for_JAGS.Rdata R/prototype_occmo
 #pattern rule to make pdf figure from Rscript
 Figures/%.pdf: R/%.R fitted_model.Rdata
 	Rscript $^
+
