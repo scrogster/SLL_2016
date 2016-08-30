@@ -29,29 +29,10 @@ out <- jags(data = jags_dat,
 						parallel=FALSE, 
 						n.chains = 3,
 						n.adapt = 200,
-						n.iter = 2000,
+						n.iter = 2500,
 						n.burnin = 500,
-						n.thin = 5)
+						n.thin = 3)
 
 save.image("fitted_model.Rdata")
 
-# plot(out)
-# 
-# #trial plotting of seasonal response curves 
-# BETA<-colMeans(out$sims.list$BETA)
-# 
-# x<-seq(0, 1, by=0.01)
-# aa<-BETA[1]+BETA[2]*(cos(2*pi*x))+BETA[3]*(sin(2*pi*x)) + 
-# 	BETA[4]*(cos(4*pi*x))+BETA[5]*(sin(4*pi*x))
-# 
-# bb<-BETA[10]+BETA[11]*(cos(2*pi*x))+BETA[12]*(sin(2*pi*x))+ 
-# 	BETA[13]*(cos(4*pi*x))+BETA[14]*(sin(4*pi*x))
-# 
-# pdf("Figures/detection_curve.pdf", width=8, height=8)
-# plot(plogis(aa)~x, col="red", type="l", ylim=c(0, 1), lwd=2, ylab="Pr(detect)",
-# 		 xlab="Fraction of Calendar Year", las=1)
-# lines(y=plogis(bb), x=x, col="blue", lwd=2)
-# lines(y = 1- (1-plogis(aa))*(1-plogis(bb)), x=x, col="green", lwd=2)
-# title(main=c("Red=lizards, Blue=sloughs, Green=combined"))
-# dev.off()
 
