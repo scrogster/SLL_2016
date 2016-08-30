@@ -24,4 +24,4 @@ ggplot(df, aes(x=year.num, y=post.mean)) +
 	xlab("Year")+
 	ylim(0, 75)+
 	theme_bw()
-ggsave("num_occ_plot.pdf", width=6, height=6)
+ggsave("Figures/num_occ_plot.pdf", width=6, height=6)

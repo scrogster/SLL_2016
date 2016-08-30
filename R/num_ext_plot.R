@@ -35,4 +35,4 @@ ggplot(df_ext, aes(x=year.num, y=post.mean)) +
 	xlab("Year")+
 	ylim(0, 20)+
 	theme_bw()
-ggsave("num_ext_plot.pdf", width=6, height=6)
+ggsave("Figures/num_ext_plot.pdf", width=6, height=6)

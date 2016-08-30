@@ -24,4 +24,4 @@ ggplot(df, aes(x=year.num, y=post.mean)) +
 	xlab("Year")+
 	geom_hline(yintercept = 0)+
 	theme_bw()
-ggsave("flux_plot.pdf", width=6, height=6)
+ggsave("Figures/flux_plot.pdf", width=6, height=6)
