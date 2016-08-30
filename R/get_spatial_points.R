@@ -32,8 +32,6 @@ sites_points_54<-SpatialPoints(coords=data.frame(site_points[s54,c("Easting", "N
 #Convert to vicgrid. Because of the split, these will be out of order. Fix once we've got what we need.
 sites_points_55_VG<-spTransform(sites_points_55, CRS("+init=epsg:3111"))
 sites_points_54_VG<-spTransform(sites_points_54, CRS("+init=epsg:3111"))
- plot(sites_points_54_VG, pch=16)
- plot(sites_points_55_VG, pch=16, add=TRUE)
 
 vicgrid_coords<-data.frame("EastingVG"=rep(NA, nrow(site_points)), "northingVG"=rep(NA, nrow(site_points)) )
 vicgrid_coords[s55,]<-coordinates(sites_points_55_VG)
@@ -42,9 +40,7 @@ vicgrid_coords[s54,]<-coordinates(sites_points_54_VG)
 vicgrid_points<-SpatialPoints(coords=vicgrid_coords[!is.na(vicgrid_coords$EastingVG),], CRS("+init=epsg:3111"))
 vicgrid_spdf<-SpatialPointsDataFrame(vicgrid_points, data.frame(site_points[!is.na(vicgrid_coords$EastingVG),]))
 
-plot(vicgrid_points, pch=16) 
-
-#experimental merge between site point data and survey data
+#merge between site point data and survey data
 test<-left_join(ungroup(DelmaFiltered), site_points, "GridCMA") %>%
 	select(GridCMA, Easting, Northing)
 
