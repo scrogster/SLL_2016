@@ -1,0 +1,58 @@
+model{
+	#process.model (matrix form)#################################################
+	for(i in 1:tot.sites){
+	#------initial occupancy model---------##########
+		logit(psi[i])<- B[1]+
+		                B[2]*grassland[i] +
+		                B[3]*conservation[i] +
+		                B[4]*grazing[i]
+		Z[i, 1]~dbern(psi[i])
+	for(t in 2:max.time){
+  #------persistence model---------------##########
+		logit(PHI[i,t])<- C[1]+ 
+			              C[2]*grassland[i] +
+			              C[3]*firegt1[i] +
+			              C[4]*grazing[i] +
+			              C[5]*conservation[i]
+	#------colonisation model--------------##########
+		logit(GAMMA[i,t])<-D[1] +
+		                D[2]*(grassland[i])
+			muZ[i, t]<- Z[i, t-1]*PHI[i, t]   + (1-Z[i, t-1])*GAMMA[i, t]
+			Z[i, t]~dbern(muZ[i, t])
+			ext[i, t]<-equals(Z[i,t]-Z[i,t-1], -1)  #extinction event indicator
+      col[i, t]<-equals(Z[i,t-1]-Z[i,t], -1) #colonisation event indicator
+		}
+	}
+	
+	#observation model (vector form)#############################################
+	for(a in 1:tot.surveys){
+	#--------obs model for actual lizards--################
+		fourier.liz[a]<- BETA[2]*(cos(2*pi*year.frac[a]))+BETA[3]*(sin(2*pi*year.frac[a])) + 
+			               BETA[4]*(cos(4*pi*year.frac[a]))+BETA[5]*(sin(4*pi*year.frac[a]))
+		logit(p.liz.cond[a])<-BETA[1] +fourier.liz[a]  + 
+			BETA[6]*time.of.day[a]+
+			BETA[7]*pow(time.of.day[a], 2)+  
+			BETA[8]*((TempS[a]-22)/5) +
+			BETA[9]*pow((TempS[a]-22)/5, 2)
+		p.liz[a]<-p.liz.cond[a]* Z[site[a], t[a]] 
+		detect.liz[a]~dbern(p.liz[a])	
+	}
+	
+	#priors on model parameters #################################################
+  for(b in 1:4) { B[b]~dnorm(0, 0.01) }
+  for(c in 1:5) { C[c]~dnorm(0, 0.01) }
+  for(d in 1:2) { D[d]~dnorm(0, 0.01) }
+
+  for(e in 1:9) {BETA[e]~dnorm(0, 0.01)}
+	
+	########constant; (pi)#######################################################
+	pi<-3.141592654
+	#priors on missing values  ##################################################
+  #TBI
+  Numocc[1]<-sum(Z[,1])
+    for(TT in 2:max.time) {Numocc[TT]<-sum(Z[,TT]) 
+                              Ext_t[TT-1]<-sum(ext[,TT])             
+                             Col_t[TT-1]<-sum(col[,TT])
+                          Deficit[TT-1]<-Col_t[TT-1]-Ext_t[TT-1] }
+  
+}
