@@ -1,12 +1,7 @@
 ---
-<<<<<<< HEAD
-title: "Fragmentation and land management drive historic and current changes in occupancy of a cryptic grassland reptile: evidence from a long-term, spatially extensive monitoring study"
+title: "Fragmentation and land management drive historic and current changes in occupancy of a cryptic grassland reptile: Evidence from a long-term, spatially extensive monitoring study"
 author: "Michael P. Scroggie, Garry N. L. Peterson, Detlef H. Rohr, Evelyn Nicholson and Geoffrey W. Heard"
-=======
-title: Fragmentation and land management drive historic and current changes in occupancy of a cryptic grassland reptile- evidence from a long-term, spatially extensive monitoring study
-author: "Michael P. Scroggie, Garry N. L. Peterson, Detlef H. Rohr, Evelyn Nicholson and Geoffery W. Heard"
->>>>>>> 037faf9370ab9d4e163d717f468d567712908225
-date: "`r format(Sys.time(), '%d %B, %Y')`"
+date: "`r format(Sys.time(), '%e %B, %Y')`"
 output:
   word_document:
       reference_docx: Template.docx
@@ -25,7 +20,7 @@ To be inserted.
 
 # Introduction
 
-For species inhabiting recently fragmented landscapes, persistence depends on the viability of populations within retained habitat fragments, together with adequate capacity for recolonisation of vacant habitat to compensate for stochastic or deterministic local extinctions. Long-term viability requires that rates at which vacant sites are recolonised adequately offsets rates of extinction, otherwise long-term decline in occupancy rates will ensue, ultimately resulting in landscape scale extinction. Cost-efficient conservation of species inhabiting fragmented landscapes involves identifying and implementing management actions that maximise the overall, landscape-scale probability of persistence, by enhancing probabilities of persistence and/or colonisation at the individual patch level.
+For species inhabiting fragmented landscapes, persistence depends on the viability of populations within retained habitat fragments, together with adequate capacity for recolonisation of vacant habitat to compensate for stochastic or deterministic local extinctions. Long-term viability requires that rates at which vacant sites are recolonised adequately offsets rates of extinction, otherwise ongoing decline in occupancy rates will ensue, ultimately resulting in landscape scale extinction. Cost-efficient conservation of species inhabiting fragmented landscapes involves identifying and implementing management actions that maximise the overall, landscape-scale probability of persistence, by enhancing probabilities of persistence and/or colonisation at the individual patch level.
 
 Dynamics of species occupancy within fragmented landscapes reflect the collective results of several inter-related ecological processes.
 
@@ -39,7 +34,7 @@ Dynamics of species occupancy within fragmented landscapes reflect the collectiv
 
 In the absence of data on pre-fragmentation habitat quality and and occupancy by a focal species, it is often difficult to determine the relative importance of each of these four processes in determining present patterns of occupancy, and to derive a complete understanding of the mechanisms that have resulted in the current state, let alone to predict likely future trends. 
 
-Both theoretical [@tilman1994habitat; @hanski2002extinction; @kuussaari2009extinction] and observational [@helm2006slow; @sang2010indirect, @van2011metapopulation] evidence suggest that in fragmented landscapes, there may be a significant delay in extinction processes subsequent to fragmentation, possibly lasting decades or centuries (an extinction debt), meaning that snapshot studies of occupancy within fragmented landscapes may result in underestimation of the ultimate impact of fragmentation on species, or a mistaken emphasis on the effects of habitat quantity and quality as mechanisms driving present occupancy, rather than fragmentation and isolation of habitat [@tilman1994habitat; @hanski2002extinction].
+Both theoretical [@tilman1994habitat; @hanski2002extinction; @kuussaari2009extinction] and observational [@helm2006slow; @sang2010indirect; @van2011metapopulation] evidence suggest that in fragmented landscapes, there may be a significant delay in extinction processes subsequent to fragmentation, possibly lasting decades or centuries (an extinction debt), meaning that snapshot studies of occupancy within fragmented landscapes may result in underestimation of the ultimate impact of fragmentation on species, or a mistaken emphasis on the effects of habitat quantity and quality as mechanisms driving present occupancy, rather than fragmentation and isolation of habitat [@tilman1994habitat; @hanski2002extinction].
 
 By tracking patterns of extinction and colonisation amongst habitat fragments varying in size, quality and connectivity, insight into the processes leading to extinction and colonisation over time can be derived from successive sets of occupancy data. In particular, correlative approaches can be used to determine how initial occupancy states, colonisation and extinction processes are driven by habitat extent, quality and connectivity.
 
