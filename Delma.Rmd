@@ -1,6 +1,11 @@
 ---
+<<<<<<< HEAD
 title: "Fragmentation and land management drive historic and current changes in occupancy of a cryptic grassland reptile: evidence from a long-term, spatially extensive monitoring study"
 author: "Michael P. Scroggie, Garry N. L. Peterson, Detlef H. Rohr, Evelyn Nicholson and Geoffrey W. Heard"
+=======
+title: Fragmentation and land management drive historic and current changes in occupancy of a cryptic grassland reptile- evidence from a long-term, spatially extensive monitoring study
+author: "Michael P. Scroggie, Garry N. L. Peterson, Detlef H. Rohr, Evelyn Nicholson and Geoffery W. Heard"
+>>>>>>> 037faf9370ab9d4e163d717f468d567712908225
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 output:
   word_document:
