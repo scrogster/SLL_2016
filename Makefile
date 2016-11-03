@@ -4,7 +4,8 @@ all: prepped_data.Rdata \
      formatted_for_JAGS.Rdata \
      fitted_model.Rdata \
      figs \
-     Delma.docx
+     Delma.docx \
+     Delma.pdf
 
 figs: Figures/detection_plot.pdf Figures/detection_plot.png \
       Figures/initial_occ_params.pdf Figures/initial_occ_params.png \
@@ -42,10 +43,12 @@ Figures/%.png : Figures/%.pdf
 	convert $< $@
 	
 ##################################################
-#Rule to render the paper
+#Rules to render the paper as pdf and docx
 ##################################################
 
-Delma.docx:  R/render.R Delma.Rmd
-	Rscript $^
+Delma.docx:  R/render.R Delma.Rmd 
+	Rscript $^ word_document
+Delma.pdf:  R/render.R Delma.Rmd 
+	Rscript $^ pdf_document
 	
 
