@@ -1,13 +1,7 @@
 ---
-<<<<<<< HEAD
-title: Fragmentation and land management drive historic and current changes in occupancy of a cryptic grassland reptile- evidence from a long-term, spatially extensive monitoring study
-author: "Michael P. Scroggie, Garry N. L. Peterson, Detlef H. Rohr, Evelyn Nicholson and Geoffrey W. Heard"
-date: "`r format(Sys.time(), '%d %B, %Y')`"
-=======
 title: "Fragmentation and land management drive historic and current changes in occupancy of a cryptic grassland reptile: Evidence from a long-term, spatially extensive monitoring study"
 author: "Michael P. Scroggie, Garry N. L. Peterson, Detlef H. Rohr, Evelyn Nicholson and Geoffrey W. Heard"
 date: "`r format(Sys.time(), '%e %B, %Y')`"
->>>>>>> 463f3216a01b067d2de8d29f38cf159a3960681a
 output:
   word_document:
       reference_docx: Template.docx
