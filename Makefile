@@ -40,15 +40,15 @@ Figures/%.pdf: R/%.R fitted_model.Rdata
 	Rscript $^
 	
 Figures/%.png : Figures/%.pdf
-	convert $< $@
+	convert -density 300 $< $@
 	
 ##################################################
 #Rules to render the paper as pdf and docx
 ##################################################
 
-Delma.docx:  R/render.R Delma.Rmd 
+Delma.docx:  R/render.R Delma.Rmd
 	Rscript $^ word_document
-Delma.pdf:  R/render.R Delma.Rmd 
+Delma.pdf:  R/render.R Delma.Rmd
 	Rscript $^ pdf_document
 	
 
