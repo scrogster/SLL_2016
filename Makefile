@@ -43,7 +43,7 @@ Figures/%.png : Figures/%.pdf
 	convert -density 300 $< $@
 	
 ##################################################
-#Rules to render the paper as pdf and docx
+#Rules to render the paper as pdf and docx if either markdown or bibtex files change
 ##################################################
 
 Delma.docx:  R/render.R Delma.Rmd
