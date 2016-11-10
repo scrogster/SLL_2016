@@ -1,11 +1,11 @@
 ---
 title: 'Fragmentation and land management drive historic and current changes in occupancy of a cryptic grassland reptile: Evidence from a long-term, spatially extensive monitoring study'
 author: 
- - Michael P. Scroggie^[Arthur Rylah Institute for Environmental Research, michael.scroggie@delwp.vic.gov.au] 
- - Garry N. L. Peterson^[Deparment of Environment, Land, Water and Planning, Warrnambool.] 
- - Detlef H. Rohr^[Ecology and Evolution Research Centre, University of New South Wales.]  
- - Evelyn Nicholson^[Deparment of Environment, Land, Water and Planning, Heywood.]
- - Geoffrey W. Heard^[School of Bioscience, University of Melbourne.]
+ - Michael P. Scroggie^[Arthur Rylah Institute for Environmental Research, 123 Brown St, Heidelberg, Victoria, Australia 3084. michael.scroggie@delwp.vic.gov.au] 
+ - Garry N. L. Peterson^[Deparment of Environment, Land, Water and Planning, 703-709 Raglan Parade, Warrnambool, Victoria, Australia 3280.] 
+ - Detlef H. Rohr^[Ecology and Evolution Research Centre, University of New South Wales, Sydney, New South Wales, Australia 2052.]  
+ - Evelyn Nicholson^[Deparment of Environment, Land, Water and Planning, 12 Murray St, Heywood, Victoria, Australia, 3304]
+ - Geoffrey W. Heard^[School of Bioscience, University of Melbourne, Victoria, Australia 3052.]
 header-includes:
    - \usepackage[nolists,tablesfirst, nomarkers]{endfloat}
 date: '`r format(Sys.time(), "%e %B %Y")`'
