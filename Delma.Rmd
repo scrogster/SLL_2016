@@ -42,7 +42,13 @@ We collected occupancy data from a large number of fragments (~300) of likely ha
 
 ## Field data collection
 
-A total of TBI sites were selected from the available range of native grassland habitat available across each of three catchment management authority (CMA) areas located in western and central Victoria, Australia. Sites included both publicly and privately owned land, and were subject to a range of land management practices. **Garry, please write a couple of sentences here about how the sites were selected**.  At each site 50 artificial cover objects (ceramic roofing tiles) were deployed in a grid pattern (5 tiles by 10 tiles) spaced at 5 meter intervals. A single site was established in 2003, with monitoring of most of the remaining sites being established during 2004. A few additional sites were added to the study in each subsequent year between 2003 and 2008 as time and resources allowed. Most sites were surveyed at least once in every year, while many sites were surveyed multiple times each year. Surveys involved visiting the sites, and lifting each of the 50 tiles in turn. All vertebrate species (mainly reptiles and frogs, but also small mammals such as Dunnarts (*Sminthopsis* spp.), were captured, identified and immediately released. Occasionally, evidence for the presence of reptiles was obtained from observations of sloughed skins underneath the tiles- where these skins could be identified with certainty they were treated as positive evidence of species presence. At the time of each surveythe following variables thought likely to influence detection probability were recorded: Julian date, time of day, air temperature, under-tile soil temperature and time of day. It was considered likely that these variables could influence the probability of detecting *Delma impar* during surveys at site where the species was present. This hypothesis was explored as part of the statistical analysis of the survey data.
+```{r, echo=FALSE, message=FALSE}
+load("fitted_model.Rdata")
+
+```
+
+
+A total of `r jags_dat$tot.sites`  sites were selected from the available range of native grassland habitat available across each of three catchment management authority (CMA) areas located in western and central Victoria, Australia. Sites included both publicly and privately owned land, and were subject to a range of land management practices. **Garry, please write a couple of sentences here about how the sites were selected**.  At each site 50 artificial cover objects (ceramic roofing tiles) were deployed in a grid pattern (5 tiles by 10 tiles) spaced at 5 meter intervals. A single site was established in 2003, with monitoring of most of the remaining sites being established during 2004. A few additional sites were added to the study in each subsequent year between 2003 and 2008 as time and resources allowed. Most sites were surveyed at least once in every year, while many sites were surveyed multiple times each year. Surveys involved visiting the sites, and lifting each of the 50 tiles in turn. All vertebrate species (mainly reptiles and frogs, but also small mammals such as Dunnarts (*Sminthopsis* spp.), were captured, identified and immediately released. Occasionally, evidence for the presence of reptiles was obtained from observations of sloughed skins underneath the tiles- where these skins could be identified with certainty they were treated as positive evidence of species presence. At the time of each surveythe following variables thought likely to influence detection probability were recorded: Julian date, time of day, air temperature, under-tile soil temperature and time of day. It was considered likely that these variables could influence the probability of detecting *Delma impar* during surveys at site where the species was present. This hypothesis was explored as part of the statistical analysis of the survey data.
 
 ## Landscape and management variables
 
@@ -63,20 +69,20 @@ $$\psi_{i,t}= \phi_{i,t}\psi_{i,t-1}+\gamma_{i,t}(1-\psi_{i,t-1})$$
 Where $\psi_{i,t}$ is the probability of occupancy at the $i^{th}$ site at time $t$, $\phi_{t}$ is the probability that the $i^{th}$ occupied site remains occupied between times $t$ and $t-1$, and $\gamma_{i,t}$ is the probability that the $i^{th}$ unoccupied site is recolonised between times $t$ and $t-1$.
 
 Initial occupancies $(\psi_{i,1})$ for each site were modelled as depending on a combination of the extent of remaining grassland habitat in the surrounding landscape, whether the site was currently managed for conservation, and whether the site was subject to livestock grazing. The relationship between these three variables, and the probability of current occupancy was described using a logistic regression model:
-$$\log \left(\dfrac{\psi_{i,1}}{1-\psi_{i,1}}\right)=\beta_{0}+\beta_{1}grass_{i}+\beta_{2}conserv_{i}+\beta_{3}graze_{i} $$
+$$\log \left(\dfrac{\psi_{i,1}}{1-\psi_{i,1}}\right)=\beta_{1}+\beta_{2}grass_{i}+\beta_{3}conserv_{i}+\beta_{4}graze_{i} $$
 
 We hypothesised that instances of local extinction at any of our study sites would occur either as a consequence of stochastic demographic processes (as expected in small, isolated populations [@hanski1994pmm]), or as a consequence of disturbance, habitat degradation or inappropriate management, to which most sites (irrespective of size) are subject to a varying degree. Population sizes (absolute abundance) for the *Delma impar* populations we studied are unknown, so we used an estimate of the area of suitable habitat (native grassland) available within the vicinity of each site as a surrogate for the likely maximum population size, and hence a predictor of rates of stochastic extinction [@hanski1994pmm]. Additional landscape, habitat and management variables were also considered as probable influences on the local extinction probabilities. These habitat/management variables were:  fire frequency, grazing regime and management for conservation:
 
 $$
 \begin{aligned}
-\log \left(\dfrac{\phi_{i,t}}{1-\phi_{i,t}}\right)=\lambda_{0}+\lambda_{1}grass_{i}+\lambda_{2}fire_{i}+\lambda_{3}graze_{i}+\lambda_{4}conserv_{i}
+\log \left(\dfrac{\phi_{i,t}}{1-\phi_{i,t}}\right)=\lambda_{1}+\lambda_{2}grass_{i}+\lambda_{3}fire_{i}+\lambda_{4}graze_{i}+\lambda_{5}conserv_{i}
 \end{aligned}
 $$
 
 Most of the sites known to be occupied by *Delma impar* are essentially isolated from potential sources of immigration by large areas of unsuitable, modified habitats such as cultivated and grazed farmland and assumed barriers such as roads. Hence, recolonisation of sites which undergo local extinction is considered unlikely in most cases. We had minimal knowledge regarding the occurence of *D. impar* in areas close to each of the study sites,
 so the potential for recolonisation from neighbouring habitat patches was essentially unknown. The predicted extent of native grassland habitat (insert citation to Matt's model) within a 10 ha circle surrounding each monitoring plot was included in the model as a measure of the extent of neighbouring habitat. It was hypothesised that the occurence of large areas of suitable habitat in the vicinity of each monitoring site would increase the probability of recolonisation in the event of local extinction, due to the potential for recolonisation from adjacent areas of occupied habitat. This effect was modelled by relating the probability of recolonisation, $\gamma$ to the area of nearby native grassland habitat using a linear equation and logit link.
 
-$$\log \left(\dfrac{\gamma_{i,t}}{1-\gamma_{i,t}}\right)=\delta_{0}+\delta_{1}grass_{i} $$              
+$$\log \left(\dfrac{\gamma_{i,t}}{1-\gamma_{i,t}}\right)=\delta_{1}+\delta_{2}grass_{i} $$              
 
 ### Observation model
 
@@ -120,11 +126,40 @@ The full, integrated model including both the ecological processes (intial occup
 
 # Results
 
+```{r surveytable, echo=FALSE, message=FALSE, results = 'asis'}
+require(knitr)
+load("fitted_model.Rdata")
+#number of unique sites surveyed each year
+sites.per.year<-tapply(jags_dat$site, jags_dat$t, function(x) length(unique(x)))
+#number of surveys conducted each year
+surveys.per.year<-tapply(jags_dat$site, jags_dat$t, function(x) length(x))
+survey.per.site<-surveys.per.year/sites.per.year
+
+survey_table<-data.frame("Year"=paste0(2004:2012, "/", 2005:2013), "Sites"=sites.per.year, "Surveys"=surveys.per.year, "Surveyspersite"=survey.per.site)
+
+kable(survey_table, digits=2, align=c("c", "c", "c","c"), col.names=c("Year", "Sites surveyed","Total surveys","Surveys per site"),
+			caption="Summary of survey effort during the 9 years of monitoring")
+
+```
+
 Insert about here, summary information on surveys and detections at sites in each year. Present as a table.
 
-The state-space analysis of occupancy revealed a decline in the number of occupied sites over the course of the study. At the outset of the study, the state-space model predicted that 6X (95\% CI X-X) sites were occupied. This declined to 4X sites (95\% CI X-X) in the final year of the study (Figure 2)-- an overall decline in the proportion of occupied sites of X \% (95\% CI X-X).
+```{r occ_stats, echo=FALSE, message=FALSE}
+load("fitted_model.Rdata")
+aa<-apply(out$sims.list$Numocc, 1, function(x) {(x[1]-x[9])})
+bb<-apply(out$sims.list$Numocc, 1, function(x) {x[1]})
+cc<-apply(out$sims.list$Numocc, 1, function(x) {x[9]})
+startocc<-c(mean(bb), median(bb), quantile(bb, 0.025), quantile(bb, 0.975))
+endocc<-c(mean(cc), median(bb), quantile(cc, 0.025), quantile(cc, 0.975))
+decline<-c(mean(aa), median(aa), quantile(aa, 0.025), quantile(aa, 0.975))
+change<-apply(out$sims.list$Numocc, 1, diff)
+annchange<-c(mean(colMeans(change)),median(colMeans(change)), quantile(colMeans(change), 0.025), quantile(colMeans(change), 0.975))
+```
 
-This observed decline in occupancy was a consequence of the rate of population extinctions outstripping the rate at which vacant sites were colonised in most years (Figures 3-4). The net change in occupancy varied among years, and had moderately high uncertainty (Figure 4), but was indicative of an overall, net loss of sites in the order of X per year.
+
+The state-space analysis of occupancy revealed a decline in the number of occupied sites over the course of the study. At the outset of the study, the state-space model predicted that `r format(startocc[1], digits=3)` (95\% CI `r format(startocc[3], digits=4)`, `r format(startocc[4], digits=4)`) sites were occupied. This declined to `r format(endocc[1], digits=3)` sites (95\% CI `r format(endocc[3], digits=4)`, `r format(endocc[4], digits=4)`) in the final year of the study-- an overall loss  of `r format(decline[1], digits=3)` (95\% CI `r format(decline[3], digits=4)`, `r format(decline[4], digits=4)`) occupied sites over the 9 years of monitoring (Figure 2).
+
+This observed decline in occupancy was a consequence of the rate of population extinctions outstripping the rate at which vacant sites were colonised in most years (Figures 3-4). The net change in occupancy varied among years, and had moderately high uncertainty (Figure 4), but was indicative of an annual loss in the number of occupied sites of `r format(-annchange[1], digits=3)`(95\% CI `r format(-annchange[3], digits=4)`,`r format(-annchange[4], digits=4)`) per year.
 
 Initial occupancy of the study sites at the commencement of the study was strongly correlated with the extent of modelled native grassland coverage within X m of the sites (Figure 5). Management variables (grazing regime and conservation landuse) had a lesser effect, with some weak evidence that grazing land use led to a greater probability of initial occupancy, and conservation land use led to a lesser probability of initial occupancy (Figure 5).
 
