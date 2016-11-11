@@ -14,10 +14,11 @@ df<-data.frame(out$sims.list$B) %>%
 histocol="green"
 
 ggplot(df, aes(x=value)) +
-	geom_histogram(col=histocol, fill=histocol, binwidth=0.05) +
-	geom_vline(xintercept=0) +
+	geom_density(col="green", fill="green")+
+	geom_vline(xintercept=0, linetype=1) +
 	facet_grid(key~., scales="fixed") +
-	ggtitle("Initial occupancy") +
+	ylab("Posterior density")+
+	xlab(expression(beta))+
 	theme_bw()
 
 ggsave("Figures/initial_occ_params.pdf", width=5, height=7)
