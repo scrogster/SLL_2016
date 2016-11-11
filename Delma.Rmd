@@ -1,7 +1,7 @@
 ---
 title: 'Fragmentation and land management drive historic and recent changes in occupancy of a cryptic grassland reptile: Evidence from a long-term, spatially extensive study'
 author: 
- - Michael P. Scroggie^[Arthur Rylah Institute for Environmental Research, 123 Brown St, Heidelberg, Victoria 3084, Australia. Corresponding author. Email\\: michael.scroggie@delwp.vic.gov.au] 
+ - Michael P. Scroggie^[Arthur Rylah Institute for Environmental Research, 123 Brown St, Heidelberg, Victoria 3084, Australia. Corresponding author. michael.scroggie@delwp.vic.gov.au] 
  - Garry N. L. Peterson^[Deparment of Environment, Land, Water and Planning, 703-709 Raglan Parade, Warrnambool, Victoria 3280, Australia.] 
  - Detlef H. Rohr^[Ecology and Evolution Research Centre, University of New South Wales, Sydney, New South Wales 2052, Australia.]  
  - Evelyn Nicholson^[Deparment of Environment, Land, Water and Planning, 12 Murray St, Heywood, Victoria 3304, Australia.]
@@ -11,11 +11,12 @@ header-includes:
 date: '`r format(Sys.time(), "%e %B %Y")`'
 output:
   pdf_document: default
+  fig_width: 7
   fig_caption: yes
   word_document:
     reference_docx: Template.docx
 fontsize: 11pt
-geometry: margin=1.5in
+geometry: margin=1.0in
 csl: ecology.csl
 bibliography: DelmaRefs.bib
 ---
@@ -51,7 +52,7 @@ load("fitted_model.Rdata")
 ```
 
 
-A total of `r jags_dat$tot.sites`  sites were selected from the available range of native grassland habitat available across each of three catchment management authority (CMA) areas located in western and central Victoria, Australia. Sites included both publicly and privately owned land, and were subject to a range of land management practices. **Garry, please write a couple of sentences here about how the sites were selected**.  At each site 50 artificial cover objects (ceramic roofing tiles) were deployed in a grid pattern (5 tiles by 10 tiles) spaced at 5 meter intervals. A single site was established in 2003, with monitoring of most of the remaining sites being established during 2004. A few additional sites were added to the study in each subsequent year between 2003 and 2008 as time and resources allowed. Most sites were surveyed at least once in every year, while many sites were surveyed multiple times each year. Surveys involved visiting the sites, and lifting each of the 50 tiles in turn. All vertebrate species (mainly reptiles and frogs, but also small mammals such as Dunnarts (*Sminthopsis* spp.), were captured, identified and immediately released. Occasionally, evidence for the presence of reptiles was obtained from observations of sloughed skins underneath the tiles- where these skins could be identified with certainty they were treated as positive evidence of species presence. At the time of each surveythe following variables thought likely to influence detection probability were recorded: Julian date, time of day, air temperature, under-tile soil temperature and time of day. It was considered likely that these variables could influence the probability of detecting *Delma impar* during surveys at site where the species was present. This hypothesis was explored as part of the statistical analysis of the survey data.
+A total of `r jags_dat$tot.sites`  sites were selected from the available range of native grassland habitat available across each of three catchment management authority (CMA) areas located in western and central Victoria, Australia. Sites included both publicly and privately owned land, and were subject to a range of land management practices. *Garry, please write a couple of sentences here about how the sites were selected*.  At each site 50 artificial cover objects (ceramic roofing tiles) were deployed in a grid pattern (5 tiles by 10 tiles) spaced at 5 meter intervals. A single site was established in 2003, with monitoring of most of the remaining sites being established during 2004. A few additional sites were added to the study in each subsequent years as time and resources allowed. Most sites were surveyed at least once in every year, while many sites were surveyed multiple times each year. Surveys involved visiting the sites, and lifting each of the 50 tiles in turn. All vertebrate species (mainly reptiles and frogs, but also small mammals such as Dunnarts (*Sminthopsis* spp.), were captured, identified and immediately released. Occasionally, evidence for the presence of reptiles was obtained from observations of sloughed skins underneath the tiles- where these skins could be identified with certainty they were treated as positive evidence of occupancy. At the time of each survey the following variables that were thought likely to influence detection probability were recorded: Julian date, time of day, air temperature, under-tile soil temperature and time of day. It was considered likely that these variables could influence the probability of detecting *Delma impar* during surveys at site where the species was present. This hypothesis was explored as part of the statistical analysis of the survey data.
 
 ## Landscape and management variables
 
@@ -219,6 +220,8 @@ kable(posterior, digits=3, align=c("l","l","c","c", "c", "l"),
 
 # Discussion
 
+*Discussion is a bit disordered at present, so feel free to rewrite, reorganise or add other ideas to the mix*
+
 Our analysis has revealed that over the course of the study, the proportion of study sites occupied by *D. impar* has undergone a slow, but steady decline.  The rate of local extinctions outstripped the rate at which unoccpied sites can be colonised. If the observed rates of decline at the study sites are consistent with broader trends in occupancy of remnant habitat across the species' range, then continuing decline in the conservation status of *D. impar* is to be expected.
 
 Although rates of occupancy were observed to decline overall, inferred probabilities of colonisation and extinction were not homogenous among sites, and were strongly associated with habitat and management features at the site-level. Across the study area, rates of persistence were found to be substantially higer at sites that were subjected to episodic burning and grazing by domestic livestock (mainly sheep). The reason for these observed associations between grazing, fire and persistence of *D. impar* populations is not known with certainty, however it seems likely that appropriate grazing and fire regimes are associated with reduced levels of dominance by invasive plants, and reduced pasture biomass in native grassland habitats. Excessive pasture biomass may be detrimental to *D. impar* due to shading effects on thermoregulatory behaviour, or because thick accumulations of plant biomass limit access to preferred microhabitat such as soil cracks [@howland2014eaten]. In constrast, probabilities of persistence showed no consistent relationship with the amount of grassland habitat present in the landscapes surrounding the sites.
@@ -243,37 +246,36 @@ For some isolated and unoccupied habitat remnants, the feasibility of reintroduc
 
 Analysis of the artificial cover object data presented here provides clear guidance regarding appropriate methods for survey and monitoring of *D. impar*. It is clear from the data that probability of detection has strong seasonal variability, with detectability maximised during late Spring and early Summer. Detectability during Winter months is particularly low. Meteorological conditions and time of day were of much more limited significance in determining detectability, suggesting that tile surveys conducted during the appropriate time of year should have high probabilities of detection, irrespective of prevailing weather conditions or time of day. More thorough exploration of the influence of meteorogical factors on the propensity of *D. impar* to utilise under-tile microhabitats using more detailed data on the relationships between multiple meteorogical variables, and the resulting microclimates beneath the roof tiles, possibly using physical models, rather than simple correlative approaches might lead to a better understanding of any underlying relationship between weather and detection.
 
-```{r, fig.cap="Map of the study area showing locations of the survey sites.", fig.pos="H", echo=FALSE, cache=FALSE}
+```{r, fig.cap="Map of the study area showing locations of the survey sites. *NB This is just a placeholder until I make something better*", fig.pos="H", echo=FALSE, cache=FALSE}
 knitr::include_graphics("Figures/map_figure.png")
 ```
 
-```{r, fig.cap="Inferred number of occupied sites over the course of the study. The green line and shaded area are the posterior mean and 95\\% credible intervals derived from the state-space dynamic occupancy model", fig.pos="H", echo=FALSE, cache=FALSE}
+```{r, fig.cap="Inferred number of occupied sites over the course of the study. The green line and shaded area are the posterior mean and 95\\% credible intervals derived from the state-space dynamic occupancy model. *Will add a line showing numbers of sites with detections for comparison*", fig.pos="H", echo=FALSE, cache=FALSE}
 knitr::include_graphics("Figures/num_occ_plot.png")
 ```
 
-```{r, fig.cap="Inferred numbers of extinction and colonisation events across the 295 study sites for each year, derived from the state-space dynamic occupancy model. The shaded areas denotes the 95\\% credible interval.", fig.pos="H", echo=FALSE, cache=FALSE}
+```{r, fig.cap="Inferred numbers of extinction (red) and colonisation (green) events across the 295 study sites for each year, derived from the state-space dynamic occupancy model. The shaded areas denote the 95\\% credible intervals on the inferences.", fig.pos="H", echo=FALSE, cache=FALSE}
 knitr::include_graphics("Figures/num_ext_plot.png")
 ```
 
-```{r, fig.cap="Posterior distributions of the net annual change in numbers of occupied sites for each year. The shaded areas denotes the 95\\% credible interval.", fig.pos="H", echo=FALSE, cache=FALSE}
+```{r, fig.cap="Posterior distributions of the net annual change in numbers of sites occupied by *Delma impar* for each year (colonisations - extinctions). The shaded areas denotes the 95\\% credible interval on the inferences.", fig.pos="H", echo=FALSE, cache=FALSE}
 knitr::include_graphics("Figures/flux_plot.png")
 ```
 
-```{r, fig.cap="Posterior distributions of regression parameters predicting initial occupancy at the sites", fig.pos="H", echo=FALSE, cache=FALSE}
+```{r, fig.cap="Posterior distributions of regression parameters predicting initial occupancy of *Delma impar* at the sites.", fig.pos="H", echo=FALSE, cache=FALSE}
 knitr::include_graphics("Figures/initial_occ_params.png")
 ```
 
-```{r, fig.cap="Posterior distributions of regression parameters predicting annual probability of persistence at the sites", fig.pos="H", echo=FALSE, cache=FALSE}
+```{r, fig.cap="Posterior distributions of regression parameters predicting annual probability of persistence of *Delma impar* at occupied sites.", fig.pos="H", echo=FALSE, cache=FALSE}
 knitr::include_graphics("Figures/extinction_params.png")
 ```
 
-```{r, fig.cap="Posterior distributions of regression parameters predicting annual probability of colonisation at the sites", fig.pos="H", echo=FALSE, cache=FALSE}
+```{r, fig.cap="Posterior distributions of regression parameters predicting annual probability of colonisation by *Delma impar* at unoccupied sites.", fig.pos="H", echo=FALSE, cache=FALSE}
 knitr::include_graphics("Figures/colonisation_params.png")
 ```
 
-Need to add in a figure or table for inferences on covariates on detection.
 
-```{r, fig.cap="Inferred seasonal trends in probability of detection for lizards, sloughed skins, and combined, overall probabilities of detection for single surveys using both sources of detection. Detection probabilities for lizards are predicted assuming that surveys are conducted at noon, with a tile temperature of $22^{\\circ}\\text{C}$.", fig.pos="H", echo=FALSE, cache=FALSE}
+```{r, fig.cap="Inferred seasonal trends in probability of detection for lizards, sloughed skins, and combined, overall probabilities of detection for single surveys using both sources of detection. Detection probabilities for lizards are predicted assuming that surveys are conducted at noon, with a tile temperature of $22^{\\circ}\\text{C}$. Shading denotes the 95\\% credible intervals on the inferences.", fig.pos="H", echo=FALSE, cache=FALSE}
 knitr::include_graphics("Figures/detection_plot.png")
 ```
 
