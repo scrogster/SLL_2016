@@ -23,8 +23,7 @@ bibliography: DelmaRefs.bib
 
 # Abstract
 
-
-To be inserted.
+TBI
 
 # Introduction
 
@@ -89,6 +88,8 @@ so the potential for recolonisation from neighbouring habitat patches was essent
 $$\log \left(\dfrac{\gamma_{i,t}}{1-\gamma_{i,t}}\right)=\delta_{1}+\delta_{2}grass_{i} $$              
 
 ### Observation model
+
+$$y_{ijt} \sim Bern(p_{j}|z_{it}=1)$$
 
 Spatial and temporal heterogeneity in the probability of detecting *D. impar* during surveys (conditional on presence) was modelled by relating the probability of detection, $p$, to one or more covariates using a linear equation and logistic link function. A proportion of detections during the course of the study were in the form of observations of sloughed skins underneath roof tiles, rather than observations of actual lizards. It was considered unlikely that detection of sloughs would be influenced by prevailing temperature or time of day, but plausible that detection of sloughs would have a seasonal component which might differ from that for actual lizards. Accordingly, the detection model allowed for two distinct forms of detection, with different sets of covariates and differing seasonal patterns for lizards and for sloughs. In both cases, the annual seasonal trend in detection probability was modelled using a series of sine and cosine terms (a second-order Fourier series, [@crespin2002sfb; @heard2015interspecific]). The influences of time-of-day $(t)$; and soil (under tile) temperatures $(T)$ on the probability of detection were modelled using both linear quadratic terms, to allow for possible
 curvature in the relationships between these variables and the probability of detection.
@@ -262,15 +263,15 @@ knitr::include_graphics("Figures/num_ext_plot.png")
 knitr::include_graphics("Figures/flux_plot.png")
 ```
 
-```{r, fig.cap="Posterior distributions of regression parameters predicting initial occupancy of *Delma impar* at the sites.", fig.pos="H", echo=FALSE, cache=FALSE}
+```{r, fig.cap="Posterior distributions of regression parameters $(\\beta)$ predicting initial occupancy of *Delma impar*.", fig.pos="H", echo=FALSE, cache=FALSE}
 knitr::include_graphics("Figures/initial_occ_params.png")
 ```
 
-```{r, fig.cap="Posterior distributions of regression parameters predicting annual probability of persistence of *Delma impar* at occupied sites.", fig.pos="H", echo=FALSE, cache=FALSE}
+```{r, fig.cap="Posterior distributions of regression parameters $(\\lambda)$ predicting annual probability of persistence of *Delma impar* at occupied sites.", fig.pos="H", echo=FALSE, cache=FALSE}
 knitr::include_graphics("Figures/extinction_params.png")
 ```
 
-```{r, fig.cap="Posterior distributions of regression parameters predicting annual probability of colonisation by *Delma impar* at unoccupied sites.", fig.pos="H", echo=FALSE, cache=FALSE}
+```{r, fig.cap="Posterior distributions of regression parameters $(\\delta)$ predicting annual probability of colonisation by *Delma impar* at unoccupied sites.", fig.pos="H", echo=FALSE, cache=FALSE}
 knitr::include_graphics("Figures/colonisation_params.png")
 ```
 
