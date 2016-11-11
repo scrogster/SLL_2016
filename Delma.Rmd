@@ -249,6 +249,9 @@ For some isolated and unoccupied habitat remnants, the feasibility of reintroduc
 
 Analysis of the artificial cover object data presented here provides clear guidance regarding appropriate methods for survey and monitoring of *D. impar*. It is clear from the data that probability of detection has strong seasonal variability, with detectability maximised during late Spring and early Summer. Detectability during Winter months is particularly low. Meteorological conditions and time of day were of much more limited significance in determining detectability, suggesting that tile surveys conducted during the appropriate time of year should have high probabilities of detection, irrespective of prevailing weather conditions or time of day. More thorough exploration of the influence of meteorogical factors on the propensity of *D. impar* to utilise under-tile microhabitats using more detailed data on the relationships between multiple meteorogical variables, and the resulting microclimates beneath the roof tiles, possibly using physical models, rather than simple correlative approaches might lead to a better understanding of any underlying relationship between weather and detection.
 
+# Acknowledgements
+Funding, landholders and managers. Staff and volunteers. Folks who read manuscript drafts.
+
 ```{r, fig.cap="Map of the study area showing locations of the survey sites. *NB This is just a placeholder until I make something better*", fig.pos="H", echo=FALSE, cache=FALSE}
 knitr::include_graphics("Figures/map_figure.png")
 ```
