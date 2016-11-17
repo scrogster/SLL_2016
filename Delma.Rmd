@@ -8,6 +8,7 @@ author:
  - Geoffrey W. Heard^[School of Bioscience, University of Melbourne, Victoria 3052, Australia.]
 header-includes:
    - \usepackage[nolists,tablesfirst, nomarkers]{endfloat}
+   - \usepackage{setspace}\doublespacing
 date: '`r format(Sys.time(), "%e %B %Y")`'
 output:
   pdf_document: default
@@ -15,16 +16,20 @@ output:
   fig_caption: yes
   word_document:
     reference_docx: Template.docx
+fontfamily: mathpazo
 fontsize: 11pt
 geometry: margin=1.0in
 csl: ecology.csl
 bibliography: DelmaRefs.bib
 ---
 
-# Abstract
+\noindent\rule[0.5ex]{\linewidth}{1pt}
 
-TBI
+Insert abstract text here.
 
+\noindent\rule[0.5ex]{\linewidth}{1pt}
+
+\newpage
 # Introduction
 
 For species inhabiting recently fragmented landscapes, persistence depends on the viability of populations within retained habitat fragments, together with adequate capacity for recolonisation of vacant habitat to compensate for stochastic or deterministic local extinctions. Long-term viability requires that rates at which vacant sites are recolonised adequately offsets rates of extinction, otherwise ongoing decline in occupancy rates will ensue, ultimately resulting in landscape scale extinction. Cost-efficient conservation of species inhabiting fragmented landscapes involves identifying and implementing management actions that maximise overall occupancy by enhancing probabilities of persistence and/or colonisation.
@@ -137,9 +142,11 @@ $$
 and the number of colonisation and extinction events, and the net change in occupancy at each time-step as follows:
 
 $$
-\text{col}_{t}=\sum \limits_{i=1}^{i=k} z_{i,t}=1|z_{i,t-1}=0 \\
-\text{ext}_{t}=\sum \limits_{i=1}^{i=k} z_{i,t}=0|z_{i,t-1}=1 \\
-\Delta \text{occ}_{t} =\text{col}_{t}- \text{ext}_{t}
+\begin{aligned}
+\text{col}_{t}&=\sum \limits_{i=1}^{i=k} \left(z_{i,t}=1|z_{i,t-1}=0 \right)\\
+\text{ext}_{t}&=\sum \limits_{i=1}^{i=k} \left(z_{i,t}=0|z_{i,t-1}=1 \right)\\
+\Delta \text{occ}_{t}&=\text{col}_{t}- \text{ext}_{t}
+\end{aligned}
 $$
 
 
