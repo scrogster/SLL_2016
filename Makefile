@@ -46,9 +46,9 @@ Figures/%.png : Figures/%.pdf
 #Rules to render the paper as pdf and docx if either markdown or bibtex files change
 ##################################################
 
-Delma.docx:  R/render.R Delma.Rmd
-	Rscript $^ word_document
-Delma.pdf:  R/render.R Delma.Rmd
-	Rscript $^ pdf_document
+Delma.docx:  R/render.R Delma.Rmd figs
+	Rscript R/render.R Delma.Rmd word_document
+Delma.pdf:  R/render.R Delma.Rmd figs
+	Rscript R/render.R Delma.Rmd pdf_document
 	
 
