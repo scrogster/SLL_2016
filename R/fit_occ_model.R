@@ -29,8 +29,8 @@ out <- jags(data = jags_dat,
 						parallel=TRUE, 
 						n.chains = 3,
 						n.adapt = 250,
-						n.iter = 2000,
-						n.burnin = 500,
+						n.iter = 3000,
+						n.burnin = 1000,
 						n.thin = 1)
 
 save.image("fitted_model.Rdata")
