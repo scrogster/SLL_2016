@@ -65,7 +65,7 @@ DelmaFiltered %>% filter(GridCMA=="17.6.1ghcma") %>% select(Date, DelmaLizards, 
 
 library(raster)
 
-grassland<-raster("Rasters/NatGrassland_clip.tif")
+grassland<-raster("Rasters/NatGrassland_clip_simp.tif")
 
 #in the raster 2 =very likely grassland, 1=likely grassland
 grass1<-extract(grassland, vicgrid_spdf, buffer=1000, fun=function(x,...){sum(x==1)/length(x)}, na.rm=TRUE)
