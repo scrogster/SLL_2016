@@ -65,14 +65,20 @@ DelmaFiltered %>% filter(GridCMA=="17.6.1ghcma") %>% select(Date, DelmaLizards, 
 
 library(raster)
 
+#extract grassland coverage data
 grassland<-raster("Rasters/NatGrassland_clip_simp.tif")
 
 #in the raster 2 =very likely grassland, 1=likely grassland
-grass1<-extract(grassland, vicgrid_spdf, buffer=1000, fun=function(x,...){sum(x==1)/length(x)}, na.rm=TRUE)
-grass2<-extract(grassland, vicgrid_spdf, buffer=1000, fun=function(x,...){sum(x==2)/length(x)}, na.rm=TRUE)
+grass1<-raster::extract(grassland, vicgrid_spdf, buffer=1000, fun=function(x,...){sum(x==1)/length(x)}, na.rm=TRUE)
+grass2<-raster::extract(grassland, vicgrid_spdf, buffer=1000, fun=function(x,...){sum(x==2)/length(x)}, na.rm=TRUE)
 
-vicgrid_spdf$grass1<-grass1
+vicgrid_spdf$grass1<-grass1 #these encode for likely and highly likely grassland respectively
 vicgrid_spdf$grass2<-grass2
+
+#extract soil clay content data Source:http://www.clw.csiro.au/aclep/soilandlandscapegrid/GetData.html
+clay<-raster("Rasters/clay_clipped_compressed.tif")
+claypoints<-raster::extract(grassland, vicgrid_spdf)
+vicgrid_spdf$clay<-claypoints
 
 writeOGR(vicgrid_spdf, "SpatialData", "GridPoints", driver = "ESRI Shapefile", overwrite_layer = TRUE)
 
