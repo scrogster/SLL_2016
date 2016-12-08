@@ -1,5 +1,1 @@
-*.dbf
-*.prj
-*.shp
-*.shx
-GridPoints.dbf
+GridPoints.*
