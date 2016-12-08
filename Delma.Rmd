@@ -109,8 +109,8 @@ For actual lizards, the probability of detection $(p^{liz}_{j})$ was related to 
 $$
 \begin{aligned}
 \log \left(\dfrac{p^{liz}_{j}}{1-p^{liz}_{j}}\right) &=\alpha_{1}+ \\
-& \phantom{p=} \alpha_{2}\cos2\pi date_{j}+ \alpha_{3}\sin2\pi date_{j}+\\
-& \phantom{p=} \alpha_{4}\cos4\pi date_{j}+\alpha_{5}\sin4\pi date_{j}+ \\
+& \phantom{p=} \alpha_{2}\cos2\pi \text{date}_{j}+ \alpha_{3}\sin2\pi \text{date}_{j}+\\
+& \phantom{p=} \alpha_{4}\cos4\pi \text{date}_{j}+\alpha_{5}\sin4\pi \text{date}_{j}+ \\
 & \phantom{p=} \alpha_{6}t_{j}+\alpha_{7}t_{j}^{2}+
                 \alpha_{8}T_{j}+\alpha_{9}T_{j}^{2}
 \end{aligned}
@@ -121,8 +121,8 @@ For sloughed skins, the probability of detection $(p^{skin}_{j})$ was related to
 $$
 \begin{aligned}
 \log \left(\dfrac{p^{skin}_{j}}{1-p^{skin}_{j}} \right) &=\alpha_{10}+ \\
-& \phantom{p=} \alpha_{11}\cos2\pi date_{j}+\alpha_{12}\sin2\pi date_{j}+ \\
-& \phantom{p=} \alpha_{13}\cos4\pi date_{j}+\alpha_{14}\sin4\pi date_{j}
+& \phantom{p=} \alpha_{11}\cos2\pi \text{date}_{j}+\alpha_{12}\sin2\pi \text{date}_{j}+ \\
+& \phantom{p=} \alpha_{13}\cos4\pi \text{date}_{j}+\alpha_{14}\sin4\pi \text{date}_{j}
 \end{aligned}
 $$
 
@@ -152,7 +152,7 @@ $$
 
 ### Fitting the model
 
-The full, integrated model including both the ecological processes (intial occupancy, colonisation and extinction) and observation (detectability) components was estimated from the data using Bayesian Markov Chain Monte Carlo (MCMC) methods. Fitting of the model was carried out using Just Another Gibbs Sampler [@plummer2003jags]. Convergence of the MCMC algorithm was assessed using the Brooks-Gelman-Rubin statistic [@BGR], and by visual inspection of the chain-histories of selected parameters. Empirically, it was found that an initial burn-in period of approximately 500 iterations of the MCMC algorithm was required to ensure convergence. An additional 2,000 iterations after the burn-in were retained for inferences regarding the joint posterior distribution of the parameters, and related derived quantities such as the expected numbers of occupied sites, number of colonisations and number of extinctions at each time-step. Vague (uninformative) priors were specified for the parameters of the model (see model code in Appendix). Uncertainty in our estimates of the number of occupied sites ($occ_{t}$), number of colonisation (\text{col}_{t}) and number of extinction (\text{ext}_{t}) events per time-step, and the net change in occupancy at each time step ($\Delta \text{occ}_{t}$) was inferred by estimating these quantities at each MCMC updated of the parameters, and calculating summary statistics for the resulting posteriors for these quantities.
+The full, integrated model including both the ecological processes (intial occupancy, colonisation and extinction) and observation (detectability) components was estimated from the data using Bayesian Markov Chain Monte Carlo (MCMC) methods. Fitting of the model was carried out using Just Another Gibbs Sampler [@plummer2003jags]. Convergence of the MCMC algorithm was assessed using the Brooks-Gelman-Rubin statistic [@BGR], and by visual inspection of the chain-histories of selected parameters. Empirically, it was found that an initial burn-in period of approximately 500 iterations of the MCMC algorithm was required to ensure convergence. An additional 2,000 iterations after the burn-in were retained for inferences regarding the joint posterior distribution of the parameters, and related derived quantities such as the expected numbers of occupied sites, number of colonisations and number of extinctions at each time-step. Vague (uninformative) priors were specified for the parameters of the model (see model code in Appendix). Uncertainty in our estimates of the number of occupied sites ($occ_{t}$), number of colonisation ($\text{col}_{t}$) and number of extinction ($\text{ext}_{t}$) events per time-step, and the net change in occupancy at each time step ($\Delta \text{occ}_{t}$) was inferred by estimating these quantities at each MCMC updated of the parameters, and calculating summary statistics for the resulting samples from the posteriors of these quantities.
 
 # Results
 
@@ -230,12 +230,12 @@ names(posterior)<-c("mean", "sd", "median", "CI")
 
 detection_type=c(rep("lizard", 9), rep("sloughed skin", 5))
 
-meaning=c("$Intercept$", "$\\cos2\\pi date$", "$\\sin2\\pi date$", 
-					                    "$\\cos4\\pi date$", "$\\sin4\\pi date$",
+meaning=c("$Intercept$", "$\\cos2\\pi \\text{date}$", "$\\sin2\\pi \\text{date}$", 
+					                    "$\\cos4\\pi \\text{date}$", "$\\sin4\\pi \\text{date}$",
 					"$time$", "$time^2$", 
 					"$Temp$", "$Temp^2$",
-					"$Intercept$",  "$\\cos2\\pi date$", "$\\sin2\\pi date$", 
-					                    "$\\cos4\\pi date$", "$\\sin4\\pi date$"
+					"$Intercept$",  "$\\cos2\\pi \\text{date}$", "$\\sin2\\pi \\text{date}$", 
+					                    "$\\cos4\\pi \\text{date}$", "$\\sin4\\pi \\text{date}$"
 					)
 posterior<-data.frame("Detection"=detection_type, "Covariate"=meaning, posterior)
 
