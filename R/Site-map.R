@@ -47,9 +47,9 @@ lizpoints$cexvec[lizpoints$ever.detect==1]<-0.5
 lizpoints$cexvec[lizpoints$ever.detect==0]<-0.4
 
 #make WGS84 versions so that map has lat/longs
-lizpoints_wgs84<-spTransform(lizpoints, CRS("+init=EPSG:4326")	)
-VIC_simple_wgs84<-spTransform(VIC_simple, CRS("+init=EPSG:4326")	)
-aus_map_simple_wgs84<-spTransform(aus_map_simple, CRS("+init=EPSG:4326")	)
+lizpoints_wgs84<-spTransform(lizpoints, CRS("+init=epsg:4326")	)
+VIC_simple_wgs84<-spTransform(VIC_simple, CRS("+init=epsg:4326")	)
+aus_map_simple_wgs84<-spTransform(aus_map_simple, CRS("+init=epsg:4326")	)
 
 #make a map with an inset
 pdf("Figures/Site-map.pdf", width=7, height=5)
