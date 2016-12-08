@@ -77,7 +77,7 @@ vicgrid_spdf$grass2<-grass2
 
 #extract soil clay content data Source:http://www.clw.csiro.au/aclep/soilandlandscapegrid/GetData.html
 clay<-raster("Rasters/clay_clipped_compressed.tif")
-claypoints<-raster::extract(grassland, vicgrid_spdf)
+claypoints<-raster::extract(clay, vicgrid_spdf)
 vicgrid_spdf$clay<-claypoints
 
 writeOGR(vicgrid_spdf, "SpatialData", "GridPoints", driver = "ESRI Shapefile", overwrite_layer = TRUE)
