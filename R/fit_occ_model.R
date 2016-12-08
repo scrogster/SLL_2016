@@ -4,6 +4,14 @@ require(dplyr)
 
 load("formatted_for_JAGS.Rdata")
 
+#MCMC settings
+n.chains=3
+n.adapt=500
+n.iter=10000
+n.burnin=50000
+n.thin=5
+
+
 modfile <- 'R/prototype_occmod.txt'
 params <- c('B', 'C', 'D', 'BETA', 
 						   'Numocc', 'Ext_t', 'Col_t', 'Deficit')
@@ -27,11 +35,11 @@ out <- jags(data = jags_dat,
 						inits=inits,
 						model.file = modfile,
 						parallel=TRUE, 
-						n.chains = 3,
-						n.adapt = 250,
-						n.iter = 3000,
-						n.burnin = 1000,
-						n.thin = 1)
+						n.chains = n.chains,
+						n.adapt = n.adapt,
+						n.iter = n.iter,
+						n.burnin = n.burnin,
+						n.thin = n.thin)
 
 save.image("fitted_model.Rdata")
 
