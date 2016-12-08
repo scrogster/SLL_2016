@@ -5,7 +5,7 @@ require(dplyr)
 load("formatted_for_JAGS.Rdata")
 
 #MCMC settings
-n.chains=3
+n.chains=5
 n.adapt=500
 n.iter=10000
 n.burnin=5000
@@ -14,7 +14,7 @@ n.thin=5
 
 modfile <- 'R/prototype_occmod.txt'
 params <- c('B', 'C', 'D', 'BETA', 
-						   'Numocc', 'Ext_t', 'Col_t', 'Deficit')
+						   'Numocc', 'Ext_t', 'Col_t', 'Deficit', 'numexi', 'numcoli')
 
 z.init<-
 	tapply(DelmaFiltered$DelmaLizards+DelmaFiltered$DelmaOther, 
@@ -34,7 +34,7 @@ out <- jags(data = jags_dat,
 						parameters.to.save = params,
 						inits=inits,
 						model.file = modfile,
-						parallel=TRUE, 
+						parallel=FALSE, 
 						n.chains = n.chains,
 						n.adapt = n.adapt,
 						n.iter = n.iter,
