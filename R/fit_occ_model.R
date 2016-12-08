@@ -8,7 +8,7 @@ load("formatted_for_JAGS.Rdata")
 n.chains=3
 n.adapt=500
 n.iter=10000
-n.burnin=50000
+n.burnin=5000
 n.thin=5
 
 
