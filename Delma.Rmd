@@ -278,8 +278,8 @@ We thank X, Y and Z for funding this work. Numerous land owners and managers pro
 # Data and code
 All source code and underlying data for the analysis presented in this paper is available online at... *I'll be uploading the project data and analysis code to an online repository. Most high quality journals are moving towards making this compulsory, or have already done so. Analysis has been set up with this in mind*.
 
-```{r, fig.cap="Map of the study area showing locations of the survey sites. *NB This is just a placeholder until I make something better*", fig.pos="H", echo=FALSE, cache=FALSE}
-knitr::include_graphics("Figures/map_figure.png")
+```{r, fig.cap="Map of Victoria showing locations of sites where *D. impar* was, and was not detected during the study.", fig.pos="H", echo=FALSE, cache=FALSE}
+knitr::include_graphics("Figures/Site-map.png")
 ```
 
 ```{r, fig.cap="Inferred number of occupied sites over the course of the study. The green line and shaded area are the posterior mean and 95\\% credible intervals derived from the dynamic occupancy model. *Will add a line showing numbers of sites with actual detections for comparison.*", fig.pos="H", echo=FALSE, cache=FALSE}
