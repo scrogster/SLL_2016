@@ -16,8 +16,6 @@ df<-data.frame(out$sims.list$Numocc) %>%
 						post.upp=quantile(value, 0.975)) 
 df$year.num<-as.numeric(gsub("[A-Z]","",df$key))+2004
 
-write.csv(df, file="numocc.csv")
-
 ggplot(df, aes(x=year.num, y=post.mean)) +
 	geom_ribbon(aes(x=year.num, ymin=post.lwr, ymax=post.upp), col=NA, fill="green", alpha=0.3)+
 	geom_line(col="green")+
