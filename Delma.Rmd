@@ -18,14 +18,14 @@ output:
     reference_docx: Template.docx
 fontfamily: mathpazo
 fontsize: 11pt
-geometry: margin=1.0in
+geometry: margin=0.95in
 csl: ecology.csl
 bibliography: DelmaRefs.bib
 ---
 
 \noindent\rule[0.5ex]{\linewidth}{1pt}
 
-Insert abstract text here.
+Insert abstract here.
 
 \noindent\rule[0.5ex]{\linewidth}{1pt}
 
@@ -271,10 +271,11 @@ For some isolated and unoccupied habitat remnants, the feasibility of reintroduc
 Analysis of the artificial cover object data presented here provides clear guidance regarding appropriate methods for survey and monitoring of *D. impar*. It is clear from the data that probability of detection has strong seasonal variability, with detectability maximised during late Spring and early Summer. Detection probabilities during Winter months are particularly low. Meteorological conditions and time of day were of much more limited significance in determining detectability, suggesting that tile surveys conducted during the appropriate time of year should have high probabilities of detection, irrespective of prevailing weather conditions or time of day. More thorough exploration of the influence of meteorogical factors on the propensity of *D. impar* to utilise under-tile microhabitats using more detailed data on the relationships between multiple meteorogical variables, and the resulting microclimates beneath the roof tiles, possibly using physical models, rather than simple correlative approaches might lead to a better understanding of any underlying relationship between weather and detection.
 
 # Acknowledgements
-We thank the Glenelg-Hopkins, Corangamite and Wimmera Catchment Management Authorities for funding this work. Any other funders? Numerous land owners and managers provided access to survey sites and other assistance. We thank the many staff and volunteers who collected data, in particular X, Y and Z. Folks who read manuscript drafts. Anyone else? Work conducted under permits from DELWP etc.
+We thank the Glenelg Hopkins, Corangamite and Wimmera Catchment Management Authorities for funding this work. Any other funders? Numerous land owners and managers provided access to survey sites and other assistance. We thank the many staff and volunteers who collected data, in particular X, Y and Z. Folks who read manuscript drafts. Anyone else? Work conducted under permits from DELWP etc.
 
 # Data and code
-All source code and underlying data for the analysis presented in this paper is available online at... *I'll be uploading the project data and analysis code to an online repository. Most high quality journals are moving towards making this compulsory, or have already done so. Analysis has been set up with this in mind*.
+
+All source code and data necessary to reproduce the analysis presented in this paper are archived in the Zenodo research repository at: dx.doi.org/xxxxxxxx.  
 
 ```{r, fig.cap="Map of Victoria showing locations of sites where *D. impar* was, and was not detected during the study.", fig.pos="H", echo=FALSE, cache=FALSE}
 knitr::include_graphics("Figures/Site-map.png")
