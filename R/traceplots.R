@@ -1,0 +1,90 @@
+
+
+library(jagsUI)
+library(coda)
+library(ggplot2)
+load("fitted_model.Rdata")
+
+samples<-out$samples
+paramnames<-names(as.data.frame(samples[[1]]))
+
+extract_param<-function(paramname){
+out<-data.frame(as.matrix(samples[,paramname], iters=TRUE, chains=TRUE))
+out<-data.frame(out, "Parameter"=paramname)
+out$CHAIN<-factor(out$CHAIN)
+return(out)
+}
+
+
+
+BB<-rbind(
+extract_param("B[1]"),
+extract_param("B[2]"),
+extract_param("B[3]"),
+extract_param("B[4]"))
+
+CC<-rbind(
+	extract_param("C[1]"),
+	extract_param("C[2]"),
+	extract_param("C[3]"),
+	extract_param("C[4]"),
+	extract_param("C[5]"))
+
+DD<-rbind(
+	extract_param("D[1]"),
+	extract_param("D[2]"))
+
+BETABETA<-rbind(
+	extract_param("BETA[1]"),
+	extract_param("BETA[2]"),
+	extract_param("BETA[3]"),
+	extract_param("BETA[4]"),
+	extract_param("BETA[5]"),
+	extract_param("BETA[6]"),
+	extract_param("BETA[7]"),
+	extract_param("BETA[8]"),
+	extract_param("BETA[9]"),
+	extract_param("BETA[10]"),
+	extract_param("BETA[11]"),
+	extract_param("BETA[12]"),
+	extract_param("BETA[13]"),
+	extract_param("BETA[14]"))
+
+ggplot(BB, aes(x=ITER, y=var1, colour=CHAIN))+
+	geom_line(size=0.1)+
+	geom_hline(yintercept=0, lty=2)+
+	facet_wrap(~Parameter)+
+	ylab("Parameter value")+
+	xlab("Iteration")+
+	theme_bw()
+ggsave("Traceplots/initocc_trace.pdf", width=10, height=4)
+
+ggplot(CC, aes(x=ITER, y=var1, colour=CHAIN))+
+	geom_line(size=0.1)+
+	geom_hline(yintercept=0, lty=2)+
+	facet_wrap(~Parameter)+
+	ylab("Parameter value")+
+	xlab("Iteration")+
+	theme_bw()
+ggsave("Traceplots/persist_trace.pdf", width=10, height=6)
+
+ggplot(DD, aes(x=ITER, y=var1, colour=CHAIN))+
+	geom_line(size=0.1)+
+	geom_hline(yintercept=0, lty=2)+
+	facet_wrap(~Parameter)+
+	ylab("Parameter value")+
+	xlab("Iteration")+
+	theme_bw()
+ggsave("Traceplots/colonise_trace.pdf", width=10, height=2)
+
+ggplot(BETABETA, aes(x=ITER, y=var1, colour=CHAIN))+
+	geom_line(size=0.1)+
+	geom_hline(yintercept=0, lty=2)+
+	facet_wrap(~Parameter)+
+	ylab("Parameter value")+
+	xlab("Iteration")+
+	theme_bw()
+ggsave("Traceplots/beta_trace.pdf", width=10, height=14)
+
+
+
