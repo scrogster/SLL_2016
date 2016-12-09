@@ -5,11 +5,13 @@ require(dplyr)
 load("formatted_for_JAGS.Rdata")
 
 #MCMC settings
-n.chains=5
-n.adapt=500
-n.iter=20000
-n.burnin=10000
-n.thin=10
+n.chains=4
+n.adapt=200
+n.iter=5000
+n.burnin=1000
+n.thin=1
+para=TRUE
+
 
 
 modfile <- 'R/prototype_occmod.txt'
@@ -21,6 +23,7 @@ z.init<-
 				 list(DelmaFiltered$GridCMA, DelmaFiltered$yearnum), 
 				 function(x){min(sum(x), 1)  }  ) 
 z.init[z.init==0]<-NA #just assign one to years with known occurences. otherwise NA for init of Z.
+
 
 inits <- function(){  
 	list(B=rnorm(4,0,1),
@@ -34,7 +37,7 @@ out <- jags(data = jags_dat,
 						parameters.to.save = params,
 						inits=inits,
 						model.file = modfile,
-						parallel=TRUE, 
+						parallel=para, 
 						n.chains = n.chains,
 						n.adapt = n.adapt,
 						n.iter = n.iter,
