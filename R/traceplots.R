@@ -50,6 +50,8 @@ BETABETA<-rbind(
 	extract_param("BETA[13]"),
 	extract_param("BETA[14]"))
 
+dir.create("Traceplots", showWarnings = FALSE)
+
 ggplot(BB, aes(x=ITER, y=var1, colour=CHAIN))+
 	geom_line(size=0.1)+
 	geom_hline(yintercept=0, lty=2)+
