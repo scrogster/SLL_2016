@@ -39,6 +39,7 @@ fitted_model.Rdata: R/fit_occ_model.R formatted_for_JAGS.Rdata R/prototype_occmo
 ###################################################
 Figures/%.pdf: R/%.R fitted_model.Rdata
 	Rscript $^
+	rm Rplots.pdf #remove extraneous dumps to Rplots.pdf
 	
 Figures/%.png : Figures/%.pdf
 	convert -density 300 $< $@
@@ -49,6 +50,7 @@ Figures/%.png : Figures/%.pdf
 
 Traceplots/initocc_trace.pdf: R/traceplots.R fitted_model.Rdata
 	Rscript $^
+	rm Rplots.pdf #remove extraneous dumps to Rplots.pdf
 	
 ##################################################
 #Rules to render the paper as pdf and docx if either markdown or bibtex files change
