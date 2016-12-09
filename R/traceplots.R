@@ -59,6 +59,16 @@ ggplot(BB, aes(x=ITER, y=var1, colour=CHAIN))+
 	theme_bw()
 ggsave("Traceplots/initocc_trace.pdf", width=10, height=4)
 
+ggplot(BB, aes(x=var1, colour=CHAIN, fill=CHAIN))+
+	geom_density(alpha=0.4)+
+	geom_vline(xintercept=0, lty=2)+
+	facet_wrap(~Parameter, scales="free_y")+
+	ylab("Parameter value")+
+	xlab("Iteration")+
+	theme_bw()
+ggsave("Traceplots/initocc_density.pdf", width=10, height=4)
+
+
 ggplot(CC, aes(x=ITER, y=var1, colour=CHAIN))+
 	geom_line(size=0.1)+
 	geom_hline(yintercept=0, lty=2)+
@@ -67,6 +77,15 @@ ggplot(CC, aes(x=ITER, y=var1, colour=CHAIN))+
 	xlab("Iteration")+
 	theme_bw()
 ggsave("Traceplots/persist_trace.pdf", width=10, height=6)
+
+ggplot(CC, aes(x=var1, colour=CHAIN, fill=CHAIN))+
+	geom_density(alpha=0.4)+
+	geom_vline(xintercept=0, lty=2)+
+	facet_wrap(~Parameter, scales="free_y")+
+	ylab("Parameter value")+
+	xlab("Iteration")+
+	theme_bw()
+ggsave("Traceplots/persist_density.pdf", width=10, height=6)
 
 ggplot(DD, aes(x=ITER, y=var1, colour=CHAIN))+
 	geom_line(size=0.1)+
@@ -77,6 +96,15 @@ ggplot(DD, aes(x=ITER, y=var1, colour=CHAIN))+
 	theme_bw()
 ggsave("Traceplots/colonise_trace.pdf", width=10, height=2)
 
+ggplot(DD, aes(x=var1, colour=CHAIN, fill=CHAIN))+
+	geom_density(alpha=0.4)+
+	geom_vline(xintercept=0, lty=2)+
+	facet_wrap(~Parameter, scales="free_y")+
+	ylab("Parameter value")+
+	xlab("Iteration")+
+	theme_bw()
+ggsave("Traceplots/colonise_density.pdf", width=10, height=2)
+
 ggplot(BETABETA, aes(x=ITER, y=var1, colour=CHAIN))+
 	geom_line(size=0.1)+
 	geom_hline(yintercept=0, lty=2)+
@@ -85,6 +113,15 @@ ggplot(BETABETA, aes(x=ITER, y=var1, colour=CHAIN))+
 	xlab("Iteration")+
 	theme_bw()
 ggsave("Traceplots/beta_trace.pdf", width=10, height=14)
+
+ggplot(BETABETA, aes(x=var1, colour=CHAIN, fill=CHAIN))+
+	geom_density(alpha=0.4)+
+	geom_vline(xintercept=0, lty=2)+
+	facet_wrap(~Parameter, scales="free_y")+
+	ylab("Parameter value")+
+	xlab("Iteration")+
+	theme_bw()
+ggsave("Traceplots/beta_density.pdf", width=10, height=14)
 
 
 
