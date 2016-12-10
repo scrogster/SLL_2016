@@ -17,12 +17,13 @@ output:
   word_document:
     reference_docx: Template.docx
 fontfamily: mathpazo
-fontsize: 11pt
-geometry: margin=0.95in
+fontsize: 12pt
+geometry: margin=1.0in
 csl: ecology.csl
 bibliography: DelmaRefs.bib
 ---
 
+\newpage
 \noindent\rule[0.5ex]{\linewidth}{1pt}
 
 Insert abstract here.
