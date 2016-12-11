@@ -31,6 +31,7 @@ Insert abstract here.
 \noindent\rule[0.5ex]{\linewidth}{1pt}
 
 \newpage
+
 # Introduction
 
 For species inhabiting recently fragmented landscapes, persistence depends on the viability of populations within retained habitat fragments, together with adequate capacity for recolonisation of vacant habitat to compensate for stochastic or deterministic local extinctions. Long-term viability therefor requires that rates at which vacant sites are recolonised adequately offset rates of extinction, otherwise ongoing decline in occupancy rates will ensue, ultimately resulting in landscape scale extinction. Cost-efficient conservation of species inhabiting fragmented landscapes involves identifying and implementing management actions that maximise overall occupancy by enhancing probabilities of persistence or colonisation.
