@@ -65,10 +65,30 @@ We established an array of 50 artificial cover objects (ceramic roofing tiles) a
 
 Most sites were surveyed at least once per year, with many sites being surveyed multiple times each year. *TODO insert some stats on this, including some to convey to large amount of data collected*. All vertebrate species encountered (mainly reptiles and frogs, but also small mammals such as Dunnarts, *Sminthopsis* spp.), were captured, identified and immediately released. Occasionally, evidence for the presence of *D. impar* was obtained from observations of sloughed skins underneath the tiles: where these skins could be identified with certainty they were treated as evidence of presence. Sloughed skins were removed when detected, to avoid double counting. At the time of each survey the following variables were also recorded: Julian date, time of day, air temperature and under-tile soil temperature. It was considered likely that these variables could influence the probability of detecting *D. impar* during surveys at site where the species was present. 
 
+Over the course of the study, a total of `r jags_dat$tot.surveys` surveys were conducted at the `r jags_dat$tot.sites` survey sites. Survey effort, both in the number of sites surveyed, and the number of surveys per site varied substantially between years, depending on resources available to conduct surveys (Table 1). In each year of monitoring between 65 and 281 sites were surveyed, with at least 217 sites being surveyed in all but the first and last years of the study. The mean number of surveys per site also varied substantially between years, from a minimum of 1.39 surveys per site, to a maximum of 3.63 per site (Table 1).
+
+```{r surveytable, echo=FALSE, message=FALSE, results = 'asis'}
+require(knitr)
+load("fitted_model.Rdata")
+#number of unique sites surveyed each year
+sites.per.year<-tapply(jags_dat$site, jags_dat$t, function(x) length(unique(x)))
+#number of surveys conducted each year
+surveys.per.year<-tapply(jags_dat$site, jags_dat$t, function(x) length(x))
+survey.per.site<-round(surveys.per.year/sites.per.year,2)
+
+delma_det<-(jags_dat$detect.liz+jags_dat$detect.skin)>0
+sites.with.liz.per.year<-tapply(jags_dat$site[delma_det==TRUE], jags_dat$t[delma_det==TRUE], function(x) length(unique(x)))
+
+survey_table<-data.frame("Year"=paste0(2004:2012, "/", 2005:2013), "Sites"=sites.per.year, "Surveys"=surveys.per.year, "Surveyspersite"=survey.per.site, "SiteswithDelma"=sites.with.liz.per.year, "ProportionwithDetections"=round(sites.with.liz.per.year/sites.per.year, 2))
+
+kable(survey_table, digits=2, align=c("l", "c", "c","c", "c", "c"), 
+			col.names=c("Year", "Sites","Surveys","Surveys per site","Sites with *D. impar*", "Proportion with *D. impar*"),
+			caption="Summary of survey effort and detections during the 9 years of monitoring.", booktabs=TRUE)
+```
 
 ## Landscape and management variables
 
-We hypothesised that instance of local extinction at any of our study sites would occur either as a consequence of stochastic demographic processes (as expected in small, isolated populations; [@hanski1994pmm]), or as a consequence of disturbance, habitat degradation or inappropriate management, to which most sites (irrespective of size) are subject to varying degrees. Absolute abundances for the *D. impar* populations we studies are unknown, so we used an estimate of the area of surrounding suitable habitat (native grassland) as a surrogate for likely maximum population size, and hence a predictor of stochastic extinction [@hanski1994ppm]. A GIS layer of predicted extent of native grassland in Victoria, derived from floristic databases, expert knowledge, and statistical modelling of bioclimatic and remote-sensed variables (reference to grassland DELWP model) was used to estimate the extent of native grassland within a 1000m radius of each monitoring site to provide an estimate of the availability grassland habitat in the landscape surrounding each site.
+We hypothesised that instance of local extinction at any of our study sites would occur either as a consequence of stochastic demographic processes (as expected in small, isolated populations; [@hanski1994pmm]), or as a consequence of disturbance, habitat degradation or inappropriate management, to which most sites (irrespective of size) are subject to varying degrees. Absolute abundances for the *D. impar* populations we studies are unknown, so we used an estimate of the area of surrounding suitable habitat (native grassland) as a surrogate for likely maximum population size, and hence a predictor of stochastic extinction [@hanski1994pmm]. A GIS layer of predicted extent of native grassland in Victoria, derived from floristic databases, expert knowledge, and statistical modelling of bioclimatic and remote-sensed variables (reference to grassland DELWP model) was used to estimate the extent of native grassland within a 1000m radius of each monitoring site to provide an estimate of the availability grassland habitat in the landscape surrounding each site.
 
 Additional landscape, habitat and management variables were also considered as determinants of local extinction probabilities due to their effects on population sizes of *D. impar*. We hypothesized that fire frequency, grazing regime and conservation management would be particular important determinants of local extinction probabilities for this species, based either on existing knowledge of the lizard's biology (REFS) or the effects of these variables on floristic and structural characteristics of native grasslands in south-eastern Australia (REFS). We classified recent fire historeis of each site into three categories: unburnt, bunt once during the study period, or burnt multiple times during the study period. More detailed, historic fire histories were unavailable for most sites. Likewise, detailed data on the history, intensity of frequency of livestock grazing at the study sites was unavailable. As a surrogate, grazing intensity was categorised on a simple three-point ordinal scale from no grazing to intense, frequent grazing, based on observations during the study and discussions with land managers *TODO get ordinal grazing scores from Garry and Ted*. Sites were classified as being managed for conservation if they were located on a formal conservation reserve, or if land managers otherwise reported that the site was managed either partially or wholly for the conservation of *D impar* or other grassland biota.
 
@@ -170,26 +190,7 @@ The full, integrated model was fitted to the data using Bayesian Markov Chain Mo
 
 # Results
 
-Over the course of the study, a total of `r jags_dat$tot.surveys` surveys were conducted at the `r jags_dat$tot.sites` survey sites. Survey effort, both in the number of sites surveyed, and the number of surveys per site varied substantially between years, depending on resources available to conduct surveys (Table 1). In each year of monitoring between 65 and 281 sites were surveyed, with at least 217 sites being surveyed in all but the first and last years of the study. The mean number of surveys per site also varied substantially between years, from a minimum of 1.39 surveys per site, to a maximum of 3.63 per site (Table 1). The proportion of surveyed sites that recorded at least one detection of *D. impar* was less than 18.1\% in all but the final year of survey, when 35.4\% of surveyed sites yielded detections of *D. impar*, possibly reflecting preferential sampling of known-occupied sites in the final year of the study.
-
-```{r surveytable, echo=FALSE, message=FALSE, results = 'asis'}
-require(knitr)
-load("fitted_model.Rdata")
-#number of unique sites surveyed each year
-sites.per.year<-tapply(jags_dat$site, jags_dat$t, function(x) length(unique(x)))
-#number of surveys conducted each year
-surveys.per.year<-tapply(jags_dat$site, jags_dat$t, function(x) length(x))
-survey.per.site<-round(surveys.per.year/sites.per.year,2)
-
-delma_det<-(jags_dat$detect.liz+jags_dat$detect.skin)>0
-sites.with.liz.per.year<-tapply(jags_dat$site[delma_det==TRUE], jags_dat$t[delma_det==TRUE], function(x) length(unique(x)))
-
-survey_table<-data.frame("Year"=paste0(2004:2012, "/", 2005:2013), "Sites"=sites.per.year, "Surveys"=surveys.per.year, "Surveyspersite"=survey.per.site, "SiteswithDelma"=sites.with.liz.per.year, "ProportionwithDetections"=round(sites.with.liz.per.year/sites.per.year, 2))
-
-kable(survey_table, digits=2, align=c("l", "c", "c","c", "c", "c"), 
-			col.names=c("Year", "Sites","Surveys","Surveys per site","Sites with *D. impar*", "Proportion with *D. impar*"),
-			caption="Summary of survey effort and detections during the 9 years of monitoring.", booktabs=TRUE)
-```
+*Delma impar* was detected at least once at XX of the XX sites surveyed in the first year of this study (Figure 2), and observed prevalence of XX% (Figure 2). Occupancy modelling produced an estimate of XX sites being occupied in the first year of the study (95% credible interval, XX - XX). The probability of site occupancy in the first year ($\psi_{1}$) was strongly correlated with the extent of modelled native grassland coverage within a 1000 m radius of the sites (Figure XX). Management variabes had a much smaller effect with weak evidence of a positive effect of grazing on $\psi_{1}$ and a somewhat negative effect of conservation management (Figure XX).
 
 
 ```{r occ_stats, echo=FALSE, message=FALSE}
@@ -205,15 +206,13 @@ change<-apply(out$sims.list$Numocc, 1, diff)
 annchange<-c(mean(colMeans(change)),median(colMeans(change)), quantile(colMeans(change), 0.025), quantile(colMeans(change), 0.975))
 ```
 
-The state-space analysis of occupancy revealed a decline in the number of occupied sites over the course of the study. At the outset of the study, the state-space model predicted that `r format(startocc[1], digits=3)` (95\% CI: `r format(startocc[3], digits=4)`, `r format(startocc[4], digits=4)`) sites were occupied. This declined to `r format(endocc[1], digits=3)` sites (95\% CI: `r format(endocc[3], digits=4)`, `r format(endocc[4], digits=4)`) in the final year of the study-- an overall loss  of `r format(decline[1], digits=3)` (95\% CI: `r format(decline[3], digits=4)`, `r format(decline[4], digits=4)`) occupied sites over the 9 years of monitoring (Fig. 2). Importantly, the numbers of occupied sites estimated from the state-space model always exceeded the number of sites at which *D. impar* was actually detected during monitoring, highlighting the imperfect and variable detectability of this species.
+The observed prevalence of *D. impar* in each year averaged X%, fluctuating between X% and X%. Occupancy modelling suggest that the number of occupied sites declines over the course of the study from `r format(startocc[1], digits=3)` (95\% CI: `r format(startocc[3], digits=4)`, `r format(startocc[4], digits=4)`) to `r format(endocc[1], digits=3)` sites (95\% CI: `r format(endocc[3], digits=4)`, `r format(endocc[4], digits=4)`) in the final year of the study (-- an overall loss  of `r format(decline[1], digits=3)` (95\% CI: `r format(decline[3], digits=4)`, `r format(decline[4], digits=4)` occupied sites over the 9 years of monitoring; Fig. 2).
 
-The observed decline in occupancy was a consequence of the overall rate of population extinctions outstripping the rate at which vacant sites were colonised (Figs. 3-4). The net change in occupancy varied among years, and had high uncertainty (Fig. 4), but was indicative of an annual loss in the number of occupied sites of `r format(-annchange[1], digits=2)` (95\% CI `r format(-annchange[4], digits=2)`, `r format(-annchange[3], digits=4)`) per year.
+The observed decline in occupancy was a consequence of population extinctions outstripping colonizations of vacant sites (Figs. 3-4). The net change in occupancy varied among years, (and had high uncertainty, Fig. 4), but averaged a loss of `r format(-annchange[1], digits=2)` (95\% CI `r format(-annchange[4], digits=2)`, `r format(-annchange[3], digits=4)`) sites per annum.
 
-Occupancy of the study sites at the commencement of the study $(\psi_{1})$ was strongly correlated with the extent of modelled native grassland coverage within a 1000 m radius of the sites (Fig. 5). Management variables (grazing regime and conservation landuse) had a much smaller effect, with some weak evidence that grazing land use led to a greater probability of initial occupancy, and conservation land use led to a lesser probability of initial occupancy (Fig. 5).
+The annual probability of populations persistence, ($\phi_{t}$) was most strongly correlated with the the presence of grazing and fire frequency (Fig. 6). The extent of grassland in the surrounding landscape, and conservation management both had a weak effect on persistence (Fig. 6). 
 
-Subsequently to the first year of the study, the annual probability that currently occupied sites remain occupied (probability of persistence, $\phi$) was found to be most strongly dependent on the the presence of grazing and fire (Fig. 6). The extent of grassland in the surrounding landscape, and conservation management both had only weak effects on persistence. The effect of surrounding grassland on persistence was also very uncertain (Fig. 6). 
-
-The probability that unoccupied sites would be colonised during the study was found to be strongly and positively associated with the presence of extensive grassland area in the landscape surrounding a site. (Fig. 7.)
+The annual probability of colonisation ($\gamma_{t}$) was strongly and positively correlated with grassland area in the surrounding (1000 m radius) landscape. (Fig. 7.)
 
 Probabilities of detection for both lizards and sloughed skins displayed clear but contrasting annual cycles (Fig. 8). For detection of lizards, there was a distinct peak in detection probability during September--November, with progressively lower detection probabilities through December--August. Detection probabilities of sloughed skins were highest in mid-Summer, only dropping to very low levels during late Winter and early Spring (Fig. 8.). When detection probabilities under the two methods were combined to yield a single probability of detection(see Methods), probabilities of detecting *D impar* at occupied sites were highest during Spring, and progressively decreased through the Summer and Autum, before reaching a minimum during the Winter months (Fig. 8).
 
