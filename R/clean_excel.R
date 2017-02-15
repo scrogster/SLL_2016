@@ -61,5 +61,12 @@ DelmaFiltered<- combined_raw %>%
 	  			 yeardayfrac=yday(Date)/365 )%>%   #fraction of the calendar year
 	arrange(GridCMA, CMA, Cluster, Grid, Date)
 
+#these sites to be dropped - only single surveys, and no site coords or other information available.
+dropsites<-c("17.3.1ghcma", "17.6.1ghcma", "10.3.2ccma", "10.3.3ccma")
+
+DelmaFiltered<-DelmaFiltered %>%
+	          filter(!GridCMA %in% dropsites )
+	
+
 save.image("prepped_data.Rdata")
 

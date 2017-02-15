@@ -53,14 +53,14 @@ unique(test$GridCMA[which(is.na(test$Northing))])
 #Garry not too sure about these sites - only single surveys, so exclude.
 #"10.3.2ccma"   10.3.2 Bannockburn #single survey only in 2010 EXCLUDE
 #"10.3.3ccma"   10.3.3 Bannockburn  #single survey only in 2010 EXCLUDE
-DelmaFiltered %>% filter(GridCMA=="10.3.2ccma") %>% select(Date, DelmaLizards, DelmaOther)
-DelmaFiltered %>% filter(GridCMA=="10.3.3ccma") %>% select(Date, DelmaLizards, DelmaOther)
+#DelmaFiltered %>% filter(GridCMA=="10.3.2ccma") %>% select(Date, DelmaLizards, DelmaOther)
+#DelmaFiltered %>% filter(GridCMA=="10.3.3ccma") %>% select(Date, DelmaLizards, DelmaOther)
 
 #Ted has information about these sites, but no coordinates. Only a single survey at each
 #"17.3.1ghcma"  17.3.1     col    #Single survey only in 2005 EXCLUDE
 #"17.6.1ghcma"  17.6.1     col    #Single survey only in 2005 EXCLUDE
-DelmaFiltered %>% filter(GridCMA=="17.3.1ghcma") %>% select(Date, DelmaLizards, DelmaOther)
-DelmaFiltered %>% filter(GridCMA=="17.6.1ghcma") %>% select(Date, DelmaLizards, DelmaOther)
+#DelmaFiltered %>% filter(GridCMA=="17.3.1ghcma") %>% select(Date, DelmaLizards, DelmaOther)
+#DelmaFiltered %>% filter(GridCMA=="17.6.1ghcma") %>% select(Date, DelmaLizards, DelmaOther)
 
 
 library(raster)
