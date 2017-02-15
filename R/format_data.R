@@ -44,6 +44,17 @@ roadside<-grassjoin$Roadside
 firecode<-grassjoin$FireHistory
 firecode[is.na(firecode)]<-0  #impute zeros for unknown fire histories.
 
+
+#determine cluster codes for sites. This is done on the basis of geographic proximity. 
+#Sites within 2km of each other are same cluster.
+#many clusters are only a single site, quite a few pairs, and few with more.
+spatpoints<-grassjoin[,c("Easting", "Northing")]
+dmat<-dist(as(spatpoints, "matrix"))
+clus<-hclust(dmat)  #heirarchical clustering by geographic distance
+clusters<-cutree(clus, h=2000)  #cut the clustering at 2000m threshold
+num_clust<-max(clusters)
+
+
 jags_dat<-list(
 	tot.sites= max(as.numeric(factor(DelmaFiltered$GridCMA))),
 	max.time= max(DelmaFiltered$yearnum),
@@ -62,7 +73,10 @@ jags_dat<-list(
 	roadside=roadside*1.0, #convert Boolean to numeric
 	firecode=firecode,
 	firegt1=(firecode>1)*1.0,
-	firegt2=(firecode>2)*1.0
+	firegt2=(firecode>2)*1.0,
+	#below are group ids for clusters, and maximum number of clusters for indexing purposes.
+	cluster_id=clusters,
+	num_clust=num_clust
 )
 
 save.image("formatted_for_JAGS.Rdata")
