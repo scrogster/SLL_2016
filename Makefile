@@ -39,7 +39,6 @@ fitted_model.Rdata: R/fit_occ_model.R formatted_for_JAGS.Rdata R/prototype_occmo
 ###################################################
 Figures/%.pdf: R/%.R fitted_model.Rdata
 	Rscript $^
-	rm Rplots.pdf #remove extraneous dumps to Rplots.pdf
 	
 Figures/%.png : Figures/%.pdf
 	convert -density 300 $< $@
