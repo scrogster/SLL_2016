@@ -21,7 +21,8 @@ BB<-rbind(
 extract_param("B[1]"),
 extract_param("B[2]"),
 extract_param("B[3]"),
-extract_param("B[4]"))
+extract_param("B[4]"),
+extract_param("B[5]"))
 
 CC<-rbind(
 	extract_param("C[1]"),
@@ -66,7 +67,7 @@ ggplot(BB, aes(x=var1, colour=CHAIN, fill=CHAIN))+
 	geom_vline(xintercept=0, lty=2)+
 	facet_wrap(~Parameter, scales="free_y")+
 	ylab("Parameter value")+
-	xlab("Iteration")+
+	xlab("Value")+
 	theme_bw()
 ggsave("Traceplots/initocc_density.pdf", width=10, height=4)
 
@@ -85,7 +86,7 @@ ggplot(CC, aes(x=var1, colour=CHAIN, fill=CHAIN))+
 	geom_vline(xintercept=0, lty=2)+
 	facet_wrap(~Parameter, scales="free_y")+
 	ylab("Parameter value")+
-	xlab("Iteration")+
+	xlab("Value")+
 	theme_bw()
 ggsave("Traceplots/persist_density.pdf", width=10, height=6)
 
@@ -103,7 +104,7 @@ ggplot(DD, aes(x=var1, colour=CHAIN, fill=CHAIN))+
 	geom_vline(xintercept=0, lty=2)+
 	facet_wrap(~Parameter, scales="free_y")+
 	ylab("Parameter value")+
-	xlab("Iteration")+
+	xlab("Value")+
 	theme_bw()
 ggsave("Traceplots/colonise_density.pdf", width=10, height=2)
 
@@ -121,7 +122,7 @@ ggplot(BETABETA, aes(x=var1, colour=CHAIN, fill=CHAIN))+
 	geom_vline(xintercept=0, lty=2)+
 	facet_wrap(~Parameter, scales="free_y")+
 	ylab("Parameter value")+
-	xlab("Iteration")+
+	xlab("Value")+
 	theme_bw()
 ggsave("Traceplots/beta_density.pdf", width=10, height=14)
 

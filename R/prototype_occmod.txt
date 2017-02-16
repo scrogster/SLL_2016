@@ -4,8 +4,9 @@ model{
 	#------initial occupancy model---------##########
 		logit(psi[i])<- B[1]+
 		                B[2]*grassland[i] +
-		                B[3]*conservation[i] +
-		                B[4]*grazing[i]
+		                B[3]*(clay[i]-33)+  #roughly centered clay.
+		                B[4]*conservation[i] +
+		                B[5]*grazing[i]
 		Z[i, 1]~dbern(psi[i])
 	for(t in 2:max.time){
   #------persistence model---------------##########
@@ -47,7 +48,7 @@ model{
 	}
 	
 	#priors on model parameters #################################################
-  for(b in 1:4) { B[b]~dnorm(0, 0.01) }
+  for(b in 1:5) { B[b]~dnorm(0, 0.01) }
   for(c in 1:5) { C[c]~dnorm(0, 0.01) }
   for(d in 1:2) { D[d]~dnorm(0, 0.01) }
 
