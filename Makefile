@@ -50,7 +50,6 @@ Figures/%.png : Figures/%.pdf
 
 Traceplots/initocc_trace.pdf: R/traceplots.R fitted_model.Rdata
 	Rscript $^
-	rm Rplots.pdf #remove extraneous dumps to Rplots.pdf
 	
 ##################################################
 #Rules to render the paper as pdf and docx if either markdown or bibtex files change
