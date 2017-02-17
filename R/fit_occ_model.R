@@ -5,11 +5,11 @@ require(dplyr)
 load("formatted_for_JAGS.Rdata")
 
 #MCMC settings
-n.chains=4
+n.chains=5
 n.adapt=200
-n.iter=8000
+n.iter=10000
 n.burnin=5000
-n.thin=2
+n.thin=5
 para=TRUE
 
 

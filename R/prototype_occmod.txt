@@ -4,7 +4,7 @@ model{
 	#------initial occupancy model---------##########
 		logit(psi[i])<- B[1]+
 		                B[2]*grassland[i] +
-		                B[3]*(clay[i]-33)+  #roughly centered clay.
+		                B[3]*((clay[i]/100)-0.33)+  #roughly centered clay.
 		                B[4]*conservation[i] +
 		                B[5]*grazing[i]
 		Z[i, 1]~dbern(psi[i])
