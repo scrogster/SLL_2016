@@ -51,6 +51,19 @@ BETABETA<-rbind(
 	extract_param("BETA[13]"),
 	extract_param("BETA[14]"))
 
+
+clusvar<-rbind(
+	         extract_param("clus_var_occ"),
+	         extract_param("clus_var_persist"))
+
+ggplot(clusvar, aes(x=ITER, y=var1, colour=CHAIN))+
+	geom_line(size=0.1)+
+	facet_wrap(~Parameter)+
+	ylab("Parameter value")+
+	xlab("Iteration")+
+	theme_bw()
+ggsave("Traceplots/clusvar.pdf", width=10, height=4)
+
 dir.create("Traceplots", showWarnings = FALSE)
 
 ggplot(BB, aes(x=ITER, y=var1, colour=CHAIN))+

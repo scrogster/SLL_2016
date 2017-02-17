@@ -16,7 +16,8 @@ para=TRUE
 
 modfile <- 'R/prototype_occmod.txt'
 params <- c('B', 'C', 'D', 'BETA', 
-						   'Numocc', 'Ext_t', 'Col_t', 'Deficit', 'numexi', 'numcoli')
+						   'Numocc', 'Ext_t', 'Col_t', 'Deficit', 'numexi', 'numcoli',
+						'clus_var_occ', 'clus_var_persist')
 
 z.init<-
 	tapply(DelmaFiltered$DelmaLizards+DelmaFiltered$DelmaOther, 
@@ -30,7 +31,9 @@ inits <- function(){
 			 C=rnorm(5,0,1),
 			 D=rnorm(2,0,1), 
 			 BETA=rnorm(14,0,0.2),
-			 Z=z.init)
+			 Z=z.init,
+			 clus_var_occ=runif(1, 0, 5),
+			 clus_var_persist=runif(1, 0, 5))
 }
 
 out <- jags(data = jags_dat,
