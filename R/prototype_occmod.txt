@@ -3,23 +3,23 @@ model{
 	for(i in 1:tot.sites){
 	#------initial occupancy model---------##########
 		logit(psi[i])<- B[1]+
-		                B[2]*grassland[i] +
-		                B[3]*((clay[i]/100)-0.33)+  #roughly centered clay.
-		                B[4]*conservation[i] +
-		                B[5]*grazing[i] +
+		                B[2]*(grassland[i]-0.076)/0.146 +
+		                B[3]*(clay[i]-32.68)/16.77+  #roughly centered clay.
+		                B[4]*2*(conservation[i]-0.5) +
+		                B[5]*2*(grazing[i]-0.5) +
 		                occ_rf[cluster_id[i]]   #random cluster effect.
 		Z[i, 1]~dbern(psi[i])
 	for(t in 2:max.time){
   #------persistence model---------------##########
 		logit(PHI[i,t])<- C[1]+ 
-			              C[2]*grassland[i] +
-			              C[3]*firegt1[i] +
-			              C[4]*grazing[i] +
-			              C[5]*conservation[i] +
+			              C[2]*(grassland[i]-0.076)/0.146 +
+			              C[3]*2*(firegt1[i]-0.5) +
+			              C[4]*2*(grazing[i]-0.5) +
+			              C[5]*2*(conservation[i]-0.5) +
 			              persist_rf[cluster_id[i]]
 	#------colonisation model--------------##########
 		logit(GAMMA[i,t])<-D[1] +
-		                D[2]*(grassland[i])
+		                D[2]*(grassland[i]-0.076)/0.146
 			muZ[i, t]<- Z[i, t-1]*PHI[i, t]   + (1-Z[i, t-1])*GAMMA[i, t]
 			Z[i, t]~dbern(muZ[i, t])
 			ext[i, t]<-equals(Z[i,t]-Z[i,t-1], -1)  #extinction event indicator
@@ -64,10 +64,12 @@ model{
                              Col_t[TT-1]<-sum(col[,TT])
                           Deficit[TT-1]<-Col_t[TT-1]-Ext_t[TT-1] }
   ########cluster-level random effects############################################################
-      clus_var_occ~dunif(0, 10)  #uniform prior on sd
-  clus_var_persist~dunif(0, 10)  #uniform prior on sd
+       clus_var_occ~dunif(0, 50)
+            tau.occ<-pow(clus_var_occ, -2)
+       clus_var_persist~dunif(0, 50)
+            tau.persist<-pow(clus_var_persist, -2)
   for(kk in 1:num_clust){  
-          occ_rf[kk]~dnorm(0, pow(clus_var_occ, -2)     ) 
-      persist_rf[kk]~dnorm(0, pow(clus_var_persist, -2) )
+          occ_rf[kk]~dnorm(0, tau.occ)
+      persist_rf[kk]~dnorm(0, tau.persist)
       }
 }

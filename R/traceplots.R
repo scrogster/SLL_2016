@@ -56,6 +56,8 @@ clusvar<-rbind(
 	         extract_param("clus_var_occ"),
 	         extract_param("clus_var_persist"))
 
+dir.create("Traceplots", showWarnings = FALSE)
+
 ggplot(clusvar, aes(x=ITER, y=var1, colour=CHAIN))+
 	geom_line(size=0.1)+
 	facet_wrap(~Parameter)+
@@ -64,7 +66,14 @@ ggplot(clusvar, aes(x=ITER, y=var1, colour=CHAIN))+
 	theme_bw()
 ggsave("Traceplots/clusvar.pdf", width=10, height=4)
 
-dir.create("Traceplots", showWarnings = FALSE)
+ggplot(clusvar, aes(x=var1, colour=CHAIN, fill=CHAIN))+
+	geom_density(alpha=0.4)+
+	facet_wrap(~Parameter, scales="free_y")+
+	ylab("Density")+
+	xlab("Value")+
+	theme_bw()
+ggsave("Traceplots/clusvardensity.pdf", width=10, height=4)
+
 
 ggplot(BB, aes(x=ITER, y=var1, colour=CHAIN))+
 	geom_line(size=0.1)+
@@ -79,8 +88,8 @@ ggplot(BB, aes(x=var1, colour=CHAIN, fill=CHAIN))+
 	geom_density(alpha=0.4)+
 	geom_vline(xintercept=0, lty=2)+
 	facet_wrap(~Parameter, scales="free_y")+
-	ylab("Parameter value")+
-	xlab("Value")+
+	ylab("Density")+
+	xlab("Parameter value")+
 	theme_bw()
 ggsave("Traceplots/initocc_density.pdf", width=10, height=4)
 
@@ -128,7 +137,7 @@ ggplot(BETABETA, aes(x=ITER, y=var1, colour=CHAIN))+
 	ylab("Parameter value")+
 	xlab("Iteration")+
 	theme_bw()
-ggsave("Traceplots/beta_trace.pdf", width=10, height=14)
+ggsave("Traceplots/beta_trace.pdf", width=10, height=8)
 
 ggplot(BETABETA, aes(x=var1, colour=CHAIN, fill=CHAIN))+
 	geom_density(alpha=0.4)+
@@ -137,7 +146,7 @@ ggplot(BETABETA, aes(x=var1, colour=CHAIN, fill=CHAIN))+
 	ylab("Parameter value")+
 	xlab("Value")+
 	theme_bw()
-ggsave("Traceplots/beta_density.pdf", width=10, height=14)
+ggsave("Traceplots/beta_density.pdf", width=10, height=8)
 
 
 
