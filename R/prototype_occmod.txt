@@ -16,10 +16,12 @@ model{
 			              C[3]*2*(firegt1[i]-0.5) +
 			              C[4]*2*(grazing[i]-0.5) +
 			              C[5]*2*(conservation[i]-0.5) +
-			              persist_rf[cluster_id[i]]
+			              persist_rf[cluster_id[i]]   #random cluster effect.
 	#------colonisation model--------------##########
 		logit(GAMMA[i,t])<-D[1] +
-		                D[2]*(grassland[i]-0.076)/0.146
+		                D[2]*(grassland[i]-0.076)/0.146 +
+		                colon_rf[cluster[i]]      #random cluster effect.
+	#------process model-------------------###########	                
 			muZ[i, t]<- Z[i, t-1]*PHI[i, t]   + (1-Z[i, t-1])*GAMMA[i, t]
 			Z[i, t]~dbern(muZ[i, t])
 			ext[i, t]<-equals(Z[i,t]-Z[i,t-1], -1)  #extinction event indicator
@@ -64,12 +66,15 @@ model{
                              Col_t[TT-1]<-sum(col[,TT])
                           Deficit[TT-1]<-Col_t[TT-1]-Ext_t[TT-1] }
   ########cluster-level random effects############################################################
-       clus_var_occ~dunif(0, 50)
+       clus_var_occ~dt(0, 0.04, 1)T(0, )
             tau.occ<-pow(clus_var_occ, -2)
-       clus_var_persist~dunif(0, 50)
+   clus_var_persist~dt(0, 0.04, 1)T(0, )
             tau.persist<-pow(clus_var_persist, -2)
+     clus_var_colon~dt(0, 0.04, 1)T(0, )
+            tau.colon<-pow(clus_var_colon, -2)
   for(kk in 1:num_clust){  
           occ_rf[kk]~dnorm(0, tau.occ)
       persist_rf[kk]~dnorm(0, tau.persist)
+        colon_rf[kk]~dnorm(0, tau.colon)
       }
 }
