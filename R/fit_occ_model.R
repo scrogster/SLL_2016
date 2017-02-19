@@ -27,13 +27,14 @@ z.init[z.init==0]<-NA #just assign one to years with known occurences. otherwise
 
 
 inits <- function(){  
-	list(B=rnorm(5,0,1),
-			 C=rnorm(5,0,1),
-			 D=rnorm(2,0,1), 
+	list(B=rnorm(5,0,0.5),
+			 C=rnorm(5,0,0.5),
+			 D=rnorm(2,0,0.5), 
 			 BETA=rnorm(14,0,0.2),
 			 Z=z.init,
-			 clus_var_occ=runif(1, 0, 5),
-			 clus_var_persist=runif(1, 0, 5))
+			 clus_var_occ=runif(1, 0, 10),
+			 clus_var_persist=runif(1, 0, 10),
+			 clus_var_colon=runif(1, 0, 10))
 }
 
 out <- jags(data = jags_dat,
