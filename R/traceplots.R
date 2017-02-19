@@ -54,7 +54,8 @@ BETABETA<-rbind(
 
 clusvar<-rbind(
 	         extract_param("clus_var_occ"),
-	         extract_param("clus_var_persist"))
+	         extract_param("clus_var_persist"),
+	         extract_param("clus_var_colon"))
 
 dir.create("Traceplots", showWarnings = FALSE)
 

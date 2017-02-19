@@ -20,7 +20,7 @@ model{
 	#------colonisation model--------------##########
 		logit(GAMMA[i,t])<-D[1] +
 		                D[2]*(grassland[i]-0.076)/0.146 +
-		                colon_rf[cluster[i]]      #random cluster effect.
+		                colon_rf[cluster_id[i]]      #random cluster effect.
 	#------process model-------------------###########	                
 			muZ[i, t]<- Z[i, t-1]*PHI[i, t]   + (1-Z[i, t-1])*GAMMA[i, t]
 			Z[i, t]~dbern(muZ[i, t])
