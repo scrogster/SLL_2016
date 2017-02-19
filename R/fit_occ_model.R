@@ -7,9 +7,9 @@ load("formatted_for_JAGS.Rdata")
 #MCMC settings
 n.chains=4
 n.adapt=500
-n.iter=5000
-n.burnin=2500
-n.thin=5
+n.iter=40000
+n.burnin=10000
+n.thin=10
 para=TRUE
 
 
