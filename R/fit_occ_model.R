@@ -17,7 +17,7 @@ para=TRUE
 modfile <- 'R/prototype_occmod.txt'
 params <- c('B', 'C', 'D', 'BETA', 
 						   'Numocc', 'Ext_t', 'Col_t', 'Deficit', 'numexi', 'numcoli',
-						'clus_var_occ', 'clus_var_persist')
+						'clus_var_occ', 'clus_var_persist', 'clus_var_colon')
 
 z.init<-
 	tapply(DelmaFiltered$DelmaLizards+DelmaFiltered$DelmaOther, 
