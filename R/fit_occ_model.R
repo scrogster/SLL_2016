@@ -7,9 +7,9 @@ load("formatted_for_JAGS.Rdata")
 #MCMC settings
 n.chains=4
 n.adapt=500
-n.iter=40000
-n.burnin=10000
-n.thin=10
+n.iter=80000
+n.burnin=20000
+n.thin=20
 para=TRUE
 
 
@@ -17,7 +17,8 @@ para=TRUE
 modfile <- 'R/prototype_occmod.txt'
 params <- c('B', 'C', 'D', 'BETA', 
 						   'Numocc', 'Ext_t', 'Col_t', 'Deficit', 'numexi', 'numcoli',
-						'clus_var_occ', 'clus_var_persist', 'clus_var_colon')
+						'clus_var_occ', 'clus_var_persist', 'clus_var_colon',
+						'occ_rf', 'persist_rf', 'colon_rf')
 
 z.init<-
 	tapply(DelmaFiltered$DelmaLizards+DelmaFiltered$DelmaOther, 
