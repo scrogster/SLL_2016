@@ -23,12 +23,12 @@ grassjoin<-DelmaFiltered %>%
 	ungroup() %>%
 	dplyr::select(GridCMA, Date) %>%
 	left_join(data.frame(vicgrid_spdf), by="GridCMA") %>%
-	dplyr::select(GridCMA, Date, grass1, grass2, clay, LandUse, FireHistory, EastingVG, northingVG) %>%
+	dplyr::select(GridCMA, Date, grass1, grass2, clay, LandUse, GrazeScore, FireHistory, EastingVG, northingVG) %>%
 	mutate(grasstot = grass1+grass2) %>%
 	group_by(GridCMA) %>%
 	summarise(grass1=first(grass1), grass2=first(grass2), grasstot=first(grasstot), 
-						LandUse=first(LandUse), clay=first(clay), FireHistory=first(FireHistory), Easting=first(EastingVG), Northing=first(northingVG)) %>%
-	mutate(Conservation=grepl("Conservation", LandUse), Grazing=grepl("Grazing", LandUse),
+						LandUse=first(LandUse), clay=first(clay), Grazing=first(GrazeScore), FireHistory=first(FireHistory), Easting=first(EastingVG), Northing=first(northingVG)) %>%
+	mutate(Conservation=grepl("Conservation", LandUse), 
 				 Roadside=grepl("Road", LandUse))
 #check that sites are in same order as sites in detection data:
 all.equal(levels(factor(DelmaFiltered$GridCMA)) , grassjoin$GridCMA)
@@ -68,7 +68,7 @@ jags_dat<-list(
 	time.of.day=timeofday,
 	grassland=grassland,
 	clay=clay,
-	grazing=grazing*1.0, #convert Boolean to numeric
+	grazing=grazing,
 	conservation=conservation*1.0, #convert Boolean to numeric
 	roadside=roadside*1.0, #convert Boolean to numeric
 	firecode=firecode,
