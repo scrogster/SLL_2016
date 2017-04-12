@@ -69,6 +69,9 @@ jags_dat<-list(
 	grassland=grassland,
 	clay=clay,
 	grazing=grazing,
+	grazinglo=1.0*(grazing==0),
+	grazingmid=1.0*(grazing==1),
+	grazinghi=1.0*(grazing>=2),
 	conservation=conservation*1.0, #convert Boolean to numeric
 	roadside=roadside*1.0, #convert Boolean to numeric
 	firecode=firecode,
