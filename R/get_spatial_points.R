@@ -10,11 +10,11 @@ library(tidyr)
 load("prepped_data.Rdata")
 #read in Garry's point data from excel
 #contrary to what the spreadsheets say, all data is in the first (GHCMA) leaf.
-site_points<-read_excel("SpatialData/DelmaGridVariables_22Aug2016.xls",1)
+site_points<-read_excel("SpatialData/DelmaGridVariables_15Feb2017.xlsx",1)
 
 site_points<-site_points %>%
 	select(Site, LandUse=`Land use`, LandUseCode=`Aggr. Land Use`, 
-				 FireHistory=`Fire History`, Area=`Area (ha)`, 
+				 FireHistory=`Fire History`, GrazeScore=`GrazeScore`, Area=`Area (ha)`, 
 				 Easting=`Easting GDA94`, Northing=`Northing GDA94`) %>%
 	separate(Site, c("Grid", "CMA"), sep=" ") %>%
 	mutate(GridCMA = paste0(Grid, tolower(CMA))) %>%
