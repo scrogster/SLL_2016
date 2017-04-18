@@ -51,7 +51,7 @@ firecode[is.na(firecode)]<-0  #impute zeros for unknown fire histories.
 spatpoints<-grassjoin[,c("Easting", "Northing")]
 dmat<-dist(as(spatpoints, "matrix"))
 clus<-hclust(dmat)  #heirarchical clustering by geographic distance
-clusters<-cutree(clus, h=2000)  #cut the clustering at 2000m threshold
+clusters<-cutree(clus, h=1000)  #cut the clustering at 2000m threshold
 num_clust<-max(clusters)
 
 
