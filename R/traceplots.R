@@ -62,7 +62,7 @@ clusvar<-rbind(
 dir.create("Traceplots", showWarnings = FALSE)
 
 ggplot(clusvar, aes(x=ITER, y=var1, colour=CHAIN))+
-	geom_line(size=0.1)+
+	geom_line(size=0.1, alpha=0.4)+
 	facet_wrap(~Parameter)+
 	ylab("Parameter value")+
 	xlab("Iteration")+
@@ -79,7 +79,7 @@ ggsave("Traceplots/clusvardensity.pdf", width=10, height=4)
 
 
 ggplot(BB, aes(x=ITER, y=var1, colour=CHAIN))+
-	geom_line(size=0.1)+
+	geom_line(size=0.1, alpha=0.4)+
 	geom_hline(yintercept=0, lty=2)+
 	facet_wrap(~Parameter)+
 	ylab("Parameter value")+
@@ -98,7 +98,7 @@ ggsave("Traceplots/initocc_density.pdf", width=10, height=4)
 
 
 ggplot(CC, aes(x=ITER, y=var1, colour=CHAIN))+
-	geom_line(size=0.1)+
+	geom_line(size=0.1, alpha=0.4)+
 	geom_hline(yintercept=0, lty=2)+
 	facet_wrap(~Parameter)+
 	ylab("Parameter value")+
@@ -116,7 +116,7 @@ ggplot(CC, aes(x=var1, colour=CHAIN, fill=CHAIN))+
 ggsave("Traceplots/persist_density.pdf", width=10, height=6)
 
 ggplot(DD, aes(x=ITER, y=var1, colour=CHAIN))+
-	geom_line(size=0.1)+
+	geom_line(size=0.1, alpha=0.4)+
 	geom_hline(yintercept=0, lty=2)+
 	facet_wrap(~Parameter)+
 	ylab("Parameter value")+
@@ -134,7 +134,7 @@ ggplot(DD, aes(x=var1, colour=CHAIN, fill=CHAIN))+
 ggsave("Traceplots/colonise_density.pdf", width=10, height=2)
 
 ggplot(BETABETA, aes(x=ITER, y=var1, colour=CHAIN))+
-	geom_line(size=0.1)+
+	geom_line(size=0.1, alpha=0.4)+
 	geom_hline(yintercept=0, lty=2)+
 	facet_wrap(~Parameter)+
 	ylab("Parameter value")+

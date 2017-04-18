@@ -22,6 +22,6 @@ ggplot(df, aes(x=year.num, y=post.mean)) +
 	geom_point(col="green")+
 	ylab("Number of occupied sites")+
 	xlab("Year")+
-	ylim(0, 75)+
+	ylim(0, NA)+
 	theme_bw()
 ggsave("Figures/num_occ_plot.pdf", width=6, height=6)

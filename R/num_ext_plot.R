@@ -33,6 +33,6 @@ ggplot(df_ext, aes(x=year.num, y=post.mean)) +
 	geom_point(data=df_col, aes(x=year.num, y=post.mean), col="green")+
 	ylab("Number of extinctions/colonisations")+
 	xlab("Year")+
-	ylim(0, 20)+
+	ylim(0, NA)+
 	theme_bw()
 ggsave("Figures/num_ext_plot.pdf", width=6, height=6)
