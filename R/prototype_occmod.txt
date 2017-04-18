@@ -53,11 +53,11 @@ model{
 		detect.skin[a]~dbern(p.skin[a])	
 	}
 	
-	#Cauchy priors on regression parameters ########################################################
-  for(b in 1:6) {    B[b]~dt(0, pow(2.5,-2), 1) }
-  for(c in 1:6) {    C[c]~dt(0, pow(2.5,-2), 1) }
-  for(d in 1:2) {    D[d]~dt(0, pow(2.5,-2), 1) }
-  for(e in 1:14) {BETA[e]~dt(0, pow(2.5,-2), 1) }
+	#priors on regression parameters ###############################################################
+  for(b in 1:6) {    B[b]~dt(0, pow(2.5,-2), 1)  } 
+  for(c in 1:6) {    C[c]~dt(0, pow(2.5,-2), 1)  }  
+  for(d in 1:2) {    D[d]~dt(0, pow(2.5,-2), 1)  }  
+  for(e in 1:14) {BETA[e]~dt(0, pow(2.5,-2), 1)  }   
 	
 	########constant; (pi)##########################################################################
 	pi<-3.141592654
