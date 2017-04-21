@@ -7,8 +7,8 @@ load("formatted_for_JAGS.Rdata")
 #MCMC settings
 n.chains=4
 n.adapt=500
-n.iter=50000
-n.burnin=25000
+n.iter=5000
+n.burnin=2500
 n.thin=5
 para=TRUE
 
@@ -29,7 +29,7 @@ z.init[z.init==0]<-NA #just assign one to years with known occurences. otherwise
 
 inits <- function(){  
 	list(B=rnorm(6,0,0.5),
-			 C=rnorm(6,0,0.5),
+			 C=rnorm(7,0,0.5),
 			 D=rnorm(2,0,0.5), 
 			 BETA=rnorm(14,0,0.2),
 			 Z=z.init,

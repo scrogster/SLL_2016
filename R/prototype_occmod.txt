@@ -4,24 +4,25 @@ model{
 	#------initial occupancy model---------##########
 		logit(psi[i])<- B[1]+
 		                B[2]*(grassland[i]-0.076)/0.146 +
-		                B[3]*(clay[i]-32.68)/16.77+  #roughly centered clay.
-		                B[4]*2*(conservation[i]-0.5) +
-		                B[5]*(grazing[i]-2) +
-		                B[6]*pow(grazing[i]-2, 2) +#effect of grazing
-		                occ_rf[cluster_id[i]]   #random cluster effect.
+		                B[3]*(clay[i]-32.68)/16.77+    #roughly centered/scaled soil clay.
+		                B[4]*2*(conservation[i]-0.5) + #effect of conservation land use
+		                B[5]*(grazing[i]-2) +          #main effect of grazing score
+		                B[6]*pow(grazing[i]-2, 2) +    #quadratic effect of grazing score
+		                occ_rf[cluster_id[i]]          #random cluster effect.
 		Z[i, 1]~dbern(psi[i])
 	for(t in 2:max.time){
   #------persistence model---------------##########
 		logit(PHI[i,t])<- C[1]+ 
-			              C[2]*(grassland[i]-0.076)/0.146 +  #roughly centered grassland area
-			              C[3]*2*(firegt1[i]-0.5) +
-		                C[4]*(grazing[i]-2) +
-		                C[5]*pow(grazing[i]-2, 2) +#effect of grazing
-			              C[6]*2*(conservation[i]-0.5) +
+			              C[2]*(grassland[i]-0.076)/0.146 +  #roughly centered/scaled grassland area
+			              C[3]*firecode[i] +                 #main effect of fire
+			              C[4]*pow(firecode[i], 2) +         #quadratic effect of fire
+		                C[5]*(grazing[i]-2) +              #main effect of grazing score
+		                C[6]*pow(grazing[i]-2, 2) +        #quadratic effect of grazing
+			              C[7]*2*(conservation[i]-0.5) +     #effect of conservation land use
 			              persist_rf[cluster_id[i]]   #random cluster effect.
 	#------colonisation model--------------##########
 		logit(GAMMA[i,t])<-D[1] +
-		                D[2]*(grassland[i]-0.076)/0.146 + #roughly centered grassland area
+		                D[2]*(grassland[i]-0.076)/0.146 + #roughly centered/scaled grassland area
 		                colon_rf[cluster_id[i]]      #random cluster effect.
 	#------process model-------------------###########	                
 			muZ[i, t]<- Z[i, t-1]*PHI[i, t]   + (1-Z[i, t-1])*GAMMA[i, t]
@@ -55,7 +56,7 @@ model{
 	
 	#priors on regression parameters ###############################################################
   for(b in 1:6) {    B[b]~dt(0, pow(2.5,-2), 1)  } 
-  for(c in 1:6) {    C[c]~dt(0, pow(2.5,-2), 1)  }  
+  for(c in 1:7) {    C[c]~dt(0, pow(2.5,-2), 1)  }  
   for(d in 1:2) {    D[d]~dt(0, pow(2.5,-2), 1)  }  
   for(e in 1:14) {BETA[e]~dt(0, pow(2.5,-2), 1)  }   
 	
