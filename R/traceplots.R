@@ -31,7 +31,8 @@ CC<-rbind(
 	extract_param("C[3]"),
 	extract_param("C[4]"),
 	extract_param("C[5]"),
-	extract_param("C[6]"))
+	extract_param("C[6]"),
+	extract_param("C[7]"))
 
 DD<-rbind(
 	extract_param("D[1]"),
