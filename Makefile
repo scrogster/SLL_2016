@@ -27,7 +27,7 @@ prepped_data_plusGIS.Rdata:   R/get_spatial_points.R  prepped_data.Rdata
 	Rscript $^ 
 
 #format the data for JAGS and tidy up workspace
-formatted_for_JAGS.Rdata: R/format_data.R prepped_data_plusGIS.Rdata
+formatted_for_JAGS.Rdata: R/format_data.R prepped_data_plusGIS.Rdata DataFromGarry/Season_Burn_Summary.csv
 	Rscript $^
 
 #fit a dynamic occupancy model to the data
