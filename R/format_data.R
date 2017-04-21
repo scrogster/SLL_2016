@@ -90,6 +90,7 @@ jags_dat<-list(
 	conservation=conservation*1.0, #convert Boolean to numeric
 	roadside=roadside*1.0, #convert Boolean to numeric
 	firecode=firecode,
+	firegt0=(firecode>0)*1.0,
 	firegt1=(firecode>1)*1.0,
 	firegt2=(firecode>2)*1.0,
 	firegt3=(firecode>3)*1.0,
