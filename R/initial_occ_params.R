@@ -7,9 +7,9 @@ load("fitted_model.Rdata")
 
 #plotting initial occupancy parameters
 df<-data.frame(out$sims.list$B) %>%
-	 rename(Intercept=X1, Grassland=X2, Clay=X3, Conservation=X4, Grazing=X5, Grazing2=X6) %>%
+	 rename(Intercept=X1, Grassland=X2, Clay=X3, Grazing1=X4, Grazing2=X5) %>%
 	gather() %>%
-	mutate(key=factor(key, levels=c("Intercept", "Grassland", "Clay","Conservation", "Grazing", "Grazing2"))) 
+	mutate(key=factor(key, levels=c("Intercept", "Grassland", "Clay","Grazing1", "Grazing2"))) 
 
 histocol="green"
 

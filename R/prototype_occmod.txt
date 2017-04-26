@@ -4,26 +4,24 @@ model{
 	#------initial occupancy model---------##########
 		logit(psi[i])<- B[1]+
 		                B[2]*(grassland[i]-0.076)/0.146 +
-		                B[3]*(clay[i]-32.68)/16.77+    #roughly centered/scaled soil clay.
-		                B[4]*2*(conservation[i]-0.5) + #effect of conservation land use
-		                B[5]*(grazing[i]-2) +          #main effect of grazing score
-		                B[6]*pow(grazing[i]-2, 2) +    #quadratic effect of grazing score
-		                occ_rf[cluster_id[i]]          #random cluster effect.
+		                B[3]*(clay[i]-32.68)/16.77+         #roughly centered/scaled soil clay.
+		                B[4]*grazinggtzero[i] +             #some grazing
+		                B[5]*grazinggt2[i] +                #intense grazing
+		                occ_rf[cluster_id[i]]               #random cluster effect.
 		Z[i, 1]~dbern(psi[i])
 	for(t in 2:max.time){
   #------persistence model---------------##########
 		logit(PHI[i,t])<- C[1]+ 
-			              C[2]*(grassland[i]-0.076)/0.146 +  #roughly centered/scaled grassland area
-			              C[3]*firecode[i] +                 #main effect of fire
-			              C[4]*pow(firecode[i], 2) +         #quadratic effect of fire
-		                C[5]*(grazing[i]-2) +              #main effect of grazing score
-		                C[6]*pow(grazing[i]-2, 2) +        #quadratic effect of grazing
-			              C[7]*2*(conservation[i]-0.5) +     #effect of conservation land use
-			              persist_rf[cluster_id[i]]   #random cluster effect.
+			              C[2]*(grassland[i]-0.076)/0.146 + #roughly centered/scaled grassland area
+			              C[3]*firegt0[i] +                 #some fire
+			              C[4]*firegt8[i] +                 #more than 6 fires
+		                C[5]*grazinggtzero[i] +           #some grazing
+		                C[6]*grazinggt2[i] +               #intense grazing
+			              persist_rf[cluster_id[i]]         #random cluster effect.
 	#------colonisation model--------------##########
 		logit(GAMMA[i,t])<-D[1] +
 		                D[2]*(grassland[i]-0.076)/0.146 + #roughly centered/scaled grassland area
-		                colon_rf[cluster_id[i]]      #random cluster effect.
+		                colon_rf[cluster_id[i]]           #random cluster effect.
 	#------process model-------------------###########	                
 			muZ[i, t]<- Z[i, t-1]*PHI[i, t]   + (1-Z[i, t-1])*GAMMA[i, t]
 			Z[i, t]~dbern(muZ[i, t])
@@ -43,7 +41,8 @@ model{
 			BETA[6]*time.of.day[a]+
 			BETA[7]*pow(time.of.day[a], 2)+  
 			BETA[8]*((TempS[a]-22)/5) +
-			BETA[9]*pow((TempS[a]-22)/5, 2)
+			BETA[9]*pow((TempS[a]-22)/5, 2) +
+			BETA[15]*Tdiff[a]    #effect of air-soil temp diff. Note index is 15.
 		p.liz[a]<-p.liz.cond[a]* Z[site[a], t[a]] 
 		detect.liz[a]~dbern(p.liz[a])	
 	#--------obs model for skin------------########################################################	
@@ -55,10 +54,10 @@ model{
 	}
 	
 	#priors on regression parameters ###############################################################
-  for(b in 1:6) {    B[b]~dt(0, pow(2.5,-2), 1)  } 
-  for(c in 1:7) {    C[c]~dt(0, pow(2.5,-2), 1)  }  
+  for(b in 1:5) {    B[b]~dt(0, pow(2.5,-2), 1)  } 
+  for(c in 1:6) {    C[c]~dt(0, pow(2.5,-2), 1)  }  
   for(d in 1:2) {    D[d]~dt(0, pow(2.5,-2), 1)  }  
-  for(e in 1:14) {BETA[e]~dt(0, pow(2.5,-2), 1)  }   
+  for(e in 1:15) {BETA[e]~dt(0, pow(2.5,-2), 1)  }   
 	
 	########constant; (pi)##########################################################################
 	pi<-3.141592654

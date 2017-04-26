@@ -3,14 +3,18 @@ require(lubridate)
 require(dplyr)
 load("prepped_data_plusGIS.Rdata")
 
-#variables to get for model
-tapply(DelmaFiltered$AirTemp, month(DelmaFiltered$Date), "mean", na.rm=TRUE)
-tapply(DelmaFiltered$AirTemp, month(DelmaFiltered$Date), "length")
+#tapply(DelmaFiltered$AirTemp, month(DelmaFiltered$Date), "mean", na.rm=TRUE)
+#tapply(DelmaFiltered$AirTemp, month(DelmaFiltered$Date), "length")
 
 #rough imputation of missing temps
 TempS = DelmaFiltered$SoilTemp
 TempS[is.na(TempS)]<-mean(TempS, na.rm=TRUE)
 TempS[TempS>60]<-mean(TempS, na.rm=TRUE)
+
+TempA = DelmaFiltered$AirTemp
+TempA[is.na(TempA)]<-mean(TempA, na.rm=TRUE)
+TempA[TempA>60]<-mean(TempA, na.rm=TRUE)
+
 
 SurvHour = ifelse(hour(DelmaFiltered$Time)<7, hour(DelmaFiltered$Time)+12, hour(DelmaFiltered$Time))
 SurvMinute = minute(DelmaFiltered$Time)
@@ -66,7 +70,7 @@ firecode<-grassjoin$TotFires #initially, just use total number of fires as fire 
 spatpoints<-grassjoin[,c("Easting", "Northing")]
 dmat<-dist(as(spatpoints, "matrix"))
 clus<-hclust(dmat)  #heirarchical clustering by geographic distance
-clusters<-cutree(clus, h=2000)  #cut the clustering at 1500m threshold
+clusters<-cutree(clus, h=1000)  #cut the clustering at 1500m threshold
 num_clust<-max(clusters)
 
 
@@ -80,21 +84,24 @@ jags_dat<-list(
 	t = DelmaFiltered$yearnum,
 	year.frac = DelmaFiltered$yeardayfrac,
 	TempS = TempS,
+	TempA = TempA,
+	Tdiff = TempS-TempA,
 	time.of.day=timeofday,
 	grassland=grassland,
 	clay=clay,
 	grazing=grazing,
-	grazinglo=1.0*(grazing==0),
-	grazingmid=1.0*(grazing==1),
-	grazinghi=1.0*(grazing>=2),
+	grazingzero=  1.0*(grazing==0),
+	grazinggtzero=1.0*(grazing>0),
+	grazinggt2=    1.0*(grazing>=2),
 	conservation=conservation*1.0, #convert Boolean to numeric
 	roadside=roadside*1.0, #convert Boolean to numeric
 	firecode=firecode,
 	firegt0=(firecode>0)*1.0,
-	firegt1=(firecode>1)*1.0,
 	firegt2=(firecode>2)*1.0,
-	firegt3=(firecode>3)*1.0,
 	firegt4=(firecode>4)*1.0,
+	firegt6=(firecode>6)*1.0,
+	firegt8=(firecode>8)*1.0,
+	firegt10=(firecode>10)*1.0,
 	#below are group ids for clusters, and maximum number of clusters for indexing purposes.
 	cluster_id=clusters,
 	num_clust=num_clust
