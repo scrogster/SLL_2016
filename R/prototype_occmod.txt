@@ -42,7 +42,7 @@ model{
 			BETA[7]*pow(time.of.day[a], 2)+  
 			BETA[8]*((TempS[a]-22)/5) +
 			BETA[9]*pow((TempS[a]-22)/5, 2) +
-			BETA[15]*Tdiff[a]    #effect of air-soil temp diff. Note index is 15.
+			BETA[15]*Tdiff[a]    #effect of air-soil temp diff. Note index of parameter is 15.
 		p.liz[a]<-p.liz.cond[a]* Z[site[a], t[a]] 
 		detect.liz[a]~dbern(p.liz[a])	
 	#--------obs model for skin------------########################################################	
@@ -54,10 +54,10 @@ model{
 	}
 	
 	#priors on regression parameters ###############################################################
-  for(b in 1:5) {    B[b]~dt(0, pow(2.5,-2), 1)  } 
-  for(c in 1:6) {    C[c]~dt(0, pow(2.5,-2), 1)  }  
-  for(d in 1:2) {    D[d]~dt(0, pow(2.5,-2), 1)  }  
-  for(e in 1:15) {BETA[e]~dt(0, pow(2.5,-2), 1)  }   
+  for(b in 1:5) {    B[b]~dt(0, pow(2.5,-2), 1) }   #
+  for(c in 1:6) {    C[c]~dt(0, pow(2.5,-2), 1) }  
+  for(d in 1:2) {    D[d]~dt(0, pow(2.5,-2), 1) }  
+  for(e in 1:15) {BETA[e]~dt(0, pow(2.5,-2), 1)}   
 	
 	########constant; (pi)##########################################################################
 	pi<-3.141592654
@@ -68,11 +68,11 @@ model{
                              Col_t[TT-1]<-sum(col[,TT])
                           Deficit[TT-1]<-Col_t[TT-1]-Ext_t[TT-1] }
   ########cluster-level random effects############################################################
-       clus_var_occ~dt(0, 0.04, 1)T(0, )
+       clus_var_occ~dt(0, pow(25,-2), 1)T(0, )                     
             tau.occ<-pow(clus_var_occ, -2)
-   clus_var_persist~dt(0, 0.04, 1)T(0, )
+   clus_var_persist~dt(0, pow(25,-2), 1)T(0, )      
             tau.persist<-pow(clus_var_persist, -2)
-     clus_var_colon~dt(0, 0.04, 1)T(0, )
+     clus_var_colon~dt(0, pow(25,-2), 1)T(0, )    
             tau.colon<-pow(clus_var_colon, -2)
   for(kk in 1:num_clust){  
           occ_rf[kk]~dnorm(0, tau.occ)
