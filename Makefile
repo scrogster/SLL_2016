@@ -14,8 +14,9 @@ figs: Figures/detection_plot.pdf Figures/detection_plot.png \
       Figures/num_occ_plot.pdf Figures/num_occ_plot.png \
       Figures/num_ext_plot.pdf Figures/num_ext_plot.png \
       Figures/flux_plot.pdf Figures/flux_plot.png \
+      Traceplots/initocc_trace.pdf \
       Figures/Site-map.pdf Figures/Site-map.png \
-      Traceplots/initocc_trace.pdf
+      
 
 #extracting the survey data from the spreadsheets
 prepped_data.Rdata:  R/clean_excel.R
