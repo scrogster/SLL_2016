@@ -1,11 +1,11 @@
 ---
 title: 'Fragmentation and land management drive occupancy of a cryptic grassland reptile: Evidence from a long-term, spatially extensive study'
 author: 
- - Michael P. Scroggie^[Arthur Rylah Institute for Environmental Research, 123 Brown St, Heidelberg, Victoria 3084, Australia. Corresponding author. michael.scroggie@delwp.vic.gov.au] 
+ - Michael P. Scroggie^[Arthur Rylah Institute for Environmental Research, 123 Brown St, Heidelberg, Victoria 3084, Australia, and School of Bioscience, University of Melbourne, Victoria 3010, Australia. Corresponding author. michael.scroggie@delwp.vic.gov.au] 
  - Garry N. L. Peterson^[Deparment of Environment, Land, Water and Planning, 703-709 Raglan Parade, Warrnambool, Victoria 3280, Australia.] 
  - Detlef H. Rohr^[Ecology and Evolution Research Centre, University of New South Wales, Sydney, New South Wales 2052, Australia.]  
  - Evelyn Nicholson^[Deparment of Environment, Land, Water and Planning, 12 Murray St, Heywood, Victoria 3304, Australia.]
- - Geoffrey W. Heard^[School of Bioscience, University of Melbourne, Victoria 3010, Australia.]
+ - Geoffrey W. Heard^[School of Environmental Sciences, Charles Sturt University, Albury, NSW 2640 Australia, and School of Bioscience, University of Melbourne, Victoria 3010, Australia.]
 header-includes:
    - \usepackage[nolists,tablesfirst, nomarkers]{endfloat}
    - \usepackage{setspace}\doublespacing
@@ -18,7 +18,7 @@ output:
   word_document:
     reference_docx: Template.docx
 fontfamily: mathpazo
-fontsize: 12pt
+fontsize: 11pt
 geometry: margin=1.0in
 csl: ecology.csl
 bibliography: DelmaRefs.bib
@@ -35,13 +35,13 @@ Insert abstract here.
 
 # Introduction
 
-The dynamics of patch occupancy within recently fragmented landscapes reflect the collective results of several inter-related ecological processes. Firstly, historical patterns of occupancy in the previously unfragmented landscape provide an upper limit on the extent of initial occupancy (REF). Second, consequent to fragmentation, deterministic loss of initially occupied habitat occurs as habitat is either removed or severely degraded (REF). Third, consequent to fragmentation, populations occupying remaining habitat fragments experience varying probabilities of persistence as a consequence of variation in patch size and quality (REF). Fourth, differential rates of migration into fragments as a consequence of variation in inter-patch differences and matrix permeability to dispersal determine the extent to which vacant fragments can be colonised, and a balance achieved between rates of population extinction and recolonisation (REF).
+The dynamics of patch occupancy within recently fragmented landscapes reflect the collective results of several inter-related ecological processes. Firstly, historical patterns of occupancy in the previously unfragmented landscape provide an upper limit on the extent of initial occupancy (REF). Second, consequent to fragmentation, deterministic loss of initially occupied habitat occurs as habitat is either removed or severely degraded (REF). Third, consequent to fragmentation, populations occupying remaining habitat fragments experience varying probabilities of persistence as a consequence of variation in patch size and quality [(REF)]@rybicki2013species]. Fourth, differential rates of migration into fragments as a consequence of variation in inter-patch distance and permeability of the matrix to dispersal determine the extent to which vacant fragments can be colonised, and either a balance is achieved between rates of population extinction and recolonisation (REF), or ongoing decline to extinction occurs (REF).
 
 In addition to these fundamental processes, both theoretical [@tilman1994habitat; @hanski2002extinction; @kuussaari2009extinction] and observational [@helm2006slow; @gu2002estimating; @sang2010indirect; @van2011metapopulation] evidence suggest that in recently fragmented landscapes, there may be a significant delay in extinction processes subsequent to fragmentation, possibly lasting decades or centuries. Such "extinction debts" may result in underestimation of the ultimate impact of fragmentation on species, or a misplaced emphasis on the effects of patch size and quality as mechanisms driving present occupancy, rather than fragmentation and isolation of habitat [@tilman1994habitat; @hanski2002extinction].
 
 By tracking patterns of extinction and colonisation amongst habitat fragments varying in size, quality and connectivity, insight into the processes leading to extinction and colonisation over time can be derived from successive sets of occupancy data [@hanski1999metapopulation; @mackenzie2006occupancy; @heard2012classical; @frey2012relative]. In particular, correlative approaches can be used to determine how initial occupancy states, colonisation and extinction processes are driven by the interplay of habitat extent, quality and connectivity. $\color{red}{\text{TODO a bit more detail on dynamic occupancy studies.}}$
 
-Investigations of the spatial dynamics of habitat-specialist species inhabiting recently fragmented landscapes are well suited to resolving the ecological processes determining current and future occupancy in fragmented landscapes. The Striped Legless Lizard (*Delma impar*) occurs primarily within areas of native temperate grasslands on the south-eastern Australian mainland (REF), although occurences have been recorded in other vegetation types, including degraded grasslands, grassy woodlands and modified pastures [@dorrough1999; @gemmathesis; @howland2016habitat]. Native grassland was widespread in south-eastern Australia at the time of European settlement (c. 180 yr BP), but has been systematically destroyed and degraded through livestock grazing, cultivation, introduction of exotic plant species and urban development (REF). Only a small fraction of the original extent remains, chiefly in the form of small, isolated remnants, most of which are not reserved or managed for conservation. Remnant native grassland continues to be degraded through weed invasion and inappropriate fire, grazing and cultivation regimes (REF). Legal and illegal destruction of remnant grassland also continues, in spite of widespread recognition of the poor conservation status of this vegetation type and it's distinctive biota, and well-established legislative and regulatory frameworks for  protection of remnants [@williams2005fil; @williams2005pta;  @williams2007ela].
+Observations of the patch-occupancy dynamics of habitat-specialist species inhabiting recently fragmented landscapes can contribute to resolving the nature and relative importance of ecological processes governing species occupancy in fragmented landscapes. The Striped Legless Lizard (*Delma impar*) occurs primarily within areas of native temperate grasslands on the south-eastern Australian mainland (REF), although occurences have been recorded in other vegetation types, including degraded grasslands, grassy woodlands and modified pastures [@dorrough1999; @gemmathesis; @howland2016habitat]. Native grassland was widespread in south-eastern Australia at the time of European settlement (c. 180 yr BP), but has been systematically destroyed and degraded through livestock grazing, cultivation, introduction of exotic plant species and urban development (REF). Only a small fraction of the original extent remains, chiefly in the form of small, isolated remnants, most of which are not reserved or managed for conservation. Remnant native grassland continues to be degraded through weed invasion and inappropriate fire, grazing and cultivation regimes (REF). Legal and illegal destruction of remnant grassland also continues, in spite of widespread recognition of the poor conservation status of this vegetation type and it's distinctive biota, and well-established legislative and regulatory frameworks for  protection of remnants [@williams2005fil; @williams2005pta;  @williams2007ela].
 
 The extent of historic destruction and degradation of what was once an essentially a vast contiguous tract of habitat extending across a large portion of south-eastern Australia has lead *D. impar* and other grassland-specialist flora and fauna to undergo profound reductions in extent of occurrence [@maldonado2012human] $\color{red}{\text{TODO refs on other spp.}}$. While it is well established that populations of *D. impar* persist within grassland fragments across the species' historic range, it is not known whether the species is continuing to decline. Furthermore, although it has been hypothesised that inappropriate management and degradation of habitat may adversely effect populations of *D. impar*, formal, quantitative assessment of the habitat and management requirements for ensuring population persistence have not been conducted. Similarly, the extent to which any current (as opposed to historic) declines can be attributed to the size, quality and management of habitat patches, or to population isolation and barriers to dispersal between habitat patches is unknown. Hence, it is difficult to determine how best to prioritise possible management actions so as to maximise the resulting conservation benefits, as the relative contribution of historic fragmentation and current management to any ongoing decline is unknown.
 
@@ -241,16 +241,16 @@ summary_func<-function(x){
 	return(out)
 }
 posterior<-data.frame(t(apply(detect_params, 2, summary_func)))
-row.names(posterior)<-paste0(rep("$\\beta_{", 14), 1:14,"}$")
+row.names(posterior)<-paste0(rep("$\\beta_{", 15), 1:15,"}$")
 names(posterior)<-c("mean",  "median", "sd", "CI")
 
-detection_type=c(rep("lizard", 9), rep("sloughed skin", 5))
+detection_type=c(rep("lizard", 10), rep("sloughed skin", 5))
 
-meaning=c("$Intercept$", "$\\cos2\\pi \\text{date}$", "$\\sin2\\pi \\text{date}$", 
+meaning=c("$\\text{Intercept}$", "$\\cos2\\pi \\text{date}$", "$\\sin2\\pi \\text{date}$", 
 					                    "$\\cos4\\pi \\text{date}$", "$\\sin4\\pi \\text{date}$",
-					"$time$", "$time^2$", 
-					"$Temp$", "$Temp^2$",
-					"$Intercept$",  "$\\cos2\\pi \\text{date}$", "$\\sin2\\pi \\text{date}$", 
+					"$\\text{time}$", "$\\text{time^2}$", 
+					"$\\text{Temp}$", "$\\temp{Temp^2}$", "$\\Delta\\text{Temp}$",
+					"$\\text{Intercept}$",  "$\\cos2\\pi \\text{date}$", "$\\sin2\\pi \\text{date}$", 
 					                    "$\\cos4\\pi \\text{date}$", "$\\sin4\\pi \\text{date}$"
 					)
 posterior<-data.frame("Detection"=detection_type, "Covariate"=meaning, posterior)
@@ -293,7 +293,7 @@ All source code and data necessary to reproduce the analysis presented in this p
 knitr::include_graphics("Figures/Site-map.png")
 ```
 
-```{r, fig.cap="Inferred number of occupied sites over the course of the study. The green line and shaded area are the posterior mean and 95\\% credible intervals derived from the dynamic occupancy model. *Will add a line showing numbers of sites with actual detections for comparison.*", fig.pos="H", echo=FALSE, cache=FALSE}
+```{r, fig.cap="Inferred number of occupied sites over the course of the study. The green line and shaded area are the posterior mean and 95\\% credible intervals for the predicted number of occupied sites in each year, inferred using the dynamic occupancy model. The red line denotes the number of sites where *D. impar* was actually observed in each year, and the blue line denotes the number of sites that were surveyed in each year. The dashed gray line is the total number of sites included in the study.", fig.pos="H", echo=FALSE, cache=FALSE}
 knitr::include_graphics("Figures/num_occ_plot.png")
 ```
 
