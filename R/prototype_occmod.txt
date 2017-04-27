@@ -42,13 +42,13 @@ model{
 			BETA[7]*pow(time.of.day[a], 2)+  
 			BETA[8]*((TempS[a]-22)/5) +
 			BETA[9]*pow((TempS[a]-22)/5, 2) +
-			BETA[15]*Tdiff[a]    #effect of air-soil temp diff. Note index of parameter is 15.
+			BETA[10]*Tdiff[a]    #effect of air-soil temp diff. 
 		p.liz[a]<-p.liz.cond[a]* Z[site[a], t[a]] 
 		detect.liz[a]~dbern(p.liz[a])	
 	#--------obs model for skin------------########################################################	
-		fourier.skin[a]<- BETA[11]*(cos(2*pi*year.frac[a]))+BETA[12]*(sin(2*pi*year.frac[a])) + 
-			                BETA[13]*(cos(4*pi*year.frac[a]))+BETA[14]*(sin(4*pi*year.frac[a]))
-		logit(p.skin.cond[a])<-BETA[10]  +fourier.skin[a]  
+		fourier.skin[a]<- BETA[12]*(cos(2*pi*year.frac[a]))+BETA[13]*(sin(2*pi*year.frac[a])) + 
+			                BETA[14]*(cos(4*pi*year.frac[a]))+BETA[15]*(sin(4*pi*year.frac[a]))
+		logit(p.skin.cond[a])<-BETA[11]  +fourier.skin[a]  
 		p.skin[a]<-p.skin.cond[a]* Z[site[a], t[a]] 
 		detect.skin[a]~dbern(p.skin[a])	
 	}
