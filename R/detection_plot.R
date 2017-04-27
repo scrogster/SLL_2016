@@ -28,7 +28,9 @@ summary_func<-function(x){
 	post.mean=apply(x, 2, mean)
 	lwr.ci=apply(x, 2, quantile, 0.025)
 	upp.ci=apply(x, 2, quantile, 0.975)
-	out=data.frame("mean"=post.mean, "lwr"=lwr.ci, "upp"=upp.ci)
+	lwr.qt=apply(x, 2, quantile, 0.25)
+	upp.qt=apply(x, 2, quantile, 0.75)
+	out=data.frame("mean"=post.mean, "lwr"=lwr.ci, "upp"=upp.ci, "lqt"=lwr.qt, "uqt"=upp.qt)
 	return(out)
 }
 
@@ -43,6 +45,7 @@ combined$x<-combined$x*365
 
 ggplot(combined, aes(y=mean, x=x, group=Type, col=Type))+
 	geom_ribbon(aes(ymin=lwr, ymax=upp, fill=Type), col=NA, alpha=0.2)+
+	geom_ribbon(aes(ymin=lqt, ymax=uqt, fill=Type), col=NA, alpha=0.4)+
 	geom_line()+
 	ylab("Probability of detection")+
 	xlab("Julian date")+
