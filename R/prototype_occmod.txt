@@ -6,7 +6,7 @@ model{
 		                B[2]*(grassland[i]-0.076)/0.146 +
 		                B[3]*(clay[i]-32.68)/16.77+         #roughly centered/scaled soil clay.
 		                B[4]*grazinggtzero[i] +             #some grazing
-		                B[5]*grazinggt2[i] +                #intense grazing
+		                B[5]*(grazinggt2[i] - grazinggtzero[i]) +                #intense grazing
 		                occ_rf[cluster_id[i]]               #random cluster effect.
 		Z[i, 1]~dbern(psi[i])
 	for(t in 2:max.time){
@@ -14,9 +14,9 @@ model{
 		logit(PHI[i,t])<- C[1]+ 
 			              C[2]*(grassland[i]-0.076)/0.146 + #roughly centered/scaled grassland area
 			              C[3]*firegt0[i] +                 #some fire
-			              C[4]*firegt8[i] +                 #more than 6 fires
+			              C[4]*(firegt8[i]-firegt0[i]) +                 #more than 6 fires
 		                C[5]*grazinggtzero[i] +           #some grazing
-		                C[6]*grazinggt2[i] +               #intense grazing
+		                C[6]*(grazinggt2[i] - grazinggtzero[i]) +               #intense grazing
 			              persist_rf[cluster_id[i]]         #random cluster effect.
 	#------colonisation model--------------##########
 		logit(GAMMA[i,t])<-D[1] +
