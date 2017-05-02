@@ -53,9 +53,10 @@ SP<-ggplot(combined, aes(y=mean, x=x, group=Type, col=Type))+
 	ylim(0, 1)+
 	scale_x_continuous(limits=c(0, 365), breaks=cumsum(c(0, 30, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31)),
 										 labels=c("J", "F", "M", "A", "M", "J", "J", "A", "S", "O", "N", "D", ""))+
+	annotate("text", x=Inf, y=Inf, label="A", vjust=1.2, hjust=1.1, size=10)+
 	theme_bw()+
 	theme(axis.text.x=element_text(hjust=-2))+
-	theme(legend.position=c(0.135, 0.82))+
+	theme(legend.position=c(0.135, 0.8))+
 	theme(legend.background=element_rect(colour="black", fill="white", size=0))+
 	theme(legend.key=element_rect(colour=NA, size=0))
 #ggsave("Figures/detection_plot.pdf", width=6, height=6)
@@ -84,6 +85,7 @@ Tplot<-ggplot(Tcurve, aes(y=mean, x=x))+
 	ylab("Probability of detection")+
 	xlab("T (tile)")+
 	ylim(0, 1)+
+	annotate("text", x=Inf, y=Inf, label="B", vjust=1.2, hjust=1.1, size=10)+
 	theme_bw()
 
 #Response to temperature differential ----############################################
@@ -109,10 +111,11 @@ Tdiffplot<-ggplot(Tdiffcurve, aes(y=mean, x=x))+
 	ylab("Probability of detection")+
 	xlab(expression(paste(Delta,T)))+
 	ylim(0, 1)+
+	annotate("text", x=Inf, y=Inf, label="C", vjust=1.2, hjust=1.1, size=10)+
 	theme_bw()
 
 
-pdf("Figures/detection_plot.pdf", width=5, height=10)
+pdf("Figures/detection_plot.pdf", width=4, height=9)
 grid.arrange(SP, Tplot, Tdiffplot, ncol=1, nrow=3)
 dev.off()
 

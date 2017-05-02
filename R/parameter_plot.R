@@ -18,6 +18,7 @@ INITPLOT<-ggplot(df, aes(y=value, x=key)) +
 	geom_violin(col="black", fill="green", alpha=0.5)+
 	ylab("Value")+
 	xlab("")+
+	annotate("text", x=Inf, y=Inf, label="A", vjust=1.2, hjust=1.1, size=10)+
 	theme_bw()
 
 #plotting the persistence parameters
@@ -31,6 +32,7 @@ PERSISTPLOT<-ggplot(df, aes(y=value, x=key)) +
 	geom_violin(col="black", fill="green", alpha=0.5)+
 	ylab("Value")+
 	xlab("")+
+	annotate("text", x=Inf, y=Inf, label="B", vjust=1.2, hjust=1.1, size=10)+
 	theme_bw()
 
 #plotting the colonisation parameters
@@ -44,8 +46,9 @@ COLPLOT<-ggplot(df, aes(y=value, x=key)) +
 	geom_violin(col="black", fill="green", alpha=0.5)+
 	ylab("Value")+
 	xlab("")+
+	annotate("text", x=Inf, y=Inf, label="C", vjust=1.2, hjust=1.1, size=10)+
 	theme_bw()
 
-pdf("Figures/parameter_plot.pdf", width=5, height=10)
+pdf("Figures/parameter_plot.pdf", width=4, height=9)
 grid.arrange(INITPLOT, PERSISTPLOT, COLPLOT, ncol=1, nrow=3)
 dev.off()
