@@ -56,7 +56,8 @@ SP<-ggplot(combined, aes(y=mean, x=x, group=Type, col=Type))+
 	annotate("text", x=Inf, y=Inf, label="A", vjust=1.2, hjust=1.1, size=10)+
 	theme_bw()+
 	theme(axis.text.x=element_text(hjust=-2))+
-	theme(legend.position=c(0.135, 0.8))+
+	theme(legend.position=c(0.5, 0.75))+
+	theme(legend.title=element_blank())+
 	theme(legend.background=element_rect(colour="black", fill="white", size=0))+
 	theme(legend.key=element_rect(colour=NA, size=0))
 #ggsave("Figures/detection_plot.pdf", width=6, height=6)
@@ -115,7 +116,7 @@ Tdiffplot<-ggplot(Tdiffcurve, aes(y=mean, x=x))+
 	theme_bw()
 
 
-pdf("Figures/detection_plot.pdf", width=4, height=9)
+pdf("Figures/detection_plot.pdf", width=4, height=8)
 grid.arrange(SP, Tplot, Tdiffplot, ncol=1, nrow=3)
 dev.off()
 
