@@ -112,7 +112,7 @@ Tdiffplot<-ggplot(Tdiffcurve, aes(y=mean, x=x))+
 	theme_bw()
 
 
-pdf("Figures/detection_plot.pdf", width=5, height=11)
+pdf("Figures/detection_plot.pdf", width=5, height=10)
 grid.arrange(SP, Tplot, Tdiffplot, ncol=1, nrow=3)
 dev.off()
 
