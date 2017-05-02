@@ -8,9 +8,6 @@ all: prepped_data.Rdata \
      Delma.pdf
 
 figs: Figures/detection_plot.pdf Figures/detection_plot.png \
-      Figures/initial_occ_params.pdf Figures/initial_occ_params.png \
-      Figures/extinction_params.pdf Figures/extinction_params.png \
-      Figures/colonisation_params.pdf Figures/colonisation_params.png \
       Figures/num_occ_plot.pdf Figures/num_occ_plot.png \
       Figures/num_ext_plot.pdf Figures/num_ext_plot.png \
       Figures/flux_plot.pdf Figures/flux_plot.png \
