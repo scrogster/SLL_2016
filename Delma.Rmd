@@ -317,15 +317,7 @@ knitr::include_graphics("Figures/Site-map.png")
 ```
 
 ```{r, fig.cap="Inferred number of occupied sites over the course of the study. The green line and shaded area are the posterior mean and 95\\% credible intervals for the predicted number of occupied sites in each year, inferred using the dynamic occupancy model. The red line denotes the number of sites where *D. impar* was actually observed in each year, and the blue line denotes the number of sites that were surveyed in each year. The dashed gray line is the total number of sites included in the study.", fig.pos="H", echo=FALSE, cache=FALSE}
-knitr::include_graphics("Figures/num_occ_plot.png")
-```
-
-```{r, fig.cap="Inferred numbers of extinction (red) and colonisation (green) events across the 295 study sites for each year, derived from the state-space dynamic occupancy model. The shaded areas denote the 95\\% credible intervals on the inferences.", fig.pos="H", echo=FALSE, cache=FALSE}
-knitr::include_graphics("Figures/num_ext_plot.png")
-```
-
-```{r, fig.cap="Inferred net annual change in numbers of sites occupied by *Delma impar* for each year (colonisations - extinctions). The shaded areas denotes the 95\\% credible interval on the posterior mean (solid line).", fig.pos="H", echo=FALSE, cache=FALSE}
-knitr::include_graphics("Figures/flux_plot.png")
+knitr::include_graphics("Figures/site_occ_plot.png")
 ```
 
 ```{r, fig.cap="Posterior densities of regression parameters predicting initial occupancy, annual probability of persistence, and annual probability of colonisation by *Delma impar*.", fig.pos="H", echo=FALSE, cache=FALSE}
