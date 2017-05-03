@@ -307,7 +307,7 @@ Analysis of the artificial cover object detection data presented here provides c
 *Final kicker paragraph here, with a take home message or three. Geoff?*
 
 # Acknowledgements
-This research was funded by the Victorian Deparment of Environment, Land, Water and Planning, and the Australian Commonwealth Government via the Corangamite, Glenelg-Hopkins and Wimmera Catchment Management Authorities. Numerous land owners and managers provided access to survey sites and other assistance. We thank the many staff and volunteers who collected data, in particular Cath Grant, Donna McMaster, Lauren Koehler, Melinda Thompson and Gemma Candy. David Ramsey, Michael Kearney and Ben Philips provided some helpul modelling advice. Graeme Newell kindly provided access to GIS grassland layers. We thank X, Y and Z for comments on draft of the manuscript. Our work was conducted under research permits granted by the Department of Environment, Land Water and Planning.
+This research was funded by the Victorian Deparment of Environment, Land, Water and Planning, and the Australian Commonwealth Government via the Corangamite, Glenelg-Hopkins and Wimmera Catchment Management Authorities. Numerous land owners and managers provided access to survey sites and other assistance. We thank the many staff and volunteers who collected data, in particular Cath Grant, Donna McMaster, Lauren Koehler, Melinda Thompson and Gemma Candy. David Ramsey, Michael Kearney and Ben Phillips provided some helpful modelling advice. Graeme Newell kindly provided access to GIS grassland layers. We thank X, Y and Z for comments on draft of the manuscript. Our work was conducted under research permits granted by the Department of Environment, Land Water and Planning.
 
 # Data and code
 
