@@ -25,7 +25,6 @@ bibliography: DelmaRefs.bib
 ---
 
 \newpage
-\noindent\rule[0.5ex]{\linewidth}{1pt}
 
 # Abstract
 
@@ -226,21 +225,21 @@ change<-apply(out$sims.list$Numocc, 1, diff)
 annchange<-c(mean(colMeans(change)),median(colMeans(change)), quantile(colMeans(change), 0.025), quantile(colMeans(change), 0.975))
 ```
 
-*Delma impar* was detected at least once at `r colSums(z.init, na.rm=TRUE)[1]` of the `r tapply(jags_dat$site, jags_dat$t, function(x) length(unique(x)))[1]` sites surveyed in the first year of this study (Figure 2), an observed prevalence of `r format(100*colSums(z.init, na.rm=TRUE)[1]/291, digits=3)`% (Figure 2). The observed (naive) prevalence  of *D. impar* at the sites actually sampled in each year averaged `r format(100*mean(colSums(z.init, na.rm=TRUE))/291, digits=2)`%, fluctuating between `r format(100*min(colSums(z.init, na.rm=TRUE))/291, digits=2)`% and `r format(100*max(colSums(z.init, na.rm=TRUE))/291, digits=2)`%. Our occupancy model infers that the number of occupied sites declines over the course of the study from `r format(startocc[1], digits=3)` (95\% CI: `r format(startocc[3], digits=4)`, `r format(startocc[4], digits=4)`) to `r format(endocc[1], digits=3)` sites (95\% CI: `r format(endocc[3], digits=4)`, `r format(endocc[4], digits=4)`) in the final year of the study (an overall loss  of `r format(decline[1], digits=3)` (95\% CI: `r format(decline[3], digits=4)`, `r format(decline[4], digits=4)` occupied sites over the 9 years of monitoring; Fig. 2).
+*Delma impar* was detected at least once at `r colSums(z.init, na.rm=TRUE)[1]` of the `r tapply(jags_dat$site, jags_dat$t, function(x) length(unique(x)))[1]` sites surveyed in the first year of this study (Fig. 2), an observed prevalence of `r format(100*colSums(z.init, na.rm=TRUE)[1]/291, digits=3)`% (Fig. 2). The observed (naive) prevalence  of *D. impar* at the sites actually sampled in each year averaged `r format(100*mean(colSums(z.init, na.rm=TRUE))/291, digits=2)`%, fluctuating between `r format(100*min(colSums(z.init, na.rm=TRUE))/291, digits=2)`% and `r format(100*max(colSums(z.init, na.rm=TRUE))/291, digits=2)`%. Our occupancy model infers that the number of occupied sites declines over the course of the study from `r format(startocc[1], digits=3)` (95\% CI: `r format(startocc[3], digits=4)`, `r format(startocc[4], digits=4)`) to `r format(endocc[1], digits=3)` sites (95\% CI: `r format(endocc[3], digits=4)`, `r format(endocc[4], digits=4)`) in the final year of the study (an overall loss  of `r format(decline[1], digits=3)` (95\% CI: `r format(decline[3], digits=4)`, `r format(decline[4], digits=4)` occupied sites over the 9 years of monitoring; Fig. 2).
 
-The probability of site occupancy in the first year ($\psi_{1}$) was positively associated with the extent of modelled native grassland within a 1000 m radius of the sites and the proportion of clay in the soil (Figure 5). The prevailaing grazing regime had a much smaller effect with little evidence for either a negative or positive effect of grazing intensity on $\psi_{1}$ (Fig. 5).
+The observed decline in occupancy was a consequence of population extinctions outstripping colonizations of vacant sites (Figs. 2). The net change in occupancy varied among years, (and had high uncertainty, Fig. 4), but averaged a loss of `r format(-annchange[1], digits=2)` (95\% CI `r format(-annchange[4], digits=2)`, `r format(-annchange[3], digits=4)`) sites per annum.
 
-The observed decline in occupancy was a consequence of population extinctions outstripping colonizations of vacant sites (Figs. 3-4). The net change in occupancy varied among years, (and had high uncertainty, Fig. 4), but averaged a loss of `r format(-annchange[1], digits=2)` (95\% CI `r format(-annchange[4], digits=2)`, `r format(-annchange[3], digits=4)`) sites per annum.
+The probability of site occupancy in the first year ($\psi_{1}$) was positively associated with the extent of modelled native grassland within a 1000 m radius of the sites and the proportion of clay in the soil (Fig. 3). The prevailaing grazing regime had a much smaller effect with little evidence for either a negative or positive effect of grazing intensity on $\psi_{1}$ (Fig. 3).
 
-The annual probability of population persistence, ($\phi_{t}$) was most strongly correlated with grazing and fire frequency (Fig. 6). Both low and high frequencies of fire, and low and high intensities of grazing resulted in higher probabilities of persistence than regimes where fire and grazing were totally excluded (Fig. 6). The extent of grassland in the surrounding landscape had little effect on persistence (Fig. 6). 
+The annual probability of population persistence, ($\phi_{t}$) was most strongly correlated with grazing and fire frequency (Fig. 3). Both low and high frequencies of fire, and low and high intensities of grazing resulted in higher probabilities of persistence than regimes where fire and grazing were totally excluded (Fig. 3). The extent of grassland in the surrounding landscape had little effect on persistence (Fig. 3). 
 
-The annual probability of colonisation of unoccupied sites ($\gamma_{t}$) was strongly and positively correlated with grassland area in the surrounding (1000 m radius) landscape. (Fig. 7.)
+The annual probability of colonisation of unoccupied sites ($\gamma_{t}$) was strongly and positively correlated with grassland area in the surrounding (1000 m radius) landscape. (Fig. 3.)
 
 ## Detection
 
-Probabilities of detecting both lizards and sloughed skins displayed clear but contrasting annual cycles (Fig. 8). For lizards, there was a distinct peak in detection probability between September and November (i.e. the Austral spring), with progressively lower detection probabilities from December through to August. Detection probabilities of sloughed skins were highest in mid-Summer (December--January), dropping to very low levels between Winter and early Spring (June--September, Fig. 8.). Combined, the probabilities of detectin *D. impar* by any method peaked during Spring, and progressively decreased through Summer and Autumn, before reaching a minimum during the winter months (Fig. 8).
+Probabilities of detecting both lizards and sloughed skins displayed clear but contrasting annual cycles (Fig. 4). For lizards, there was a distinct peak in detection probability between September and November (i.e. the Austral spring), with progressively lower detection probabilities from December through to August. Detection probabilities of sloughed skins were highest in mid-Summer (December--January), dropping to very low levels between Winter and early Spring (June--September, Fig. 4). Combined, the probabilities of detectin *D. impar* by any method peaked during Spring, and progressively decreased through Summer and Autumn, before reaching a minimum during the winter months (Fig. 4).
 
-Under-tile temperatures also effected the probability of detecting lizards, independantly of seasonal effects. Probabilities of detection were highest when under-tile temperatures were between 20 and 30 $^\circ C$ There was a positive effect of the air-soil Temperature differential $(\Delta T)$ on the probability of detecting lizards, with a somewhat higher probability of detection when under-tile temperatures were greater than ambient air temperatures (Table 2, Fig. 8).
+Under-tile temperatures also effected the probability of detecting lizards, independantly of seasonal effects. Probabilities of detection were highest when under-tile temperatures were between 20 and 30 $^\circ C$ There was a positive effect of the air-soil Temperature differential $(\Delta T)$ on the probability of detecting lizards, with a somewhat higher probability of detection when under-tile temperatures were greater than ambient air temperatures (Table 2, Fig. 4).
 
 ```{r detectparamtable, echo=FALSE, message=FALSE, results = 'asis'}
 ##Code to make a table with the parameters influencing detection probability for both lizards and sloughed skins
@@ -276,7 +275,7 @@ meaning=c("$\\text{Intercept}$", "$\\cos2\\pi \\text{date}$", "$\\sin2\\pi \\tex
 					)
 posterior<-data.frame("Detection"=detection_type, "Covariate"=meaning, posterior)
 
-kable(posterior, digits=3, align=c("l","l","c","c", "c", "l"), row.names=FALSE,
+kable(posterior, digits=3, align=c("l","l","c","c", "c", "c"), row.names=FALSE,
 			caption="Summary statistics for the posteriors of the regression parameters influencing detection probabilities of lizards and sloughed skins during tile surveys.")
 ```
 
@@ -306,7 +305,7 @@ Analysis of the artificial cover object detection data presented here provides c
 *Final kicker paragraph here, with a take home message or three. Geoff?*
 
 # Acknowledgements
-This research was funded by the Victorian Deparment of Environment, Land, Water and Planning, and the Australian Commonwealth Government via the Corangamite, Glenelg-Hopkins and Wimmera Catchment Management Authorities. Numerous land owners and managers provided access to survey sites and other assistance. We thank the many staff and volunteers who collected data, in particular Cath Grant, Donna McMaster, Lauren Koehler, Melinda Thompson and Gemma Candy. David Ramsey, Michael Kearney and Ben Philips provided some helpul suggestions for improving the statistical modelling of the data. Our work was conducted under research permits granted by the Department of Environment, Land Water and Planning.
+This research was funded by the Victorian Deparment of Environment, Land, Water and Planning, and the Australian Commonwealth Government via the Corangamite, Glenelg-Hopkins and Wimmera Catchment Management Authorities. Numerous land owners and managers provided access to survey sites and other assistance. We thank the many staff and volunteers who collected data, in particular Cath Grant, Donna McMaster, Lauren Koehler, Melinda Thompson and Gemma Candy. David Ramsey, Michael Kearney and Ben Philips provided some helpul modelling advice. Our work was conducted under research permits granted by the Department of Environment, Land Water and Planning.
 
 # Data and code
 
@@ -316,7 +315,7 @@ All source code and data necessary to reproduce the analyses presented in this p
 knitr::include_graphics("Figures/Site-map.png")
 ```
 
-```{r, fig.cap="Inferred number of occupied sites over the course of the study. The green line and shaded area are the posterior mean and 95\\% credible intervals for the predicted number of occupied sites in each year, inferred using the dynamic occupancy model. The red line denotes the number of sites where *D. impar* was actually observed in each year, and the blue line denotes the number of sites that were surveyed in each year. The dashed gray line is the total number of sites included in the study.", fig.pos="H", echo=FALSE, cache=FALSE}
+```{r, fig.cap="A. Inferred number of occupied sites over the course of the study. The green line and shaded area are the posterior mean and 95\\% credible intervals for the predicted number of occupied sites in each year, inferred from the dynamic occupancy model. The red line denotes the number of sites where *D. impar* was actually observed in each year, and the blue line denotes the number of sites that were surveyed in each year. The dashed gray line is the total number of sites included in the study. B. Inferred numbers of extinctions (red) and colonisations (green) occurring each year. C. Inferred annual net change in number of occupied sites.", fig.pos="H", echo=FALSE, cache=FALSE}
 knitr::include_graphics("Figures/site_occ_plot.png")
 ```
 
