@@ -25,7 +25,7 @@ INITPLOT<-ggplot(df, aes(y=value, x=key)) +
 df<-data.frame(out$sims.list$C) %>%
 	rename(Intercept=X1, Grassland=X2, Fire=X3, Fire2=X4, Grazing=X5, Grazing2=X6) %>%
 	gather() %>%
-	mutate(key=factor(key, levels=c("Intercept", "Grassland", "Fire", "Fireg2", "Grazing", "Grazing2"))) 
+	mutate(key=factor(key, levels=c("Intercept", "Grassland", "Fire", "Fire2", "Grazing", "Grazing2"))) 
 
 PERSISTPLOT<-ggplot(df, aes(y=value, x=key)) +
 	geom_hline(yintercept=0, linetype=2) +
