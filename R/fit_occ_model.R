@@ -40,7 +40,7 @@ return(z.init)
 
 #function to generate starting values
 inits <- function(){  
-	list(B=rnorm(5,0,0.2),
+	list(B=rnorm(4,0,0.2),
 			 C=rnorm(6,0,0.2),
 			 D=rnorm(2,0,0.2), 
 			 BETA=rnorm(15,0,0.2),
