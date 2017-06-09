@@ -20,8 +20,8 @@ aa<-BETA[,1]+BETA[,2]%*%(cos(2*pi*x))+BETA[,3]%*%(sin(2*pi*x)) +
 	BETA[,4]%*%(cos(4*pi*x))+BETA[,5]%*%(sin(4*pi*x))
 
 #curve for skins, eggs etc
-bb<-BETA[,11]+BETA[,12]%*%(cos(2*pi*x))+BETA[,13]%*%(sin(2*pi*x))+ 
-	BETA[,14]%*%(cos(4*pi*x))+BETA[,15]%*%(sin(4*pi*x))
+bb<-BETA[,12]+BETA[,13]%*%(cos(2*pi*x))+BETA[,14]%*%(sin(2*pi*x))+ 
+	BETA[,15]%*%(cos(4*pi*x))+BETA[,16]%*%(sin(4*pi*x))
 
 cc<-  1-(1-plogis(aa)) * (1-plogis(bb))
 
@@ -115,6 +115,7 @@ Tdiffplot<-ggplot(Tdiffcurve, aes(y=mean, x=x))+
 	annotate("text", x=Inf, y=Inf, label="C", vjust=1.2, hjust=1.1, size=10)+
 	theme_bw()
 
+#Really need a raster plot to properly visualise p ~ (T, Tdiff) relationship 
 
 pdf("Figures/detection_plot.pdf", width=4, height=8)
 grid.arrange(SP, Tplot, Tdiffplot, ncol=1, nrow=3)

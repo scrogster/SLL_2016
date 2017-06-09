@@ -266,15 +266,15 @@ summary_func<-function(x){
 	return(out)
 }
 posterior<-data.frame(t(apply(detect_params, 2, summary_func)))
-row.names(posterior)<-paste0(rep("$\\beta_{", 15), 1:15,"}$")
+row.names(posterior)<-paste0(rep("$\\beta_{", 16), 1:16,"}$")
 names(posterior)<-c("mean",  "median", "sd", "CI")
 
-detection_type=c(rep("lizard", 10), rep("sloughed skin", 5))
+detection_type=c(rep("lizard", 11), rep("sloughed skin", 5))
 
 meaning=c("$\\text{Intercept}$", "$\\cos2\\pi \\text{date}$", "$\\sin2\\pi \\text{date}$", 
 					                    "$\\cos4\\pi \\text{date}$", "$\\sin4\\pi \\text{date}$",
 					"$\\text{hour}$", "$\\text{hour}^2$", 
-					"$\\text{Temp}$", "$\\text{Temp}^2$", "$\\Delta\\text{T}$", "\\text{Temp}Delta\\text{T}",
+					"$\\text{Temp}$", "$\\text{Temp}^2$", "$\\Delta\\text{T}$", "Interaction",
 					"$\\text{Intercept}$",  "$\\cos2\\pi \\text{date}$", "$\\sin2\\pi \\text{date}$", 
 					                    "$\\cos4\\pi \\text{date}$", "$\\sin4\\pi \\text{date}$"
 					)

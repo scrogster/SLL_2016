@@ -41,8 +41,8 @@ model{
 			BETA[7]*pow(time.of.day[a], 2)+  
 			BETA[8]*((TempS[a]-22)/5) +
 			BETA[9]*pow((TempS[a]-22)/5, 2) +
-			BETA[10]*Tdiff[a]    #effect of air-soil temp diff. 
-			BETA[11]*(TempS[a]-22)/5)*Tdiff[a]  #interaction between soil temp, and temp differential
+			BETA[10]*Tdiff[a] +   #effect of air-soil temp diff. 
+			BETA[11]*((TempS[a]-22)/5)*Tdiff[a]  #interaction between soil temp, and temp differential
 		p.liz[a]<-p.liz.cond[a]* Z[site[a], t[a]] 
 		detect.liz[a]~dbern(p.liz[a])	
 	#--------obs model for skin------------########################################################	
