@@ -74,8 +74,8 @@ Tpred<-BETA[,1]+BETA[,2]%*%(cos(2*pi*dd))+BETA[,3]%*%(sin(2*pi*dd)) +
 	BETA[,4]%*%(cos(4*pi*dd))+BETA[,5]%*%(sin(4*pi*dd)) +
 	BETA[,8]%*%((Temp-22)/5) +
 	BETA[,9]%*%(((Temp-22)/5)^2) +
-	BETA[,10]%*%Tdiff 
-
+	BETA[,10]%*%Tdiff +
+	BETA[,11]%*% (((Temp-22)/5)*Tdiff ) #interaction term.
 #Summary stats in a curve....
 Tcurve<-data.frame("x"=t(Temp), summary_func(plogis(Tpred)))
 

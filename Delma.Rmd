@@ -274,7 +274,7 @@ detection_type=c(rep("lizard", 10), rep("sloughed skin", 5))
 meaning=c("$\\text{Intercept}$", "$\\cos2\\pi \\text{date}$", "$\\sin2\\pi \\text{date}$", 
 					                    "$\\cos4\\pi \\text{date}$", "$\\sin4\\pi \\text{date}$",
 					"$\\text{hour}$", "$\\text{hour}^2$", 
-					"$\\text{Temp}$", "$\\text{Temp}^2$", "$\\Delta\\text{Temp}$",
+					"$\\text{Temp}$", "$\\text{Temp}^2$", "$\\Delta\\text{T}$", "\\text{Temp}Delta\\text{T}",
 					"$\\text{Intercept}$",  "$\\cos2\\pi \\text{date}$", "$\\sin2\\pi \\text{date}$", 
 					                    "$\\cos4\\pi \\text{date}$", "$\\sin4\\pi \\text{date}$"
 					)
