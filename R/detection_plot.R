@@ -56,7 +56,7 @@ SP<-ggplot(combined, aes(y=mean, x=x, group=Type, col=Type))+
 	annotate("text", x=Inf, y=Inf, label="A", vjust=1.2, hjust=1.1, size=10)+
 	theme_bw()+
 	theme(axis.text.x=element_text(hjust=-2))+
-	theme(legend.position=c(0.5, 0.75))+
+#	theme(legend.position=c(0.5, 0.75))+
 	theme(legend.title=element_blank())+
 	theme(legend.background=element_rect(colour="black", fill="white", size=0))+
 	theme(legend.key=element_rect(colour=NA, size=0))
@@ -117,8 +117,70 @@ Tdiffplot<-ggplot(Tdiffcurve, aes(y=mean, x=x))+
 
 #Really need a raster plot to properly visualise p ~ (T, Tdiff) relationship 
 
-pdf("Figures/detection_plot.pdf", width=4, height=8)
-grid.arrange(SP, Tplot, Tdiffplot, ncol=1, nrow=3)
-dev.off()
 
+##raster plot of response
+
+pred_data<-expand.grid(Temp=5:60, TempA=0:50, TOD=0) %>%
+	        mutate(Tdiff=Temp-TempA)
+
+beta_means<-colMeans(BETA)
+
+yfrac<-10/12 #fraction of year
+fourier.liz<-beta_means[2]*(cos(2*pi*yfrac))+beta_means[3]*(sin(2*pi*yfrac)) + 
+	beta_means[4]*(cos(4*pi*yfrac))+beta_means[5]*(sin(4*pi*yfrac))
+
+pred_detect<-function(predrow){
+p.liz<-beta_means[1] +fourier.liz  + 
+	beta_means[6]*predrow["TOD"]+
+	beta_means[7]*(predrow["TOD"]^2)+  
+	beta_means[8]*((predrow["Temp"]-22)/5) +
+	beta_means[9]*((predrow["Temp"]-22)/5)^2 +
+	beta_means[10]*predrow["Tdiff"] +   #effect of air-soil temp diff. 
+	beta_means[11]*((predrow["Temp"]-22)/5)*predrow["Tdiff"]
+return(plogis(p.liz))
+}
+
+out<-apply(pred_data, 1, pred_detect)
+out<-cbind(pred_data, p=out)
+
+dd<-data.frame(TempA=jags_dat$TempA, TempS=jags_dat$TempS, Tdiff=TempS-TempA, 
+							 yfrac=jags_dat$year.frac, detect=factor(jags_dat$detect.liz)) %>%
+	     filter(yfrac>9/12)
+
+
+
+RASTPLOT<-ggplot(out, aes(y=Temp, x=TempA)) +
+	geom_raster(aes(fill=p)) +
+#	stat_contour(breaks=c(0.2, 0.6, 0.76), col="grey")+
+	scale_fill_gradientn(colours=rev(terrain.colors(7)))+
+	ylab('Tile temperature') +
+	xlab('Air Temperature') +
+	xlim(0, 40)+
+	ylim(5, 50)+
+	geom_point(data=dd, aes(y=TempS, x=TempA, col=detect), alpha=0.8, size=0.4) +
+	scale_color_manual(values=c("lightblue", "black"))+
+	geom_abline(intercept=0, slope=1) +
+	annotate("text", x=5, y=48, label="B", vjust=1.2, hjust=1.1, size=10)+
+	theme_bw()+
+theme(legend.background=element_rect(colour="black", fill="white", size=0))
+
+#another version with temperature difference on y-axis
+# out2<-out %>%
+# 	filter(Tdiff>-20, Tdiff<30, TempA>5, TempA<40)
+# 
+# ggplot(out2, aes(x=TempA, y=Tdiff)) +
+# 	geom_raster(aes(fill=pdet)) +
+# 	#	stat_contour(breaks=c(0.2, 0.6, 0.76), col="grey")+
+# 	scale_fill_gradientn(colours=rev(terrain.colors(7)))+
+# 	xlab('Air temperature') +
+# 	ylab('Temperature difference') +
+# 	geom_point(data=dd, aes(x=TempA, y=Tdiff, col=detect), alpha=0.8, size=0.8) +
+# 	scale_color_manual(values=c("darkgrey", "black"))+
+# 	ylim(-20, 30)+
+# 	geom_abline(intercept=0, slope=0) +
+# 	theme_bw()
+
+pdf("Figures/detection_plot.pdf", width=4, height=7)
+grid.arrange(SP, RASTPLOT, ncol=1, nrow=2)
+dev.off()
 

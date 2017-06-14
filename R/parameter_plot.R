@@ -15,7 +15,7 @@ df<-data.frame(out$sims.list$B) %>%
 
 INITPLOT<-ggplot(df, aes(y=value, x=key)) +
 	geom_hline(yintercept=0, linetype=2) +
-	geom_violin(col="black", fill="blue", alpha=0.5)+
+	geom_violin(col="black", fill="blue", alpha=0.5, scale="width")+
 	ylab("Parameter value")+
 	xlab("")+
 	annotate("text", x=Inf, y=Inf, label="A", vjust=1.2, hjust=1.1, size=8)+
@@ -29,7 +29,7 @@ df<-data.frame(out$sims.list$C) %>%
 
 PERSISTPLOT<-ggplot(df, aes(y=value, x=key)) +
 	geom_hline(yintercept=0, linetype=2) +
-	geom_violin(col="black", fill="blue", alpha=0.5)+
+	geom_violin(col="black", fill="blue", alpha=0.5, scale="width")+
 	ylab("Parameter value")+
 	xlab("")+
 	annotate("text", x=Inf, y=Inf, label="B", vjust=1.2, hjust=1.1, size=8)+
@@ -43,7 +43,7 @@ df<-data.frame(out$sims.list$D) %>%
 
 COLPLOT<-ggplot(df, aes(y=value, x=key)) +
 	geom_hline(yintercept=0, linetype=2) +
-	geom_violin(col="black", fill="blue", alpha=0.5)+
+	geom_violin(col="black", fill="blue", alpha=0.5, scale="width")+
 	ylab("Parameter value")+
 	xlab("")+
 	annotate("text", x=Inf, y=Inf, label="C", vjust=1.2, hjust=1.1, size=8)+
