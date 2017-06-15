@@ -69,12 +69,6 @@ We collected occupancy data from `r jags_dat$tot.sites` fragments of potential h
 
 A total of `r jags_dat$tot.sites` sites were selected from the available extent of grassland habitat across each of three Catchment Management Authority (CMA) areas in south-western Victoria: the Glenelg-Hopkins, Corangamite and Wimmera Catchment Management Authorities (Fig 1.).  The sites included both publicly and privately owned land and were subject to a range of land management practices. The sites included roadside and railway reserves, livestock grazing properties and formal conservation reserves. 
 
-\newpage
-```{r, fig.cap="Map of Victoria showing locations of sites where *D. impar* was, and was not detected during the study.", fig.pos="H", echo=FALSE, cache=FALSE}
-knitr::include_graphics("Figures/Site-map.png")
-```
-\newpage
-
 ## Survey techniques
 
 We established an array of 50 artificial cover objects (terra cotta roofing tiles) at each site. *D. impar* regularly shelters under natural surface objects such as exfoliated basalt rocks, and is also known to readily utilise artificial cover objects [@oshea2005thesis; @peterson2010communal; @howland2016habitat]. Tiles at each site were deployed in a regular grid pattern (5 by 10 tiles), spaced at 5 meter intervals. 
@@ -242,6 +236,10 @@ kable(survey_table, digits=2, align=c("l", "c", "c","c", "c", "c"),
 ```
 
 
+```{r, fig.cap="Map of Victoria showing locations of sites where *D. impar* was, and was not detected during the study.", fig.pos="H", echo=FALSE, cache=FALSE}
+knitr::include_graphics("Figures/Site-map.png")
+```
+
 ```{r, fig.cap="A. Inferred number of occupied sites over the course of the study. The green line and shaded area are the posterior mean and 95\\% credible intervals for the predicted number of occupied sites in each year, inferred from the dynamic occupancy model. The red line denotes the number of sites where *D. impar* was actually observed in each year, and the blue line denotes the number of sites that were surveyed in each year. The dashed gray line is the total number of sites included in the study. B. Inferred numbers of extinctions (red) and colonisations (green) occurring each year. C. Inferred annual net change in number of occupied sites.", fig.pos="H", echo=FALSE, cache=FALSE}
 knitr::include_graphics("Figures/site_occ_plot.png")
 ```
@@ -257,7 +255,6 @@ knitr::include_graphics("Figures/response_plot.png")
 ```{r, fig.cap="Posterior densities of the standard deviations of the cluster-level random effects terms for occupancy, persistence and colonisation.", fig.pos="H", echo=FALSE, cache=FALSE}
 knitr::include_graphics("Figures/raneff_fig.png")
 ```
-
 
 ```{r, fig.cap="A. Inferred seasonal trends in probabilities of detection for lizards, sloughed skins, and combined, overall probabilities of detection for single surveys using both sources of detection. Detection probabilities for lizards are predicted assuming that surveys are conducted at noon, with a tile temperature of $22^{\\circ}\\text{C}$ and no differential between tile and air temperatures. Shading denotes the 95\\% credible intervals on the inferences. B. Relationship between air and tile temperatures, and the estimated probability of detection for lizards. Predictions are for tile surveys conducted on 1 November.", fig.pos="H", echo=FALSE, cache=FALSE}
 knitr::include_graphics("Figures/detection_plot.png")
