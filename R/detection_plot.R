@@ -43,24 +43,24 @@ combined<-rbind(lizcurve, skincurve, totcurve)
 combined<-data.frame("Type"=c(rep("lizards", 101), rep("skins", 101), rep("combined", 101)), combined)
 
 combined$x<-combined$x*365
-
 SP<-ggplot(combined, aes(y=mean, x=x, group=Type, col=Type))+
 	geom_ribbon(aes(ymin=lwr, ymax=upp, fill=Type), col=NA, alpha=0.2)+
 	geom_ribbon(aes(ymin=lqt, ymax=uqt, fill=Type), col=NA, alpha=0.4)+
 	geom_line()+
 	ylab("Probability of detection")+
-	xlab("Julian date")+
+	xlab(NULL)+
 	ylim(0, 1)+
-	scale_x_continuous(limits=c(0, 365), breaks=cumsum(c(0, 30, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31)),
-										 labels=c("J", "F", "M", "A", "M", "J", "J", "A", "S", "O", "N", "D", ""))+
+	scale_x_continuous(breaks = cumsum(c(1, 31, 30, 28, 30, 31, 30, 31, 31, 30, 31, 30)), 
+										 label = c('Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 
+										 					'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'), expand = c(0, 0))+
 	annotate("text", x=Inf, y=Inf, label="A", vjust=1.2, hjust=1.1, size=10)+
 	theme_bw()+
-	theme(axis.text.x=element_text(hjust=-2))+
-#	theme(legend.position=c(0.5, 0.75))+
+#	theme(axis.text.x=element_text(hjust=-1.8))+
+	theme(legend.position=c(0.17, 0.83))+
 	theme(legend.title=element_blank())+
 	theme(legend.background=element_rect(colour="black", fill="white", size=0))+
 	theme(legend.key=element_rect(colour=NA, size=0))
-#ggsave("Figures/detection_plot.pdf", width=6, height=6)
+
 
 #Response to under-tile temperature ----############################################
 #Temperature response plot
@@ -153,15 +153,18 @@ RASTPLOT<-ggplot(out, aes(y=Temp, x=TempA)) +
 	geom_raster(aes(fill=p)) +
 #	stat_contour(breaks=c(0.2, 0.6, 0.76), col="grey")+
 	scale_fill_gradientn(colours=rev(terrain.colors(7)))+
-	ylab('Tile temperature') +
-	xlab('Air Temperature') +
-	xlim(0, 40)+
-	ylim(5, 50)+
-	geom_point(data=dd, aes(y=TempS, x=TempA, col=detect), alpha=0.8, size=0.4) +
+	labs(y=expression("Tile temperature " ( degree~C)),
+			 x=expression("Air temperature " ( degree~C))) +
+#	labs('Air Temperature') +
+	scale_x_continuous(limits=c(0, 40), expand = c(0, 0))+
+	scale_y_continuous(limits=c(5, 50), expand = c(0, 0))+
+#	geom_point(data=dd, aes(y=TempS, x=TempA, col=detect), alpha=0.8, size=0.4) +
 	scale_color_manual(values=c("lightblue", "black"))+
 	geom_abline(intercept=0, slope=1) +
-	annotate("text", x=5, y=48, label="B", vjust=1.2, hjust=1.1, size=10)+
+	annotate("text", x=40, y=50, label="B", vjust=1.2, hjust=1.1, size=10)+
 	theme_bw()+
+	theme(legend.position=c(0.12, 0.74))+
+	theme(legend.title=element_blank())+
 theme(legend.background=element_rect(colour="black", fill="white", size=0))
 
 #another version with temperature difference on y-axis
