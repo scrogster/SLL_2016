@@ -40,7 +40,7 @@ skincurve<-data.frame("x"=t(x), summary_func(plogis(bb)))
 totcurve<-data.frame("x"=t(x), summary_func(cc))
 
 combined<-rbind(lizcurve, skincurve, totcurve)
-combined<-data.frame("Type"=c(rep("lizards", 101), rep("skins", 101), rep("combined", 101)), combined)
+combined<-data.frame("Type"=c(rep("lizards", 101), rep("indirect", 101), rep("combined", 101)), combined)
 
 combined$x<-combined$x*365
 SP<-ggplot(combined, aes(y=mean, x=x, group=Type, col=Type))+
@@ -50,9 +50,9 @@ SP<-ggplot(combined, aes(y=mean, x=x, group=Type, col=Type))+
 	ylab("Probability of detection")+
 	xlab(NULL)+
 	ylim(0, 1)+
-	scale_x_continuous(breaks = cumsum(c(1, 31, 30, 28, 30, 31, 30, 31, 31, 30, 31, 30)), 
+	scale_x_continuous(breaks = cumsum(c(1, 31, 30, 28, 30, 31, 30, 31, 31, 30, 31, 30,31)), 
 										 label = c('Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 
-										 					'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'), expand = c(0, 0))+
+										 					'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec', 'Jan'), expand = c(0, 0))+
 	annotate("text", x=Inf, y=Inf, label="A", vjust=1.2, hjust=1.1, size=10)+
 	theme_bw()+
 #	theme(axis.text.x=element_text(hjust=-1.8))+
