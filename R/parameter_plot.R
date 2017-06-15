@@ -32,6 +32,9 @@ PERSISTPLOT<-ggplot(df, aes(y=value, x=key)) +
 	geom_violin(col="black", fill="blue", alpha=0.5, scale="width")+
 	ylab("Parameter value")+
 	xlab("")+
+	scale_x_discrete(labels=c(
+		expression(Intercept), expression(Grassland), expression(Fire), expression(Fire^2), expression(Graze), expression(Graze^2)
+	))+
 	annotate("text", x=Inf, y=Inf, label="B", vjust=1.2, hjust=1.1, size=8)+
 	theme_bw()
 
