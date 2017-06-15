@@ -10,6 +10,7 @@ all: prepped_data.Rdata \
 figs: Figures/detection_plot.pdf Figures/detection_plot.png \
       Figures/site_occ_plot.pdf Figures/site_occ_plot.png \
       Figures/parameter_plot.pdf Figures/parameter_plot.png \
+      Figures/raneff_fig.pdf Figures/raneff_fig.png \
       Traceplots/initocc_trace.pdf \
       Figures/Site-map.pdf Figures/Site-map.png 
       

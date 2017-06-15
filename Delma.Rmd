@@ -7,7 +7,6 @@ author:
  - Evelyn Nicholson^[Deparment of Environment, Land, Water and Planning, 12 Murray St, Heywood, Victoria 3304, Australia.]
  - Geoffrey W. Heard^[School of Environmental Sciences, Charles Sturt University, Albury, NSW 2640 Australia]
 header-includes:
-   - \usepackage[nolists,tablesfirst, nomarkers]{endfloat}
    - \usepackage{setspace}\doublespacing
    - \usepackage{color}
 date: '`r format(Sys.time(), "%e %B %Y")`'
@@ -77,25 +76,6 @@ We established an array of 50 artificial cover objects (terra cotta roofing tile
 Surveys involved visiting a site, and lifting each of the tiles in turn. All vertebrate species encountered beneath tiles were identified. Occasionally, evidence for the presence of *D. impar* was obtained from observations of sloughed skins underneath the tiles: where sloughed reptile skins could be identified with certainty they were treated as evidence of species presence. Sloughed skins were removed when detected, to avoid double counting during subsequent surveys at the same site. A few cases of egg-laying beneath tiles were also recorded, and these were also taken as positive evidence of occurrence. At the time of each survey the following variables were also recorded: Julian date, time of day, air temperature and under-tile temperature. It was considered likely that each of these variables could influence the probability of detecting *D. impar* at sites where the species was present (see below). 
 
 A total of `r jags_dat$tot.surveys` surveys were conducted at the `r jags_dat$tot.sites` survey sites between 2004 and 2013. Survey effort, both in the number of sites surveyed, and the number of surveys per site varied substantially between years, depending on resources available to conduct surveys (Table 1). In each year of monitoring between 65 and 281 sites were surveyed, with at least 217 sites being surveyed in all but the first and last years of the study. The mean number of surveys per site also varied substantially between years, from a minimum of 1.39 surveys per site in 2004/2005 to a maximum of 3.63 per site in 2007/2008 (Table 1).
-
-```{r surveytable, echo=FALSE, message=FALSE, results = 'asis'}
-require(knitr)
-load("fitted_model.Rdata")
-#number of unique sites surveyed each year
-sites.per.year<-tapply(jags_dat$site, jags_dat$t, function(x) length(unique(x)))
-#number of surveys conducted each year
-surveys.per.year<-tapply(jags_dat$site, jags_dat$t, function(x) length(x))
-survey.per.site<-round(surveys.per.year/sites.per.year,2)
-
-delma_det<-(jags_dat$detect.liz+jags_dat$detect.skin)>0
-sites.with.liz.per.year<-tapply(jags_dat$site[delma_det==TRUE], jags_dat$t[delma_det==TRUE], function(x) length(unique(x)))
-
-survey_table<-data.frame("Year"=paste0(2004:2012, "/", 2005:2013), "Sites"=sites.per.year, "Surveys"=surveys.per.year, "Surveyspersite"=survey.per.site, "SiteswithDelma"=sites.with.liz.per.year, "ProportionwithDetections"=round(sites.with.liz.per.year/sites.per.year, 2))
-
-kable(survey_table, digits=2, align=c("l", "c", "c","c", "c", "c"), 
-			col.names=c("Year", "Sites","Surveys","Surveys per site","Sites with *D. impar*", "Proportion with *D. impar*"),
-			caption="Summary of survey effort and detections during the 9 years of monitoring.", booktabs=TRUE)
-```
 
 ## Landscape and management variables
 
@@ -238,6 +218,52 @@ Probabilities of detecting both lizards and sloughed skins displayed clear but c
 
 Under-tile temperatures also effected the probability of detecting lizards independant of seasonal effects. Probabilities of detection were highest when under-tile temperatures were between 20 and 30 $^\circ C.$ There was a positive effect of the air-soil temperature differential $(\Delta T)$ on the probability of detecting lizards, with a somewhat higher probability of detection when under-tile temperatures were greater than ambient air temperatures (Table 2, Fig. 4).
 
+
+```{r, fig.cap="Map of Victoria showing locations of sites where *D. impar* was, and was not detected during the study.", fig.pos="H", echo=FALSE, cache=FALSE}
+knitr::include_graphics("Figures/Site-map.png")
+```
+
+\newpage
+```{r surveytable, echo=FALSE, message=FALSE, results = 'asis'}
+require(knitr)
+load("fitted_model.Rdata")
+#number of unique sites surveyed each year
+sites.per.year<-tapply(jags_dat$site, jags_dat$t, function(x) length(unique(x)))
+#number of surveys conducted each year
+surveys.per.year<-tapply(jags_dat$site, jags_dat$t, function(x) length(x))
+survey.per.site<-round(surveys.per.year/sites.per.year,2)
+
+delma_det<-(jags_dat$detect.liz+jags_dat$detect.skin)>0
+sites.with.liz.per.year<-tapply(jags_dat$site[delma_det==TRUE], jags_dat$t[delma_det==TRUE], function(x) length(unique(x)))
+
+survey_table<-data.frame("Year"=paste0(2004:2012, "/", 2005:2013), "Sites"=sites.per.year, "Surveys"=surveys.per.year, "Surveyspersite"=survey.per.site, "SiteswithDelma"=sites.with.liz.per.year, "ProportionwithDetections"=round(sites.with.liz.per.year/sites.per.year, 2))
+
+kable(survey_table, digits=2, align=c("l", "c", "c","c", "c", "c"), 
+			col.names=c("Year", "Sites","Surveys","Surveys per site","Sites with *D. impar*", "Proportion with *D. impar*"),
+			caption="Summary of survey effort and detections during the 9 years of monitoring.", booktabs=TRUE)
+```
+
+
+```{r, fig.cap="A. Inferred number of occupied sites over the course of the study. The green line and shaded area are the posterior mean and 95\\% credible intervals for the predicted number of occupied sites in each year, inferred from the dynamic occupancy model. The red line denotes the number of sites where *D. impar* was actually observed in each year, and the blue line denotes the number of sites that were surveyed in each year. The dashed gray line is the total number of sites included in the study. B. Inferred numbers of extinctions (red) and colonisations (green) occurring each year. C. Inferred annual net change in number of occupied sites.", fig.pos="H", echo=FALSE, cache=FALSE}
+knitr::include_graphics("Figures/site_occ_plot.png")
+```
+
+```{r, fig.cap="Posterior densities of regression parameters predicting log-odds of (A) initial occupancy, (B) annual probability of persistence, and (C) annual probability of colonisation by *Delma impar*.", fig.pos="H", echo=FALSE, cache=FALSE}
+knitr::include_graphics("Figures/parameter_plot.png")
+```
+
+```{r, fig.cap="A. Inferred seasonal trends in probabilities of detection for lizards, sloughed skins, and combined, overall probabilities of detection for single surveys using both sources of detection. Detection probabilities for lizards are predicted assuming that surveys are conducted at noon, with a tile temperature of $22^{\\circ}\\text{C}$ and no differential between tile and air temperatures. Shading denotes the 95\\% credible intervals on the inferences. B. Relationship between air and tile temperatures, and the estimated probability of detection for lizards. Predictions are for tile surveys conducted on 1 November.", fig.pos="H", echo=FALSE, cache=FALSE}
+knitr::include_graphics("Figures/detection_plot.png")
+```
+
+```{r, fig.cap="Posterior densities of the standard deviations of the cluster-level random effects terms for occupancy, persistence and colonisation.", fig.pos="H", echo=FALSE, cache=FALSE}
+knitr::include_graphics("Figures/raneff_fig.png")
+```
+
+
+
+\newpage
+
 ```{r detectparamtable, echo=FALSE, message=FALSE, results = 'asis'}
 ##Code to make a table with the parameters influencing detection probability for both lizards and sloughed skins
 require(knitr)
@@ -276,6 +302,8 @@ kable(posterior, digits=3, align=c("l","l","c","c", "c", "c"), row.names=FALSE,
 			caption="Summary statistics for the posteriors of the regression parameters $(\\alpha)$ influencing detection probabilities of actual lizards and indirect evidence of presence, such as sloughed skins and eggs during tile surveys.")
 ```
 
+\newpage
+
 
 # Discussion
 
@@ -301,28 +329,12 @@ Analysis of the artificial cover object detection data presented here provides c
 
 
 # Acknowledgements
-This research was funded by the Victorian Deparment of Environment, Land, Water and Planning, and the Australian Commonwealth Government via the Corangamite, Glenelg-Hopkins and Wimmera Catchment Management Authorities. Numerous land owners and managers provided access to survey sites and other assistance. We thank the many staff and volunteers who collected data, in particular Cath Grant, Donna McMaster, Lauren Koehler, Melinda Thompson, James Booth and Gemma Candy. David Ramsey, Michael Kearney and Ben Phillips provided some helpful modelling advice. Graeme Newell kindly provided access to GIS grassland layers. We thank X, Y and Z for comments on draft of the manuscript. Our work was conducted under research permits granted by the Department of Environment, Land Water and Planning.
+This research was funded by the Victorian Deparment of Environment, Land, Water and Planning, and the Australian Commonwealth Government via the Corangamite, Glenelg-Hopkins and Wimmera Catchment Management Authorities. Numerous land owners and managers provided access to survey sites and other assistance. We thank the many staff and volunteers who collected data, in particular Cath Grant, Donna McMaster, Lauren Koehler, Melinda Thompson, James Booth and Gemma Candy. David Ramsey, Michael Kearney and Ben Phillips provided some helpful modelling advice. Graeme Newell kindly provided access to GIS grassland layers. We thank X, Y and Z for helpful comments on drafts of the manuscript. Our work was conducted under research permits granted by the Department of Environment, Land Water and Planning.
 
 # Data and code
 
 All source code and data necessary to reproduce the analyses presented in this paper are available at https://github.com/scrogster/SLL_2016. Upon acceptance for publication, a snapshot of the code and data will be archived in the Zenodo research repository.  
 
-
-```{r, fig.cap="Map of Victoria showing locations of sites where *D. impar* was, and was not detected during the study.", fig.pos="H", echo=FALSE, cache=FALSE}
-knitr::include_graphics("Figures/Site-map.png")
-```
-
-```{r, fig.cap="A. Inferred number of occupied sites over the course of the study. The green line and shaded area are the posterior mean and 95\\% credible intervals for the predicted number of occupied sites in each year, inferred from the dynamic occupancy model. The red line denotes the number of sites where *D. impar* was actually observed in each year, and the blue line denotes the number of sites that were surveyed in each year. The dashed gray line is the total number of sites included in the study. B. Inferred numbers of extinctions (red) and colonisations (green) occurring each year. C. Inferred annual net change in number of occupied sites.", fig.pos="H", echo=FALSE, cache=FALSE}
-knitr::include_graphics("Figures/site_occ_plot.png")
-```
-
-```{r, fig.cap="Posterior densities of regression parameters predicting log-odds of (A) initial occupancy, (B) annual probability of persistence, and (C) annual probability of colonisation by *Delma impar*.", fig.pos="H", echo=FALSE, cache=FALSE}
-knitr::include_graphics("Figures/parameter_plot.png")
-```
-
-```{r, fig.cap="A. Inferred seasonal trends in probabilities of detection for lizards, sloughed skins, and combined, overall probabilities of detection for single surveys using both sources of detection. Detection probabilities for lizards are predicted assuming that surveys are conducted at noon, with a tile temperature of $22^{\\circ}\\text{C}$ and no differential between tile and air temperatures. Shading denotes the 95\\% credible intervals on the inferences. B. Relationship between air and tile temperatures, and the estimated probability of detection for lizards. Predictions are for tile surveys conducted on 1 November.", fig.pos="H", echo=FALSE, cache=FALSE}
-knitr::include_graphics("Figures/detection_plot.png")
-```
 
 
 # References
