@@ -120,7 +120,7 @@ Tdiffplot<-ggplot(Tdiffcurve, aes(y=mean, x=x))+
 
 ##raster plot of response
 
-pred_data<-expand.grid(Temp=5:60, TempA=0:50, TOD=0) %>%
+pred_data<-expand.grid(Temp=5:60, TempA=5:50, TOD=0) %>%
 	        mutate(Tdiff=Temp-TempA)
 
 beta_means<-colMeans(BETA)
@@ -159,7 +159,7 @@ RASTPLOT<-ggplot(out, aes(y=Temp, x=TempA)) +
 	labs(y=expression("Tile temperature " ( degree~C)),
 			 x=expression("Air temperature " ( degree~C))) +
 #	labs('Air Temperature') +
-	scale_x_continuous(limits=c(0, 40), expand = c(0, 0))+
+	scale_x_continuous(limits=c(5, 40), expand = c(0, 0))+
 	scale_y_continuous(limits=c(5, 50), expand = c(0, 0))+
 #	geom_point(data=dd, aes(y=TempS, x=TempA, col=detect), alpha=0.8, size=0.4) +
 	scale_color_manual(values=c("lightblue", "black"))+
