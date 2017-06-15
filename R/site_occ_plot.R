@@ -36,9 +36,9 @@ NOCC<-ggplot(df, aes(x=year.num, y=post.mean)) +
 	geom_point(col="green")+
 	geom_line(aes(x=year.num, y=num_known_occ), col="red")+
 	geom_point(aes(x=year.num, y=num_known_occ), col="red", pch=3)+
-	geom_line(aes(x=year.num, y=sites_per_year), col="blue")+
-	geom_point(aes(x=year.num, y=sites_per_year), col="blue", pch=2)+
-	geom_hline(yintercept=tot_sites, col="gray", lty=2) +
+#	geom_line(aes(x=year.num, y=sites_per_year), col="blue")+
+#	geom_point(aes(x=year.num, y=sites_per_year), col="blue", pch=2)+
+#	geom_hline(yintercept=tot_sites, col="gray", lty=2) +
 	ylab("Number of occupied sites")+
 	xlab("Year")+
 	ylim(0, NA)+
