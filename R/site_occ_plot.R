@@ -112,6 +112,6 @@ FLUX<-ggplot(df, aes(x=year.num, y=post.mean)) +
 
 #### Arrange plots and dump plot to file  --------------------------------------- ################
 
-pdf("Figures/site_occ_plot.pdf", width=4, height=8)
+pdf("Figures/site_occ_plot.pdf", width=5, height=7.5)
 grid.arrange(NOCC, EXT, FLUX, ncol=1, nrow=3)
 dev.off()

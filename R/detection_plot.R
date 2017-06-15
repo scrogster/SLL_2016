@@ -147,7 +147,10 @@ dd<-data.frame(TempA=jags_dat$TempA, TempS=jags_dat$TempS, Tdiff=TempS-TempA,
 							 yfrac=jags_dat$year.frac, detect=factor(jags_dat$detect.liz)) %>%
 	     filter(yfrac>9/12)
 
-
+#ddunfilt<-data.frame(TempA=jags_dat$TempA, TempS=jags_dat$TempS, Tdiff=TempS-TempA, 
+#							 yfrac=jags_dat$year.frac, detect=factor(jags_dat$detect.liz)) 
+#ggplot(ddunfilt, aes(x=yfrac*365, y=Tdiff, col=factor(detect)))+
+#	geom_point()
 
 RASTPLOT<-ggplot(out, aes(y=Temp, x=TempA)) +
 	geom_raster(aes(fill=p)) +
@@ -186,4 +189,6 @@ theme(legend.background=element_rect(colour="black", fill="white", size=0))
 pdf("Figures/detection_plot.pdf", width=4, height=7)
 grid.arrange(SP, RASTPLOT, ncol=1, nrow=2)
 dev.off()
+
+
 
