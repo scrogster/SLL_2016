@@ -155,7 +155,7 @@ dd<-data.frame(TempA=jags_dat$TempA, TempS=jags_dat$TempS, Tdiff=TempS-TempA,
 RASTPLOT<-ggplot(out, aes(y=Temp, x=TempA)) +
 	geom_raster(aes(fill=p)) +
 #	stat_contour(breaks=c(0.2, 0.6, 0.76), col="grey")+
-	scale_fill_gradientn(colours=rev(terrain.colors(7)))+
+	scale_fill_distiller(type="seq", palette='Reds',  direction=1)+
 	labs(y=expression("Tile temperature " ( degree~C)),
 			 x=expression("Air temperature " ( degree~C))) +
 #	labs('Air Temperature') +

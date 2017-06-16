@@ -27,7 +27,7 @@ OCCGRAPH<-ggplot(psi_curve, aes(x=Grassland, y=Clay)) +
 	facet_wrap(~Type)+
 	xlab("Proportion of grassland within 1000 m") +
 	ylab("Soil clay (%)") +
-	scale_fill_distiller(type="seq", palette=4,  direction=1, name=~psi[1])
+	scale_fill_distiller(type="seq", palette="Greens",  direction=1, name=~psi[1])
 	ggtitle("A. Probability of initial occupancy")+
 	theme_bw()
 
@@ -56,7 +56,7 @@ PERSISTGRAPH<-ggplot(phi_curve, aes(x=Graze, y=Fire)) +
 	facet_wrap(~Grasslevel)+
 	xlab("Grazing intensity score")+
 	ylab("Number of times burnt") +
-	scale_fill_distiller(type="seq", palette=4,  direction=1, name=~phi)
+	scale_fill_distiller(type="seq", palette="Greens",  direction=1, name=~phi)
 	ggtitle("B. Annual probability of persistence")+
 	theme_bw()
 
