@@ -147,9 +147,9 @@ For sloughed skins and eggs, the probability of detection $(p^{indirect}_{j})$ w
 
 $$
 \begin{aligned}
-\log \left(\dfrac{p^{indirect}_{j}}{1-p^{indirect}_{j}} \right) &=\alpha_{10}+ \\
-& \phantom{p=} \alpha_{11}\cos2\pi \text{date}_{j}+\alpha_{12}\sin2\pi \text{date}_{j}+ \\
-& \phantom{p=} \alpha_{13}\cos4\pi \text{date}_{j}+\alpha_{14}\sin4\pi \text{date}_{j}
+\log \left(\dfrac{p^{indirect}_{j}}{1-p^{indirect}_{j}} \right) &=\alpha_{12}+ \\
+& \phantom{p=} \alpha_{13}\cos2\pi \text{date}_{j}+\alpha_{14}\sin2\pi \text{date}_{j}+ \\
+& \phantom{p=} \alpha_{15}\cos4\pi \text{date}_{j}+\alpha_{16}\sin4\pi \text{date}_{j}
 \end{aligned}
 $$
 
