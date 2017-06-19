@@ -9,6 +9,8 @@ author:
 header-includes:
    - \usepackage{setspace}\doublespacing
    - \usepackage{color}
+   - \usepackage{lineno}
+   - \linenumbers
 date: '`r format(Sys.time(), "%e %B %Y")`'
 output:
   pdf_document: default
@@ -256,7 +258,7 @@ knitr::include_graphics("Figures/response_plot.png")
 knitr::include_graphics("Figures/raneff_fig.png")
 ```
 
-```{r, fig.cap="A. Inferred seasonal trends in probabilities of detection for lizards, sloughed skins, and combined, overall probabilities of detection for single surveys using both sources of detection. Detection probabilities for lizards are predicted assuming that surveys are conducted at noon, with a tile temperature of $22^{\\circ}\\text{C}$ and no differential between tile and air temperatures. Shading denotes the 95\\% credible intervals on the inferences. B. Relationship between air and tile temperatures, and the estimated probability of detection for lizards. Predictions are for tile surveys conducted on 1 November.", fig.pos="H", echo=FALSE, cache=FALSE}
+```{r, fig.cap="A. Inferred seasonal trends in probabilities of detection for lizards, sloughed skins, and combined, overall probabilities of detection for single surveys using both sources of detection. Detection probabilities for lizards are predicted assuming that surveys are conducted at noon, with a tile temperature of $22^{\\circ}\\text{C}$ and no differential between tile and air temperatures. Shading denotes the 95\\% credible intervals on the inferences. B. Relationship between air and tile temperatures, and the estimated probability of detection for lizards. The diagonal line denotes air temperature and tile temperature are equal. Predictions are for tile surveys conducted on 1 November at midday.", fig.pos="H", echo=FALSE, cache=FALSE}
 knitr::include_graphics("Figures/detection_plot.png")
 ```
 
