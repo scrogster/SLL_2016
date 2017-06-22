@@ -19,7 +19,7 @@ output:
   word_document:
     reference_docx: Template.docx
 fontsize: 11pt
-geometry: margin=0.9in
+geometry: hmargin=1.0in, vmargin=0.8in
 csl: journal-of-biogeography.csl
 bibliography: DelmaRefs.bib
 ---

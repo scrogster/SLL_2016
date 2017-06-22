@@ -10,7 +10,7 @@ load("fitted_model.Rdata")
 B<-data.frame(out$sims.list$B) %>%
 	rename(Intercept=X1, Grassland=X2, Clay=X3, Roadside=X4)
 
-pred_dat<-expand.grid(Intercept=1, Grassland=seq(0, 1.0, by=0.02), Clay=seq(0, 70, by=0.02), Roadside=c(0, 1))
+pred_dat<-expand.grid(Intercept=1, Grassland=seq(0, 1.0, by=0.01), Clay=seq(0, 70, by=0.02), Roadside=c(0, 1))
 
 coeff<-apply(B, 2, mean)
 
@@ -36,7 +36,7 @@ OCCGRAPH<-ggplot(psi_curve, aes(x=Grassland, y=Clay)) +
 C<-data.frame(out$sims.list$C) %>%
 	rename(Intercept=X1, Grassland=X2, Fire=X3, Fire2=X4, Graze=X5, Graze2=X6)
 
-pred_dat<-expand.grid(Intercept=1, Grassland=seq(0, 1.0, by=0.05), Fire=seq(0, 6, by=0.1), Graze=seq(0, 4, by=0.1))
+pred_dat<-expand.grid(Intercept=1, Grassland=seq(0, 1.0, by=0.05), Fire=seq(0, 6, by=0.02), Graze=seq(0, 4, by=0.02))
 
 coeff<-apply(C, 2, mean)
 
