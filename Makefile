@@ -5,7 +5,8 @@ all: prepped_data.Rdata \
      fitted_model.Rdata \
      figs \
      Delma.docx \
-     Delma.pdf
+     Delma.pdf  \
+     SiteShapefile/tilesites.shp
 
 figs: Figures/detection_plot.pdf Figures/detection_plot.png \
       Figures/site_occ_plot.pdf Figures/site_occ_plot.png \
@@ -31,6 +32,10 @@ formatted_for_JAGS.Rdata: R/format_data.R prepped_data_plusGIS.Rdata DataFromGar
 
 #fit a dynamic occupancy model to the data
 fitted_model.Rdata: R/fit_occ_model.R formatted_for_JAGS.Rdata R/prototype_occmod.txt
+	Rscript $^
+	
+#make a shapefile of the sites and site covariates used in the model for mapping purposes
+SiteShapefile/tilesites.shp:   R/MakeSiteShapefile.R  fitted_model.Rdata
 	Rscript $^
 
 ###################################################
