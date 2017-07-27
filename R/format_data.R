@@ -87,6 +87,7 @@ jags_dat<-list(
 	TempA = TempA,
 	Tdiff = TempS-TempA,
 	time.of.day=timeofday,
+	weeks.first.surv=DelmaFiltered$WeeksSinceFirstSurvey,   #this is the number of weeks since the first time surveyed, use to test "bedding in".
 	grassland=grassland,
 	clay=clay,
 	grazing=grazing,

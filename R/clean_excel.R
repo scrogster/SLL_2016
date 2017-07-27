@@ -3,9 +3,12 @@ require(dplyr)
 require(tidyr)
 require(lubridate)
 
-wcma<-read_excel("DataFromGarry/SLL monitoring database formatted 13May13.xls", 1)
-ccma<-read_excel("DataFromGarry/SLL monitoring database formatted 13May13.xls", 2)
-ghcma<-read_excel("DataFromGarry/SLL monitoring database formatted 13May13.xls", 3)
+wcma<-read_excel("DataFromGarry/SLL monitoring database formatted 13May13.xls", 1, 
+								 col_types=c(rep("guess", 8), "date", "date", rep("guess", 27))) 
+ccma<-read_excel("DataFromGarry/SLL monitoring database formatted 13May13.xls", 2, 
+								 col_types=c(rep("guess", 8), "date", "date", rep("guess", 27))) 
+ghcma<-read_excel("DataFromGarry/SLL monitoring database formatted 13May13.xls", 3, 
+									col_types=c(rep("guess", 8), "date", "date", rep("guess", 27))) 
 
 #own trimws, so don't need newer R/dplyr
 trim_ws<-function (x, which = c("both", "left", "right")) 
@@ -59,7 +62,11 @@ DelmaFiltered<- combined_raw %>%
 	  mutate(yearnum = year(Date)-2003, 
 	  			 sitenum=as.numeric(factor(GridCMA)),
 	  			 yeardayfrac=yday(Date)/365 )%>%   #fraction of the calendar year
-	arrange(GridCMA, CMA, Cluster, Grid, Date)
+	arrange(GridCMA, CMA, Cluster, Grid, Date) %>%
+	group_by(GridCMA) %>%
+	mutate(FirstSurveyDate=min(Date)) %>% #this is a variable giving the first survey date for each site
+	ungroup() %>%
+	mutate(WeeksSinceFirstSurvey=as.numeric(difftime(Date, FirstSurveyDate, units="weeks")))
 
 #these sites to be dropped - only single surveys, and no site coords or other information available.
 dropsites<-c("17.3.1ghcma", "17.6.1ghcma", "10.3.2ccma", "10.3.3ccma")
