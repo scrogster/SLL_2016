@@ -20,8 +20,8 @@ aa<-BETA[,1]+BETA[,2]%*%(cos(2*pi*x))+BETA[,3]%*%(sin(2*pi*x)) +
 	BETA[,4]%*%(cos(4*pi*x))+BETA[,5]%*%(sin(4*pi*x))
 
 #curve for skins, eggs etc
-bb<-BETA[,12]+BETA[,13]%*%(cos(2*pi*x))+BETA[,14]%*%(sin(2*pi*x))+ 
-	BETA[,15]%*%(cos(4*pi*x))+BETA[,16]%*%(sin(4*pi*x))
+bb<-BETA[,13]+BETA[,14]%*%(cos(2*pi*x))+BETA[,15]%*%(sin(2*pi*x))+ 
+	BETA[,16]%*%(cos(4*pi*x))+BETA[,17]%*%(sin(4*pi*x))
 
 cc<-  1-(1-plogis(aa)) * (1-plogis(bb))
 

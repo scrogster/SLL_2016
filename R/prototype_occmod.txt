@@ -42,13 +42,14 @@ model{
 			BETA[8]*((TempS[a]-22)/5) +
 			BETA[9]*pow((TempS[a]-22)/5, 2) +
 			BETA[10]*Tdiff[a] +   #effect of air-soil temp diff. 
-			BETA[11]*((TempS[a]-22)/5)*Tdiff[a]  #interaction between soil temp, and temp differential
+			BETA[11]*((TempS[a]-22)/5)*Tdiff[a] +  #interaction between soil temp, and temp differential
+			BETA[12]* log(weeks.first.surv[a]+1)   #bedding in effect.
 		p.liz[a]<-p.liz.cond[a]* Z[site[a], t[a]] 
 		detect.liz[a]~dbern(p.liz[a])	
 	#--------obs model for skin------------########################################################	
-		fourier.skin[a]<- BETA[13]*(cos(2*pi*year.frac[a]))+BETA[14]*(sin(2*pi*year.frac[a])) + 
-			                BETA[15]*(cos(4*pi*year.frac[a]))+BETA[16]*(sin(4*pi*year.frac[a]))
-		logit(p.skin.cond[a])<-BETA[12]  +fourier.skin[a]  
+		fourier.skin[a]<- BETA[14]*(cos(2*pi*year.frac[a]))+BETA[15]*(sin(2*pi*year.frac[a])) + 
+			                BETA[16]*(cos(4*pi*year.frac[a]))+BETA[17]*(sin(4*pi*year.frac[a]))
+		logit(p.skin.cond[a])<-BETA[13]  +fourier.skin[a] + BETA[18]* log(weeks.first.surv[a]+1)   #bedding in effect.  
 		p.skin[a]<-p.skin.cond[a]* Z[site[a], t[a]] 
 		detect.skin[a]~dbern(p.skin[a])	
 	}
@@ -57,7 +58,7 @@ model{
   for(b in 1:4) {    B[b]~dt(0, pow(2.5,-2), 1) }   #
   for(c in 1:6) {    C[c]~dt(0, pow(2.5,-2), 1) }  
   for(d in 1:2) {    D[d]~dt(0, pow(2.5,-2), 1) }  
-  for(e in 1:16) {BETA[e]~dt(0, pow(2.5,-2), 1)}   
+  for(e in 1:18) {BETA[e]~dt(0, pow(2.5,-2), 1)}   
 	
 	########constant; (pi)##########################################################################
 	pi<-3.141592654
