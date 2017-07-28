@@ -135,7 +135,7 @@ For any given site, the probability of detecting *D. impar* during a single surv
 
 $$y_{ijt} \sim Bern(p_{j}|z_{i,t}=1)$$
 
-Spatial and temporal variation in the probability of detecting *D. impar* during surveys (conditional on presence) was modelled as a function of several survey-level covariates. Many detections during the course of the study were in the form of observations of sloughed skins (and in a very few cases eggs) underneath roof tiles, rather than observations of actual lizards. It was considered unlikely that detection of sloughed skins (or eggs) would be influenced by prevailing temperature or time of day, but deemed plausible that detection of sloughs would have a seasonal component which might differ from that applying to live animals. Accordingly, the detection model allowed for two distinct forms of detection, with different sets of covariates and differing seasonal patterns. In both cases, the annual seasonal trend in detection probability was modelled using a series of sine and cosine terms [a second-order Fourier series, @crespin2002sfb; @heard2015interspecific]. The influences of hour-of-day $(h)$ and under-tile temperatures $(T)$ on the probability of detection were modelled using both linear and quadratic terms to allow for possible curvature in the relationships between these variables and the probability of detection. We also hypothesised that lizards may be more likely to use tiles when temperatures below the tiles were warmer than the ambient temperature, but that this effect may be moderated at higher air temperatures. Therefore, we included the difference between the under-tile and air temperature $(\Delta T)$, and the interaction of this difference with the under-tile temperature as predictors of detection.
+Spatial and temporal variation in the probability of detecting *D. impar* during surveys (conditional on presence) was modelled as a function of several survey-level covariates. Many detections during the course of the study were in the form of observations of sloughed skins (and in a very few cases eggs) underneath roof tiles, rather than observations of actual lizards. It was considered unlikely that detection of sloughed skins (or eggs) would be influenced by prevailing temperature or time of day, but deemed plausible that detection of sloughs would have a seasonal component which might differ from that applying to live animals. Accordingly, the detection model allowed for two distinct forms of detection, with different sets of covariates and differing seasonal patterns. In both cases, the annual seasonal trend in detection probability was modelled using a series of sine and cosine terms [a second-order Fourier series, @crespin2002sfb; @heard2015interspecific]. The influences of hour-of-day $(h)$ and under-tile temperatures $(T)$ on the probability of detection were modelled using both linear and quadratic terms to allow for possible curvature in the relationships between these variables and the probability of detection. We also hypothesised that lizards may be more likely to use tiles when temperatures below the tiles were warmer than the ambient temperature, but that this effect may be moderated at higher air temperatures. Therefore, we included the difference between the under-tile and air temperature $(\Delta T)$, and the interaction of this difference with the under-tile temperature as predictors of detection. To allow for possible effects of time since the tile grid was established on detection probability, the logarithm of the the number of weeks since the first survey (which typically occurred within days of site establishment) was included as a covariate in the model.
 
 For actual lizards, the probability of detection $(p^{liz}_{j})$ was related to the survey-level covariates as follows:
 
@@ -145,17 +145,18 @@ $$
 & \phantom{p=} \alpha_{2}\cos2\pi \text{date}_{j}+ \alpha_{3}\sin2\pi \text{date}_{j}+\\
 & \phantom{p=} \alpha_{4}\cos4\pi \text{date}_{j}+\alpha_{5}\sin4\pi \text{date}_{j}+ \\
 & \phantom{p=} \alpha_{6}h_{j}+\alpha_{7}h_{j}^{2}+
-                \alpha_{8}T_{j}+\alpha_{9}T_{j}^{2}+ \alpha_{10}\Delta T_{j}+ \alpha_{11}T_{j}\times\Delta T_{j}
+                \alpha_{8}T_{j}+\alpha_{9}T_{j}^{2}+ \alpha_{10}\Delta T_{j}+ \alpha_{11}T_{j}\times\Delta T_{j}+ \alpha_{12}log(\text{siteage}_{j})
 \end{aligned}
 $$
 
-For sloughed skins and eggs, the probability of detection $(p^{indirect}_{j})$ was related to a single covariate (Julian date) as follows. 
+For sloughed skins and eggs, the probability of detection $(p^{indirect}_{j})$ was related to Julian date, and the logarithm of the number of weeks since site establishmen as follows. 
 
 $$
 \begin{aligned}
-\log \left(\dfrac{p^{indirect}_{j}}{1-p^{indirect}_{j}} \right) &=\alpha_{12}+ \\
-& \phantom{p=} \alpha_{13}\cos2\pi \text{date}_{j}+\alpha_{14}\sin2\pi \text{date}_{j}+ \\
-& \phantom{p=} \alpha_{15}\cos4\pi \text{date}_{j}+\alpha_{16}\sin4\pi \text{date}_{j}
+\log \left(\dfrac{p^{indirect}_{j}}{1-p^{indirect}_{j}} \right) &=\alpha_{13}+ \\
+& \phantom{p=} \alpha_{14}\cos2\pi \text{date}_{j}+\alpha_{15}\sin2\pi \text{date}_{j}+ \\
+& \phantom{p=} \alpha_{16}\cos4\pi \text{date}_{j}+\alpha_{17}\sin4\pi \text{date}_{j}+ \\
+& \phantom{p=} \alpha_{18}log(\text{siteage}_{j})
 \end{aligned}
 $$
 
@@ -288,17 +289,17 @@ summary_func<-function(x){
 	return(out)
 }
 posterior<-data.frame(t(apply(detect_params, 2, summary_func)))
-row.names(posterior)<-paste0(rep("$\\beta_{", 16), 1:16,"}$")
+row.names(posterior)<-paste0(rep("$\\alpha_{", 18), 1:18,"}$")
 names(posterior)<-c("mean",  "median", "sd", "CI")
 
 detection_type=c(rep("lizard", 11), rep("indirect", 5))
 
 meaning=c("$\\text{Intercept}$", "$\\cos2\\pi \\text{date}$", "$\\sin2\\pi \\text{date}$", 
 					                    "$\\cos4\\pi \\text{date}$", "$\\sin4\\pi \\text{date}$",
-					"$\\text{hour}$", "$\\text{hour}^2$", 
+					"$\\text{hour}$", "$\\text{hour}^2$", "$\\text{log(siteage)}$",
 					"$\\text{Temp}$", "$\\text{Temp}^2$", "$\\Delta\\text{T}$", "$\\text{Temp}\\times\\Delta\\text{T}$",
 					"$\\text{Intercept}$",  "$\\cos2\\pi \\text{date}$", "$\\sin2\\pi \\text{date}$", 
-					                    "$\\cos4\\pi \\text{date}$", "$\\sin4\\pi \\text{date}$"
+					                    "$\\cos4\\pi \\text{date}$", "$\\sin4\\pi \\text{date}$", "$\\text{log(siteage)}$"
 					)
 posterior<-data.frame("Detection"=detection_type, "Covariate"=meaning, posterior)
 
