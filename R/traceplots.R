@@ -50,7 +50,11 @@ BETABETA<-rbind(
 	extract_param("BETA[12]"),
 	extract_param("BETA[13]"),
 	extract_param("BETA[14]"),
-	extract_param("BETA[15]"))
+	extract_param("BETA[15]"), 
+	extract_param("BETA[16]"),
+	extract_param("BETA[17]"),
+	extract_param("BETA[18]")
+	)
 
 
 clusvar<-rbind(
