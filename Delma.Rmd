@@ -292,7 +292,7 @@ posterior<-data.frame(t(apply(detect_params, 2, summary_func)))
 row.names(posterior)<-paste0(rep("$\\alpha_{", 18), 1:18,"}$")
 names(posterior)<-c("mean",  "median", "sd", "CI")
 
-detection_type=c(rep("lizard", 11), rep("indirect", 5))
+detection_type=c(rep("lizard", 13), rep("indirect", 5))
 
 meaning=c("$\\text{Intercept}$", "$\\cos2\\pi \\text{date}$", "$\\sin2\\pi \\text{date}$", 
 					                    "$\\cos4\\pi \\text{date}$", "$\\sin4\\pi \\text{date}$",
