@@ -56,7 +56,7 @@ SP<-ggplot(combined, aes(y=mean, x=x, group=Type, col=Type))+
 	annotate("text", x=Inf, y=Inf, label="A", vjust=1.2, hjust=1.1, size=10)+
 	theme_bw()+
 #	theme(axis.text.x=element_text(hjust=-1.8))+
-	theme(legend.position=c(0.17, 0.83))+
+	theme(legend.position=c(0.16, 0.84))+
 	theme(legend.title=element_blank())+
 	theme(legend.background=element_rect(colour="black", fill="white", size=0))+
 	theme(legend.key=element_rect(colour=NA, size=0))
@@ -155,7 +155,7 @@ dd<-data.frame(TempA=jags_dat$TempA, TempS=jags_dat$TempS, Tdiff=TempS-TempA,
 RASTPLOT<-ggplot(out, aes(y=Temp, x=TempA)) +
 	geom_raster(aes(fill=p)) +
 	scale_fill_distiller(type="seq", palette='Reds',  direction=1)+
-	stat_contour(aes(y=Temp, x=TempA, z=p), breaks=c(0.2, 0.5, 0.7), col="grey")+
+	stat_contour(aes(y=Temp, x=TempA, z=p), breaks=c(0.5), col="grey")+
 	labs(y=expression("Tile temperature " ( degree~C)),
 			 x=expression("Air temperature " ( degree~C))) +
 #	labs('Air Temperature') +
@@ -166,7 +166,7 @@ RASTPLOT<-ggplot(out, aes(y=Temp, x=TempA)) +
 	geom_abline(intercept=0, slope=1) +
 	annotate("text", x=40, y=50, label="B", vjust=1.2, hjust=1.1, size=10)+
 	theme_bw()+
-	theme(legend.position=c(0.12, 0.74))+
+	theme(legend.position=c(0.89, 0.25))+
 	theme(legend.title=element_blank())+
 theme(legend.background=element_rect(colour="black", fill="white", size=0))
 
