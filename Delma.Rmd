@@ -1,7 +1,7 @@
 ---
-title: 'Fragmentation and disturbance drive the occupancy dynamics of a cryptic grassland reptile: Evidence from a long-term, spatially extensive study'
+title: 'Fragmentation and disturbance drive the occupancy dynamics of a cryptic grassland reptile: evidence from a long-term, spatially extensive study'
 author: 
- - Michael P. Scroggie^[Arthur Rylah Institute for Environmental Research, Department of Environment, Land, Water and Planning, 123 Brown St, Heidelberg, Victoria 3084, Australia, and School of Biosciences, University of Melbourne, Victoria 3010, Australia. Corresponding author. michael.scroggie@delwp.vic.gov.au] 
+ - Michael P. Scroggie^[Arthur Rylah Institute for Environmental Research, Department of Environment, Land, Water and Planning, 123 Brown St, Heidelberg, Victoria 3084, Australia, and School of Biosciences, University of Melbourne, Victoria 3010, Australia. Corresponding author. michael.scroggie@delwp.vic.gov.au, http://orcid.org/0000-0001-9441-6565] 
  - Garry N. L. Peterson^[Department of Environment, Land, Water and Planning, 703-709 Raglan Parade, Warrnambool, Victoria 3280, Australia.] 
  - Detlef H. Rohr^[Ecology and Evolution Research Centre, University of New South Wales, Sydney, New South Wales 2052, Australia.]  
  - Evelyn Nicholson^[Department of Environment, Land, Water and Planning, 12 Murray St, Heywood, Victoria 3304, Australia.]
@@ -24,7 +24,7 @@ csl: journal-of-biogeography.csl
 bibliography: DelmaRefs.bib
 ---
 
-Running title: 
+Running title: \textsc{Fragmentation, disturbance and reptile occupancy}
 
 \newpage
 
@@ -35,9 +35,9 @@ This research was funded by the Victorian Department of Environment, Land, Water
 
 # Abstract
 
-**Aim:       ** In fragmented landscapes, conservation practitioners face complex decisions as they seek to maximize the viability of populations. Effective decision-making is often hampered by a lack of knowledge regarding the relative contributions of patch sizes, habitat characteristics, disturbance regimes and the spatial arrangement of habitat on the occupancy dynamics and viability of populations. We sought to determine the drivers of occupancy, persistence and colonisation for populations of the threatened pygopodid lizard *Delma impar* inhabiting remnant native grassland.
+**Aim:       ** In fragmented landscapes, conservation practitioners face complex decisions as they seek to maximize the viability of populations. Effective decision-making is often hampered by a lack of knowledge regarding the relative contributions of patch sizes, habitat characteristics, disturbance regimes and the spatial arrangement of habitat on the occupancy dynamics and viability of populations. We sought to determine the drivers of occupancy, persistence and colonisation for populations of the threatened Striped Legless Lizard (*Delma impar*) inhabiting remnant native grassland.
 
-**Location:     ** A fragmented native grassland landscape in south-western Victoria, Australia.
+**Location:     ** A fragmented grassland landscape in south-western Victoria, Australia.
 
 **Methods:    **  We monitored patch occupancy of *Delma impar* at 291 remnant grassland sites for nine years. The monitoring data were analysed using a dynamic occupancy model which allowed for imperfect detection. We used the model to assess hypotheses regarding the effects of patch characteristics, disturbance regimes and spatial arrangement of habitat on the occupancy dynamics of the species.
 
@@ -61,7 +61,7 @@ In recent decades, patch-occupancy dynamics of habitat-specialists have made a s
 
 Native temperate grassland was widespread in south-eastern Australia at the time of European settlement (c. 180 yr BP), but has been systematically destroyed and degraded through livestock grazing, cultivation, invasion of exotic plants and urban development [@lunt2002grasslands; @williams2007ela]. Only a small fraction of the original extent of this vegetation type remains, chiefly in the form of small, isolated remnants most of which are not formally reserved or managed for conservation. Legal and illegal destruction of remnant grassland also continues in spite of widespread recognition of the parlous conservation status of this vegetation type and it's distinctive biota and legislative and regulatory frameworks for the protection of remnants [@williams2005fil; @williams2005pta;  @williams2007ela].
 
-The extent of historic destruction and degradation of native temperate grassland in south-eastern Australia has lead *D. impar* and other grassland-specialist flora and fauna to undergo profound reductions in extent of occurrence [@recoveryplan]. While it is well established that populations of *D. impar* persist within grassland fragments across the species' historic range, it is not known with certainty whether the species is continuing to decline. Although it has been hypothesised that habitat loss, fragmentation and inappropriate disturbance regimes may adversely effect populations of *D. impar* [@recoveryplan; @howland2014eaten], formal, quantitative assessment of the habitat and management requirements for ensuring population persistence have not been conducted. 
+The extent of historic destruction and degradation of native temperate grassland in south-eastern Australia has lead the Striped Legless Lizard (*D. impar*)  and other grassland-specialist flora and fauna to undergo profound reductions in extent of occurrence [@recoveryplan]. While it is well established that populations of *D. impar* persist within grassland fragments across the species' historic range, it is not known with certainty whether the species is continuing to decline. Although it has been hypothesised that habitat loss, fragmentation and inappropriate disturbance regimes may adversely effect populations of *D. impar* [@recoveryplan; @howland2014eaten], formal, quantitative assessment of the habitat and management requirements for ensuring population persistence have not been conducted. 
 
 ```{r, echo=FALSE, message=FALSE}
 load("fitted_model.Rdata")
@@ -186,7 +186,7 @@ $$
 
 ### Fitting the model
 
-The full, integrated model of occupancy, persistence, colonisation and detection was fitted to the data using Bayesian Markov Chain Monte Carlo (MCMC) methods. Fitting of the model was carried out using JAGS version 4.1.0 [@plummer2003jags]. Convergence of the MCMC algorithm was assessed using the Brooks-Gelman-Rubin statistic [@BGR] and by visual inspection of the chain-histories of selected parameters. A burn-in period of `r format(n.burnin, big.mark=",")` iterations of the MCMC algorithm was used to ensure convergence. An additional `r format(n.iter, big.mark=",")` iterations were then generated from each of `r format(n.chains, big.mark=",")` chains, retaining every `r format(n.thin, big.mark=",")`$^{th}$ iteration for inferences regarding the joint posterior distribution of the parameters and related derived quantities such as the expected numbers of occupied sites, number of colonisations and number of extinctions at each time-step (see above). Following @gelman2006prior and @gelman2008weakly, vaguely informative Cauchy(0, 2.5) priors were specified for the regression parameters of the model, and half-Cauchy(0, 25) priors were specified for the standard deviations of the cluster-level random effects. JAGS code used to fit the model is provided in the Appendix. 
+The full, integrated model of occupancy, persistence, colonisation and detection was fitted to the data using Bayesian Markov Chain Monte Carlo (MCMC) methods. Fitting of the model was carried out using \textsc{JAGS} version 4.1.0 [@plummer2003jags]. Convergence of the MCMC algorithm was assessed using the Brooks-Gelman-Rubin statistic [@BGR] and by visual inspection of the chain-histories of selected parameters. A burn-in period of `r format(n.burnin, big.mark=",")` iterations of the MCMC algorithm was used to ensure convergence. An additional `r format(n.iter, big.mark=",")` iterations were then generated from each of `r format(n.chains, big.mark=",")` chains, retaining every `r format(n.thin, big.mark=",")`$^{th}$ iteration for inferences regarding the joint posterior distribution of the parameters and related derived quantities such as the expected numbers of occupied sites, number of colonisations and number of extinctions at each time-step (see above). Following @gelman2006prior and @gelman2008weakly, vaguely informative Cauchy(0, 2.5) priors were specified for the regression parameters of the model, and half-Cauchy(0, 25) priors were specified for the standard deviations of the cluster-level random effects. 
 
 # Results
 
@@ -254,15 +254,13 @@ More broadly, our results show the value of combining long-term and spatially ex
 
 # Data Accessibility Statement
 
-All R and JAGS code and data necessary to reproduce the analyses presented in this paper are available at https://github.com/scrogster/SLL_2016. Upon acceptance for publication, a snapshot of the code and data will be archived in the Zenodo research repository.  
-
-# Author Contributions
-
-GNL and DHR initiated the study. GNLP, DHR and MPS designed the sampling program. GNLP, DHR and EN collected the data. MPS and GWH analysed the data. MPS lead the writing of the manuscript with contributions from all authors. 
+All \textsc{R} and \textsc{JAGS} code, along with the data necessary to reproduce the analyses presented in this paper are available at https://github.com/scrogster/SLL_2016. Upon acceptance for publication a snapshot of the code and data will be archived in the Zenodo research repository.  
 
 # Biosketch
 
-Michael Scroggie, Garry Peterson and Evelyn Nicholson are all employees of the State of Victoria's Department of Environment, Land, Water and Planning. They share a strong interest in the ecology and conservation of threatened herpetofauna. Detlef (Ted) Rohr is director of Research Ethics and Compliance at the University of New South Wales who maintains a keen interest in conservation biology. Geoff Heard is a herpetologist and lecturer in the School of Environmental Sciences at Charles Sturt University.  
+Michael Scroggie, Garry Peterson and Evelyn Nicholson are all employees of the State of Victoria's Department of Environment, Land, Water and Planning. They share a strong interest in the ecology and conservation of threatened herpetofauna. Detlef (Ted) Rohr is director of Research Ethics and Compliance at the University of New South Wales who maintains a keen interest in reptile conservation. Geoff Heard is a herpetologist and lecturer in the School of Environmental Sciences at Charles Sturt University.  
+
+GNLP and DHR initiated the study. GNLP, DHR and MPS designed the sampling program. GNLP, DHR and EN collected the data. MPS and GWH analysed the data. MPS lead the writing of the manuscript with contributions from all authors.
 
 \newpage
 ```{r surveytable, echo=FALSE, message=FALSE, warning=FALSE, results = 'asis'}
@@ -330,23 +328,23 @@ kable(posterior, digits=3, align=c("l","l","c","c", "c", "c"), row.names=TRUE,
 knitr::include_graphics("Figures/Site-map.png")
 ```
 
-```{r, fig.cap="A: Inferred number of occupied sites over the course of the study. The green line and shaded area are the posterior mean and 95\\% credible intervals for the predicted number of occupied sites in each year, inferred from the dynamic occupancy model. The red line denotes the number of sites where *D. impar* was actually observed in each year. B: Inferred numbers of extinctions (red) and colonisations (green) occurring each year. C: Inferred annual net change in number of occupied sites.", fig.pos="H", echo=FALSE, cache=FALSE}
+```{r, fig.cap="A: Inferred number of sites occupied by *D. impar* over the course of the study. The green line and shaded area are the posterior mean and 95\\% credible intervals for the predicted number of occupied sites in each year, inferred from the dynamic occupancy model. The red line denotes the number of sites where *D. impar* was actually observed in each year. B: Inferred numbers of extinctions (red) and colonisations (green) occurring each year. C: Inferred annual net change in number of occupied sites.", fig.pos="H", echo=FALSE, cache=FALSE}
 knitr::include_graphics("Figures/site_occ_plot.png")
 ```
 
-```{r, fig.cap="Posterior densities of regression parameters predicting log-odds of (A) initial occupancy, (B) annual probability of persistence, and (C) annual probability of colonisation by *Delma impar*.", fig.pos="H", echo=FALSE, cache=FALSE}
+```{r, fig.cap="Posterior densities of regression parameters predicting log-odds of (A) initial occupancy, (B) annual probability of persistence, and (C) annual probability of colonisation by *Delma impar* in remnant grassland sites in Western Victoria.", fig.pos="H", echo=FALSE, cache=FALSE}
 knitr::include_graphics("Figures/parameter_plot.png")
 ```
 
-```{r, fig.cap="Predicted responses of probabilities of initial occupancy, persistence and colonisation to the covariates included in the model.", fig.pos="H", echo=FALSE, cache=FALSE}
+```{r, fig.cap="Predicted effects of covariates on A. initial occupancy, B. persistence and C. colonisation by *D. impar* in grassland remnants in Western Victoria.", fig.pos="H", echo=FALSE, cache=FALSE}
 knitr::include_graphics("Figures/response_plot.png")
 ```
 
-```{r, fig.cap="Posterior densities of the standard deviations of the cluster-level random effects terms for occupancy, persistence and colonisation.", fig.pos="H", echo=FALSE, cache=FALSE}
+```{r, fig.cap="Posterior densities of the standard deviations of the cluster-level random effects terms for occupancy, persistence and colonisation of *D. impar*.", fig.pos="H", echo=FALSE, cache=FALSE}
 knitr::include_graphics("Figures/raneff_fig.png")
 ```
 
-```{r, fig.cap="A: Inferred seasonal trends in probabilities of detection for lizards, sloughed skins, and combined, overall probabilities of detection for single surveys using both sources of detection. Detection probabilities for lizards are predicted assuming that surveys are conducted at noon, with a tile temperature of $22^{\\circ}\\text{C}$, no differential between tile and air temperatures, and one week after intial site establishment. Shading denotes the 95\\% credible intervals on the inferences. B: Relationship between air and tile temperatures, and the estimated probability of detection for lizards. The diagonal line denotes air temperature and tile temperature are equal. The contour line denotes the temperatures where probability of detection >0.5. Predictions are for tile surveys conducted on 1 November at midday, one week after initial site establishment.", fig.pos="H", echo=FALSE, cache=FALSE}
+```{r, fig.cap="A: Inferred seasonal trends in probabilities of detection for lizards, sloughed skins and other indirect evidence, and combined, overall probabilities of detection for single surveys using both sources of detection for *D. impar*. Detection probabilities for lizards are predicted assuming that surveys are conducted at noon, with a tile temperature of $22^{\\circ}\\text{C}$, no differential between tile and air temperatures, and one week after intial site establishment. Shading denotes the 95\\% credible intervals on the inferences. B: Relationship between air and tile temperatures, and the estimated probability of detection for lizards. The diagonal line denotes air temperature and tile temperature are equal. The contour line denotes the temperatures where probability of detection >0.5. Predictions are for tile surveys conducted on 1 November at midday, one week after initial site establishment.", fig.pos="H", echo=FALSE, cache=FALSE}
 knitr::include_graphics("Figures/detection_plot.png")
 ```
 
