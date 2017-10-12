@@ -34,18 +34,16 @@ OCCGRAPH<-ggplot(psi_curve, aes(x=Grassland, y=Clay)) +
 
 #plotting the persistence parameters
 C<-data.frame(out$sims.list$C) %>%
-	rename(Intercept=X1, Grassland=X2, Fire=X3, Fire2=X4, Graze=X5, Graze2=X6)
+	rename(Intercept=X1, Grassland=X2, Fire=X3,  Graze=X4)
 
 pred_dat<-expand.grid(Intercept=1, Grassland=seq(0, 1.0, by=0.05), Fire=seq(0, 6, by=0.02), Graze=seq(0, 4, by=0.02))
 
 coeff<-apply(C, 2, mean)
 
 prob_persist<- plogis( coeff[1]+ 
-	coeff[2]*((pred_dat$Grassland-0.076)/0.146)+ + #roughly centered/scaled grassland area
-	coeff[3]*pred_dat$Fire +                 #some fire
-	coeff[4]*pred_dat$Fire^2 +                 #more than 6 fires
-	coeff[5]*pred_dat$Graze +           #some grazing
-	coeff[6]*pred_dat$Graze^2)
+	coeff[2]*((pred_dat$Grassland-0.076)/0.146)+  #roughly centered/scaled grassland area
+	coeff[3]*pred_dat$Fire +                 #fire score
+	coeff[4]*pred_dat$Graze  )               #grazing score
 phi_curve<-data.frame(prob_persist, pred_dat)
 
 phi_curve<-phi_curve %>% 

@@ -23,9 +23,9 @@ INITPLOT<-ggplot(df, aes(y=value, x=key)) +
 
 #plotting the persistence parameters
 df<-data.frame(out$sims.list$C) %>%
-	rename(Intercept=X1, Grassland=X2, Fire=X3, Fire2=X4, Grazing=X5, Grazing2=X6) %>%
+	rename(Intercept=X1, Grassland=X2, Fire=X3,  Grazing=X4) %>%
 	gather() %>%
-	mutate(key=factor(key, levels=c("Intercept", "Grassland", "Fire", "Fire2", "Grazing", "Grazing2"))) 
+	mutate(key=factor(key, levels=c("Intercept", "Grassland", "Fire",  "Grazing" ))) 
 
 PERSISTPLOT<-ggplot(df, aes(y=value, x=key)) +
 	geom_hline(yintercept=0, linetype=2) +
@@ -33,7 +33,7 @@ PERSISTPLOT<-ggplot(df, aes(y=value, x=key)) +
 	ylab("Parameter value")+
 	xlab("")+
 	scale_x_discrete(labels=c(
-		expression(Intercept), expression(Grassland), expression(Fire), expression(Fire^2), expression(Graze), expression(Graze^2)
+		expression(Intercept), expression(Grassland), expression(Fire),  expression(Graze)
 	))+
 	annotate("text", x=Inf, y=Inf, label="B", vjust=1.2, hjust=1.1, size=8)+
 	theme_bw()
