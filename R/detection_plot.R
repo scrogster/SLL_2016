@@ -43,7 +43,7 @@ combined<-rbind(lizcurve, skincurve, totcurve)
 combined<-data.frame("Type"=c(rep("lizards", 101), rep("indirect", 101), rep("combined", 101)), combined)
 
 combined$x<-combined$x*365
-SP<-ggplot(combined, aes(y=mean, x=x, group=Type, col=Type))+
+SP<-ggplot(combined, aes(y=mean, x=x, group=Type, col=Type, linetype=Type))+
 	geom_ribbon(aes(ymin=lwr, ymax=upp, fill=Type), col=NA, alpha=0.2)+
 	geom_ribbon(aes(ymin=lqt, ymax=uqt, fill=Type), col=NA, alpha=0.4)+
 	geom_line()+
