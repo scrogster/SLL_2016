@@ -54,13 +54,13 @@ This research was funded by the Victorian Department of Environment, Land, Water
 
 The dynamics of patch occupancy within fragmented landscapes reflect the collective results of several inter-related ecological processes. Populations inhabiting small fragments experience stochastic extinctions due to a combination of small-population processes, unsuitable habitat features or unsuitable management regimes [@hanski1996quantitative; @ferraz2003rates; @franken2004influence; @hanski2011habitat; @robles2012influence]. At the same time, varying rates of migration into fragments as a consequence of variation in inter-fragment distance and matrix permeability produce differential rates of migration and colonisation among habitat fragments [@ricketts2001matrix; @gaggiotti2004combining; @cosentino2011spatial]. In combination, these processes determine whether a balance is achieved between rates of population extinction and colonisation, or alternatively occupancy declines and metapopulations collapse as populations succumb to local extinctions at a faster rate than can be offset by migration and population establishment [@hanski1999habitat].
 
-Typically, the processes of local extinction and colonisation are not spatially or temporally homogeneous, but vary in space and time, subject to historic, natural and management processes occurring at differing spatial and temporal scales. The challenge for practitioners managing such systems for conservation is to determine which ecological and management processes are important drivers of patch occupancy while being amenable to management. With this knowledge, appropriate management can be implemented. 
+Typically, the processes of local extinction and colonisation are not spatially or temporally homogeneous, but vary in space and time, subject to historic, natural and management processes occurring at differing spatial and temporal scales. The challenge for practitioners managing such systems for conservation is to determine which ecological and management processes are important drivers of patch occupancy while being amenable to management. With this knowledge appropriate management can be implemented. 
 
-Particularly challenging are decisions focussed on disturbance regimes. Perturbations such as fire, storms, grazing and drought are increasingly recognised as key drivers of ecosystem function in fragmented landscapes [e.g., @ross2002changes; @turner2005landscape; @laurance2008impacts]. For some species, frequent disturbance is vital for metapopulation persistence [e.g., @jakalaniemi2006conservation; @templeton2011transition], while in others disturbance can lead to rapid metapopulation collapse [e.g. @lindenmayer1995modelling]. Moreover, both positive and negative effects of disturbance can be manifest for a given species, resulting from a reliance on disturbance regimes to maintain habitat structure or food resources, but with a threshold of disturbance scale, intensity and frequency beyond which those mechanisms break down  [@snall2005modelling; @stelter1997modelling]. Understanding such relationships is vitally important for effective conservation management when disturbance processes can be at least partially controlled by managers.
+Particularly challenging are decisions focussed on disturbance regimes. Perturbations such as fire, storms, grazing and drought are increasingly recognised as key drivers of ecosystem function in fragmented landscapes [e.g., @ross2002changes; @turner2005landscape; @laurance2008impacts]. For some species, frequent disturbance is vital for metapopulation persistence [e.g., @jakalaniemi2006conservation; @templeton2011transition], while in others disturbance can lead to rapid metapopulation collapse [e.g. @lindenmayer1995modelling]. Moreover, both positive and negative effects of disturbance can be manifest for a given species, resulting from a reliance on disturbance regimes to maintain habitat structure or food resources, but with a threshold of disturbance scale, intensity and frequency beyond which those mechanisms break down  [@snall2005modelling; @stelter1997modelling]. Understanding such relationships is vitally important for effective conservation management. This is of particular importance when disturbance processes can be at least partially controlled by managers seeking to maximise rates of patch occupancy.
 
 In recent decades, patch-occupancy dynamics of habitat-specialists have made a substantial contribution to our understanding of the ecological processes governing species persistence in fragmented landscapes [@hanski1997metapopulation; @ehrlich2004wings; @hanski2004ecology]. Here, we use nine years of occupancy data for an Australian grassland specialist, the Striped Legless Lizard (*Delma impar*) to examine the effects of habitat patch characteristics, disturbance regimes and spatial arrangement of habitat on metapopulation viability.
 
-Native temperate grassland was widespread in south-eastern Australia at the time of European settlement (c. 180 yr BP), but has been systematically destroyed and degraded through livestock grazing, cultivation, invasion of exotic plants and urban development [@lunt2002grasslands; @williams2007ela]. Only a small fraction of the original extent of this vegetation type remains, chiefly in the form of small, isolated remnants most of which are not formally reserved or managed for conservation. Legal and illegal destruction of remnant grassland also continues in spite of widespread recognition of the parlous conservation status of this vegetation type and its distinctive biota and the existence of legislative and regulatory frameworks for the protection of remnants [@williams2005fil; @williams2005pta;  @williams2007ela].
+Native temperate grassland was widespread in south-eastern Australia at the time of European settlement (*c.* 180 yr BP), but has been systematically destroyed and degraded through livestock grazing, cultivation, invasion of exotic plants and urban development [@lunt2002grasslands; @williams2007ela]. Only a small fraction of the original extent of this vegetation type remains, chiefly in the form of small, isolated remnants, most of which are not formally reserved or managed for conservation. Legal and illegal destruction of remnant grassland also continues in spite of widespread recognition of the parlous conservation status of this vegetation type and its distinctive biota as well as the existence of legislative and regulatory frameworks for the protection of remnants [@williams2005fil; @williams2005pta;  @williams2007ela].
 
 The extent of historic destruction and degradation of native temperate grassland in south-eastern Australia has lead the Striped Legless Lizard (*D. impar*)  and other grassland-specialist flora and fauna to undergo profound reductions in extent of occurrence [@recoveryplan]. While it is well established that populations of *D. impar* persist within grassland fragments across the species' historic range, it is not known with certainty whether the species is continuing to decline. Although it has been hypothesised that habitat loss, fragmentation and inappropriate disturbance regimes may adversely effect populations of *D. impar* [@recoveryplan; @howland2014eaten], formal, quantitative assessment of the habitat and management requirements for ensuring population persistence have not been conducted. 
 
@@ -81,7 +81,7 @@ A total of `r jags_dat$tot.sites` sites were selected from the available extent 
 
 We established an array of 50 artificial cover objects (terracotta roofing tiles) at each site. *D. impar* regularly shelters under natural surface objects such as exfoliated basalt rocks, and is also known to readily utilise artificial cover objects [@oshea2005thesis; @peterson2010communal; @howland2016habitat]. Tiles at each site were deployed in a regular grid pattern (5 by 10 tiles) spaced at 5 meter intervals. Tile grids were left in place for the duration of the study, with broken or missing tiles replaced as required.
 
-Surveys involved visiting a site and lifting each of the tiles in turn. All vertebrate species encountered beneath tiles were identified. Occasionally, evidence for the presence of *D. impar* was obtained from observations of sloughed skins underneath the tiles: where sloughed reptile skins could be identified with certainty they were treated as evidence of species presence. Sloughed skins were removed when detected, to avoid double-counting during subsequent surveys at the same site. A few cases of egg-laying beneath tiles were also recorded, and these were also taken as positive evidence of occurrence. At the time of each survey the following variables were also recorded: Julian date, time of day, air temperature and under-tile temperature. It was considered likely that each of these variables could influence the probability of detecting *D. impar* at sites where the species was present (see below). 
+Surveys involved visiting a site and lifting each of the tiles in turn. All vertebrate species encountered beneath tiles were identified. Occasionally, evidence for the presence of *D. impar* was obtained from observations of sloughed skins underneath the tiles: where sloughed reptile skins could be identified with certainty, they were treated as evidence of species presence. Sloughed skins were removed when detected, to avoid double-counting during subsequent surveys at the same site. A few cases of egg-laying beneath tiles were also recorded, and these were also taken as positive evidence of occurrence. At the time of each survey the following variables were also recorded: Julian date, time of day, air temperature and under-tile temperature. It was considered likely that each of these variables could influence the probability of detecting *D. impar* at sites where the species was present (see below). 
 
 A total of `r jags_dat$tot.surveys` surveys were conducted at the `r jags_dat$tot.sites` survey sites between 2004/2005 and 2012/2013. Survey data were collated by temporal periods from 1 July in each calendar year, to 30 June in the following year, with most surveys being conducted between September and May, coinciding with the Austral spring, summer and autumn. Survey effort, both in the number of sites surveyed, and the number of surveys per site varied substantially between years, depending on resources available to conduct surveys (Table 1). In each year of monitoring between 65 and 281 sites were surveyed, with at least 217 sites being surveyed in all but the first and last years of the study. The mean number of surveys per site also varied substantially between years, from a minimum of 1.39 surveys per site in 2004/2005 to a maximum of 3.63 per site in 2007/2008 (Table 1).
 
@@ -95,7 +95,7 @@ Many currently extant populations of *D. impar* occur on roadside habitats. Road
 
 We hypothesised that local extinction at our study sites could occur either as a consequence of stochastic demographic processes [as expected in small, isolated populations; @hanski1999metapopulation] or as a consequence of disturbance, habitat degradation or inappropriate management to which most sites (irrespective of size) are subject to varying degrees [@williams2007ela]. Abundances of the *D. impar* populations we studied are unknown, so we used an estimate of the area of surrounding suitable habitat (native grassland) as a surrogate for population size and hence a predictor of extinction risk due to demographic stochasticity [@hanski1999metapopulation].
 
-Two disturbance processes, fire frequency and grazing intensity by livestock, could be particularly important determinants of local extinction probabilities for this species based either on existing knowledge of the lizard's biology [@howland2016habitat; @dorrough1999] or on the effects of these variables on floristic and structural characteristics of native grasslands in south-eastern Australia [@howland2014eaten; @morgan1999effects]. We summarised the fire histories of each site based on the number of times each site was known to have been burnt between 2004 and 2013. Detailed historic fire histories were unavailable for most sites, so the extent to which current fire regimes are representative of historic fire regimes is unknown. Grazing intensity (mainly due to grazing by Domestic Sheep, *Ovis aries* and to a lesser extent Eastern Grey Kangaroos, *Macropus giganteus*) was categorised on a simple ordinal scale from complete exclusion of grazing animals (grazing score=0), through to intense, frequent grazing (grazing score=4), based on observations by the authors and discussions with land managers. 
+Two disturbance processes (fire and grazing by livestock) could be particularly important determinants of local extinction probabilities for this species based either on existing knowledge of the lizard's biology [@howland2016habitat; @dorrough1999] or on the effects of these variables on floristic and structural characteristics of native grasslands in south-eastern Australia [@howland2014eaten; @morgan1999effects]. We summarised the fire histories of each site based on the number of times each site was known to have been burnt between 2004 and 2013. Detailed historic fire histories were unavailable for most sites, so the extent to which current fire regimes are representative of historic fire regimes is unknown. Grazing intensity (mainly due to grazing by Domestic Sheep, *Ovis aries* and to a lesser extent Eastern Grey Kangaroos, *Macropus giganteus*) was categorised on a simple ordinal scale from complete exclusion of grazing animals (grazing score=0), through to intense, frequent grazing (grazing score=4), based on observations by the authors and discussions with land managers. 
 
 We had minimal prior knowledge regarding the occurrence of *D. impar* in areas surrounding each of the study sites, so the potential for colonisation from neighbouring occupied habitat was uncertain. We also had little knowledge of likely dispersal distances. In the absence of this information, we hypothesised that the predicted extent of native grassland habitat within a 1000 m radius surrounding each site would represent a useful surrogate for likely immigration rates and population connectivity, and hence be a useful predictor of colonisation probabilities.
 
@@ -119,11 +119,11 @@ Initial probability of occupancy at each study site $(\psi_{i,1})$ was modelled 
  
 $$\text{logit}\left(\psi_{i,1}\right)=\beta_{1}+\beta_{2}\text{grass}_{i}+\beta_{3}\text{clay}_{i}+\beta_{4}\text{roadside}_{i} +\epsilon_{\text{occ}}$$
 
-We hypothesised that instances of local extinction at our study sites would occur either as a consequence of stochastic demographic processes relating to population size (for which surrounding native grassland extent was considered a useful surrogate) or as a consequence of prevailing fire and grazing regimes. Both linear and quadratic effect of fire and grazing were included in the model to allow for possible non-linearity in the effects of fire and grazing. Hence, the annual probability of population persistence, $\phi$ was modelled as:
+We hypothesised that instances of local extinction at our study sites would occur either as a consequence of stochastic demographic processes relating to population size (for which surrounding native grassland extent was considered a useful surrogate) or as a consequence of prevailing fire and grazing regimes. Hence, the annual probability of population persistence, $\phi$ was modelled as:
 
 $$
 \begin{aligned}
-\text{logit}\left(\phi_{i,t}\right)=\lambda_{1}+\lambda_{2}\text{grass}_{i}+\lambda_{3}\text{fire}_{i}+\lambda_{4}\text{fire}_{i}^{2}+\lambda_{5}\text{graze}_{i} + \lambda_{6}\text{graze}_{i}^{2}+\epsilon_{\text{persist}} 
+\text{logit}\left(\phi_{i,t}\right)=\lambda_{1}+\lambda_{2}\text{grass}_{i}+\lambda_{3}\text{fire}_{i}+\lambda_{4}\text{graze}_{i} + \epsilon_{\text{persist}} 
 \end{aligned}
 $$
 
@@ -228,9 +228,9 @@ Under-tile temperatures also affected the probability of detecting lizards, inde
 
 Over the course of the study the proportion of our sites that were occupied by *D. impar* declined.  Declines were most marked during the first year of the study, a period coinciding with the worst years of a prolonged and severe drought in south-eastern Australia [@dijk2013millennium]. The rate of decline slowed in later years of the study, despite the drought not breaking until 2009, suggesting that factors other than drought were responsible for temporal variation in the rates of population loss. Overall, the rate of local extinctions outstripped the rate at which vacant habitat was colonised. 
 
-Initially, site occupancy $(\psi_{1})$ for *D. impar* was positively associated with the extent of native grassland in the surrounding landscape, the proportion of clay minerals in the soil, and were higher on roadside habitats. These findings are consistent with our initial hypotheses about the effects of these variables on occupancy of *D. impar*. Previous studies have documented the close association of populations of *D. impar* with native grassland habitats, but have not provided such a detailed quantitative assessment of the relationships between sites occupancy and these habitat attributes at such a large spatial scale [@recoveryplan; @oshea2005thesis; @howland2016habitat]. The use of soil crack refuges by *D. impar* has been well documented [@recoveryplan; @oshea2005thesis; @dorrough1999], so a positive association with clay-rich soils, prone to cracking is consistent with previous understanding of the importance of this habitat attribute to *D. impar*. The positive association between probability of initial occupancy and roadside habitat type is also consistent with previous occurrence records for *D. impar* in Western Victoria, many of which are from roadside reserves. Subsequent to European settlement roadside reserves often retained their native grassland vegetation and were also less likely to be subjected to agricultural practices such as cultivation and application of fertilizers. A long history of deliberate burning and episodic grazing is also a feature of roadside habitats in Western Victoria [@morgan2015biomass], which may have helped to maintain native grassland and thereby maintained suitability for occupancy by *D. impar* within a wider matrix of more intensively and unsuitably managed cropland and improved pasture.
+Initially, site occupancy $(\psi_{1})$ for *D. impar* was positively associated with the extent of native grassland in the surrounding landscape, the proportion of clay minerals in the soil, and were higher on roadside habitats. These findings are consistent with our initial hypotheses about the effects of these variables on occupancy of *D. impar*. Previous studies have documented the close association of populations of *D. impar* with native grassland habitats, but have not provided such a detailed quantitative assessment of the relationships between sites occupancy and these habitat attributes at such a large spatial scale [@recoveryplan; @oshea2005thesis; @howland2016habitat]. The use of soil crack refuges by *D. impar* has been well documented [@recoveryplan; @oshea2005thesis; @dorrough1999], so a positive association with clay-rich soils, prone to cracking is consistent with previous understanding of the importance of this habitat attribute to *D. impar*. The positive association between probability of initial occupancy and roadside habitat type is also consistent with previous occurrence records for *D. impar* in Western Victoria, many of which are from roadside reserves. Subsequent to European settlement roadside reserves often retained their native grassland vegetation and were also less likely to be subjected to agricultural practices such as cultivation and application of fertilizers. A long history of deliberate burning and episodic grazing is also a feature of roadside habitats in Western Victoria [@morgan2015biomass], which may have helped to maintain native grassland and hence high suitability for occupancy by *D. impar* within a wider matrix of more intensively and unsuitably managed cropland and improved pasture.
 
-Although rates of occupancy declined overall, inferred probabilities of persistence were not homogeneous among sites and were associated with habitat and management features at the landscape and site levels. Across the study area, rates of persistence were found to be higher at sites that were subjected to episodic burning and grazing by domestic livestock. While the underlying ecological mechanisms for these relationships require further study, the observed associations between grazing, fire and persistence of *D. impar* populations may have resulted from reduced levels of dominance by invasive plants in appropriately grazed and/or burnt grassland and reduced pasture biomass [@morgan2015biomass]. Excessive pasture biomass may be detrimental to *D. impar* due to shading effects on thermoregulatory behaviour, or because thick accumulations of plant biomass limits access to preferred microhabitats such as soil cracks [@howland2014eaten; @howland2016habitat]. Yearly probabilities of persistence showed little relationship with the amount of grassland habitat present in the landscapes surrounding the sites, possibly reflecting the ability of *D. impar* to persist in small grassland remnants and to utilise other habitat types such as pasture and degraded grasslands provided that structural features and disturbance regimes of these habitats are appropriate.
+Although rates of occupancy declined overall, inferred probabilities of persistence were not homogeneous among sites and were associated with habitat and management features at the landscape and site levels. Across the study area, rates of persistence were found to be higher at sites that were subjected to episodic burning and grazing by domestic livestock. While the underlying ecological mechanisms for these relationships require further study, the observed associations between grazing, fire and persistence of *D. impar* populations may have resulted from reduced levels of dominance by invasive plants in appropriately grazed and/or burnt grassland and reduced pasture biomass [@morgan2015biomass]. Excessive pasture biomass may be detrimental to *D. impar* due to shading effects on thermoregulatory behaviour, or because heavy accumulations of plant biomass limits access to preferred microhabitats such as soil cracks [@howland2014eaten; @howland2016habitat]. Yearly probabilities of persistence showed little relationship with the amount of grassland habitat present in the landscapes surrounding the sites, reflecting the ability of *D. impar* to persist in small grassland remnants and to utilise other habitat types such as pasture and degraded grasslands provided that structural features and disturbance regimes of these habitats are appropriate.
 
 Our finding that probabilities of persistence are higher in the presence of both grazing and burning points to the possibility of using these actions either alone or in combination as a management tools to reduce the rate at which local populations of *D. impar* go extinct. Our results show that applying fire and grazing can effectively increase the probability that local populations of *D. impar* persist in grassland remnants. In order to make more definite conclusions about the effect of fire and grazing regimes, more precise and detailed data are necessary. For fire, this would include information on the frequency, seasonal timing, spatial extent and intensity of burning.  
 
@@ -238,7 +238,7 @@ Prior to European colonisation, the native grasslands of south-eastern Australia
 
 Our results show that probabilities of colonisation ($\gamma$) of vacant habitat by *D. impar* are chiefly governed by availability of remnant grassland habitat in close proximity to the sites. The probability of colonisation at our study sites was strongly and positively influenced by the extent of mapped native grassland habitat in the surrounding landscape. While little is known about movement patterns and home range sizes of *D. impar*, there is some evidence that it is a sedentary species [@coulson1990conservation; @kutt1992microhabitat; @dorrough1999]. While movements of up to 60 m have been recorded during the mating period [@kutt1992microhabitat; @kukolic1994survey], recapture data suggests very small home ranges are typical [<10 m^2^, @oshea2005thesis]. Genetic evidence also suggests very limited dispersal distances [@maldonado2012human]. It seems that movements between habitat patches separated by more than a few hundred meters of unsuitable matrix are unlikely, which will severely limit the capacity for *D. impar* to colonise isolated, vacant areas of otherwise suitable habitat.
 
-Our findings that habitat management influences persistence and that habitat fragmentation influences colonisation have clear conservation and management implications for *D. impar*. The apparent association between disturbance regimes and probabilities of persistence allows some initial direction in selecting management regimes that could be expanded across the species geographic range in order to maintain and improve rates of occupancy. The finding that persistence is more likely at sites that are burnt or grazed suggests that wider and more consistent application of these management actions would be beneficial for this species. An important question for future research on the management of *D. impar* is to identify the most appropriate fire and grazing regimes. Our finding that both fire and grazing are positively associated with persistence of *D. impar* needs to be applied cautiously by managers: it is likely that grazing or fire applied too often, too intensely or with incorrect seasonal timing would have a negative effects on the persistence of *D. impar* populations. The relatively simple metrics we have used here to quantify fire and grazing regimes at our sites may not be suitable for detecting relationships between these aspects of fire and grazing regimes and occupancy by *D. impar*. An experimental approach to fire and grazing management is therefore required: sites known to be occupied by *D. impar* could be experimentally subjected to a variety of fire and grazing regimes, and the resulting patterns of persistence would allow superior management regimes to be identified over time. The relationships between fire and grazing and persistence by *D. impar* revealed by our analysis showed little evidence of reduced rates of persistence under very high disturbance regimes, with estimated rates of persistence near the upper end of the observed ranges no less than those observed at more moderate levels of grazing and fire (Fig. 4). However, the uncertainty around these fitted curves is quite large, meaning that it is not reasonable to conclude that management of fire and grazing to the very highest levels of intensity is not necessarily the most desirable option.
+Our findings that habitat management influences persistence and that habitat fragmentation influences colonisation have clear conservation and management implications for *D. impar*. The apparent association between disturbance regimes and probabilities of persistence allows some initial direction in selecting management regimes that could be expanded across the species geographic range in order to maintain and improve rates of occupancy. The finding that persistence is more likely at sites that are burnt or grazed suggests that wider and more consistent application of these management actions would be beneficial for this species. An important question for future research on the management of *D. impar* is to identify the most appropriate fire and grazing regimes. Our finding that both fire and grazing are positively associated with persistence of *D. impar* needs to be applied cautiously by managers: it is likely that grazing or fire applied too often, too intensely or with incorrect seasonal timing would have a negative effects on the persistence of *D. impar* populations. The relatively simple metrics we have used here to quantify fire and grazing regimes at our sites may not be suitable for detecting relationships between these aspects of fire and grazing regimes and occupancy by *D. impar*. An experimental approach to fire and grazing management is therefore required: sites known to be occupied by *D. impar* could be experimentally subjected to a variety of fire and grazing regimes, and the resulting patterns of persistence would allow superior management regimes to be identified over time. 
 
 The effect of fragmentation on rates of colonisation presents a more difficult challenge to managers. Opportunities to decrease current levels of isolation between patches of remnant habitat by extensive habitat restoration are likely to be severely limited across much of the species range. Economically important land-uses such as broadacre cropping, livestock grazing (particularly where pasture improvement and fertilizer application has taken place) and urban development have lead to large areas of unsuitable habitat across the species range, which are for the most part not compatible with management efforts to enhance connectivity between isolated habitat patches by ecosystem restoration. Land-use changes that further reduce connectivity between known areas of suitable habitat should be prevented wherever possible to prevent further erosion of opportunities for colonisation between areas of remnant native grassland. While restoration of destroyed or degraded native grassland may have some limited capacity to restore functional connectivity between isolated population of *D. impar*, it is unlikely that widespread restoration of degraded or destroyed grassland habitat can be used to significantly improve connectivity between currently isolated habitat remnants across large parts of the species range.
 
@@ -284,67 +284,6 @@ kable(survey_table, digits=2, align=c("l", "c", "c","c", "c", "c"),
 ```
 
 \newpage
-```{r occparamtable, echo=FALSE, message=FALSE, results = 'asis', eval=FALSE}
-require(knitr)
-require(dplyr)
-require(tidyr)
-load("fitted_model.Rdata")
-
-df1<-data.frame(out$sims.list$B) %>%
-	rename(Init_Intercept=X1, Init_Grassland=X2, Init_Clay=X3, Init_Roadside=X4) %>%
-	gather() %>%
-	mutate(key=factor(key, levels=c("Init_Intercept", "Init_Grassland", "Init_Clay","Init_Roadside")))
-
-df2<-data.frame(out$sims.list$C) %>%
-	rename(Persist_Intercept=X1, 
-				 Persist_Grassland=X2, 
-				 Persist_Fire=X3, 
-				 Persist_Fire2=X4, 
-				 Persist_Grazing=X5, 
-				 Persist_Grazing2=X6) %>%
-	gather() %>%
-	mutate(key=factor(key, 
-										levels=c("Persist_Intercept", 
-														 "Persist_Grassland", 
-														 "Persist_Fire", 
-														 "Persist_Fire2", 
-														 "Persist_Grazing", 
-														 "Persist_Grazing2"))) 
-
-tmp<-df2 %>% filter(key=="Persist_Fire") 
-tmp2<-df2 %>% filter(key=="Persist_Fire2") 
-
-plot(tmp$value~tmp2$value)
-
-df3<-data.frame(out$sims.list$D) %>%
-	rename(Col_Intercept=X1, Col_Grassland=X2) %>%
-	gather() %>%
-	mutate(key=factor(key, levels=c("Col_Intercept", "Col_Grassland")))  
-
-df_all<-rbind(df1, df2, df3)
-
-posterior<-df_all %>%
-	group_by(key) %>%
-	summarise(post.mean=mean(value), post.sd=sd(value), post.median=quantile(value, 0.5),
-	post.lwr=quantile(value, 0.025),
-	post.upp=quantile(value, 0.975)) %>%
-	separate(key, c("Process", "Parameter"), sep="_") %>%
-	mutate(Process = replace(Process, Process=="Init", "Initial occupancy")) %>%
-	mutate(Process = replace(Process, Process=="Persist", "Persistence"))%>%
-	mutate(Process = replace(Process, Process=="Col", "Colonisation"))
-
-#row.names(posterior)<-paste0(rep("$\\alpha_{", 18), 1:18,"}$")
-names(posterior)<-c("Process", "Parameter", "mean", "sd", "median", "CI lower", "CI upper")
-
-
-posterior<-data.frame(posterior)
-
-kable(posterior, digits=3, row.names=FALSE,
-			caption="Summary statistics for the posteriors of the parameters influencing probabilities of initial occupancy, persistence and colonisation by *D. impar* at grassland remnants in Western Victoria.")
-```
-
-
-\newpage
 
 ```{r detectparamtable, echo=FALSE, message=FALSE, results = 'asis'}
 ##Code to make a table with the parameters influencing detection probability for both lizards and sloughed skins
@@ -356,20 +295,18 @@ detect_params<-out$sims.list$BETA
 summary_func<-function(x){
 	post.mean=mean(x)
 	post.sd=sd(x)
-	post.median=quantile(x, 0.5)
 	post.lwr=quantile(x, 0.025)
 	post.upp=quantile(x, 0.975)
 	out<-c("post.mean"=format(post.mean, digits=3), 
-				 "post.median"=format(post.median, digits=3), 
 				 "post.sd"=format(post.sd, digits=3), CI=paste(format(post.lwr, digits=3),","
 																																											 ,format(post.upp, digits=3)))
 	return(out)
 }
 posterior<-data.frame(t(apply(detect_params, 2, summary_func)))
 row.names(posterior)<-paste0(rep("$\\alpha_{", 18), 1:18,"}$")
-names(posterior)<-c("mean",  "median", "sd", "CI")
+names(posterior)<-c("mean", "sd", "CI")
 
-detection_type=c(rep("lizard", 13), rep("indirect", 5))
+detection_type=c(rep("lizard", 12), rep("indirect", 6))
 
 meaning=c("$\\text{Intercept}$", "$\\cos2\\pi \\text{date}$", "$\\sin2\\pi \\text{date}$", 
 					                    "$\\cos4\\pi \\text{date}$", "$\\sin4\\pi \\text{date}$",
@@ -381,7 +318,7 @@ meaning=c("$\\text{Intercept}$", "$\\cos2\\pi \\text{date}$", "$\\sin2\\pi \\tex
 					)
 posterior<-data.frame("Detection"=detection_type, "Covariate"=meaning, posterior)
 
-kable(posterior, digits=3, align=c("l","l","c","c", "c", "c"), row.names=TRUE,
+kable(posterior, digits=3, align=c("l","l","c","c", "c"), row.names=TRUE,
 			caption="Summary statistics for the posteriors of the regression parameters $(\\alpha)$ influencing detection probabilities of actual lizards and indirect evidence of presence, such as sloughed skins and eggs during tile surveys.")
 ```
 
@@ -394,7 +331,7 @@ knitr::include_graphics("Figures/Site-map.png")
 knitr::include_graphics("Figures/site_occ_plot.png")
 ```
 
-```{r, fig.cap="Posterior densities of regression parameters predicting log-odds of (A) initial occupancy, (B) annual probability of persistence, and (C) annual probability of colonisation by *Delma impar* in remnant grassland sites in Western Victoria.", fig.pos="H", echo=FALSE, cache=FALSE}
+```{r, fig.cap="Posterior densities of regression parameters relating the covariates of the dynamic occupancy model to (A) initial occupancy, (B) annual probability of persistence, and (C) annual probability of colonisation by *Delma impar* in remnant grassland sites in Western Victoria.", fig.pos="H", echo=FALSE, cache=FALSE}
 knitr::include_graphics("Figures/parameter_plot.png")
 ```
 
