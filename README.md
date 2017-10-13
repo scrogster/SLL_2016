@@ -1,6 +1,6 @@
 
 
-This repository contains all data and code associated with the manuscript: 
+This repository contains all data and code necessary to reproduce the manuscript: 
 
 Scroggie, M.P, Peterson, G.N.L., Rohr, D.H., Nicholson, E. & Heard, G.W. "Fragmentation and disturbance drive the occupancy dynamics of a cryptic grassland reptile: evidence from a long-term, spatially extensive study".
 
