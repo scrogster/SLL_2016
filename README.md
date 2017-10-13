@@ -4,7 +4,7 @@ This repository contains all data and code associated with the manuscript:
 
 Scroggie, M.P, Peterson, G.N.L., Rohr, D.H., Nicholson, E. & Heard, G.W. "Fragmentation and disturbance drive the occupancy dynamics of a cryptic grassland reptile: evidence from a long-term, spatially extensive study".
 
-## Dependencies
+## Install required dependencies
 
 A number of *R* packages and their dependencies are required to run the analysis and generate the figures, tables and manuscript. These can be installed by typing the following command into R.
 
@@ -17,7 +17,7 @@ Just another Gibbs Sampler (JAGS) version 4.3.0 is used to fit the Bayesian dyna
 [https://sourceforge.net/projects/mcmc-jags/files/](https://sourceforge.net/projects/mcmc-jags/files/)
 
 
-## Reproducing the analysis
+## Reproduce the analysis and generate the manuscript
 
 Beware that running the full analysis takes several hours, mainly due to the time required for the model to converge satisfactorily in *JAGS*. To reduce the required time for model fitting, four Markov chains are run in parallel on seperate processor cores using the parallel processing facilities provided by the *R* package [*jagsUI*.](https://cran.r-project.org/web/packages/jagsUI/index.html)
 
