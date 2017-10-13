@@ -18,12 +18,12 @@ figs: Figures/detection_plot.pdf Figures/detection_plot.png \
       
 
 #extracting the survey data from the spreadsheets
-prepped_data.Rdata:  R/clean_excel.R
+prepped_data.Rdata:  R/clean_excel.R DataFromGarry/SLL\ monitoring\ database\ formatted\ 13May13.xls
 	Rscript $^
 
 #formatting GIS and other site related variables, and making spatial data sets
 #will need code here to compile the fire histories...
-prepped_data_plusGIS.Rdata:   R/get_spatial_points.R  prepped_data.Rdata
+prepped_data_plusGIS.Rdata:   R/get_spatial_points.R  prepped_data.Rdata SpatialData/DelmaGridVariables_15Feb2017.xlsx
 	Rscript $^ 
 
 #format the data for JAGS and tidy up workspace
