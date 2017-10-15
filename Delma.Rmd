@@ -87,7 +87,7 @@ A total of `r jags_dat$tot.surveys` surveys were conducted at the `r jags_dat$to
 
 ## Landscape and management variables
 
-As *D .impar* is a grassland specialist [@dorrough1999; @howland2016habitat; @oshea2005thesis], we hypothesised that the amount of remnant grassland habitat in the landscape surrounding each survey site would be positively correlated with the probability of initial occupancy. A GIS layer of predicted extent of native grassland in Victoria derived from floristic databases, expert knowledge, and statistical modelling of bioclimatic and remote-sensed variables was used to estimate the extent of native grassland within a 1000 m radius of each site.
+As *D. impar* is a grassland specialist [@dorrough1999; @howland2016habitat; @oshea2005thesis], we hypothesised that the amount of remnant grassland habitat in the landscape surrounding each survey site would be positively correlated with the probability of initial occupancy. A GIS layer of predicted extent of native grassland in Victoria derived from floristic databases, expert knowledge, and statistical modelling of bioclimatic and remote-sensed variables was used to estimate the extent of native grassland within a 1000 m radius of each site.
 
 Published accounts commonly refer to usage of soil cracks as shelter by *D. impar* [@oshea2005thesis], and associations between the presence of the *D. impar* and clay-rich soils with cracking characteristics are also reported [@dorrough1999]. We hypothesised that *D. impar* would be more likely to occur at sites where the soil had higher clay-mineral content. As a surrogate for the availability of soil cracks at our sites, we obtained gridded GIS data on soil clay content, developed by the Australian Collaborative Land Evaluation Program (ACLEP), endorsed through the National Committee on Soil and Terrain (http://www.asris.csiro.au/themes/NationalGrids.html). 
 
@@ -323,7 +323,7 @@ kable(posterior, digits=3, align=c("l","l","c","c", "c"), row.names=TRUE,
 ```
 
 
-```{r, fig.cap="Map of Victoria showing locations of sites where *D. impar* was, and was not detected during the study.", fig.pos="H", echo=FALSE, cache=FALSE}
+```{r, fig.cap="Map of Victoria, Australia showing locations of sites where *D. impar* was, and was not detected during the study.", fig.pos="H", echo=FALSE, cache=FALSE}
 knitr::include_graphics("Figures/Site-map.png")
 ```
 

@@ -39,7 +39,7 @@ sample_points<-data.frame(grassjoin, ever.detect) %>%
 lizpoints<-SpatialPointsDataFrame(cbind(sample_points$Easting, sample_points$Northing), data=sample_points)
 proj4string(lizpoints)=CRS("+init=epsg:3111")
 
-lizpoints$colvec[lizpoints$ever.detect==1]<-'black'
+lizpoints$colvec[lizpoints$ever.detect==1]<-'red'
 lizpoints$colvec[lizpoints$ever.detect==0]<-'black'
 lizpoints$pchvec[lizpoints$ever.detect==1]<-2
 lizpoints$pchvec[lizpoints$ever.detect==0]<-16
@@ -87,7 +87,7 @@ box()
 legend(x=143.8, y=-33.9, legend=
 			 	c(expression(paste(italic("D. impar"), " detected" )  ), 
 			 		expression(paste(italic("D. impar"), " not detected" )  )),
-			   pch=c(2, 16), col=c('black', 'black'), pt.cex=c(0.5, 0.3))
+			   pch=c(2, 16), col=c('red', 'black'), pt.cex=c(0.5, 0.3))
 par(fig = c(.75, 0.99, .7, 0.985), mar=c(0,0,0,0), new=TRUE)
 plot(ausmain)
 plot(VIC, add=TRUE, col=gray(shade))
