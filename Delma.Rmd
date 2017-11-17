@@ -1,13 +1,13 @@
 ---
 title: 'Fragmentation and disturbance drive the occupancy dynamics of a cryptic grassland reptile: evidence from a long-term, spatially extensive study'
 author: 
- - Michael P. Scroggie^[Arthur Rylah Institute for Environmental Research, Department of Environment, Land, Water and Planning, 123 Brown St, Heidelberg, Victoria 3084, Australia, and School of Biosciences, University of Melbourne, Victoria 3010, Australia. Corresponding author. michael.scroggie@delwp.vic.gov.au, http://orcid.org/0000-0001-9441-6565] 
+ - Michael P. Scroggie^[Corresponding author. Arthur Rylah Institute for Environmental Research, Department of Environment, Land, Water and Planning, 123 Brown St, Heidelberg, Victoria 3084, Australia, and School of Biosciences, University of Melbourne, Victoria 3010, Australia. Corresponding author. michael.scroggie@delwp.vic.gov.au, http://orcid.org/0000-0001-9441-6565] 
  - Garry N. L. Peterson^[Department of Environment, Land, Water and Planning, 703-709 Raglan Parade, Warrnambool, Victoria 3280, Australia.] 
  - Detlef H. Rohr^[Evolution and Ecology Research Centre, University of New South Wales, Sydney, New South Wales 2052, Australia.]  
  - Evelyn Nicholson^[Department of Environment, Land, Water and Planning, 12 Murray St, Heywood, Victoria 3304, Australia.]
  - Geoffrey W. Heard^[School of Environmental Sciences, Charles Sturt University, Albury, New South Wales 2640, Australia]
 header-includes:
-   - \usepackage{setspace}\doublespacing
+   - \usepackage{setspace}\singlespacing
    - \usepackage{color}
    - \usepackage{lineno}
    - \linenumbers
@@ -19,18 +19,13 @@ output:
   fig_caption: yes
   word_document:
     reference_docx: Template.docx
-fontsize: 11pt
+fontsize: 12pt
 geometry: hmargin=1.0in, vmargin=0.8in
-csl: journal-of-biogeography.csl
+csl: biological-conservation.csl
 bibliography: DelmaRefs.bib
 ---
 
-Running title: \textsc{Fragmentation, disturbance and reptile occupancy}
-
-\newpage
-
-# Acknowledgements
-This research was funded by the Victorian Department of Environment, Land, Water and Planning, and the Australian Commonwealth Government via the Corangamite, Glenelg-Hopkins and Wimmera Catchment Management Authorities. Numerous land owners and managers provided access to sites and other assistance. We thank the many staff and volunteers who collected data in particular Cath Grant, Donna McMaster, Lauren Koehler, Melinda Thompson, James Booth and Gemma Candy. David Ramsey, Michael Kearney and Ben Phillips provided some helpful modelling advice. Graeme Newell kindly provided access to grassland spatial data. We thank Deirdre Lucas, Jim Thomson and Lindy Lumsden for helpful comments on drafts of the manuscript. Our work was conducted under permits granted by the Department of Environment, Land, Water and Planning.
+Running title: \textsc{Fragmentation and disturbance drive reptile occupancy}
 
 \newpage
 
@@ -250,18 +245,18 @@ Collectively, these findings provide clear guidance to managers seeking to arres
 
 More broadly, our results show the value of combining long-term and spatially extensive data with dynamic modelling approaches for understanding the drivers of occupancy dynamics of species inhabiting fragmented landscapes. With improved understanding of the habitat and management drivers of site occupancy dynamics, conservation decision makers are able to make well informed decisions regarding where, when and how to carry out management actions to achieve improved conservation outcomes. 
 
-#References
-<div id="refs"></div>
+\newpage
+
+# Acknowledgements
+This research was funded by the Victorian Department of Environment, Land, Water and Planning, and the Australian Commonwealth Government via the Corangamite, Glenelg-Hopkins and Wimmera Catchment Management Authorities. Numerous land owners and managers provided access to sites and other assistance. We thank the many staff and volunteers who collected data in particular Cath Grant, Donna McMaster, Lauren Koehler, Melinda Thompson, James Booth and Gemma Candy. David Ramsey, Michael Kearney and Ben Phillips provided some helpful modelling advice. Graeme Newell kindly provided access to grassland spatial data. We thank Deirdre Lucas, Jim Thomson and Lindy Lumsden for helpful comments on drafts of the manuscript. Our work was conducted under permits granted by the Department of Environment, Land, Water and Planning.
 
 # Data Accessibility Statement
 
 All \textsc{r} and \textsc{jags} code, along with the data necessary to reproduce the analyses presented in this paper are available at https://github.com/scrogster/SLL_2016. Upon acceptance for publication a snapshot of the code and data will be archived in the Zenodo research repository.  
 
-# Biosketch
+#References
+<div id="refs"></div>
 
-Michael Scroggie, Garry Peterson and Evelyn Nicholson are all employees of the State of Victoria's Department of Environment, Land, Water and Planning. They share a strong interest in the ecology and conservation of threatened herpetofauna. Detlef (Ted) Rohr is Director of Research Ethics and Compliance and member of the UNSW Evolution and Ecology Research Group at the University of New South Wales who maintains a keen interest in reptile conservation. Geoff Heard is a herpetologist and lecturer in the School of Environmental Sciences at Charles Sturt University.  
-
-GNLP and DHR initiated the study. GNLP, DHR and MPS designed the sampling program. GNLP, DHR and EN collected the data. MPS and GWH analysed the data. MPS lead the writing of the manuscript with contributions from all authors.
 
 \newpage
 ```{r surveytable, echo=FALSE, message=FALSE, warning=FALSE, results = 'asis'}
