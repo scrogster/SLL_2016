@@ -26,8 +26,6 @@ csl: biological-conservation.csl
 bibliography: DelmaRefs.bib
 ---
 
-Running title: \textsc{Fragmentation and disturbance drive reptile occupancy}
-
 \newpage
 
 # Abstract {-}
