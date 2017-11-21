@@ -7,20 +7,21 @@ author:
  - Evelyn Nicholson^[Department of Environment, Land, Water and Planning, 12 Murray St, Heywood, Victoria 3304, Australia.]
  - Geoffrey W. Heard^[School of Environmental Sciences, Charles Sturt University, Albury, New South Wales 2640, Australia]
 header-includes:
-   - \usepackage{setspace}\singlespacing
+   - \usepackage{setspace}\doublespacing
    - \usepackage{color}
    - \usepackage{lineno}
    - \linenumbers
    - \renewcommand{\footnotesize}{\normalsize}
 date: '`r format(Sys.time(), "%e %B %Y")`'
 output:
-  pdf_document: default
+  pdf_document:
   fig_width: 7
   fig_caption: yes
   word_document:
     reference_docx: Template.docx
-fontsize: 12pt
-geometry: hmargin=1.0in, vmargin=0.8in
+fontsize: 11pt
+number_sections: yes
+geometry: hmargin=1.0in, vmargin=1.0in
 csl: biological-conservation.csl
 bibliography: DelmaRefs.bib
 ---
@@ -29,17 +30,9 @@ Running title: \textsc{Fragmentation and disturbance drive reptile occupancy}
 
 \newpage
 
-# Abstract
+# Abstract {-}
 
-**Aim:       ** In fragmented landscapes, conservation practitioners face complex decisions as they seek to maximize the viability of populations. Effective decision-making is often hampered by a lack of knowledge regarding the relative contributions of patch sizes, habitat characteristics, disturbance regimes and the spatial arrangement of habitat on the occupancy dynamics and viability of populations. We sought to determine the drivers of occupancy, persistence and colonisation for populations of the threatened Striped Legless Lizard (*Delma impar*) inhabiting native grassland fragments.
-
-**Location:     ** A fragmented grassland landscape in Victoria, Australia.
-
-**Methods:    **  We monitored patch occupancy of *D. impar* at 291 remnant grassland sites for nine years. The data were analysed using a dynamic occupancy model which allowed for imperfect detection. We used the model to assess the effects of patch characteristics, disturbance regimes and spatial arrangement of habitat on the occupancy dynamics of the species.
-
-**Results:     ** At the outset of the study, site occupancy was positively associated with the extent of surrounding native grassland habitat and the presence of clay-rich soils. Roadside habitats were also more likely to be occupied. Subsequent population persistence was positively associated with fire and livestock grazing, two key disturbance processes in these grassland systems. Colonisation of unoccupied habitat was more likely when the surrounding landscape contained large amounts of native grassland. Over the course of our study the number of occupied sites declined as rates of colonisation did not balance the rate at which populations went extinct.
-
-**Main conclusions:     ** Our results illustrate the value of long-term dynamic occupancy data for investigating the drivers of species persistence in fragmented landscapes. Conservation of *D. impar* populations in fragmented grassland habitat will require imposition of appropriate fire and grazing regimes and is most likely to be successful in parts of the landscape where extensive networks of native grassland habitat are retained.
+In fragmented landscapes, conservation practitioners face complex decisions as they seek to maximize the viability of populations. Effective decision-making is often hampered by a lack of knowledge regarding the relative contributions of patch sizes, habitat characteristics, disturbance regimes and the spatial arrangement of habitat on the occupancy dynamics and viability of populations. We sought to determine the drivers of occupancy, persistence and colonisation for populations of the threatened Striped Legless Lizard (*Delma impar*) inhabiting native grassland fragments in Victoria, Australia. Over the course of nine years, we monitored patch occupancy of *D. impar* at 291 remnant grassland sites. The data were analysed using a dynamic occupancy model which allowed for imperfect detection. We used our model to assess the effects of patch characteristics, disturbance regimes and the spatial arrangement of habitat on the occupancy dynamics of the species. At the outset of the study, site occupancy was positively associated with the extent of surrounding native grassland habitat and the presence of clay-rich soils. Roadside habitats were also more likely to be occupied. Subsequent population persistence was positively associated with fire and livestock grazing, two key disturbance processes in these grassland systems. Colonisation of unoccupied habitat was more likely when the surrounding landscape contained large amounts of native grassland. Over the course of our study the number of occupied sites declined as rates of colonisation did not balance the rate at which populations went extinct. Our results illustrate the value of long-term dynamic occupancy data for investigating the drivers of species persistence in fragmented landscapes. Conservation of *D. impar* populations in fragmented grassland habitat will require imposition of appropriate fire and grazing regimes and is most likely to be successful in parts of the landscape where extensive networks of native grassland habitat are retained.
 
 **Keywords:     ** Colonisation, *Delma impar*, dynamic occupancy model, extinction, grassland, imperfect detection, reptile. 
 
@@ -66,7 +59,7 @@ load("fitted_model.Rdata")
 
 We collected occupancy data from `r jags_dat$tot.sites` fragments of potential habitat for *D. impar* across south-western Victoria, Australia between 2004 and 2013. Availability of a variety of landscape, habitat and disturbance related variables for these sites allowed us to test hypotheses concerning the influence of these factors in determining current occupancy and probabilities of local extinction and colonisation within the study area. In turn, our long-term spatially-extensive dataset allows us to elucidate the relative contribution of habitat patch characteristics, disturbance regimes and spatial arrangement of habitat to occupancy dynamics of *D. impar* and to identify management regimes needed to maintain occupancy of this threatened species.
 
-# Methods
+# Materials and Methods
 
 ## Study area and sites
 
@@ -247,14 +240,18 @@ More broadly, our results show the value of combining long-term and spatially ex
 
 \newpage
 
-# Acknowledgements
+# Acknowledgements {-}
 This research was funded by the Victorian Department of Environment, Land, Water and Planning, and the Australian Commonwealth Government via the Corangamite, Glenelg-Hopkins and Wimmera Catchment Management Authorities. Numerous land owners and managers provided access to sites and other assistance. We thank the many staff and volunteers who collected data in particular Cath Grant, Donna McMaster, Lauren Koehler, Melinda Thompson, James Booth and Gemma Candy. David Ramsey, Michael Kearney and Ben Phillips provided some helpful modelling advice. Graeme Newell kindly provided access to grassland spatial data. We thank Deirdre Lucas, Jim Thomson and Lindy Lumsden for helpful comments on drafts of the manuscript. Our work was conducted under permits granted by the Department of Environment, Land, Water and Planning.
 
-# Data Accessibility Statement
+# Data Accessibility Statement {-}
 
 All \textsc{r} and \textsc{jags} code, along with the data necessary to reproduce the analyses presented in this paper are available at https://github.com/scrogster/SLL_2016. Upon acceptance for publication a snapshot of the code and data will be archived in the Zenodo research repository.  
 
-#References
+# Role of the funding source {-}
+
+This study was funded by the Corangamite, Glenelg-Hopkins and Wimmera Catchment Management Authorities, and by the Victorian State Government Department of Environment, Land, Water and Planning. These funders played no role in the design, collection, analysis or interpretation of the data. A draft version of the manuscript was subject to an internal review process at the Arthur Rylah Insitute for Environmental Research, and final permission to submit the manuscript was granted by the director, Arthur Rylah Insitute for Environmental Research.
+
+#References {-}
 <div id="refs"></div>
 
 

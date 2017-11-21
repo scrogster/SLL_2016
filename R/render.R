@@ -6,5 +6,5 @@ args = commandArgs(trailingOnly=TRUE)
 out_format=args[2]
 
 if(out_format=="word_document"){render("Delma.Rmd", "word_document")}
-if(out_format=="pdf_document") {render("Delma.Rmd", "pdf_document")}
+if(out_format=="pdf_document") {render("Delma.Rmd", pdf_document(number_sections=TRUE))}
 
