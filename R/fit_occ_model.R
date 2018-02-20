@@ -7,12 +7,13 @@ load("formatted_for_JAGS.Rdata")
 #MCMC settings
 n.chains=4
 n.adapt=2000
-n.iter=60000
-n.burnin=20000
-n.thin=20
+n.burnin=30000
+n.iter=25000+n.burnin
+n.thin=10
 para=TRUE
 
-
+#Random seed
+set.seed(435)
 
 modfile <- 'R/prototype_occmod.txt'
 params <- c('B', 'C', 'D', 'BETA', 
@@ -40,8 +41,8 @@ return(z.init)
 
 #function to generate starting values
 inits <- function(){  
-	list(B=rnorm(4,0,0.2),
-			 C=rnorm(4,0,0.2),
+	list(B=rnorm(5,0,0.2),
+			 C=rnorm(5,0,0.2),
 			 D=rnorm(2,0,0.2), 
 			 BETA=rnorm(18,0,0.2),
 			 Z=z.initiator(),

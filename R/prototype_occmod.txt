@@ -4,16 +4,18 @@ model{
 	#------initial occupancy model---------##########
 		logit(psi[i])<- B[1]+
 		                B[2]*(grassland[i]-0.076)/0.146 +
-		                B[3]*(clay[i]-32.68)/16.77+         #roughly centered/scaled soil clay.
-		                B[4]*roadside[i] +                  #is the site on a roadside?
+		                B[3]*firecode[i] +                 #number of fires
+		                B[4]*grazing[i] +                  #grazing score
+		                B[5]*(clay[i]-32.68)/16.77+         #roughly centered/scaled soil clay.
 		                occ_rf[cluster_id[i]]               #random cluster effect.
 		Z[i, 1]~dbern(psi[i])
 	for(t in 2:max.time){
   #------persistence model---------------##########
 		logit(PHI[i,t])<- C[1]+ 
 			              C[2]*(grassland[i]-0.076)/0.146 + #roughly centered/scaled grassland area
-			              C[3]*firecode[i] +                 #number of firest
+			              C[3]*firecode[i] +                 #number of fires
 		                C[4]*grazing[i] +                  #grazing score
+		                C[5]*(clay[i]-32.68)/16.77+         #roughly centered/scaled soil clay.
 			              persist_rf[cluster_id[i]]         #random cluster effect.
 	#------colonisation model--------------##########
 		logit(GAMMA[i,t])<-D[1] +
@@ -50,11 +52,14 @@ model{
 		logit(p.skin.cond[a])<-BETA[13]  +fourier.skin[a] + BETA[18]* log(weeks.first.surv[a]+1)   #bedding in effect.  
 		p.skin[a]<-p.skin.cond[a]* Z[site[a], t[a]] 
 		detect.skin[a]~dbern(p.skin[a])	
+	#-------PP check quantities..---------########################################################		
+		fake.liz[a]~dbern(p.liz[a])
+		fake.skin[a]~dbern(p.skin[a])
 	}
 	
 	#priors on regression parameters ###############################################################
-  for(b in 1:4) {    B[b]~dt(0, pow(2.5,-2), 1) }   #
-  for(c in 1:4) {    C[c]~dt(0, pow(2.5,-2), 1) }  
+  for(b in 1:5) {    B[b]~dt(0, pow(2.5,-2), 1) }   #
+  for(c in 1:5) {    C[c]~dt(0, pow(2.5,-2), 1) }  
   for(d in 1:2) {    D[d]~dt(0, pow(2.5,-2), 1) }  
   for(e in 1:18) {BETA[e]~dt(0, pow(2.5,-2), 1)}   
 	

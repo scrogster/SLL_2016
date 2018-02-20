@@ -8,9 +8,9 @@ load("fitted_model.Rdata")
 
 #plotting initial occupancy parameters
 df<-data.frame(out$sims.list$B) %>%
-	rename(Intercept=X1, Grassland=X2, Clay=X3, Roadside=X4) %>%
+	rename(Intercept=X1, Grassland=X2, Fire=X3, Grazing=X4, Clay=X5) %>%
 	gather() %>%
-	mutate(key=factor(key, levels=c("Intercept", "Grassland", "Clay","Roadside"))) 
+	mutate(key=factor(key, levels=c("Intercept", "Grassland", "Fire", "Grazing" ,"Clay")))
 
 
 INITPLOT<-ggplot(df, aes(y=value, x=key)) +
@@ -23,9 +23,9 @@ INITPLOT<-ggplot(df, aes(y=value, x=key)) +
 
 #plotting the persistence parameters
 df<-data.frame(out$sims.list$C) %>%
-	rename(Intercept=X1, Grassland=X2, Fire=X3,  Grazing=X4) %>%
+	rename(Intercept=X1, Grassland=X2, Fire=X3, Grazing=X4, Clay=X5) %>%
 	gather() %>%
-	mutate(key=factor(key, levels=c("Intercept", "Grassland", "Fire",  "Grazing" ))) 
+	mutate(key=factor(key, levels=c("Intercept", "Grassland", "Fire", "Grazing" ,"Clay")))
 
 PERSISTPLOT<-ggplot(df, aes(y=value, x=key)) +
 	geom_hline(yintercept=0, linetype=2) +
@@ -33,7 +33,7 @@ PERSISTPLOT<-ggplot(df, aes(y=value, x=key)) +
 	ylab("Parameter value")+
 	xlab("")+
 	scale_x_discrete(labels=c(
-		expression(Intercept), expression(Grassland), expression(Fire),  expression(Graze)
+		expression(Intercept), expression(Grassland), expression(Fire),  expression(Graze), expression(Clay)
 	))+
 	annotate("text", x=Inf, y=Inf, label="B", vjust=1.2, hjust=1.1, size=8)+
 	theme_bw()

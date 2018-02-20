@@ -21,13 +21,15 @@ BB<-rbind(
 extract_param("B[1]"),
 extract_param("B[2]"),
 extract_param("B[3]"),
-extract_param("B[4]"))
+extract_param("B[4]"),
+extract_param("B[5]"))
 
 CC<-rbind(
 	extract_param("C[1]"),
 	extract_param("C[2]"),
 	extract_param("C[3]"),
-	extract_param("C[4]"))
+	extract_param("C[4]"),
+	extract_param("C[5]"))
 
 DD<-rbind(
 	extract_param("D[1]"),

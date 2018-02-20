@@ -3,6 +3,8 @@ all: prepped_data.Rdata \
      prepped_data_plusGIS.Rdata \
      formatted_for_JAGS.Rdata \
      fitted_model.Rdata \
+     ppcheck \
+     clusvars \
      figs \
      Delma.docx \
      Delma.pdf  \
@@ -15,6 +17,10 @@ figs: Figures/detection_plot.pdf Figures/detection_plot.png \
       Figures/response_plot.pdf Figures/response_plot.png \
       Traceplots/initocc_trace.pdf \
       Figures/Site-map.pdf Figures/Site-map.png 
+      
+ppcheck: PP_check.Rdata
+
+clusvars: occ_clusvars.Rdata
       
 
 #extracting the survey data from the spreadsheets
@@ -32,6 +38,13 @@ formatted_for_JAGS.Rdata: R/format_data.R prepped_data_plusGIS.Rdata DataFromGar
 
 #fit a dynamic occupancy model to the data
 fitted_model.Rdata: R/fit_occ_model.R formatted_for_JAGS.Rdata R/prototype_occmod.txt
+	Rscript $^
+
+#do another run for the posterior predictive checks	
+PP_check.Rdata: R/run_PPcheck.R formatted_for_JAGS.Rdata R/prototype_occmod.txt
+	Rscript $^
+
+occ_clusvars.Rdata: R/run_clusvars.R formatted_for_JAGS.Rdata R/prototype_occmod.txt
 	Rscript $^
 	
 #make a shapefile of the sites and site covariates used in the model for mapping purposes
