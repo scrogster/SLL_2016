@@ -313,7 +313,7 @@ kable(posterior, digits=3, align=c("l","l","c","c", "c"), row.names=TRUE,
 ```
 
 
-```{r, fig.cap="Map of Victoria, Australia showing locations of sites where *D. impar* was, and was not detected during the study.", fig.pos="H", echo=FALSE, cache=FALSE, out.width = "6in", fig.align='center'}
+```{r, fig.cap="Map of Victoria, Australia showing locations of sites where \\textit{Delma impar} was, and was not detected during the study.", fig.pos="H", echo=FALSE, cache=FALSE, out.width = "6in", fig.align='center'}
 knitr::include_graphics("Figures/Site-map.pdf")
 ```
 
@@ -321,11 +321,11 @@ knitr::include_graphics("Figures/Site-map.pdf")
 knitr::include_graphics("Figures/site_occ_plot.pdf")
 ```
 
-```{r, fig.cap="Posterior densities of regression parameters relating the covariates of the dynamic occupancy model to (A) initial occupancy, (B) annual probability of persistence, and (C) annual probability of colonisation by *Delma impar* in remnant grassland sites in Western Victoria.", fig.pos="H", echo=FALSE, cache=FALSE, out.width = "4in", fig.align='center'}
+```{r, fig.cap="Posterior densities of regression parameters relating the covariates of the dynamic occupancy model to (A) initial occupancy, (B) annual probability of persistence, and (C) annual probability of colonisation by \\textit{Delma impar} in remnant grassland sites in Western Victoria.", fig.pos="H", echo=FALSE, cache=FALSE, out.width = "4in", fig.align='center'}
 knitr::include_graphics("Figures/parameter_plot.pdf")
 ```
 
-```{r, fig.cap="Predicted effects of covariates on A. initial occupancy, B. persistence and C. colonisation by *D. impar* in grassland remnants in Western Victoria.", fig.pos="H", echo=FALSE, cache=FALSE, out.width = "4in", fig.align='center'}
+```{r, fig.cap="Predicted effects of covariates on A. initial occupancy, B. persistence and C. colonisation by \\textit{Delma impar} in grassland remnants in Western Victoria.", fig.pos="H", echo=FALSE, cache=FALSE, out.width = "4in", fig.align='center'}
 knitr::include_graphics("Figures/response_plot.png")
 ```
 
@@ -333,7 +333,7 @@ knitr::include_graphics("Figures/response_plot.png")
 knitr::include_graphics("Figures/raneff_fig.pdf")
 ```
 
-```{r, fig.cap="A: Inferred seasonal trends in probabilities of detection for lizards, sloughed skins and other indirect evidence, and combined, overall probabilities of detection for single surveys using both sources of detection for *D. impar*. Detection probabilities for lizards are predicted assuming that surveys are conducted at noon, with a tile temperature of $22^{\\circ}\\text{C}$, no differential between tile and air temperatures, and one week after intial site establishment. Shading denotes the 95\\% credible intervals on the inferences. B: Relationship between air temperature and air-tile temperature differential, and the estimated probability of detection for lizards. The horizontal line denotes air temperature and tile temperature are equal. The contour line denotes the conditions where probability of detection = 0.5. The predictions are for tile surveys conducted on 1 November at midday, one week after initial site establishment.", fig.pos="H", echo=FALSE, cache=FALSE, out.width = "4in", fig.align='center'}
+```{r, fig.cap="A: Inferred seasonal trends in probabilities of detection for lizards, sloughed skins and other indirect evidence, and combined, overall probabilities of detection for single surveys using both sources of detection for \\textit{Delma impar}. Detection probabilities for lizards are predicted assuming that surveys are conducted at noon, with a tile temperature of $22^{\\circ}\\text{C}$, no differential between tile and air temperatures, and one week after intial site establishment. Shading denotes the 95\\% credible intervals on the inferences. B: Relationship between air temperature and air-tile temperature differential, and the estimated probability of detection for lizards. The horizontal line denotes air temperature and tile temperature are equal. The contour line denotes the conditions where probability of detection = 0.5. The predictions are for tile surveys conducted on 1 November at midday, one week after initial site establishment.", fig.pos="H", echo=FALSE, cache=FALSE, out.width = "4in", fig.align='center'}
 knitr::include_graphics("Figures/detection_plot.pdf")
 ```
 

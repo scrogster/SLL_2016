@@ -4,7 +4,6 @@ all: prepped_data.Rdata \
      formatted_for_JAGS.Rdata \
      fitted_model.Rdata \
      ppcheck \
-     clusvars \
      figs \
      Delma.docx \
      Delma.pdf  \
@@ -18,7 +17,7 @@ figs: Figures/detection_plot.pdf Figures/detection_plot.png \
       Traceplots/initocc_trace.pdf \
       Figures/Site-map.pdf Figures/Site-map.png 
       
-ppcheck: PP_check.Rdata
+ppcheck: PP_check.Rdata Figures/PP_check_plot.pdf Figures/PP_check_plot.png
 
 clusvars: occ_clusvars.Rdata
       
@@ -42,6 +41,9 @@ fitted_model.Rdata: R/fit_occ_model.R formatted_for_JAGS.Rdata R/prototype_occmo
 
 #do another run for the posterior predictive checks	
 PP_check.Rdata: R/run_PPcheck.R formatted_for_JAGS.Rdata R/prototype_occmod.txt
+	Rscript $^
+	
+Figures/PP_check_plot.pdf: R/plot_PPcheck.R PP_check.Rdata
 	Rscript $^
 
 occ_clusvars.Rdata: R/run_clusvars.R formatted_for_JAGS.Rdata R/prototype_occmod.txt
