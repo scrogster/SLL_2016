@@ -100,6 +100,6 @@ COLGRAPH<-ggplot(col_curve, aes(x=Grassland, y=mean))+
 	theme_bw()+
 	theme(strip.background =element_rect(fill="white"))
 
-pdf("Figures/response_plot.pdf", width=6, height=8)
+pdf("Figures/response_plot.pdf", width=6, height=9)
 grid.arrange(OCCGRAPH, PERSISTGRAPH, COLGRAPH, ncol=1, nrow=3)
 dev.off()
