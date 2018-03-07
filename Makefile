@@ -3,24 +3,20 @@ all: prepped_data.Rdata \
      prepped_data_plusGIS.Rdata \
      formatted_for_JAGS.Rdata \
      fitted_model.Rdata \
-     ppcheck \
      figs \
      Delma.docx \
      Delma.pdf  \
-     SiteShapefile/tilesites.shp
+     SiteShapefile/tilesites.shp \
+     ppcheck 
 
 figs: Figures/detection_plot.pdf Figures/detection_plot.png \
       Figures/site_occ_plot.pdf Figures/site_occ_plot.png \
       Figures/parameter_plot.pdf Figures/parameter_plot.png \
-      Figures/raneff_fig.pdf Figures/raneff_fig.png \
       Figures/response_plot.pdf Figures/response_plot.png \
       Traceplots/initocc_trace.pdf \
       Figures/Site-map.pdf Figures/Site-map.png 
       
 ppcheck: PP_check.Rdata Figures/PP_check_plot.pdf Figures/PP_check_plot.png
-
-clusvars: occ_clusvars.Rdata
-      
 
 #extracting the survey data from the spreadsheets
 prepped_data.Rdata:  R/clean_excel.R DataFromGarry/SLL\ monitoring\ database\ formatted\ 13May13.xls
@@ -46,9 +42,6 @@ PP_check.Rdata: R/run_PPcheck.R formatted_for_JAGS.Rdata R/prototype_occmod.txt
 Figures/PP_check_plot.pdf: R/plot_PPcheck.R PP_check.Rdata
 	Rscript $^
 
-occ_clusvars.Rdata: R/run_clusvars.R formatted_for_JAGS.Rdata R/prototype_occmod.txt
-	Rscript $^
-	
 #make a shapefile of the sites and site covariates used in the model for mapping purposes
 SiteShapefile/tilesites.shp:   R/MakeSiteShapefile.R  fitted_model.Rdata
 	Rscript $^
