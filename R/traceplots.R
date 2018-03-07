@@ -51,35 +51,10 @@ BETABETA<-rbind(
 	extract_param("BETA[13]"),
 	extract_param("BETA[14]"),
 	extract_param("BETA[15]"), 
-	extract_param("BETA[16]"),
-	extract_param("BETA[17]"),
-	extract_param("BETA[18]")
+	extract_param("BETA[16]")
 	)
 
-
-clusvar<-rbind(
-	         extract_param("clus_var_occ"),
-	         extract_param("clus_var_persist"),
-	         extract_param("clus_var_colon"))
-
 dir.create("Traceplots", showWarnings = FALSE)
-
-ggplot(clusvar, aes(x=ITER, y=var1, colour=CHAIN))+
-	geom_line(size=0.1, alpha=0.4)+
-	facet_wrap(~Parameter)+
-	ylab("Parameter value")+
-	xlab("Iteration")+
-	theme_bw()
-ggsave("Traceplots/clusvar.pdf", width=10, height=4)
-
-ggplot(clusvar, aes(x=var1, colour=CHAIN, fill=CHAIN))+
-	geom_density(alpha=0.4)+
-	facet_wrap(~Parameter, scales="free_y")+
-	ylab("Density")+
-	xlab("Value")+
-	theme_bw()
-ggsave("Traceplots/clusvardensity.pdf", width=10, height=4)
-
 
 ggplot(BB, aes(x=ITER, y=var1, colour=CHAIN))+
 	geom_line(size=0.1, alpha=0.4)+

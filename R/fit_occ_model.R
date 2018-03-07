@@ -7,9 +7,9 @@ load("formatted_for_JAGS.Rdata")
 #MCMC settings
 n.chains=4
 n.adapt=2000
-n.burnin=30000
-n.iter=25000+n.burnin
-n.thin=10
+n.burnin=10000
+n.iter=10000+n.burnin
+n.thin=4
 para=TRUE
 
 #Random seed
@@ -17,9 +17,7 @@ set.seed(435)
 
 modfile <- 'R/prototype_occmod.txt'
 params <- c('B', 'C', 'D', 'BETA', 
-						   'Numocc', 'Ext_t', 'Col_t', 'Deficit', 'numexi', 'numcoli',
-						'clus_var_occ', 'clus_var_persist', 'clus_var_colon',
-						'occ_rf', 'persist_rf', 'colon_rf')
+						   'Numocc', 'Ext_t', 'Col_t', 'Deficit', 'numexi', 'numcoli')
 
 z.init<-
 	tapply(DelmaFiltered$DelmaLizards+DelmaFiltered$DelmaOther, 
@@ -44,11 +42,8 @@ inits <- function(){
 	list(B=rnorm(5,0,0.2),
 			 C=rnorm(5,0,0.2),
 			 D=rnorm(2,0,0.2), 
-			 BETA=rnorm(18,0,0.2),
-			 Z=z.initiator(),
-			 clus_var_occ=runif(1, 1, 10),
-			 clus_var_persist=runif(1, 1, 10),
-			 clus_var_colon=runif(1, 1, 10))
+			 BETA=rnorm(16,0,0.2),
+			 Z=z.initiator()  )
 }
 
 out <- jags(data = jags_dat,

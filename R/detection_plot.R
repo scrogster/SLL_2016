@@ -20,8 +20,8 @@ aa<-BETA[,1]+BETA[,2]%*%(cos(2*pi*x))+BETA[,3]%*%(sin(2*pi*x)) +
 	BETA[,4]%*%(cos(4*pi*x))+BETA[,5]%*%(sin(4*pi*x))
 
 #curve for skins, eggs etc
-bb<-BETA[,13]+BETA[,14]%*%(cos(2*pi*x))+BETA[,15]%*%(sin(2*pi*x))+ 
-	BETA[,16]%*%(cos(4*pi*x))+BETA[,17]%*%(sin(4*pi*x))
+bb<-BETA[,12]+BETA[,13]%*%(cos(2*pi*x))+BETA[,14]%*%(sin(2*pi*x))+ 
+	BETA[,15]%*%(cos(4*pi*x))+BETA[,16]%*%(sin(4*pi*x))
 
 cc<-  1-(1-plogis(aa)) * (1-plogis(bb))
 
@@ -158,9 +158,9 @@ dd <- ddunfilt %>%
 	     filter(yfrac > 9/12 & yfrac<12/12 ) 
 
 RASTPLOT<-ggplot(out, aes(y=Tdiff, x=TempA)) +
-	geom_raster(aes(fill=p), interpolate=FALSE) +
+	geom_raster(aes(fill=p), interpolate=TRUE) +
 	scale_fill_distiller(type="seq", palette='OrRd',  direction=1)+
-	geom_contour(aes(z=p), breaks=c(0.5), col=gray(0.3), show.legend = TRUE)+
+	geom_contour(aes(z=p), breaks=c(0.6), col=gray(0.3), show.legend = TRUE)+
 	labs(y=expression(Delta*T( degree~C)),
 			 x=expression("Air temperature " ( degree~C))) +
 	scale_x_continuous(limits=c(9, 41), expand = c(0, -0.5))+

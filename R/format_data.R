@@ -70,7 +70,7 @@ firecode<-grassjoin$TotFires #initially, just use total number of fires as fire 
 spatpoints<-grassjoin[,c("Easting", "Northing")]
 dmat<-dist(as(spatpoints, "matrix"))
 clus<-hclust(dmat)  #heirarchical clustering by geographic distance
-clusters<-cutree(clus, h=1000)  #cut the clustering at 1500m threshold
+clusters<-cutree(clus, h=5000)  #cut the clustering at 1500m threshold
 num_clust<-max(clusters)
 
 

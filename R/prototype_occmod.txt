@@ -6,8 +6,7 @@ model{
 		                B[2]*(grassland[i]-0.076)/0.146 +
 		                B[3]*firecode[i] +                 #number of fires
 		                B[4]*grazing[i] +                  #grazing score
-		                B[5]*(clay[i]-32.68)/16.77+         #roughly centered/scaled soil clay.
-		                occ_rf[cluster_id[i]]               #random cluster effect.
+		                B[5]*(clay[i]-32.68)/16.77         #roughly centered/scaled soil clay.
 		Z[i, 1]~dbern(psi[i])
 	for(t in 2:max.time){
   #------persistence model---------------##########
@@ -15,12 +14,11 @@ model{
 			              C[2]*(grassland[i]-0.076)/0.146 + #roughly centered/scaled grassland area
 			              C[3]*firecode[i] +                 #number of fires
 		                C[4]*grazing[i] +                  #grazing score
-		                C[5]*(clay[i]-32.68)/16.77+         #roughly centered/scaled soil clay.
-			              persist_rf[cluster_id[i]]         #random cluster effect.
+		                C[5]*(clay[i]-32.68)/16.77         #roughly centered/scaled soil clay.
 	#------colonisation model--------------##########
 		logit(GAMMA[i,t])<-D[1] +
-		                D[2]*(grassland[i]-0.076)/0.146 + #roughly centered/scaled grassland area
-		                colon_rf[cluster_id[i]]           #random cluster effect.
+		                D[2]*(grassland[i]-0.076)/0.146  #roughly centered/scaled grassland area
+
 	#------process model-------------------###########	                
 			muZ[i, t]<- Z[i, t-1]*PHI[i, t]   + (1-Z[i, t-1])*GAMMA[i, t]
 			Z[i, t]~dbern(muZ[i, t])
@@ -42,14 +40,13 @@ model{
 			BETA[8]*((TempA[a]-22)/5) +
 			BETA[9]*pow((TempA[a]-22)/5, 2) +
 			BETA[10]*Tdiff[a] +   #effect of air-soil temp diff. 
-			BETA[11]*((TempA[a]-22)/5)*Tdiff[a] +  #interaction between air temp, and temp differential
-			BETA[12]* log(weeks.first.surv[a]+1)   #bedding in effect.
+			BETA[11]*((TempA[a]-22)/5)*Tdiff[a]  #interaction between air temp, and temp differential
 		p.liz[a]<-p.liz.cond[a]* Z[site[a], t[a]] 
 		detect.liz[a]~dbern(p.liz[a])	
 	#--------obs model for skin------------########################################################	
-		fourier.skin[a]<- BETA[14]*(cos(2*pi*year.frac[a]))+BETA[15]*(sin(2*pi*year.frac[a])) + 
-			                BETA[16]*(cos(4*pi*year.frac[a]))+BETA[17]*(sin(4*pi*year.frac[a]))
-		logit(p.skin.cond[a])<-BETA[13]  +fourier.skin[a] + BETA[18]* log(weeks.first.surv[a]+1)   #bedding in effect.  
+		fourier.skin[a]<- BETA[13]*(cos(2*pi*year.frac[a]))+BETA[14]*(sin(2*pi*year.frac[a])) + 
+			                BETA[15]*(cos(4*pi*year.frac[a]))+BETA[16]*(sin(4*pi*year.frac[a]))
+		logit(p.skin.cond[a])<-BETA[12]  +fourier.skin[a]    #bedding in effect.  
 		p.skin[a]<-p.skin.cond[a]* Z[site[a], t[a]] 
 		detect.skin[a]~dbern(p.skin[a])	
 	#-------PP check quantities..---------########################################################		
@@ -61,7 +58,7 @@ model{
   for(b in 1:5) {    B[b]~dt(0, pow(2.5,-2), 1) }   #
   for(c in 1:5) {    C[c]~dt(0, pow(2.5,-2), 1) }  
   for(d in 1:2) {    D[d]~dt(0, pow(2.5,-2), 1) }  
-  for(e in 1:18) {BETA[e]~dt(0, pow(2.5,-2), 1)}   
+  for(e in 1:16) {BETA[e]~dt(0, pow(2.5,-2), 1)}   
 	
 	########constant; (pi)##########################################################################
 	pi<-3.141592654
@@ -71,16 +68,4 @@ model{
                               Ext_t[TT-1]<-sum(ext[,TT])             
                              Col_t[TT-1]<-sum(col[,TT])
                           Deficit[TT-1]<-Col_t[TT-1]-Ext_t[TT-1] }
-  ########cluster-level random effects############################################################
-       clus_var_occ~dt(0, pow(25,-2), 1)T(0, )                     
-            tau.occ<-pow(clus_var_occ, -2)
-   clus_var_persist~dt(0, pow(25,-2), 1)T(0, )      
-            tau.persist<-pow(clus_var_persist, -2)
-     clus_var_colon~dt(0, pow(25,-2), 1)T(0, )    
-            tau.colon<-pow(clus_var_colon, -2)
-  for(kk in 1:num_clust){  
-          occ_rf[kk]~dnorm(0, tau.occ)
-      persist_rf[kk]~dnorm(0, tau.persist)
-        colon_rf[kk]~dnorm(0, tau.colon)
-      }
 }
