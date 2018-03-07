@@ -202,13 +202,12 @@ The annual probability of colonisation of unoccupied sites ($\gamma_{t}$) was st
 
 With extinctions outstripping colonisations, the predicted number of occupied sites declined over the course of the study from `r format(startocc[1], digits=3)` (95\% CI: `r format(startocc[3], digits=4)`, `r format(startocc[4], digits=4)`) in the first year of the study, to `r format(endocc[1], digits=3)` sites (95\% CI: `r format(endocc[3], digits=4)`, `r format(endocc[4], digits=4)`) in the final year of the study (an overall loss  of `r format(decline[1], digits=3)` (95\% CI: `r format(decline[3], digits=4)`, `r format(decline[4], digits=4)`) occupied sites over the 9 years of monitoring; Fig. 2). The net change in occupancy varied among years (and had high uncertainty, Fig. 4) but averaged a loss of `r format(-annchange[1], digits=2)` (95\% CI `r format(-annchange[4], digits=2)`, `r format(-annchange[3], digits=4)`) sites per annum.
 
-The cluster-level random effects terms associated with probabilities of colonisation were especially small and had little uncertainty. Cluster-level variation in the random effects on the probabilities of initial occupancy was greater than the equivalent random effects terms associated with persistence and colonisation but was also more uncertain (Fig. 5). 
 
 ## Detection
 
-Probabilities of detection by observation of lizards and by indirect evidence (sloughed skins and eggs) displayed clear but contrasting annual seasonal cycles (Fig. 6). For lizards, there was a distinct peak in detection probability between September and November (i.e. the Austral spring), with progressively lower detection probabilities from December through to August. Detection probabilities of sloughed skins and eggs were highest in mid-summer (December--January), dropping to very low levels between winter and early spring (June--September, Fig. 6). Combined, the probabilities of detection for *D. impar* by any method peaked during spring and progressively decreased through summer and autumn before reaching a minimum during the Winter months (Fig. 6).
+Probabilities of detection by observation of lizards and by indirect evidence (sloughed skins and eggs) displayed clear but contrasting annual seasonal cycles (Fig. 5). For lizards, there was a distinct peak in detection probability between September and November (i.e. the Austral spring), with progressively lower detection probabilities from December through to August. Detection probabilities of sloughed skins and eggs were highest in mid-summer (December--January), dropping to very low levels between winter and early spring (June--September, Fig. 5). Combined, the probabilities of detection for *D. impar* by any method peaked during spring and progressively decreased through summer and autumn before reaching a minimum during the Winter months (Fig. 6).
 
-Under-tile temperatures also affected the probability of detecting lizards, independent of the underlying seasonal effects. Probabilities of detection were highest when under-tile temperatures were greater than air temperatures, particularly when air temperatures were less than 25 $^\circ \text{C}$. When tile temperatures exceeded 35 - 40 $^\circ \text{C}$, detection became less likely, regardless of air temperature (Table 2, Fig. 5). Time of day had very little effect on probabilities of detection (Table 2). Longer times since site establishment resulted in higher probabilities of detection for lizards, but lower probabilities of indirect detection (sloughed skins or eggs, Table 2).
+Under-tile temperatures also affected the probability of detecting lizards, independent of the underlying seasonal effects. Probabilities of detection were highest when under-tile temperatures were greater than air temperatures, particularly when air temperatures were less than 25 $^\circ \text{C}$. When tile temperatures exceeded 35 - 40 $^\circ \text{C}$, detection became less likely, regardless of air temperature (Table 2, Fig. 5). Time of day had very little effect on probabilities of detection (Table 2).
 
 # Discussion
 
@@ -293,18 +292,27 @@ summary_func<-function(x){
 	return(out)
 }
 posterior<-data.frame(t(apply(detect_params, 2, summary_func)))
-row.names(posterior)<-paste0(rep("$\\alpha_{", 18), 1:18,"}$")
+row.names(posterior)<-paste0(rep("$\\alpha_{", 16), 1:16,"}$")
 names(posterior)<-c("mean", "sd", "CI")
 
-detection_type=c(rep("lizard", 12), rep("indirect", 6))
+detection_type=c(rep("lizard", 11), rep("indirect", 5))
 
-meaning=c("$\\text{Intercept}$", "$\\cos2\\pi \\text{date}$", "$\\sin2\\pi \\text{date}$", 
-					                    "$\\cos4\\pi \\text{date}$", "$\\sin4\\pi \\text{date}$",
-					"$\\text{hour}$", "$\\text{hour}^2$", 
-					"$\\text{Temp}$", "$\\text{Temp}^2$", "$\\Delta\\text{T}$", "$\\text{Temp}\\times\\Delta\\text{T}$",
-					"$\\text{log(siteage)}$",
-					"$\\text{Intercept}$",  "$\\cos2\\pi \\text{date}$", "$\\sin2\\pi \\text{date}$", 
-					                    "$\\cos4\\pi \\text{date}$", "$\\sin4\\pi \\text{date}$", "$\\text{log(siteage)}$"
+meaning=c("$\\text{Intercept}$", 
+					"$\\cos2\\pi \\text{date}$", 
+					"$\\sin2\\pi \\text{date}$", 
+					 "$\\cos4\\pi \\text{date}$", 
+					"$\\sin4\\pi \\text{date}$",
+					"$\\text{hour}$", 
+					"$\\text{hour}^2$", 
+					"$\\text{Temp}$", 
+					"$\\text{Temp}^2$", 
+					"$\\Delta\\text{T}$", 
+					"$\\text{Temp}\\times\\Delta\\text{T}$",
+					"$\\text{Intercept}$",  
+					"$\\cos2\\pi \\text{date}$", 
+					"$\\sin2\\pi \\text{date}$", 
+					"$\\cos4\\pi \\text{date}$", 
+					"$\\sin4\\pi \\text{date}$"
 					)
 posterior<-data.frame("Detection"=detection_type, "Covariate"=meaning, posterior)
 
@@ -317,7 +325,7 @@ kable(posterior, digits=3, align=c("l","l","c","c", "c"), row.names=TRUE,
 knitr::include_graphics("Figures/Site-map.pdf")
 ```
 
-```{r, fig.cap="A: Inferred number of sites occupied by *D. impar* over the course of the study. The green line and shaded area are the posterior mean and 95\\% credible intervals for the predicted number of occupied sites in each year, inferred from the dynamic occupancy model. The red line denotes the number of sites where *D. impar* was actually observed in each year. B: Inferred numbers of extinctions (red) and colonisations (green) occurring each year. C: Inferred annual net change in number of occupied sites.", fig.pos="H", echo=FALSE, cache=FALSE, out.width = "4in", fig.align='center'}
+```{r, fig.cap="A: Inferred number of sites occupied by \\textit{Delma impar}  over the course of the study. The green line and shaded area are the posterior mean and 95\\% credible intervals for the predicted number of occupied sites in each year, inferred from the dynamic occupancy model. The red line denotes the number of sites where \\textit{Delma impar}  was actually observed in each year. B: Inferred numbers of extinctions (red) and colonisations (green) occurring each year. C: Inferred annual net change in number of occupied sites.", fig.pos="H", echo=FALSE, cache=FALSE, out.width = "4in", fig.align='center'}
 knitr::include_graphics("Figures/site_occ_plot.pdf")
 ```
 
@@ -329,11 +337,8 @@ knitr::include_graphics("Figures/parameter_plot.pdf")
 knitr::include_graphics("Figures/response_plot.png")
 ```
 
-```{r, fig.cap="Posterior densities of the standard deviations of the cluster-level random effects terms for occupancy, persistence and colonisation of *D. impar*.", fig.pos="H", echo=FALSE, cache=FALSE, out.width = "4in", fig.align='center'}
-knitr::include_graphics("Figures/raneff_fig.pdf")
-```
 
-```{r, fig.cap="A: Inferred seasonal trends in probabilities of detection for lizards, sloughed skins and other indirect evidence, and combined, overall probabilities of detection for single surveys using both sources of detection for \\textit{Delma impar}. Detection probabilities for lizards are predicted assuming that surveys are conducted at noon, with a tile temperature of $22^{\\circ}\\text{C}$, no differential between tile and air temperatures, and one week after intial site establishment. Shading denotes the 95\\% credible intervals on the inferences. B: Relationship between air temperature and air-tile temperature differential, and the estimated probability of detection for lizards. The horizontal line denotes air temperature and tile temperature are equal. The contour line denotes the conditions where probability of detection = 0.5. The predictions are for tile surveys conducted on 1 November at midday, one week after initial site establishment.", fig.pos="H", echo=FALSE, cache=FALSE, out.width = "4in", fig.align='center'}
+```{r, fig.cap="A: Inferred seasonal trends in probabilities of detection for lizards, sloughed skins and other indirect evidence, and combined, overall probabilities of detection for single surveys using both sources of detection for \\textit{Delma impar}. Detection probabilities for lizards are predicted assuming that surveys are conducted at noon, with a tile temperature of $22^{\\circ}\\text{C}$, no differential between tile and air temperatures, and one week after intial site establishment. Shading denotes the 95\\% credible intervals on the inferences. B: Relationship between air temperature and air-tile temperature differential, and the estimated probability of detection for lizards. The horizontal line denotes air temperature and tile temperature are equal. The contour line denotes the conditions where probability of detection = 0.6. The predictions are for tile surveys conducted on 1 November at midday, one week after initial site establishment.", fig.pos="H", echo=FALSE, cache=FALSE, out.width = "4in", fig.align='center'}
 knitr::include_graphics("Figures/detection_plot.pdf")
 ```
 
