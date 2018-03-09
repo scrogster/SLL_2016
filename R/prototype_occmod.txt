@@ -2,19 +2,22 @@ model{
 	#process.model (matrix form)###################################################################
 	for(i in 1:tot.sites){
 	#------initial occupancy model---------##########
-		logit(psi[i])<- B[1]+
-		                B[2]*(grassland[i]-0.076)/0.146 +
-		                B[3]*firecode[i] +                 #number of fires
+		logit(psi[i])<- B[1]+ 
+			              B[2]*(grassland[i]-0.076)/0.146 + #roughly centered/scaled grassland area
+			              B[3]*firecode[i] +                 #number of fires
 		                B[4]*grazing[i] +                  #grazing score
-		                B[5]*(clay[i]-32.68)/16.77         #roughly centered/scaled soil clay.
+		                B[5]*firecode[i]*grazing[i] +       #fire-grazing interaction.
+		                B[6]*(clay[i]-32.68)/16.77         #roughly centered/scaled soil clay.
 		Z[i, 1]~dbern(psi[i])
 	for(t in 2:max.time){
   #------persistence model---------------##########
 		logit(PHI[i,t])<- C[1]+ 
-			              C[2]*(grassland[i]-0.076)/0.146 + #roughly centered/scaled grassland area
-			              C[3]*firecode[i] +                 #number of fires
-		                C[4]*grazing[i] +                  #grazing score
-		                C[5]*(clay[i]-32.68)/16.77         #roughly centered/scaled soil clay.
+			                C[2]*(grassland[i]-0.076)/0.146 + #roughly centered/scaled grassland area
+			                C[3]*firecode[i] +                 #number of fires
+		                  C[4]*grazing[i] +                  #grazing score
+		                  C[5]*firecode[i]*grazing[i] +       #fire-grazing interaction.
+		                  C[6]*(clay[i]-32.68)/16.77         #roughly centered/scaled soil clay.
+		                
 	#------colonisation model--------------##########
 		logit(GAMMA[i,t])<-D[1] +
 		                D[2]*(grassland[i]-0.076)/0.146  #roughly centered/scaled grassland area
@@ -55,8 +58,8 @@ model{
 	}
 	
 	#priors on regression parameters ###############################################################
-  for(b in 1:5) {    B[b]~dt(0, pow(2.5,-2), 1) }   #
-  for(c in 1:5) {    C[c]~dt(0, pow(2.5,-2), 1) }  
+  for(b in 1:6) {    B[b]~dt(0, pow(2.5,-2), 1) }   #
+  for(c in 1:6) {    C[c]~dt(0, pow(2.5,-2), 1) }  
   for(d in 1:2) {    D[d]~dt(0, pow(2.5,-2), 1) }  
   for(e in 1:16) {BETA[e]~dt(0, pow(2.5,-2), 1)}   
 	

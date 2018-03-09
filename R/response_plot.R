@@ -8,9 +8,9 @@ load("fitted_model.Rdata")
 
 #plotting initial occupancy parameters
 B<-data.frame(out$sims.list$B) %>%
-	rename(Intercept=X1, Grassland=X2, Fire=X3, Grazing=X4, Clay=X5)
+	rename(Intercept=X1, Grassland=X2, Fire=X3, Grazing=X4, Fire.Grazing=X5, Clay=X6)
 
-pred_dat<-expand.grid(Intercept=1, Grassland=seq(0, 1.0, by=0.05), Fire=c(0, 5), Grazing=c(0, 3), Clay=seq(0, 70, by=1))
+pred_dat<-expand.grid(Intercept=1, Grassland=c(0.2, 0.8), Fire=seq(0, 5, by=0.1), Grazing=seq(0, 4, by=0.1), Clay=c(10, 60))
 
 coeff<-apply(B, 2, mean)
 
@@ -18,22 +18,21 @@ prob_occ<-plogis(coeff[1] +
 	               coeff[2]*((pred_dat$Grassland-0.076)/0.146)+
 								 coeff[3]*pred_dat$Fire +
 								 coeff[4]*pred_dat$Grazing +
-	               coeff[5]*((pred_dat$Clay-32.68)/16.77)
+								 coeff[5]*pred_dat$Grazing*pred_dat$Fire+
+	               coeff[6]*((pred_dat$Clay-32.68)/16.77)
 	              )
 
 psi_curve<-data.frame(prob_occ, pred_dat)
-psi_curve$FireType<-ifelse(psi_curve$Fire==0, "Fire=0", "Fire=5")
-psi_curve$GrazeType<-ifelse(psi_curve$Grazing==0, "Grazing=0", "Grazing=3")
+psi_curve$GrasslandType<-ifelse(psi_curve$Grassland==0.2, "Grassland=0.2", "Grassland=0.8")
+psi_curve$ClayType<-ifelse(psi_curve$Clay==10, "Clay=10", "Clay=60")
 
 
-OCCGRAPH<-ggplot(psi_curve, aes(x=Grassland, y=Clay)) +
+OCCGRAPH<-ggplot(psi_curve, aes(x=Fire, y=Grazing)) +
 	geom_raster(aes(fill=prob_occ), interpolate=TRUE)+
-	facet_grid(FireType~GrazeType)+
-  geom_contour(aes(x=Grassland, y=Clay, z=prob_occ), breaks=0.25, col="black", linetype="dotted")+
-  geom_contour(aes(x=Grassland, y=Clay, z=prob_occ), breaks=0.5, col="black", linetype="solid")+
-  geom_contour(aes(x=Grassland, y=Clay, z=prob_occ), breaks=0.75, col="black", linetype="dashed")+
-	xlab("Proportion of grassland within 1000 m") +
-	ylab("Soil clay (%)") +
+	facet_grid(GrasslandType~ClayType)+
+  geom_contour(aes(x=Fire, y=Grazing, z=prob_occ), breaks=0.5, col="black", linetype="solid")+
+	xlab("Fire") +
+	ylab("Grazing") +
 	scale_fill_distiller(type="seq", palette='YlOrRd',  direction=1, name=~psi[1], breaks=c(0, 0.25, 0.5, 0.75, 1))+
 	ggtitle("A. Probability of initial occupancy")+
 	theme_bw()+
@@ -42,35 +41,31 @@ OCCGRAPH<-ggplot(psi_curve, aes(x=Grassland, y=Clay)) +
 
 #plotting the persistence parameters
 C<-data.frame(out$sims.list$C) %>%
-	rename(Intercept=X1, Grassland=X2, Fire=X3, Grazing=X4, Clay=X5)
-pred_dat<-expand.grid(Intercept=1, Grassland=seq(0, 1.0, by=0.05), Fire=c(0, 5), Grazing=c(0, 3), Clay=seq(0, 70, by=1))
+	rename(Intercept=X1, Grassland=X2, Fire=X3, Grazing=X4, Fire.Grazing=X5, Clay=X6)
+pred_dat<-expand.grid(Intercept=1, Grassland=c(0.2, 0.8), Fire=seq(0, 5, by=0.1), Grazing=seq(0, 4, by=0.1), Clay=c(10, 60))
 
 coeff<-apply(C, 2, mean)
 
-prob_persist<-plogis(coeff[1] +
-								 	coeff[2]*((pred_dat$Grassland-0.076)/0.146)+
-								 	coeff[3]*pred_dat$Fire +
-								 	coeff[4]*pred_dat$Grazing +
-								 	coeff[5]*((pred_dat$Clay-32.68)/16.77)
+prob_persist<-plogis(coeff[1] + 
+										 	coeff[2]*((pred_dat$Grassland-0.076)/0.146)+
+										 	coeff[3]*pred_dat$Fire +
+										 	coeff[4]*pred_dat$Grazing +
+										 	coeff[5]*pred_dat$Grazing*pred_dat$Fire+
+										 	coeff[6]*((pred_dat$Clay-32.68)/16.77)
 )
 
-
 phi_curve<-data.frame(prob_persist, pred_dat)
-phi_curve$FireType<-ifelse(phi_curve$Fire==0, "Fire=0", "Fire=5")
-phi_curve$GrazeType<-ifelse(phi_curve$Grazing==0, "Grazing=0", "Grazing=3")
-#phi_curve$GrassType<-ifelse(phi_curve$Grassland==0.2, "Grassland=0.2", "Grassland=0.8")
+phi_curve$GrasslandType<-ifelse(phi_curve$Grassland==0.2, "Grassland=0.2", "Grassland=0.8")
+phi_curve$ClayType<-ifelse(phi_curve$Clay==10, "Clay=10", "Clay=60")
 
-
-
-PERSISTGRAPH<-ggplot(phi_curve, aes(x=Grassland, y=Clay)) +
+PERSISTGRAPH<-ggplot(phi_curve, aes(x=Fire, y=Grazing)) +
 	geom_raster(aes(fill=prob_persist), interpolate=TRUE)+
-	facet_grid(FireType~GrazeType)+
-	geom_contour(aes(x=Grassland, y=Clay, z=prob_persist), breaks=0.8, col="black", linetype="dotted")+
-	geom_contour(aes(x=Grassland, y=Clay, z=prob_persist), breaks=0.9, col="black", linetype="solid")+
-	geom_contour(aes(x=Grassland, y=Clay, z=prob_persist), breaks=0.95, col="black", linetype="dashed")+
-	xlab("Proportion of grassland within 1000 m") +
-	ylab("Soil clay (%)") +
-	scale_fill_distiller(type="seq", palette='YlOrRd',  direction=1, name=~phi, breaks=c(0.5, 0.8, 0.9, 0.95, 1))+
+	facet_grid(GrasslandType~ClayType)+
+	geom_contour(aes(x=Fire, y=Grazing, z=prob_persist), breaks=0.5, col="black", linetype="dotted")+
+	geom_contour(aes(x=Fire, y=Grazing, z=prob_persist), breaks=0.7, col="black", linetype="solid")+
+	xlab("Fire") +
+	ylab("Grazing") +
+	scale_fill_distiller(type="seq", palette='YlOrRd',  direction=1, name=~phi)+
 	ggtitle("B. Annual probability of persistence")+
 	theme_bw()+
 	theme(strip.background =element_rect(fill="white"))
@@ -104,6 +99,6 @@ COLGRAPH<-ggplot(col_curve, aes(x=Grassland, y=mean))+
 	theme_bw()+
 	theme(strip.background =element_rect(fill="white"))
 
-pdf("Figures/response_plot.pdf", width=6, height=9)
+pdf("Figures/response_plot.pdf", width=6.5, height=9)
 grid.arrange(OCCGRAPH, PERSISTGRAPH, COLGRAPH, ncol=1, nrow=3)
 dev.off()

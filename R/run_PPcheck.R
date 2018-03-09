@@ -6,10 +6,10 @@ load("formatted_for_JAGS.Rdata")
 
 #MCMC settings
 n.chains=4
-n.adapt=2000
-n.burnin=5000
-n.iter=5000+n.burnin
-n.thin=5
+n.adapt=1000
+n.burnin=4000
+n.iter=4000+n.burnin
+n.thin=8
 para=TRUE
 
 #Random seed

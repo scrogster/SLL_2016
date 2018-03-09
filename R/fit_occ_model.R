@@ -6,10 +6,10 @@ load("formatted_for_JAGS.Rdata")
 
 #MCMC settings
 n.chains=4
-n.adapt=2000
-n.burnin=10000
-n.iter=10000+n.burnin
-n.thin=4
+n.adapt=1000
+n.burnin=4000
+n.iter=4000+n.burnin
+n.thin=2
 para=TRUE
 
 #Random seed
@@ -39,8 +39,8 @@ return(z.init)
 
 #function to generate starting values
 inits <- function(){  
-	list(B=rnorm(5,0,0.2),
-			 C=rnorm(5,0,0.2),
+	list(B=rnorm(6,0,0.2),
+			 C=rnorm(6,0,0.2),
 			 D=rnorm(2,0,0.2), 
 			 BETA=rnorm(16,0,0.2),
 			 Z=z.initiator()  )
