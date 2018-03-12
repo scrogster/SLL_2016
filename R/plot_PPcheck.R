@@ -55,4 +55,4 @@ liz_plot<-ggplot(liz_stats, aes(x=t, y=real)) +
 
 
 skin_plot+liz_plot + plot_layout(ncol=1, heights = c(1, 1))
-ggsave("Figures/PP_check_plot.pdf", width=6, height=4)
+ggsave("Figures/PP_check_plot.pdf", width=6, height=7)
