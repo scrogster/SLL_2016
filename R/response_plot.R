@@ -61,8 +61,8 @@ phi_curve$ClayType<-ifelse(phi_curve$Clay==10, "Clay=10", "Clay=60")
 PERSISTGRAPH<-ggplot(phi_curve, aes(x=Fire, y=Grazing)) +
 	geom_raster(aes(fill=prob_persist), interpolate=TRUE)+
 	facet_grid(GrasslandType~ClayType)+
-	geom_contour(aes(x=Fire, y=Grazing, z=prob_persist), breaks=0.5, col="black", linetype="dotted")+
-	geom_contour(aes(x=Fire, y=Grazing, z=prob_persist), breaks=0.7, col="black", linetype="solid")+
+	geom_contour(aes(x=Fire, y=Grazing, z=prob_persist), breaks=0.25, col="black", linetype="dotted")+
+	geom_contour(aes(x=Fire, y=Grazing, z=prob_persist), breaks=0.5, col="black", linetype="solid")+
 	xlab("Fire") +
 	ylab("Grazing") +
 	scale_fill_distiller(type="seq", palette='YlOrRd',  direction=1, name=~phi)+
