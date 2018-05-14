@@ -30,9 +30,10 @@ psi_curve$ClayType<-ifelse(psi_curve$Clay==10, "Clay=10", "Clay=60")
 OCCGRAPH<-ggplot(psi_curve, aes(x=Fire, y=Grazing)) +
 	geom_raster(aes(fill=prob_occ), interpolate=TRUE)+
 	facet_grid(GrasslandType~ClayType)+
-  geom_contour(aes(x=Fire, y=Grazing, z=prob_occ), breaks=0.5, col="black", linetype="solid")+
 	xlab("Fire") +
 	ylab("Grazing") +
+	scale_x_continuous(expand=c(0, 0))+
+	scale_y_continuous(expand=c(0, 0))+
 	scale_fill_distiller(type="seq", palette='YlOrRd',  direction=1, name=~psi[1], breaks=c(0, 0.25, 0.5, 0.75, 1))+
 	ggtitle("A. Probability of initial occupancy")+
 	theme_bw()+
@@ -66,6 +67,8 @@ PERSISTGRAPH<-ggplot(phi_curve, aes(x=Fire, y=Grazing)) +
 	xlab("Fire") +
 	ylab("Grazing") +
 	scale_fill_distiller(type="seq", palette='YlOrRd',  direction=1, name=~phi)+
+	scale_x_continuous(expand=c(0, 0))+
+	scale_y_continuous(expand=c(0, 0))+
 	ggtitle("B. Annual probability of persistence")+
 	theme_bw()+
 	theme(strip.background =element_rect(fill="white"))
@@ -99,6 +102,6 @@ COLGRAPH<-ggplot(col_curve, aes(x=Grassland, y=mean))+
 	theme_bw()+
 	theme(strip.background =element_rect(fill="white"))
 
-pdf("Figures/response_plot.pdf", width=6.5, height=9)
+pdf("Figures/response_plot.pdf", width=5, height=10)
 grid.arrange(OCCGRAPH, PERSISTGRAPH, COLGRAPH, ncol=1, nrow=3)
 dev.off()
