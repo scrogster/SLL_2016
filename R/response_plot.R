@@ -10,7 +10,7 @@ load("fitted_model.Rdata")
 B<-data.frame(out$sims.list$B) %>%
 	rename(Intercept=X1, Grassland=X2, Fire=X3, Grazing=X4, Fire.Grazing=X5, Clay=X6)
 
-pred_dat<-expand.grid(Intercept=1, Grassland=c(0.2, 0.8), Fire=seq(0, 5, by=0.1), Grazing=seq(0, 4, by=0.1), Clay=c(10, 60))
+pred_dat<-expand.grid(Intercept=1, Grassland=c(0.2, 0.8), Fire=seq(0, 5, by=0.1), Grazing=seq(0, 3, by=0.1), Clay=c(10, 60))
 
 coeff<-apply(B, 2, mean)
 
@@ -43,7 +43,7 @@ OCCGRAPH<-ggplot(psi_curve, aes(x=Fire, y=Grazing)) +
 #plotting the persistence parameters
 C<-data.frame(out$sims.list$C) %>%
 	rename(Intercept=X1, Grassland=X2, Fire=X3, Grazing=X4, Fire.Grazing=X5, Clay=X6)
-pred_dat<-expand.grid(Intercept=1, Grassland=c(0.2, 0.8), Fire=seq(0, 5, by=0.1), Grazing=seq(0, 4, by=0.1), Clay=c(10, 60))
+pred_dat<-expand.grid(Intercept=1, Grassland=c(0.2, 0.8), Fire=seq(0, 5, by=0.1), Grazing=seq(0, 3, by=0.1), Clay=c(10, 60))
 
 coeff<-apply(C, 2, mean)
 
