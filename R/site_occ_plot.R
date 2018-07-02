@@ -43,7 +43,7 @@ NOCC<-ggplot(df, aes(x=year.num, y=post.mean)) +
 	xlab("Year")+
 	ylim(0, NA)+
 	scale_x_continuous(breaks=seq(2005, 2013))+
-	annotate("text", x=Inf, y=Inf, label="A", vjust=1.2, hjust=1.1, size=8)+
+	annotate("text", x=Inf, y=Inf, label="a", vjust=1.2, hjust=1.1, size=8)+
 	theme_bw()
 
 
@@ -83,7 +83,7 @@ EXT<-ggplot(df_ext, aes(x=year.num, y=post.mean)) +
 	ylab("Number of extinctions/colonisations")+
 	xlab("Year")+
 	ylim(0, NA)+
-	annotate("text", x=Inf, y=Inf, label="B", vjust=1.2, hjust=1.1, size=8)+
+	annotate("text", x=Inf, y=Inf, label="b", vjust=1.2, hjust=1.1, size=8)+
 	theme_bw()
 
 #### Plot of site occupancy flux  --------------------------------------- ################
@@ -107,7 +107,7 @@ FLUX<-ggplot(df, aes(x=year.num, y=post.mean)) +
 	ylab("Net change in occupancy")+
 	xlab("Year")+
 	geom_hline(yintercept = 0, lty=2)+
-	annotate("text", x=Inf, y=-Inf, label="C", vjust=-0.2, hjust=1.1, size=8)+
+	annotate("text", x=Inf, y=-Inf, label="c", vjust=-0.2, hjust=1.1, size=8)+
 	theme_bw()
 
 #### Arrange plots and dump plot to file  --------------------------------------- ################

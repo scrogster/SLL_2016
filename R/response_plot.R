@@ -35,7 +35,7 @@ OCCGRAPH<-ggplot(psi_curve, aes(x=Fire, y=Grazing)) +
 	scale_x_continuous(expand=c(0, 0))+
 	scale_y_continuous(expand=c(0, 0))+
 	scale_fill_distiller(type="seq", palette='YlOrRd',  direction=1, name=~psi[1], breaks=c(0, 0.25, 0.5, 0.75, 1))+
-	ggtitle("A. Probability of initial occupancy")+
+	ggtitle("a. Probability of initial occupancy")+
 	theme_bw()+
 	theme(strip.background =element_rect(fill="white"))
 
@@ -69,7 +69,7 @@ PERSISTGRAPH<-ggplot(phi_curve, aes(x=Fire, y=Grazing)) +
 	scale_fill_distiller(type="seq", palette='YlOrRd',  direction=1, name=~phi)+
 	scale_x_continuous(expand=c(0, 0))+
 	scale_y_continuous(expand=c(0, 0))+
-	ggtitle("B. Annual probability of persistence")+
+	ggtitle("b. Annual probability of persistence")+
 	theme_bw()+
 	theme(strip.background =element_rect(fill="white"))
 
@@ -98,7 +98,7 @@ COLGRAPH<-ggplot(col_curve, aes(x=Grassland, y=mean))+
 	geom_line()+
 	ylab(expression(gamma))+
 	xlab("Proportion of grassland")+
-	ggtitle("C. Annual probability of colonisation")+
+	ggtitle("c. Annual probability of colonisation")+
 	theme_bw()+
 	theme(strip.background =element_rect(fill="white"))
 

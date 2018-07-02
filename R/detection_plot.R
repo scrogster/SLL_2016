@@ -53,7 +53,7 @@ SP<-ggplot(combined, aes(y=mean, x=x, group=Type, col=Type, linetype=Type))+
 	scale_x_continuous(breaks = cumsum(c(1, 31, 30, 28, 30, 31, 30, 31, 31, 30, 31, 30,31)), 
 										 label = c('Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 
 										 					'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec', ''), expand = c(0, 0))+
-	annotate("text", x=Inf, y=Inf, label="A", vjust=1.2, hjust=1.1, size=10)+
+	annotate("text", x=Inf, y=Inf, label="a", vjust=1.2, hjust=1.1, size=10)+
 	theme_bw()+
 #	theme(axis.text.x=element_text(hjust=-1.8))+
 	theme(legend.position=c(0.15, 0.9))+
@@ -172,7 +172,7 @@ RASTPLOT<-ggplot(out, aes(y=Tdiff, x=TempA)) +
 	theme(legend.position=c(0.11, 0.15))+
 	theme(legend.title.align=0.5)  +
 	theme(legend.key.size = unit(0.25, "cm")) +
-	annotate("text", x=Inf, y=Inf, label="B", vjust=1.2, hjust=1.1, size=10)+
+	annotate("text", x=Inf, y=Inf, label="b", vjust=1.2, hjust=1.1, size=10)+
 theme(legend.background=element_rect(colour="black", fill="white", size=0))
 
 pdf("Figures/detection_plot.pdf", width=4, height=7)
