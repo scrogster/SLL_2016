@@ -18,13 +18,13 @@ df_error<-df %>%
 
 
 INITPLOT<-ggplot(df, aes(y=value, x=key)) +
-	geom_hline(yintercept=0, linetype=2) +
-	geom_violin(col="black", fill="grey", alpha=0.5, scale="width")+
+	geom_hline(yintercept=0, linetype=2, colour=gray(0.5)) +
+	geom_violin(col="black", fill="#21908CFF", alpha=0.5, scale="width")+
 	geom_errorbar(data=df_error, aes(x=key, y=mid, ymin=lower, ymax=upper), width=0.3) +
 	geom_point(data=df_error, aes(x=key, y=mid)) +
 	ylab("Parameter value")+
 	xlab("")+
-	annotate("text", x=Inf, y=Inf, label="a", vjust=1.2, hjust=1.1, size=8)+
+	annotate("text", x=-Inf, y=Inf, label="a", vjust=1.2, hjust=-0.8, size=8)+
 	theme_bw()
 
 #plotting the persistence parameters
@@ -38,13 +38,13 @@ df_error<-df %>%
 	summarise(lower=quantile(value, 0.025), mid=quantile(value, 0.5), upper=quantile(value, 0.975))
 
 PERSISTPLOT<-ggplot(df, aes(y=value, x=key)) +
-	geom_hline(yintercept=0, linetype=2) +
-	geom_violin(col="black", fill="grey", alpha=0.5, scale="width")+
+	geom_hline(yintercept=0, linetype=2, colour=gray(0.5)) +
+	geom_violin(col="black", fill="#21908CFF", alpha=0.5, scale="width")+
 	geom_errorbar(data=df_error, aes(x=key, y=mid, ymin=lower, ymax=upper), width=0.3) +
 	geom_point(data=df_error, aes(x=key, y=mid)) +
 	ylab("Parameter value")+
 	xlab("")+
-	annotate("text", x=Inf, y=Inf, label="b", vjust=1.2, hjust=1.1, size=8)+
+	annotate("text", x=-Inf, y=Inf, label="b", vjust=1.2, hjust=-0.8, size=8)+
 	theme_bw()
 
 #plotting the colonisation parameters
@@ -59,13 +59,13 @@ df_error<-df %>%
 
 
 COLPLOT<-ggplot(df, aes(y=value, x=key)) +
-	geom_hline(yintercept=0, linetype=2) +
-	geom_violin(col="black", fill="grey", alpha=0.5, scale="width")+
-	geom_errorbar(data=df_error, aes(x=key, y=mid, ymin=lower, ymax=upper), width=0.3) +
+	geom_hline(yintercept=0, linetype=2, colour=gray(0.5)) +
+	geom_violin(col="black", fill="#21908CFF", alpha=0.5, scale="width")+
+	geom_errorbar(data=df_error, aes(x=key, y=mid, ymin=lower, ymax=upper), width=0.15) +
 	geom_point(data=df_error, aes(x=key, y=mid)) +
 	ylab("Parameter value")+
 	xlab("")+
-	annotate("text", x=Inf, y=Inf, label="c", vjust=1.2, hjust=1.1, size=8)+
+	annotate("text", x=-Inf, y=Inf, label="c", vjust=1.2, hjust=-0.8, size=8)+
 	theme_bw()
 
 pdf("Figures/parameter_plot.pdf", width=5, height=8)

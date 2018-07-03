@@ -37,7 +37,7 @@ OCCGRAPH<-ggplot(psi_curve, aes(x=Fire, y=Grazing)) +
 	ylab("Grazing") +
 	scale_x_continuous(expand=c(0, 0))+
 	scale_y_continuous(expand=c(0, 0))+
-	scale_fill_viridis(name=~psi[1], breaks=c(0, 0.25, 0.5, 0.75, 1), direction=-1)+
+	scale_fill_viridis(name=~psi[1], breaks=c(0, 0.25, 0.5, 0.75, 1), direction=1)+
 	ggtitle("a. Probability of initial occupancy")+
 	theme_bw()+
 	theme(strip.background =element_rect(fill="white"))
@@ -69,7 +69,7 @@ PERSISTGRAPH<-ggplot(phi_curve, aes(x=Fire, y=Grazing)) +
 	geom_contour(aes(x=Fire, y=Grazing, z=prob_persist), breaks=0.5, col="black", linetype="solid")+
 	xlab("Fire") +
 	ylab("Grazing") +
-	scale_fill_viridis(name=~phi, breaks=c(0, 0.25, 0.5, 0.75, 1), direction=-1)+
+	scale_fill_viridis(name=~phi, breaks=c(0, 0.25, 0.5, 0.75, 1), direction=1)+
 	scale_x_continuous(expand=c(0, 0))+
 	scale_y_continuous(expand=c(0, 0))+
 	ggtitle("b. Annual probability of persistence")+
