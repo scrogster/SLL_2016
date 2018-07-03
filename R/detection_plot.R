@@ -160,8 +160,8 @@ dd <- ddunfilt %>%
 
 RASTPLOT<-ggplot(out, aes(y=Tdiff, x=TempA)) +
 	geom_raster(aes(fill=p), interpolate=FALSE) +
-	scale_fill_viridis(name=~p, breaks=c(0, 0.25, 0.5, 0.75, 1), direction=-1)+
-	geom_contour(aes(z=p), breaks=c(0.6), col=gray(0.3), show.legend = TRUE, linetype="dashed")+
+	scale_fill_viridis(name=~p, breaks=c(0, 0.25, 0.5, 0.75, 1), direction=-1, limits=c(NA, 1))+
+	geom_contour(aes(z=p), breaks=c(0.6), col=gray(0.8), show.legend = TRUE, linetype="dashed")+
 	labs(y=expression(Delta*T( degree~C)),
 			 x=expression("Air temperature " ( degree~C))) +
 	scale_x_continuous(limits=c(9, 41), expand = c(0, -0.5))+
@@ -170,7 +170,8 @@ RASTPLOT<-ggplot(out, aes(y=Tdiff, x=TempA)) +
 	geom_abline(intercept=0, slope=0) +
 	annotate("text", x=40, y=50, label="B", vjust=1.2, hjust=1.1, size=10)+
 	theme_bw()+
-	theme(legend.position=c(0.11, 0.17))+
+	#theme(legend.position=c(0.11, 0.17))+
+	theme(legend.position=c(0.11, 0.84))+
 	theme(legend.title.align=0.5)  +
 	theme(legend.key.size = unit(0.25, "cm")) +
 	annotate("text", x=Inf, y=Inf, label="b", vjust=1.2, hjust=1.1, size=10)+
