@@ -68,6 +68,6 @@ COLPLOT<-ggplot(df, aes(y=value, x=key)) +
 	annotate("text", x=-Inf, y=Inf, label="c", vjust=1.2, hjust=-0.8, size=8)+
 	theme_bw()
 
-pdf("Figures/parameter_plot.pdf", width=5, height=8)
+pdf("Figures/parameter_plot.pdf", width=4.5, height=8)
 grid.arrange(INITPLOT, PERSISTPLOT, COLPLOT, ncol=1, nrow=3)
 dev.off()
