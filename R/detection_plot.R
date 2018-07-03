@@ -3,6 +3,7 @@ require(ggplot2)
 require(ggmcmc)
 require(ggplot2)
 require(gridExtra)
+require(viridis)
 
 load("fitted_model.Rdata")
 
@@ -44,9 +45,9 @@ combined<-data.frame("Type"=c(rep("lizards", 101), rep("indirect", 101), rep("co
 
 combined$x<-combined$x*365
 SP<-ggplot(combined, aes(y=mean, x=x, group=Type, col=Type, linetype=Type))+
-	geom_ribbon(aes(ymin=lwr, ymax=upp, fill=Type), col=NA, alpha=0.2)+
-	geom_ribbon(aes(ymin=lqt, ymax=uqt, fill=Type), col=NA, alpha=0.4)+
+	geom_ribbon(aes(ymin=lwr, ymax=upp, fill=Type), col=NA, alpha=0.3)+
 	geom_line()+
+	scale_linetype_manual(values=c("solid", "dashed", 'dotted'))+
 	ylab("Probability of detection")+
 	xlab(NULL)+
 	ylim(0, 1)+
@@ -56,9 +57,9 @@ SP<-ggplot(combined, aes(y=mean, x=x, group=Type, col=Type, linetype=Type))+
 	annotate("text", x=Inf, y=Inf, label="a", vjust=1.2, hjust=1.1, size=10)+
 	theme_bw()+
 #	theme(axis.text.x=element_text(hjust=-1.8))+
-	theme(legend.position=c(0.15, 0.9))+
+	theme(legend.position=c(0.15, 0.87))+
 	theme(legend.title=element_blank())+
-	theme(legend.key.size = unit(0.3, "cm")) +
+	theme(legend.key.size = unit(0.5, "cm")) +
 	theme(legend.background=element_rect(colour="black", fill="white", size=0))+
 	theme(legend.key=element_rect(colour=NA, size=0))
 
@@ -158,18 +159,18 @@ dd <- ddunfilt %>%
 	     filter(yfrac > 9/12 & yfrac<12/12 ) 
 
 RASTPLOT<-ggplot(out, aes(y=Tdiff, x=TempA)) +
-	geom_raster(aes(fill=p), interpolate=TRUE) +
-	scale_fill_distiller(type="seq", palette='OrRd',  direction=1)+
-	geom_contour(aes(z=p), breaks=c(0.6), col=gray(0.3), show.legend = TRUE)+
+	geom_raster(aes(fill=p), interpolate=FALSE) +
+	scale_fill_viridis(name=~p, breaks=c(0, 0.25, 0.5, 0.75, 1), direction=-1)+
+	geom_contour(aes(z=p), breaks=c(0.6), col=gray(0.3), show.legend = TRUE, linetype="dashed")+
 	labs(y=expression(Delta*T( degree~C)),
 			 x=expression("Air temperature " ( degree~C))) +
 	scale_x_continuous(limits=c(9, 41), expand = c(0, -0.5))+
 	scale_y_continuous(limits=c(-6, 11), expand = c(0, -0.5))+
 	scale_color_manual(values=c("white", "black"))+
-	geom_abline(intercept=0, slope=0, linetype="dashed") +
+	geom_abline(intercept=0, slope=0) +
 	annotate("text", x=40, y=50, label="B", vjust=1.2, hjust=1.1, size=10)+
 	theme_bw()+
-	theme(legend.position=c(0.11, 0.15))+
+	theme(legend.position=c(0.11, 0.17))+
 	theme(legend.title.align=0.5)  +
 	theme(legend.key.size = unit(0.25, "cm")) +
 	annotate("text", x=Inf, y=Inf, label="b", vjust=1.2, hjust=1.1, size=10)+

@@ -2,6 +2,7 @@ require(jagsUI)
 require(ggplot2)
 require(dplyr)
 require(tidyr)
+require(viridis)
 require(gridExtra)
 
 load("fitted_model.Rdata")
@@ -28,13 +29,15 @@ psi_curve$ClayType<-ifelse(psi_curve$Clay==10, "Clay=10", "Clay=60")
 
 
 OCCGRAPH<-ggplot(psi_curve, aes(x=Fire, y=Grazing)) +
-	geom_raster(aes(fill=prob_occ), interpolate=TRUE)+
+	geom_raster(aes(fill=prob_occ), interpolate=FALSE)+
 	facet_grid(GrasslandType~ClayType)+
+#	geom_contour(aes(x=Fire, y=Grazing, z=prob_occ), breaks=0.25, col="black", linetype="dashed")+
+#	geom_contour(aes(x=Fire, y=Grazing, z=prob_occ), breaks=0.5, col="black", linetype="solid")+
 	xlab("Fire") +
 	ylab("Grazing") +
 	scale_x_continuous(expand=c(0, 0))+
 	scale_y_continuous(expand=c(0, 0))+
-	scale_fill_distiller(type="seq", palette='YlOrRd',  direction=1, name=~psi[1], breaks=c(0, 0.25, 0.5, 0.75, 1))+
+	scale_fill_viridis(name=~psi[1], breaks=c(0, 0.25, 0.5, 0.75, 1), direction=-1)+
 	ggtitle("a. Probability of initial occupancy")+
 	theme_bw()+
 	theme(strip.background =element_rect(fill="white"))
@@ -60,13 +63,13 @@ phi_curve$GrasslandType<-ifelse(phi_curve$Grassland==0.2, "Grassland=0.2", "Gras
 phi_curve$ClayType<-ifelse(phi_curve$Clay==10, "Clay=10", "Clay=60")
 
 PERSISTGRAPH<-ggplot(phi_curve, aes(x=Fire, y=Grazing)) +
-	geom_raster(aes(fill=prob_persist), interpolate=TRUE)+
+	geom_raster(aes(fill=prob_persist), interpolate=FALSE)+
 	facet_grid(GrasslandType~ClayType)+
-	geom_contour(aes(x=Fire, y=Grazing, z=prob_persist), breaks=0.25, col="black", linetype="dotted")+
+	geom_contour(aes(x=Fire, y=Grazing, z=prob_persist), breaks=0.25, col="black", linetype="dashed")+
 	geom_contour(aes(x=Fire, y=Grazing, z=prob_persist), breaks=0.5, col="black", linetype="solid")+
 	xlab("Fire") +
 	ylab("Grazing") +
-	scale_fill_distiller(type="seq", palette='YlOrRd',  direction=1, name=~phi)+
+	scale_fill_viridis(name=~phi, breaks=c(0, 0.25, 0.5, 0.75, 1), direction=-1)+
 	scale_x_continuous(expand=c(0, 0))+
 	scale_y_continuous(expand=c(0, 0))+
 	ggtitle("b. Annual probability of persistence")+
@@ -93,8 +96,8 @@ summary_func<-function(x){
 
 col_curve<-data.frame(Grassland=pred_dat$Grassland, summary_func(Colpred))
 COLGRAPH<-ggplot(col_curve, aes(x=Grassland, y=mean))+
-	geom_ribbon(aes(ymin=lwr, ymax=upp), col=NA, fill="red", alpha=0.4)+
-	geom_ribbon(aes(ymin=lqt, ymax=uqt), col=NA, fill="red", alpha=0.6)+
+	geom_ribbon(aes(ymin=lwr, ymax=upp), col=NA, fill="#21908CFF", alpha=0.4)+
+	geom_ribbon(aes(ymin=lqt, ymax=uqt), col=NA, fill="#21908CFF", alpha=0.6)+
 	geom_line()+
 	ylab(expression(gamma))+
 	xlab("Proportion of grassland")+
