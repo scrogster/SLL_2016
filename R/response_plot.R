@@ -40,7 +40,8 @@ OCCGRAPH<-ggplot(psi_curve, aes(x=Fire, y=Grazing)) +
 	scale_fill_viridis(name=~psi[1], breaks=c(0, 0.25, 0.5, 0.75, 1), direction=1, limits=c(0,1))+
 	ggtitle("a. Probability of initial occupancy")+
 	theme_bw()+
-	theme(strip.background =element_rect(fill="white"))
+	theme(strip.background =element_rect(fill="white"))+
+	theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
 
 
 #plotting the persistence parameters
@@ -74,7 +75,8 @@ PERSISTGRAPH<-ggplot(phi_curve, aes(x=Fire, y=Grazing)) +
 	scale_y_continuous(expand=c(0, 0))+
 	ggtitle("b. Annual probability of persistence")+
 	theme_bw()+
-	theme(strip.background =element_rect(fill="white"))
+	theme(strip.background =element_rect(fill="white"))+
+	theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
 
 #plotting the colonisation parameters
 
@@ -103,7 +105,8 @@ COLGRAPH<-ggplot(col_curve, aes(x=Grassland, y=mean))+
 	xlab("Proportion of grassland")+
 	ggtitle("c. Annual probability of colonisation")+
 	theme_bw()+
-	theme(strip.background =element_rect(fill="white"))
+	theme(strip.background =element_rect(fill="white"))+
+	theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
 
 pdf("Figures/response_plot.pdf", width=5, height=10)
 grid.arrange(OCCGRAPH, PERSISTGRAPH, COLGRAPH, ncol=1, nrow=3)

@@ -25,7 +25,8 @@ INITPLOT<-ggplot(df, aes(y=value, x=key)) +
 	ylab("Parameter value")+
 	xlab("")+
 	annotate("text", x=-Inf, y=Inf, label="a", vjust=1.2, hjust=-0.8, size=8)+
-	theme_bw()
+	theme_bw()+
+	theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
 
 #plotting the persistence parameters
 df<-data.frame(out$sims.list$C) %>%
@@ -45,7 +46,8 @@ PERSISTPLOT<-ggplot(df, aes(y=value, x=key)) +
 	ylab("Parameter value")+
 	xlab("")+
 	annotate("text", x=-Inf, y=Inf, label="b", vjust=1.2, hjust=-0.8, size=8)+
-	theme_bw()
+	theme_bw()+
+	theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
 
 #plotting the colonisation parameters
 df<-data.frame(out$sims.list$D) %>%
@@ -66,7 +68,8 @@ COLPLOT<-ggplot(df, aes(y=value, x=key)) +
 	ylab("Parameter value")+
 	xlab("")+
 	annotate("text", x=-Inf, y=Inf, label="c", vjust=1.2, hjust=-0.8, size=8)+
-	theme_bw()
+	theme_bw()+
+	theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
 
 pdf("Figures/parameter_plot.pdf", width=4.5, height=8)
 grid.arrange(INITPLOT, PERSISTPLOT, COLPLOT, ncol=1, nrow=3)

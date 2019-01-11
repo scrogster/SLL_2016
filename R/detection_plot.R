@@ -61,7 +61,8 @@ SP<-ggplot(combined, aes(y=mean, x=x, group=Type, col=Type, linetype=Type))+
 	theme(legend.title=element_blank())+
 	theme(legend.key.size = unit(0.5, "cm")) +
 	theme(legend.background=element_rect(colour="black", fill="white", size=0))+
-	theme(legend.key=element_rect(colour=NA, size=0))
+	theme(legend.key=element_rect(colour=NA, size=0))+
+	theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
 
 
 #Response to under-tile temperature ----############################################
@@ -174,6 +175,8 @@ RASTPLOT<-ggplot(out, aes(y=Tdiff, x=TempA)) +
 	theme(legend.position=c(0.11, 0.84))+
 	theme(legend.title.align=0.5)  +
 	theme(legend.key.size = unit(0.25, "cm")) +
+	theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
+	theme(legend.title = element_text(colour="black", face = "italic"))+
 	annotate("text", x=Inf, y=Inf, label="b", vjust=1.2, hjust=1.1, size=10)+
 theme(legend.background=element_rect(colour="black", fill="white", size=0))
 

@@ -44,8 +44,8 @@ NOCC<-ggplot(df, aes(x=year.num, y=post.mean)) +
 	ylim(0, NA)+
 	scale_x_continuous(breaks=seq(2005, 2013))+
 	annotate("text", x=Inf, y=Inf, label="a", vjust=1.2, hjust=1.1, size=8)+
-	theme_bw()
-
+	theme_bw()+
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
 
 #### Plot of extinction and colonisation events  --------------------------------------- ################
 
@@ -85,7 +85,8 @@ EXT<-ggplot(df_ext, aes(x=year.num, y=post.mean)) +
 	ylim(0, 25)+
 	scale_x_continuous(breaks=seq(2005, 2013))+
 	annotate("text", x=Inf, y=Inf, label="b", vjust=1.2, hjust=1.1, size=8)+
-	theme_bw()
+	theme_bw()+
+	theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
 
 COL<-ggplot(df_col, aes(x=year.num, y=post.mean)) +
 	geom_ribbon(aes(x=year.num, ymin=post.lwr, ymax=post.upp), col=NA, fill="#21908CFF", alpha=0.3)+
@@ -101,7 +102,8 @@ COL<-ggplot(df_col, aes(x=year.num, y=post.mean)) +
 	ylim(0, 25)+
 	scale_x_continuous(breaks=seq(2005, 2013))+
 	annotate("text", x=Inf, y=Inf, label="c", vjust=1.2, hjust=1.1, size=8)+
-	theme_bw()
+	theme_bw()+
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
 
 #### Plot of site occupancy flux  --------------------------------------- ################
 
@@ -126,7 +128,8 @@ FLUX<-ggplot(df, aes(x=year.num, y=post.mean)) +
 	geom_hline(yintercept = 0, lty=2)+
 	scale_x_continuous(breaks=seq(2005, 2013))+
 	annotate("text", x=Inf, y=Inf, label="d", vjust=1.2, hjust=1.1, size=8)+
-	theme_bw()
+	theme_bw()+
+	theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
 
 #### Arrange plots and dump plot to file  --------------------------------------- ################
 
