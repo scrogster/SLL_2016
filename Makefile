@@ -4,8 +4,6 @@ all: prepped_data.Rdata \
      formatted_for_JAGS.Rdata \
      fitted_model.Rdata \
      figs 
-     #Delma.docx \
-     #Delma.pdf  \
      #SiteShapefile/tilesites.shp \
      #ppcheck 
 
@@ -61,10 +59,7 @@ Figures/%.png : Figures/%.pdf
 
 Traceplots/initocc_trace.pdf: R/traceplots.R fitted_model.Rdata
 	Rscript $^
-	
-##################################################
-#Rules to render the paper as pdf and docx if either markdown or bibtex files change
-##################################################
+
 
 	
 
