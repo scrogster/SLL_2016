@@ -15,7 +15,7 @@ para=TRUE
 #Random seed
 set.seed(435)
 
-modfile <- 'R/prototype_occmod.txt'
+modfile <- 'R/dynoccmod.txt'
 params <- c('fake.liz', 'fake.skin')
 
 z.init<-

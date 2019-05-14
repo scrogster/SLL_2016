@@ -3,11 +3,11 @@ all: prepped_data.Rdata \
      prepped_data_plusGIS.Rdata \
      formatted_for_JAGS.Rdata \
      fitted_model.Rdata \
-     figs \
-     Delma.docx \
-     Delma.pdf  \
-     SiteShapefile/tilesites.shp \
-     ppcheck 
+     figs 
+     #Delma.docx \
+     #Delma.pdf  \
+     #SiteShapefile/tilesites.shp \
+     #ppcheck 
 
 figs: Figures/detection_plot.pdf Figures/detection_plot.png \
       Figures/site_occ_plot.pdf Figures/site_occ_plot.png \
@@ -32,11 +32,11 @@ formatted_for_JAGS.Rdata: R/format_data.R prepped_data_plusGIS.Rdata DataFromGar
 	Rscript $^
 
 #fit a dynamic occupancy model to the data
-fitted_model.Rdata: R/fit_occ_model.R formatted_for_JAGS.Rdata R/prototype_occmod.txt
+fitted_model.Rdata: R/fit_occ_model.R formatted_for_JAGS.Rdata R/dynoccmod.txt
 	Rscript $^
 
 #do another run for the posterior predictive checks	
-PP_check.Rdata: R/run_PPcheck.R formatted_for_JAGS.Rdata R/prototype_occmod.txt
+PP_check.Rdata: R/run_PPcheck.R formatted_for_JAGS.Rdata R/dynoccmod.txt
 	Rscript $^
 	
 Figures/PP_check_plot.pdf: R/plot_PPcheck.R PP_check.Rdata
