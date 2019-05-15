@@ -6,6 +6,7 @@ library(maptools)
 library(rgdal)
 library(stringr)
 library(tidyr)
+library(raster)
 
 load("prepped_data.Rdata")
 #read in Garry's point data from excel
@@ -13,7 +14,7 @@ load("prepped_data.Rdata")
 site_points<-read_excel("SpatialData/DelmaGridVariables_15Feb2017.xlsx",1)
 
 site_points<-site_points %>%
-	select(Site, LandUse=`Land use`, LandUseCode=`Aggr. Land Use`, 
+	dplyr::select(Site, LandUse=`Land use`, LandUseCode=`Aggr. Land Use`, 
 				 FireHistory=`Fire History`, GrazeScore=`GrazeScore`, Area=`Area (ha)`, 
 				 Easting=`Easting GDA94`, Northing=`Northing GDA94`) %>%
 	separate(Site, c("Grid", "CMA"), sep=" ") %>%
@@ -42,28 +43,7 @@ vicgrid_spdf<-SpatialPointsDataFrame(vicgrid_points, data.frame(site_points[!is.
 
 #merge between site point data and survey data
 test<-left_join(ungroup(DelmaFiltered), site_points, "GridCMA") %>%
-	select(GridCMA, Easting, Northing)
-
-#these are the sites that don't have grid refs...
-unique(test$GridCMA[which(is.na(test$Easting))])
-unique(test$GridCMA[which(is.na(test$Northing))])
-
-#a bit more info about these sites....
-
-#Garry not too sure about these sites - only single surveys, so exclude.
-#"10.3.2ccma"   10.3.2 Bannockburn #single survey only in 2010 EXCLUDE
-#"10.3.3ccma"   10.3.3 Bannockburn  #single survey only in 2010 EXCLUDE
-#DelmaFiltered %>% filter(GridCMA=="10.3.2ccma") %>% select(Date, DelmaLizards, DelmaOther)
-#DelmaFiltered %>% filter(GridCMA=="10.3.3ccma") %>% select(Date, DelmaLizards, DelmaOther)
-
-#Ted has information about these sites, but no coordinates. Only a single survey at each
-#"17.3.1ghcma"  17.3.1     col    #Single survey only in 2005 EXCLUDE
-#"17.6.1ghcma"  17.6.1     col    #Single survey only in 2005 EXCLUDE
-#DelmaFiltered %>% filter(GridCMA=="17.3.1ghcma") %>% select(Date, DelmaLizards, DelmaOther)
-#DelmaFiltered %>% filter(GridCMA=="17.6.1ghcma") %>% select(Date, DelmaLizards, DelmaOther)
-
-
-library(raster)
+	dplyr::select(GridCMA, Easting, Northing)
 
 #extract grassland coverage data
 grassland<-raster("Rasters/NatGrassland_clip_simp.tif")
@@ -82,4 +62,4 @@ vicgrid_spdf$clay<-claypoints
 
 writeOGR(vicgrid_spdf, "SpatialData", "GridPoints", driver = "ESRI Shapefile", overwrite_layer = TRUE)
 
-save.image("prepped_data_plusGIS.Rdata")
+save(vicgrid_spdf, DelmaFiltered, file="prepped_data_plusGIS.Rdata")

@@ -2,6 +2,7 @@ require(readxl)
 require(dplyr)
 require(tidyr)
 require(lubridate)
+require(tidyverse)
 
 wcma<-read_excel("DataFromGarry/SLL monitoring database formatted 13May13.xls", 1, 
 								 col_types=c(rep("guess", 8), "date", "date", rep("guess", 27))) 
@@ -63,11 +64,14 @@ DelmaFiltered<- combined_raw %>%
 	  			 sitenum=as.numeric(factor(GridCMA)),
 	  			 yeardayfrac=yday(Date)/365 )%>%   #fraction of the calendar year
 	arrange(GridCMA, CMA, Cluster, Grid, Date) %>%
+	mutate(OneYearAgo = Date- years(1)) %>% #date one year ago
 	group_by(GridCMA) %>%
 	mutate(FirstSurveyDate=min(Date)) %>% #this is a variable giving the first survey date for each site
+	group_by(GridCMA) %>%
+	mutate(flipslast12months = map2_int(Date, OneYearAgo, ~sum(.x > Date[Date>.y]))) %>% #number of tile flips in the last 12 months (short-term tile embedding)
 	ungroup() %>%
-	mutate(WeeksSinceFirstSurvey=as.numeric(difftime(Date, FirstSurveyDate, units="weeks")))
-
+	mutate(WeeksSinceFirstSurvey=as.numeric(difftime(Date, FirstSurveyDate, units="weeks"))) %>% #time since first survey to test long-term tile embedding.
+  select(-OneYearAgo)
 #these sites to be dropped - only single surveys, and no site coords or other information available.
 dropsites<-c("17.3.1ghcma", "17.6.1ghcma", "10.3.2ccma", "10.3.3ccma")
 
@@ -75,5 +79,5 @@ DelmaFiltered<-DelmaFiltered %>%
 	          filter(!GridCMA %in% dropsites )
 	
 
-save.image("prepped_data.Rdata")
+save(DelmaFiltered, file="prepped_data.Rdata")
 

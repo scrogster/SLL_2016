@@ -1,12 +1,8 @@
-require(jagsUI)
 require(lubridate)
 require(dplyr)
 load("prepped_data_plusGIS.Rdata")
 
-#tapply(DelmaFiltered$AirTemp, month(DelmaFiltered$Date), "mean", na.rm=TRUE)
-#tapply(DelmaFiltered$AirTemp, month(DelmaFiltered$Date), "length")
-
-#rough imputation of missing temps
+#rough imputation of the very few missing and anomolous temperatures
 TempS = DelmaFiltered$SoilTemp
 TempS[is.na(TempS)]<-mean(TempS, na.rm=TRUE)
 TempS[TempS>60]<-mean(TempS, na.rm=TRUE)
@@ -15,7 +11,6 @@ TempA = DelmaFiltered$AirTemp
 TempA[is.na(TempA)]<-mean(TempA, na.rm=TRUE)
 TempA[TempA>60]<-mean(TempA, na.rm=TRUE)
 
-
 SurvHour = ifelse(hour(DelmaFiltered$Time)<7, hour(DelmaFiltered$Time)+12, hour(DelmaFiltered$Time))
 SurvMinute = minute(DelmaFiltered$Time)
 SurvHour[is.na(SurvHour)]<-mean(SurvHour, na.rm=TRUE)
@@ -23,7 +18,7 @@ SurvMinute[is.na(SurvMinute)]<-30
 timeofday<-(SurvHour + SurvMinute/60)-12
 
 #getting the grassland measures matched up with the survey data. 
-grassjoin<-DelmaFiltered %>%
+DelmaFiltered<-DelmaFiltered %>%
 	ungroup() %>%
 	dplyr::select(GridCMA, Date) %>%
 	left_join(data.frame(vicgrid_spdf), by="GridCMA") %>%
@@ -34,15 +29,14 @@ grassjoin<-DelmaFiltered %>%
 						LandUse=first(LandUse), clay=first(clay), Grazing=first(GrazeScore), FireHistory=first(FireHistory), Easting=first(EastingVG), Northing=first(northingVG)) %>%
 	mutate(Conservation=grepl("Conservation", LandUse), 
 				 Roadside=grepl("Road", LandUse))
-#check that sites are in same order as sites in detection data:
-all.equal(levels(factor(DelmaFiltered$GridCMA)) , grassjoin$GridCMA)
+
 
 #BRING IN THE SUMMARY BURN DATA FROM ABC, FIREHISTORY and Garry's spreadsheets
 burn_summary<-readr::read_csv("DataFromGarry/Season_Burn_Summary.csv") %>%
 	rename(GridCMA=gridCMA)
 
 #merge the burn summary fire data into grassjoin
-grassjoin<-grassjoin %>%
+DelmaFiltered<-DelmaFiltered %>%
 	left_join(burn_summary, by="GridCMA") %>%
 	mutate(Autumn=ifelse(is.na(Autumn), 0, Autumn)) %>%  #replace NAs with zero.
 	mutate(Spring=ifelse(is.na(Spring), 0, Spring)) %>%
@@ -51,28 +45,11 @@ grassjoin<-grassjoin %>%
 	mutate(TotFires=ifelse(is.na(TotFires), 0, TotFires))
 
 
-#make the site variables:
-grassland<-grassjoin$grasstot
+#make the site variables for grassland cover and clay (impute a couple of missing values):
+grassland<-DelmaFiltered$grasstot
 grassland[which(is.na(grassland))]<-mean(grassland, na.rm=TRUE)
-clay<-grassjoin$clay
+clay<-DelmaFiltered$clay
 clay[which(is.na(clay))]<-mean(clay, na.rm=TRUE)
-grazing<-grassjoin$Grazing
-conservation<-grassjoin$Conservation
-roadside<-grassjoin$Roadside
-
-firecode<-grassjoin$TotFires #initially, just use total number of fires as fire measure.
-
-
-
-#determine cluster codes for sites. This is done on the basis of geographic proximity. 
-#Sites within 2km of each other are same cluster.
-#many clusters are only a single site, quite a few pairs, and few with more.
-spatpoints<-grassjoin[,c("Easting", "Northing")]
-dmat<-dist(as(spatpoints, "matrix"))
-clus<-hclust(dmat)  #heirarchical clustering by geographic distance
-clusters<-cutree(clus, h=5000)  #cut the clustering at 1500m threshold
-num_clust<-max(clusters)
-
 
 jags_dat<-list(
 	tot.sites= max(as.numeric(factor(DelmaFiltered$GridCMA))),
@@ -88,24 +65,11 @@ jags_dat<-list(
 	Tdiff = TempS-TempA,
 	time.of.day=timeofday,
 	weeks.first.surv=DelmaFiltered$WeeksSinceFirstSurvey,   #this is the number of weeks since the first time surveyed, use to test "bedding in".
+	flipslast12months=DelmaFiltered$flipslast12months,   #this is the number of times the tiles were flipped in last 12 months.
 	grassland=grassland,
 	clay=clay,
-	grazing=grazing,
-	grazingzero=  1.0*(grazing==0),
-	grazinggtzero=1.0*(grazing>0),
-	grazinggt2=    1.0*(grazing>=2),
-	conservation=conservation*1.0, #convert Boolean to numeric
-	roadside=roadside*1.0, #convert Boolean to numeric
-	firecode=firecode,
-	firegt0=(firecode>0)*1.0,
-	firegt2=(firecode>2)*1.0,
-	firegt4=(firecode>4)*1.0,
-	firegt6=(firecode>6)*1.0,
-	firegt8=(firecode>8)*1.0,
-	firegt10=(firecode>10)*1.0,
-	#below are group ids for clusters, and maximum number of clusters for indexing purposes.
-	cluster_id=clusters,
-	num_clust=num_clust
+	graze=DelmaFiltered$grazing
+	firecode=DelmaFiltered$TotFires
 )
 
-save.image("formatted_for_JAGS.Rdata")
+save(jags_dat, DelmaFiltered, file="formatted_for_JAGS.Rdata")
