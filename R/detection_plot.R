@@ -6,7 +6,7 @@ require(gridExtra)
 require(viridis)
 
 load("fitted_model.Rdata")
-
+dir.create("Figures")
 #plotting the detection curves
 
 #trial plotting of seasonal response curves. no uncertainty yet.

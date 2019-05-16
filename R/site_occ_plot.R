@@ -6,7 +6,7 @@ require(gridExtra)
 require(stringr)
 
 load("fitted_model.Rdata")
-
+dir.create("Figures")
 #### Plot of number of surveyed, detected, and predicted occupied sites --------------------- ################
 df<-data.frame(out$sims.list$Numocc) %>%
 	gather() %>%

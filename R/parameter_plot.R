@@ -5,7 +5,7 @@ require(tidyr)
 require(gridExtra)
 
 load("fitted_model.Rdata")
-
+dir.create("Figures")
 #plotting initial occupancy parameters
 df<-data.frame(out$sims.list$B) %>%
 	rename(Intercept=X1, Grassland=X2, Fire=X3, Grazing=X4, Fire.Grazing=X5, Clay=X6) %>%
