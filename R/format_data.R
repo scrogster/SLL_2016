@@ -18,7 +18,7 @@ SurvMinute[is.na(SurvMinute)]<-30
 timeofday<-(SurvHour + SurvMinute/60)-12
 
 #getting the grassland measures matched up with the survey data. 
-DelmaFiltered<-DelmaFiltered %>%
+grassjoin<-DelmaFiltered %>%
 	ungroup() %>%
 	dplyr::select(GridCMA, Date) %>%
 	left_join(data.frame(vicgrid_spdf), by="GridCMA") %>%
@@ -29,14 +29,15 @@ DelmaFiltered<-DelmaFiltered %>%
 						LandUse=first(LandUse), clay=first(clay), Grazing=first(GrazeScore), FireHistory=first(FireHistory), Easting=first(EastingVG), Northing=first(northingVG)) %>%
 	mutate(Conservation=grepl("Conservation", LandUse), 
 				 Roadside=grepl("Road", LandUse))
-
+#check that sites are in same order as sites in detection data:
+all.equal(levels(factor(DelmaFiltered$GridCMA)) , grassjoin$GridCMA)
 
 #BRING IN THE SUMMARY BURN DATA FROM ABC, FIREHISTORY and Garry's spreadsheets
 burn_summary<-readr::read_csv("DataFromGarry/Season_Burn_Summary.csv") %>%
 	rename(GridCMA=gridCMA)
 
 #merge the burn summary fire data into grassjoin
-DelmaFiltered<-DelmaFiltered %>%
+grassjoin<-grassjoin %>%
 	left_join(burn_summary, by="GridCMA") %>%
 	mutate(Autumn=ifelse(is.na(Autumn), 0, Autumn)) %>%  #replace NAs with zero.
 	mutate(Spring=ifelse(is.na(Spring), 0, Spring)) %>%
@@ -46,9 +47,9 @@ DelmaFiltered<-DelmaFiltered %>%
 
 
 #make the site variables for grassland cover and clay (impute a couple of missing values):
-grassland<-DelmaFiltered$grasstot
+grassland<-grassjoin$grasstot
 grassland[which(is.na(grassland))]<-mean(grassland, na.rm=TRUE)
-clay<-DelmaFiltered$clay
+clay<-grassjoin$clay
 clay[which(is.na(clay))]<-mean(clay, na.rm=TRUE)
 
 jags_dat<-list(
@@ -68,8 +69,8 @@ jags_dat<-list(
 	flipslast12months=DelmaFiltered$flipslast12months,   #this is the number of times the tiles were flipped in last 12 months.
 	grassland=grassland,
 	clay=clay,
-	graze=DelmaFiltered$grazing
-	firecode=DelmaFiltered$TotFires
+	grazing=grassjoin$Grazing,
+	firecode=grassjoin$TotFires
 )
 
 save(jags_dat, DelmaFiltered, file="formatted_for_JAGS.Rdata")

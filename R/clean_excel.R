@@ -72,6 +72,9 @@ DelmaFiltered<- combined_raw %>%
 	ungroup() %>%
 	mutate(WeeksSinceFirstSurvey=as.numeric(difftime(Date, FirstSurveyDate, units="weeks"))) %>% #time since first survey to test long-term tile embedding.
   select(-OneYearAgo)
+
+#fix a couple of flipsite errors
+DelmaFiltered$flipslast12months[is.na(DelmaFiltered$flipslast12months)] <-0
 #these sites to be dropped - only single surveys, and no site coords or other information available.
 dropsites<-c("17.3.1ghcma", "17.6.1ghcma", "10.3.2ccma", "10.3.3ccma")
 
