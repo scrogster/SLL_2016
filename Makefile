@@ -3,18 +3,14 @@ all: prepped_data.Rdata \
      prepped_data_plusGIS.Rdata \
      formatted_for_JAGS.Rdata \
      fitted_model.Rdata \
-     figs 
-     #SiteShapefile/tilesites.shp \
-     #ppcheck 
+     figs \
+     Tables.docx
 
 figs: Figures/detection_plot.pdf Figures/detection_plot.png \
       Figures/site_occ_plot.pdf Figures/site_occ_plot.png \
       Figures/parameter_plot.pdf Figures/parameter_plot.png \
       Figures/response_plot.pdf Figures/response_plot.png \
-      Traceplots/initocc_trace.pdf \
-      Figures/Site-map.pdf Figures/Site-map.png 
-      
-ppcheck: PP_check.Rdata Figures/PP_check_plot.pdf Figures/PP_check_plot.png
+      Traceplots/initocc_trace.pdf 
 
 #extracting the survey data from the spreadsheets
 prepped_data.Rdata:  R/clean_excel.R DataFromGarry/SLL\ monitoring\ database\ formatted\ 13May13.xls
@@ -33,19 +29,11 @@ formatted_for_JAGS.Rdata: R/format_data.R prepped_data_plusGIS.Rdata DataFromGar
 fitted_model.Rdata: R/fit_occ_model.R formatted_for_JAGS.Rdata R/dynoccmod.txt
 	Rscript $^
 
-#do another run for the posterior predictive checks	
-PP_check.Rdata: R/run_PPcheck.R formatted_for_JAGS.Rdata R/dynoccmod.txt
-	Rscript $^
-	
-Figures/PP_check_plot.pdf: R/plot_PPcheck.R PP_check.Rdata
-	Rscript $^
-
-#make a shapefile of the sites and site covariates used in the model for mapping purposes
-SiteShapefile/tilesites.shp:   R/MakeSiteShapefile.R  fitted_model.Rdata
-	Rscript $^
-
+#render a docx file with the tables ready to insert in the manuscript.
+Tables.docx: Tables.Rmd fitted_model.Rdata
+	Rscript -e 'rmarkdown::render("Tables.Rmd")'
 ###################################################
-#pattern rule to make pdf figure from Rscript
+#pattern rule to make pdf figures from Rscript
 ###################################################
 Figures/%.pdf: R/%.R fitted_model.Rdata
 	Rscript $^
@@ -56,7 +44,6 @@ Figures/%.png : Figures/%.pdf
 ###################################################
 #Rule to make traceplots of model parameters (only made in pdf for diagnostic purposes)
 ###################################################
-
 Traceplots/initocc_trace.pdf: R/traceplots.R fitted_model.Rdata
 	Rscript $^
 

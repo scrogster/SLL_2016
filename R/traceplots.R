@@ -5,6 +5,8 @@ library(coda)
 library(ggplot2)
 load("fitted_model.Rdata")
 
+dir.create("Traceplots")
+
 samples<-out$samples
 paramnames<-names(as.data.frame(samples[[1]]))
 
@@ -58,7 +60,7 @@ BETABETA<-rbind(
 
 dir.create("Traceplots", showWarnings = FALSE)
 
-ggplot(BB, aes(x=ITER, y=var1, colour=CHAIN))+
+bbplot1<-ggplot(BB, aes(x=ITER, y=var1, colour=CHAIN))+
 	geom_line(size=0.1, alpha=0.4)+
 	geom_hline(yintercept=0, lty=2)+
 	facet_wrap(~Parameter)+
@@ -67,7 +69,7 @@ ggplot(BB, aes(x=ITER, y=var1, colour=CHAIN))+
 	theme_bw()
 ggsave("Traceplots/initocc_trace.pdf", width=10, height=4)
 
-ggplot(BB, aes(x=var1, colour=CHAIN, fill=CHAIN))+
+bbplot2<-ggplot(BB, aes(x=var1, colour=CHAIN, fill=CHAIN))+
 	geom_density(alpha=0.4)+
 	geom_vline(xintercept=0, lty=2)+
 	facet_wrap(~Parameter, scales="free_y")+
@@ -77,7 +79,7 @@ ggplot(BB, aes(x=var1, colour=CHAIN, fill=CHAIN))+
 ggsave("Traceplots/initocc_density.pdf", width=10, height=4)
 
 
-ggplot(CC, aes(x=ITER, y=var1, colour=CHAIN))+
+ccplot1<-ggplot(CC, aes(x=ITER, y=var1, colour=CHAIN))+
 	geom_line(size=0.1, alpha=0.4)+
 	geom_hline(yintercept=0, lty=2)+
 	facet_wrap(~Parameter)+
@@ -86,7 +88,7 @@ ggplot(CC, aes(x=ITER, y=var1, colour=CHAIN))+
 	theme_bw()
 ggsave("Traceplots/persist_trace.pdf", width=10, height=6)
 
-ggplot(CC, aes(x=var1, colour=CHAIN, fill=CHAIN))+
+ccplot2<-ggplot(CC, aes(x=var1, colour=CHAIN, fill=CHAIN))+
 	geom_density(alpha=0.4)+
 	geom_vline(xintercept=0, lty=2)+
 	facet_wrap(~Parameter, scales="free_y")+
@@ -95,7 +97,7 @@ ggplot(CC, aes(x=var1, colour=CHAIN, fill=CHAIN))+
 	theme_bw()
 ggsave("Traceplots/persist_density.pdf", width=10, height=6)
 
-ggplot(DD, aes(x=ITER, y=var1, colour=CHAIN))+
+ddplot1<-ggplot(DD, aes(x=ITER, y=var1, colour=CHAIN))+
 	geom_line(size=0.1, alpha=0.4)+
 	geom_hline(yintercept=0, lty=2)+
 	facet_wrap(~Parameter)+
@@ -104,7 +106,7 @@ ggplot(DD, aes(x=ITER, y=var1, colour=CHAIN))+
 	theme_bw()
 ggsave("Traceplots/colonise_trace.pdf", width=10, height=2)
 
-ggplot(DD, aes(x=var1, colour=CHAIN, fill=CHAIN))+
+ddplot2<-ggplot(DD, aes(x=var1, colour=CHAIN, fill=CHAIN))+
 	geom_density(alpha=0.4)+
 	geom_vline(xintercept=0, lty=2)+
 	facet_wrap(~Parameter, scales="free_y")+
@@ -113,7 +115,7 @@ ggplot(DD, aes(x=var1, colour=CHAIN, fill=CHAIN))+
 	theme_bw()
 ggsave("Traceplots/colonise_density.pdf", width=10, height=2)
 
-ggplot(BETABETA, aes(x=ITER, y=var1, colour=CHAIN))+
+betaplot1<-ggplot(BETABETA, aes(x=ITER, y=var1, colour=CHAIN))+
 	geom_line(size=0.1, alpha=0.4)+
 	geom_hline(yintercept=0, lty=2)+
 	facet_wrap(~Parameter)+
@@ -122,7 +124,7 @@ ggplot(BETABETA, aes(x=ITER, y=var1, colour=CHAIN))+
 	theme_bw()
 ggsave("Traceplots/beta_trace.pdf", width=10, height=8)
 
-ggplot(BETABETA, aes(x=var1, colour=CHAIN, fill=CHAIN))+
+betaplot2<-ggplot(BETABETA, aes(x=var1, colour=CHAIN, fill=CHAIN))+
 	geom_density(alpha=0.4)+
 	geom_vline(xintercept=0, lty=2)+
 	facet_wrap(~Parameter, scales="free_y")+
