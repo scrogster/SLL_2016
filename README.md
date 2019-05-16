@@ -17,7 +17,7 @@ Just another Gibbs Sampler (JAGS) is used to fit the Bayesian dynamic occupancy 
 [https://sourceforge.net/projects/mcmc-jags/files/](https://sourceforge.net/projects/mcmc-jags/files/)
 
 
-## The *Makefile* scropts all required steps to format the data, fit the statistical model and generate the tables and figures.
+The *Makefile* scripts all required steps to format the data, fit the statistical model and generate the tables and figures.
 
 ```
 make
