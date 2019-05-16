@@ -1,0 +1,203 @@
+---
+title: "Tables"
+output: word_document
+---
+
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+#change in occupancy calculations for next paragraph
+load("fitted_model.Rdata")
+require(dplyr)
+require(tidyr)
+df<-data.frame(out$sims.list$Numocc)
+
+numfirst<-format(mean(df[,1]), digits=2)
+CIfirst<-paste0(format(quantile(df[,1], 0.025), digits=2), ", ", format(quantile(df[,1], 0.975), digits=2))
+
+numlast<-format(mean(df[,9]), digits=2)
+CIlast<-paste0(format(quantile(df[,9], 0.025), digits=2), ", ", format(quantile(df[,9], 0.975), digits=2))
+
+total_loss<-format(mean(df[,1]-df[,9]), digits=2)
+lossCI<-paste0(format(quantile(df[,1]-df[,9], 0.025), digits=2), ", ", format(quantile(df[,1]-df[,9], 0.975), digits=2))
+
+mean_loss_rate<-format(mean(df[,1]-df[,9])/9, digits=2)
+lossrateCI<-paste0(format(quantile((df[,1]-df[,9])/9, 0.025), digits=2), ", ", format(quantile((df[,1]-df[,9])/9, 0.975), digits=2))
+
+percent_loss<-1-(df[,9]/df[,1])
+mean_percent_loss<-mean(percent_loss)
+percent_loss_CI<-quantile(percent_loss, c(0.025, 0.975))
+```
+
+```{r, echo=FALSE, message=FALSE}
+initoccparams<-out$sims.list$B
+fire_occ_mean<-format(mean(initoccparams[, 3]), digits=2)
+fire_occ_CI<-paste0(format(quantile(initoccparams[, 3], 0.025), digits=2), ", ", format(quantile(initoccparams[, 3], 0.975), digits=2))
+persistparams<-out$sims.list$C
+fire_persist_mean<-format(mean(persistparams[, 3]), digits=2)
+fire_persist_CI<-paste0(format(quantile(persistparams[, 3], 0.025), digits=2), ", ", format(quantile(persistparams[, 3], 0.975), digits=2))
+
+interact_persist_mean<-format(mean(persistparams[, 5]), digits=2)
+interact_persist_CI<-paste0(format(quantile(persistparams[, 5], 0.025), digits=2), ", ", format(quantile(persistparams[, 5], 0.975), digits=2))
+
+colparams<-out$sims.list$D
+conn_occ_mean<-format(mean(initoccparams[, 2]), digits=2)
+conn_occ_CI<-paste0(format(quantile(initoccparams[, 2], 0.025), digits=2), ", ", format(quantile(initoccparams[, 2], 0.975), digits=2))
+
+conn_col_mean<-format(mean(colparams[, 2]), digits=2)
+conn_col_CI<-paste0(format(quantile(colparams[, 2], 0.025), digits=2), ", ", format(quantile(colparams[, 2], 0.975), digits=2))
+
+clay_occ_mean<-format(mean(initoccparams[, 6]), digits=2)
+clay_occ_CI<-paste0(format(quantile(initoccparams[, 6], 0.025), digits=2), ", ", format(quantile(initoccparams[, 6], 0.975), digits=2))
+```
+
+
+\newpage
+```{r surveytable, echo=FALSE, message=FALSE, warning=FALSE, results = 'asis'}
+require(knitr)
+load("fitted_model.Rdata")
+#number of unique sites surveyed each year
+sites.per.year<-tapply(jags_dat$site, jags_dat$t, function(x) length(unique(x)))
+#number of surveys conducted each year
+surveys.per.year<-tapply(jags_dat$site, jags_dat$t, function(x) length(x))
+survey.per.site<-round(surveys.per.year/sites.per.year,2)
+
+Nsurvtab<-table(jags_dat$site, jags_dat$t)
+sites.surv0<-colSums(Nsurvtab==0)
+sites.surv1<-colSums(Nsurvtab==1)
+sites.surv2<-colSums(Nsurvtab==2)
+sites.surv2plus<-colSums(Nsurvtab>2)
+
+delma_det<-(jags_dat$detect.liz+jags_dat$detect.skin)>0
+sites.with.liz.per.year<-tapply(jags_dat$site[delma_det==TRUE], jags_dat$t[delma_det==TRUE], function(x) length(unique(x)))
+
+require(dplyr)
+require(tidyr)
+df<-data.frame(out$sims.list$Numocc) %>%
+	gather() %>%
+	group_by(key) %>%
+	summarise(post.mean=mean(value), 
+						post.median=median(value), 
+						post.lwr=quantile(value, 0.025),
+						post.upp=quantile(value, 0.975)) %>%
+	mutate(CI = paste0(round(post.median, digits=0), " (", 
+										 round(post.lwr, digits=1), ", ", 
+										 round(post.upp, digits=1), ")")) %>%
+	select(CI)
+
+survey_table<-data.frame("Year"=paste0(2004:2012, "/", 2005:2013), 
+												 "Sites"=sites.per.year, 
+												 "Total surveys"=surveys.per.year, 
+												 "Surveyspersite"=survey.per.site, 
+												 "S1"=sites.surv1,
+												 "S2"=sites.surv2,
+                         "S2plus"=sites.surv2plus,
+												 "SiteswithDelma"=sites.with.liz.per.year,  
+												 df)
+
+kable(survey_table, digits=2, align=c("l", "c", "c","c", "c", "c", "c",  "c", "c"), 
+			col.names=c("Year", 
+									"Number of sites surveyed",
+									"Total Surveys",
+									"Surveys per site (mean)",
+									"Surveyed once",
+									"Surveyed twice",
+									"Surveyed >2 times",
+									"Occupied sites (observed)", 
+									"Occupied sites (predicted, with 95% CI)"),
+			caption="Table 1. Summary of annual survey effort and detections of *D. impar* during the 9 years of monitoring, with predicted occupancy for each year over this period.", booktabs=TRUE)
+```
+
+\newpage
+```{r parametertable, echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
+require(knitr)
+load("fitted_model.Rdata")
+
+occparams<-out$sims.list$B
+persistparams<-out$sims.list$C
+colparams<-out$sims.list$D
+
+summary_func<-function(x){
+	post.mean=mean(x)
+	post.sd=sd(x)
+	post.lwr=quantile(x, 0.025)
+	post.upp=quantile(x, 0.975)
+	out<-c("post.mean"=format(post.mean, digits=3), 
+				 "post.sd"=format(post.sd, digits=3), CI=paste0(format(post.lwr, digits=3),", "
+																																											 ,format(post.upp, digits=3)))
+	return(out)
+}
+posterior.occ<-data.frame(t(apply(occparams, 2, summary_func)))
+posterior.persist<-data.frame(t(apply(persistparams, 2, summary_func)))
+posterior.col<-data.frame(t(apply(colparams, 2, summary_func)))
+
+posterior<-rbind(posterior.occ, posterior.persist, posterior.col)
+names(posterior)<-c("Mean", "SD", "95% CI")
+
+Parameter<-c( paste0(rep("$\\beta_{",6),  1:6, "}$"),
+							paste0(rep("$\\lambda_{",6),  1:6, "}$"), 
+							paste0(rep("$\\gamma_{",2),  1:2, "}$"))
+ 
+
+
+Covariate = c("Intercept", "Grassland", "Fire", "Grazing", "Fire x Grazing", "Clay", 
+							"Intercept", "Grassland", "Fire", "Grazing", "Fire x Grazing", "Clay", 
+							"Intercept", "Grassland")
+
+Effect = c(rep("Initial occupancy $(\\psi_{1})$", 6), rep("Persistence $(\\phi)$", 6), rep("Colonisation $(\\gamma)$", 2))
+
+tab<-data.frame(Parameter, Covariate, Effect, posterior)
+names(tab)[6]<-"95% CI"
+
+kable(tab, digits=3, align=c("l","l","l","c", "c", "c"), row.names=FALSE,
+			caption="Table 2. Summary statistics for the posteriors of the regression parameters for the occupancy model for Delma impar in the study area. Posterior means and standard deviations (SD) are provided, along with the 95% credible interval (95% CI). ")
+```
+
+\newpage
+
+```{r detectparamtable, echo=FALSE, message=FALSE, results = 'asis'}
+##Code to make a table with the parameters influencing detection probability for both lizards and sloughed skins
+require(knitr)
+load("fitted_model.Rdata")
+
+detect_params<-out$sims.list$BETA
+
+summary_func<-function(x){
+	post.mean=mean(x)
+	post.sd=sd(x)
+	post.lwr=quantile(x, 0.025)
+	post.upp=quantile(x, 0.975)
+	out<-c("post.mean"=format(post.mean, digits=3), 
+				 "post.sd"=format(post.sd, digits=3), CI=paste0(format(post.lwr, digits=3),", "
+																																											 ,format(post.upp, digits=3)))
+	return(out)
+}
+posterior<-data.frame(t(apply(detect_params, 2, summary_func)))
+row.names(posterior)<-paste0(rep("$\\alpha_{", 16), 1:16,"}$")
+names(posterior)<-c("mean", "sd", "CI")
+
+detection_type=c(rep("Lizard", 11), rep("Sign", 5))
+
+meaning=c("Intercept", 
+					"Julian date $(\\times \\cos2\\pi)$", 
+					"Julian date $(\\times \\sin2\\pi)$", 
+					"Julian date $(\\times \\cos4\\pi)$", 
+					"Julian date $(\\times \\cos4\\pi)$",
+					"$\\text{hour}$", 
+					"$\\text{hour}^2$", 
+					"$\\text{Temp}$", 
+					"$\\text{Temp}^2$", 
+					"$\\Delta\\text{T}$", 
+					"$\\text{Temp}\\times\\Delta\\text{T}$",
+					"Intercept",  
+					"Julian date $(\\times \\cos2\\pi)$", 
+					"Julian date $(\\times \\sin2\\pi)$", 
+					"Julian date $(\\times \\cos4\\pi)$", 
+					"Julian date $(\\times \\cos4\\pi)$"
+					)
+posterior<-data.frame(Parameter=row.names(posterior), "Detection"=detection_type, "Covariate"=meaning, posterior)
+
+names(posterior)<-c("Parameter","Detection type", "Covariate", "Mean", "SD", "95% CI")
+
+kable(posterior, digits=3, align=c("l","l","l","c", "c", "c"), row.names=FALSE,
+			caption="Table 3. Summary statistics for the posteriors of the regression parameters for the occupancy model for Delma impar in the study area. Posterior means and standard deviations (SD) are provided, along with the 95% credible interval (95% CI). ")
+```

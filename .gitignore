@@ -7,7 +7,6 @@ Admin/*
 OldStuff/*
 *.Rdata
 Rplots.pdf
-*.Rmd
 *.docx
 Delma.pdf
 numocc.csv
