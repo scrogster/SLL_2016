@@ -112,6 +112,6 @@ pdf("Figures/response_plot.pdf", width=5, height=10)
 grid.arrange(OCCGRAPH, PERSISTGRAPH, COLGRAPH, ncol=1, nrow=3)
 dev.off()
 
-png("Figures/response_plot.pdf", width=5, height=10, units="in", res=450)
+png("Figures/response_plot.png", width=5, height=10, units="in", res=450)
 grid.arrange(OCCGRAPH, PERSISTGRAPH, COLGRAPH, ncol=1, nrow=3)
 dev.off()

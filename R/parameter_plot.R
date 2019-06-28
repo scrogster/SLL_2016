@@ -75,6 +75,6 @@ pdf("Figures/parameter_plot.pdf", width=4.5, height=8)
 grid.arrange(INITPLOT, PERSISTPLOT, COLPLOT, ncol=1, nrow=3)
 dev.off()
 
-png("Figures/parameter_plot.pdf", width=4.5, height=8, units="in", res=450)
+png("Figures/parameter_plot.png", width=4.5, height=8, units="in", res=450)
 grid.arrange(INITPLOT, PERSISTPLOT, COLPLOT, ncol=1, nrow=3)
 dev.off()
