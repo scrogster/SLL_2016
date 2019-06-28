@@ -12,9 +12,6 @@ Fitting the model takes approximately 1 hour.
 
 The included *Makefile* scripts all required steps to format the data, fit the statistical model and generate the tables and figures.
 
-```
-make
-```
 
 
 
