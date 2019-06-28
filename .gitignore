@@ -8,6 +8,7 @@ OldStuff/*
 *.Rdata
 Rplots.pdf
 *.docx
+!template.docx
 Delma.pdf
 numocc.csv
 Traceplots/*

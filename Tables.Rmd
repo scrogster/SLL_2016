@@ -1,8 +1,8 @@
 ---
-title: "Tables"
-output: word_document
+output:
+  word_document:
+    reference_docx: template.docx
 ---
-
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 #change in occupancy calculations for next paragraph
@@ -51,7 +51,6 @@ clay_occ_CI<-paste0(format(quantile(initoccparams[, 6], 0.025), digits=2), ", ",
 ```
 
 
-\newpage
 ```{r surveytable, echo=FALSE, message=FALSE, warning=FALSE, results = 'asis'}
 require(knitr)
 load("fitted_model.Rdata")
@@ -104,7 +103,7 @@ kable(survey_table, digits=2, align=c("l", "c", "c","c", "c", "c", "c",  "c", "c
 									"Surveyed >2 times",
 									"Occupied sites (observed)", 
 									"Occupied sites (predicted, with 95% CI)"),
-			caption="Table 1. Summary of annual survey effort and detections of *D. impar* during the 9 years of monitoring, with predicted occupancy for each year over this period.", booktabs=TRUE)
+			caption="Table 1. Summary of annual survey effort and detections of *Delma impar* during the 9 years of monitoring, with predicted occupancy for each year over this period.", booktabs=TRUE) 
 ```
 
 \newpage
@@ -149,7 +148,7 @@ tab<-data.frame(Parameter, Covariate, Effect, posterior)
 names(tab)[6]<-"95% CI"
 
 kable(tab, digits=3, align=c("l","l","l","c", "c", "c"), row.names=FALSE,
-			caption="Table 2. Summary statistics for the posteriors of the regression parameters for the occupancy model for Delma impar in the study area. Posterior means and standard deviations (SD) are provided, along with the 95% credible interval (95% CI). ")
+			caption="Table 2. Summary statistics for the posteriors of the regression parameters for the occupancy model for *Delma impar* in the study area. Posterior means and standard deviations (SD) are provided, along with the 95% credible interval (95% CI). ")
 ```
 
 \newpage
@@ -199,5 +198,5 @@ posterior<-data.frame(Parameter=row.names(posterior), "Detection"=detection_type
 names(posterior)<-c("Parameter","Detection type", "Covariate", "Mean", "SD", "95% CI")
 
 kable(posterior, digits=3, align=c("l","l","l","c", "c", "c"), row.names=FALSE,
-			caption="Table 3. Summary statistics for the posteriors of the regression parameters for the occupancy model for Delma impar in the study area. Posterior means and standard deviations (SD) are provided, along with the 95% credible interval (95% CI). ")
+			caption="Table 3. Summary statistics for the posteriors of the regression parameters for the occupancy model for *Delma impar* in the study area. Posterior means and standard deviations (SD) are provided, along with the 95% credible interval (95% CI). ")
 ```
