@@ -57,7 +57,7 @@ SP<-ggplot(combined, aes(y=mean, x=x, group=Type, col=Type, linetype=Type))+
 	annotate("text", x=Inf, y=Inf, label="a", vjust=1.2, hjust=1.1, size=10)+
 	theme_bw()+
 #	theme(axis.text.x=element_text(hjust=-1.8))+
-	theme(legend.position=c(0.15, 0.87))+
+	theme(legend.position=c(0.17, 0.84))+
 	theme(legend.title=element_blank())+
 	theme(legend.key.size = unit(0.5, "cm")) +
 	theme(legend.background=element_rect(colour="black", fill="white", size=0))+
