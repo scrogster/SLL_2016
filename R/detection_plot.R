@@ -6,7 +6,7 @@ require(gridExtra)
 require(viridis)
 
 load("fitted_model.Rdata")
-dir.create("Figures")
+dir.create("Figures", showWarnings = FALSE)
 #plotting the detection curves
 
 #trial plotting of seasonal response curves. no uncertainty yet.
@@ -183,6 +183,11 @@ theme(legend.background=element_rect(colour="black", fill="white", size=0))
 pdf("Figures/detection_plot.pdf", width=4, height=7)
 grid.arrange(SP, RASTPLOT, ncol=1, nrow=2)
 dev.off()
+
+png("Figures/detection_plot.png", width=4, height=7, units="in", res=450)
+grid.arrange(SP, RASTPLOT, ncol=1, nrow=2)
+dev.off()
+
 
 
 

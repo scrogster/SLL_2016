@@ -6,7 +6,7 @@ require(viridis)
 require(gridExtra)
 
 load("fitted_model.Rdata")
-dir.create("Figures")
+dir.create("Figures", showWarnings = FALSE)
 #plotting initial occupancy parameters
 B<-data.frame(out$sims.list$B) %>%
 	rename(Intercept=X1, Grassland=X2, Fire=X3, Grazing=X4, Fire.Grazing=X5, Clay=X6)
@@ -109,5 +109,9 @@ COLGRAPH<-ggplot(col_curve, aes(x=Grassland, y=mean))+
 	theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
 
 pdf("Figures/response_plot.pdf", width=5, height=10)
+grid.arrange(OCCGRAPH, PERSISTGRAPH, COLGRAPH, ncol=1, nrow=3)
+dev.off()
+
+png("Figures/response_plot.pdf", width=5, height=10, units="in", res=450)
 grid.arrange(OCCGRAPH, PERSISTGRAPH, COLGRAPH, ncol=1, nrow=3)
 dev.off()

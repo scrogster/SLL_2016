@@ -6,7 +6,7 @@ require(gridExtra)
 require(stringr)
 
 load("fitted_model.Rdata")
-dir.create("Figures")
+dir.create("Figures", showWarnings = FALSE)
 #### Plot of number of surveyed, detected, and predicted occupied sites --------------------- ################
 df<-data.frame(out$sims.list$Numocc) %>%
 	gather() %>%
@@ -134,5 +134,9 @@ FLUX<-ggplot(df, aes(x=year.num, y=post.mean)) +
 #### Arrange plots and dump plot to file  --------------------------------------- ################
 
 pdf("Figures/site_occ_plot.pdf", width=4.5, height=10)
+grid.arrange(NOCC, EXT, COL, FLUX, ncol=1, nrow=4)
+dev.off()
+
+png("Figures/site_occ_plot.png", width=4.5, height=10, units="in", res=450)
 grid.arrange(NOCC, EXT, COL, FLUX, ncol=1, nrow=4)
 dev.off()

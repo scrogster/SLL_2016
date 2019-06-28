@@ -5,7 +5,7 @@ library(coda)
 library(ggplot2)
 load("fitted_model.Rdata")
 
-dir.create("Traceplots")
+dir.create("Traceplots", showWarnings = FALSE)
 
 samples<-out$samples
 paramnames<-names(as.data.frame(samples[[1]]))

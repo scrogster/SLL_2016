@@ -5,7 +5,7 @@ require(tidyr)
 require(gridExtra)
 
 load("fitted_model.Rdata")
-dir.create("Figures")
+dir.create("Figures", showWarnings = FALSE)
 #plotting initial occupancy parameters
 df<-data.frame(out$sims.list$B) %>%
 	rename(Intercept=X1, Grassland=X2, Fire=X3, Grazing=X4, Fire.Grazing=X5, Clay=X6) %>%
@@ -72,5 +72,9 @@ COLPLOT<-ggplot(df, aes(y=value, x=key)) +
 	theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
 
 pdf("Figures/parameter_plot.pdf", width=4.5, height=8)
+grid.arrange(INITPLOT, PERSISTPLOT, COLPLOT, ncol=1, nrow=3)
+dev.off()
+
+png("Figures/parameter_plot.pdf", width=4.5, height=8, units="in", res=450)
 grid.arrange(INITPLOT, PERSISTPLOT, COLPLOT, ncol=1, nrow=3)
 dev.off()

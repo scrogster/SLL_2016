@@ -6,10 +6,10 @@ all: prepped_data.Rdata \
      figs \
      Tables.docx
 
-figs: Figures/detection_plot.pdf Figures/detection_plot.png \
-      Figures/site_occ_plot.pdf Figures/site_occ_plot.png \
-      Figures/parameter_plot.pdf Figures/parameter_plot.png \
-      Figures/response_plot.pdf Figures/response_plot.png \
+figs: Figures/detection_plot.pdf \
+      Figures/site_occ_plot.pdf \
+      Figures/parameter_plot.pdf \
+      Figures/response_plot.pdf \
       Traceplots/initocc_trace.pdf 
 
 #extracting the survey data from the spreadsheets
@@ -33,13 +33,10 @@ fitted_model.Rdata: R/fit_occ_model.R formatted_for_JAGS.Rdata R/dynoccmod.txt
 Tables.docx: Tables.Rmd fitted_model.Rdata
 	Rscript -e 'rmarkdown::render("Tables.Rmd")'
 ###################################################
-#pattern rule to make pdf figures from Rscript
+#pattern rule to make pdf figures from Rscript. Png versions made as a side-effect
 ###################################################
 Figures/%.pdf: R/%.R fitted_model.Rdata
 	Rscript $^
-	
-Figures/%.png : Figures/%.pdf
-	convert -density 300 $< $@
 	
 ###################################################
 #Rule to make traceplots of model parameters (only made in pdf for diagnostic purposes)
