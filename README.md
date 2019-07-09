@@ -2,7 +2,7 @@
 
 This repository contains all data and code necessary to reproduce the numerical results contained in: 
 
-Scroggie, M.P, Peterson, G.N.L., Rohr, D.H., Nicholson, E. & Heard, G.W. "Disturbance has benefits as well as costs for fragmented populations of a cryptic grassland reptile".
+Scroggie, M.P, Peterson, G.N.L., Rohr, D.H., Nicholson, E. & Heard, G.W. (2019) "Disturbance has benefits as well as costs for fragmented populations of a cryptic grassland reptile". *Landscape Ecology*
 
 Just another Gibbs Sampler (JAGS) is used to fit the Bayesian dynamic occupancy model to the data using Markov Chain Monte Carlo methods, and should be downloaded and installed from:
 
