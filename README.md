@@ -1,4 +1,5 @@
 
+![](https://zenodo.org/badge/61251766.svg)
 
 This repository contains all data and code necessary to reproduce the numerical results contained in: 
 
